@@ -1,0 +1,14 @@
+fastapi
+uvicorn[standard]
+motor
+pydantic
+python-dotenv
+anthropic
+boto3
+pymupdf
+pdfplumber
+camelot-py[cv]
+sentence-transformers
+requests
+python-multipart
+deepdiff
