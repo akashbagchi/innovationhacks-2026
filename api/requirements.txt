@@ -12,3 +12,7 @@ sentence-transformers
 requests
 python-multipart
 deepdiff
+anthropic
+pymupdf
+pdfplumber
+camelot
