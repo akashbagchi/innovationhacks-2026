@@ -124,36 +124,36 @@ def extract_tables(pdf_path: str) -> list[dict]:
         return []
 
 
-# def ocr_fallback(pdf_path: str) -> list[dict]:
-#     """
-#     Last resort for scanned PDFs where both PyMuPDF and pdfplumber return near-zero text.
-#     Requires: pip install pdf2image pytesseract  (+ system Tesseract binary)
-#     """
-#     try:
-#         import pytesseract
-#         from pdf2image import convert_from_path
-#     except ImportError:
-#         raise RuntimeError(
-#             "OCR dependencies missing. Install with: pip install pdf2image pytesseract\n"
-#             "Also ensure the Tesseract binary is installed on your system."
-#         )
-#
-#     images = convert_from_path(pdf_path, dpi=300)
-#     blocks = []
-#     for page_num, image in enumerate(images):
-#         text = pytesseract.image_to_string(image).strip()
-#         if text:
-#             blocks.append(
-#                 {
-#                     "page_num": page_num + 1,
-#                     "bbox": (0, 0, image.width, image.height),
-#                     "x0": 0,
-#                     "text": text,
-#                     "font_size": 10.0,  # unknown from OCR
-#                     "is_bold": False,  # unknown from OCR
-#                 }
-#             )
-#     return blocks
+def ocr_fallback(pdf_path: str) -> list[dict]:
+    """
+    Last resort for scanned PDFs where both PyMuPDF and pdfplumber return near-zero text.
+    Requires: pip install pdf2image pytesseract  (+ system Tesseract binary)
+    """
+    try:
+        import pytesseract
+        from pdf2image import convert_from_path
+    except ImportError:
+        raise RuntimeError(
+            "OCR dependencies missing. Install with: pip install pdf2image pytesseract\n"
+            "Also ensure the Tesseract binary is installed on your system."
+        )
+
+    images = convert_from_path(pdf_path, dpi=300)
+    blocks = []
+    for page_num, image in enumerate(images):
+        text = pytesseract.image_to_string(image).strip()
+        if text:
+            blocks.append(
+                {
+                    "page_num": page_num + 1,
+                    "bbox": (0, 0, image.width, image.height),
+                    "x0": 0,
+                    "text": text,
+                    "font_size": 10.0,  # unknown from OCR
+                    "is_bold": False,  # unknown from OCR
+                }
+            )
+    return blocks
 
 
 _LOW_YIELD_THRESHOLD = 50
@@ -473,9 +473,7 @@ def _prune_sections(sections: list[dict]) -> list[dict]:
     return [s for s in sections if len(s["content"].strip()) > 50]
 
 
-# ── Step 4: LLM extraction ─────────────────────────────────────────────────────
-
-from schema import POLICY_RECORD_SCHEMA
+from .schema import POLICY_RECORD_SCHEMA
 
 
 def _render_sections(sections: list[dict]) -> str:
@@ -570,15 +568,18 @@ def _run_log(logs_dir: Path, keep: int = 3):
         old.unlink()
 
 
+_PROJECT_ROOT = Path(__file__).parent.parent.parent
+
+
 def main():
-    with _run_log(Path("../.logs")):
+    with _run_log(_PROJECT_ROOT / ".logs"):
         _run()
 
 
 def _run():
-    input_dir = Path("../../policy_data")
-    sections_dir = Path("outputs/sections")
-    records_dir = Path("outputs/policy_records")
+    input_dir = _PROJECT_ROOT / "policy_data"
+    sections_dir = _PROJECT_ROOT / "outputs" / "sections"
+    records_dir = _PROJECT_ROOT / "outputs" / "policy_records"
     sections_dir.mkdir(parents=True, exist_ok=True)
     records_dir.mkdir(parents=True, exist_ok=True)
 
@@ -644,13 +645,6 @@ def _run():
             except Exception as e:
                 print(f"  [error] LLM extraction failed: {e}")
                 break
-
-    # Once API key is available, wire in the LLM step per doc:
-    #
-    # for section in all_sections:
-    #     if "criteria" in section["heading"].lower() or "coverage" in section["heading"].lower():
-    #         policy_record = extract_policy(section["content"])
-    #         ...
 
 
 if __name__ == "__main__":
