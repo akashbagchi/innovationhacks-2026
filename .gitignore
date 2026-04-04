@@ -7,7 +7,7 @@
 .venv
 .env
 .logs/
-__pycache__/
+**/__pycache__/
 *.pyc
 node_modules/
 dist/
