@@ -1,242 +1,541 @@
-[
-  {
-    "heading": "__preamble__",
-    "level": 0,
-    "page": 1,
-    "content": "\u00a9 2025 UnitedHealthcare Services, Inc.  1\nUnitedHealthcare Pharmacy  Clinical Pharmacy Programs\nProgram Number  2025 P 2116-22  Program  Prior Authorization/Medical Necessity  Medications  Dupixent \u00ae  (dupilumab)  P&T Approval Date  1/2017, 5/2017, 7/2017, 7/2018, 12/2018, 4/2019, 10/2019, 4/2020, 5/2020,  6/2020, 6/2021, 12/2021, 2/2022, 7/2022, 11/2022, 3/2023, 7/2023, 3/2024,  11/2024, 3/2025, 6/2025, 8/2025  Effective Date  11/1/2025    1.   Background:\nDupixent \u00ae  (dupilumab) is an interleukin-4 receptor alpha antagonist indicated for treatment of  patients aged 6 months and older with moderate-to-severe atopic dermatitis whose disease is  not adequately controlled with topical prescription therapies or when those therapies are not  advisable. Dupixent can be used with or without topical corticosteroids. Dupixent is also  indicated as an add-on maintenance treatment in patients with moderate-to-severe asthma aged  6 years and older with an eosinophilic phenotype or with oral corticosteroid dependent asthma,   as an add-on maintenance treatment in adult and pediatric patients aged 12 years and older  with inadequately controlled chronic rhinosinusitis with nasal polyposis (CRSwNP), for the  treatment of adult and pediatric patients aged 1 year and older, weighing at least 15 kg, with  eosinophilic esophagitis (EoE), for adult patients with prurigo nodularis (PN), as add-on  maintenance treatment of adult patients with inadequately controlled chronic obstructive  pulmonary disease (COPD) and an eosinophilic phenotype, for the treatment of adult and  pediatric patients aged 12 years and older with chronic spontaneous urticaria (CSU) who  remain symptomatic despite H1 antihistamine treatment, and for the treatment of adult patients  with bullous pemphigoid.    Limitation of Use:\nDupixent is not for the relief of acute bronchospasm or status asthmaticus and is not indicated for  other forms of urticaria."
+{
+  "source": "test-doc.pdf",
+  "document_format": {
+    "type": "per_drug",
+    "page_count": 18,
+    "drug_hits_title": 2,
+    "drug_hits_toc": 0,
+    "heading_count": 66
   },
-  {
-    "heading": "A.   Atopic Dermatitis",
-    "level": 1,
-    "page": 1,
-    "content": "1.   Initial Authorization\na.   Dupixent  will be approved based on  all  of the following criteria:\n(1)   Diagnosis of moderate-to-severe chronic atopic dermatitis"
-  },
-  {
-    "heading": "(2)   History of failure, contraindication, or intolerance to  two  of the following",
-    "level": 2,
-    "page": 1,
-    "content": "therapeutic classes of topical therapies (document drug, date of trial, and/ or  contraindication to medication) ^:\n\u00a9 2025 UnitedHealthcare Services, Inc.  2\n(a)   Medium,high, or very-high potency topical corticosteroid [e.g., Elocon\n(mometasone furoate), Synalar (fluocinolone acetonide), Lidex (fluocinonide)]     (b)   Topical calcineurin inhibitor [e.g., Elidel (pimecrolimus), Protopic  (tacrolimus)].*     (c)   Eucrisa (crisaborole)*"
-  },
-  {
-    "heading": "-AND-    (4)   Prescribed by  one  of the following:",
-    "level": 2,
-    "page": 2,
-    "content": "(a)   Dermatologist  (b)   Allergist  (c)   Immunologist"
-  },
-  {
-    "heading": "Authorization will be issued for 12 months.     2.   Reauthorization",
-    "level": 1,
-    "page": 2,
-    "content": "a.   Dupixent  will be approved based on  all  of the following criteria:\n(1)   Documentation of positive clinical response to Dupixent therapy"
-  },
-  {
-    "heading": "-AND-    (3)   Prescribed by  one  of the following:",
-    "level": 2,
-    "page": 2,
-    "content": "(a)   Dermatologist  (b)   Allergist  (c)   Immunologist\nAuthorization will be issued for 12 months.\n\u00a9 2025 UnitedHealthcare Services, Inc.  3"
-  },
-  {
-    "heading": "B.   Asthma",
-    "level": 1,
-    "page": 3,
-    "content": "1.   Initial Authorization\na.   Dupixent  will be approved based on  all  of the following criteria:\n(1)   Diagnosis of moderate-to-severe asthma\n-AND-     (2)   Classification of asthma as uncontrolled or inadequately controlled as defined by at  least  one  of the following:    (a)   Poor symptom control (e.g., Asthma Control Questionnaire [ACQ] score  consistently greater than 1.5 or Asthma Control Test [ACT] score consistently  less than 20)  (b)   Two or more bursts of systemic corticosteroids for at least 3 days each in the  previous 12 months  (c)   Asthma-related emergency treatment (e.g., emergency room visit, hospital  admission, or unscheduled physician\u2019s office visit for nebulizer or other urgent  treatment)  (d)   Airflow limitation (e.g., after appropriate bronchodilator withhold forced  expiratory volume in 1 second [FEV1] less than 80% predicted [in the face of  reduced FEV1/forced vital capacity [FVC] defined as less than the lower limit  of normal])  (e)   Patient is currently dependent on oral corticosteroids for the treatment of  asthma"
-  },
-  {
-    "heading": "-AND-    (5)   Patient is not receiving Dupixent in combination with  any  of the following for",
-    "level": 2,
-    "page": 4,
-    "content": "treatment of the same indication:\n(a)   Anti-interleukin-5 therapy [e.g., Nucala (mepolizumab), Cinqair (resilizumab),  Fasenra (benralizumab)]  (b)   Anti-IgE therapy [e.g., Xolair (omalizumab)]  (c)   Thymic stromal lymphopoietin (TSLP) inhibitor [e.g., Tezspire (tezepelumab)]"
-  },
-  {
-    "heading": "-AND-    (6)   Prescribed by  one  of the following:",
-    "level": 2,
-    "page": 4,
-    "content": "(a)   Allergist  (b)   Immunologist  (c)   Pulmonologist    Authorization will be issued for 12 months.     2.   Reauthorization\na.   Dupixent  will be approved based on  all  of the following criteria:\n(1)   Documentation of positive clinical response to Dupixent therapy as demonstrated  by at least one of the following:\n(a)   Reduction in the frequency of exacerbations  (b)   Decreased utilization of rescue medications  (c)   Increase in percent predicted FEV1 from pretreatment baseline  (d)   Reduction in severity or frequency of asthma-related symptoms (e.g.,  wheezing, shortness of breath, coughing, etc.)  (e)   Reduction in oral corticosteroid requirements"
-  },
-  {
-    "heading": "-AND-    (3)   Patient is  not  receiving Dupixent in combination with  any  of the following for",
-    "level": 2,
-    "page": 6,
-    "content": "treatment of the same indication:\n(a)   Anti-interleukin-5 therapy [e.g., Cinqair (resilizumab), Fasenra (benralizumab),  Nucala (mepolizumab)]   (b)   Anti-IgE therapy [e.g., Xolair (omalizumab)]  (c)   Thymic stromal lymphopoietin (TSLP) inhibitor [e.g., Tezspire (tezepelumab)]"
-  },
-  {
-    "heading": "-AND-    (4)   Prescribed by  one  of the following:",
-    "level": 1,
-    "page": 6,
-    "content": "(a)   Allergist   (b)   Immunologist   (c)   Otolaryngologist   (d)   Pulmonologist"
-  },
-  {
-    "heading": "Authorization will be issued for 12 months.     2.   Reauthorization",
-    "level": 1,
-    "page": 6,
-    "content": "\u00a9 2025 UnitedHealthcare Services, Inc.  7\na.   Dupixent  will be approved based on  all  of the following criteria:\n(1)   Documentation of positive clinical response to Dupixent therapy"
-  },
-  {
-    "heading": "-AND-    (3)   Patient is  not  receiving Dupixent in combination with  any  of the following for",
-    "level": 2,
-    "page": 7,
-    "content": "treatment of the same indication:    (a)   Anti-interleukin-5 therapy [e.g., Cinqair (resilizumab), Fasenra (benralizumab),  Nucala (mepolizumab)]   (b)   Anti-IgE therapy [e.g., Xolair (omalizumab)]  (c)   Thymic stromal lymphopoietin (TSLP) inhibitor [e.g., Tezspire (tezepelumab)]"
-  },
-  {
-    "heading": "-AND-    (4)   Prescribed by  one  of the following:",
-    "level": 2,
-    "page": 7,
-    "content": "(a)   Allergist  (b)   Immunologist  (c)   Otolaryngologist  (d)   Pulmonologist    Authorization will be issued for 12 months.    D.   Eosinophilic Esophagitis\n1.   Initial Authorization\na.   Dupixent  will be approved based on  all  of the following criteria:\n(1)   Diagnosis of eosinophilic esophagitis\n-AND-    (2)   Patient is experiencing symptoms related to esophageal dysfunction (e.g.,  dysphagia, food impaction, chest pain that is often centrally located and may not  respond to antacids, gastroesophageal reflux disease-like symptoms/refractory  heartburn, upper abdominal pain)"
-  },
-  {
-    "heading": "-AND-    (7)   Prescribed by  one  of the following:",
-    "level": 2,
-    "page": 8,
-    "content": "(a)   Gastroenterologist  (b)   Allergist    Authorization will be issued for 12 months.\n2.   Reauthorization\na.   Dupixent  will be approved based on  all  of the following criteria:\n(1)   Documentation of positive clinical response to Dupixent therapy as evidenced by  improvement of at least  one  of the following from baseline:\n(a)   Symptoms (e.g., dysphagia, chest pain, heartburn)  (b)   Histologic measures (e.g., esophageal intraepithelial eosinophil count)  (c)   Endoscopic measures (e.g., edema, furrows, exudates, rings, strictures)"
-  },
-  {
-    "heading": "-AND-    (2)   Patient is not receiving Dupixent in combination with  any  of the following for",
-    "level": 2,
-    "page": 8,
-    "content": "treatment of the same indication:\n\u00a9 2025 UnitedHealthcare Services, Inc.  9\n(a)   Anti-interleukin-5 therapy [e.g., Cinqair (resilizumab), Fasenra (benralizumab),\nNucala (mepolizumab)]   (b)   Anti-IgE therapy [e.g., Xolair (omalizumab)]  (c)   Thymic stromal lymphopoietin (TSLP) inhibitor [e.g., Tezspire (tezepelumab)]"
-  },
-  {
-    "heading": "Authorization will be issued for 12 months.     E.   Prurigo Nodularis",
-    "level": 1,
-    "page": 9,
-    "content": "1.   Initial Authorization\na.   Dupixent  will be approved based on  all  of the following criteria:\n(1)   Diagnosis of prurigo nodularis"
-  },
-  {
-    "heading": "-AND-    (2)   Patient has greater than or equal to 20 nodular lesions",
-    "level": 2,
-    "page": 9,
-    "content": "-AND-    (3)   History of failure, contraindication, or intolerance to previous prurigo nodularis  treatment(s) (e.g., topical corticosteroids, topical calcineurin inhibitors, topical  capsaicin)"
-  },
-  {
-    "heading": "(4)   Patient is not receiving Dupixent in combination with  either  of the following for",
-    "level": 2,
-    "page": 9,
-    "content": "treatment of the same indication:\n(a)   Biologic immunomodulator [e.g., Adbry (tralokinumab-ldrm), Nemluvio  (nemolizumab-ilto)]  (b)   Janus kinase inhibitor [e.g., Rinvoq (upadacitinib), Xeljanz/XR (tofacitinib),  Opzelura (topical ruxolitinib), Cibinqo (abrocitinib)]"
-  },
-  {
-    "heading": "(5)   Prescribed by  one  of the following:",
-    "level": 2,
-    "page": 9,
-    "content": "(a)   Dermatologist  (b)   Allergist  (c)   Immunologist"
-  },
-  {
-    "heading": "Authorization will be issued for 12 months.",
-    "level": 1,
-    "page": 9,
-    "content": "2.   Reauthorization\n\u00a9 2025 UnitedHealthcare Services, Inc.  10\na.   Dupixent  will be approved based on  all  of the following criteria:\n(1)   Documentation of positive clinical response to Dupixent therapy"
-  },
-  {
-    "heading": "-AND-    (2)   Patient is not receiving Dupixent in combination with  either  of the following for",
-    "level": 2,
-    "page": 10,
-    "content": "treatment of the same indication:\n(a)   Biologic immunomodulator [e.g., Adbry (tralokinumab-ldrm), Nemluvio  (nemolizumab-ilto)]  (b)   Janus kinase inhibitor [e.g., Rinvoq (upadacitinib), Xeljanz/XR (tofacitinib),  Opzelura (topical ruxolitinib), Cibinqo (abrocitinib)]"
-  },
-  {
-    "heading": "Authorization will be issued for 12 months.    F.   Chronic Obstructive Pulmonary Disorder (COPD)",
-    "level": 1,
-    "page": 10,
-    "content": "1.   Initial Authorization\na.   Dupixent  will be approved based on  all  of the following criteria:\n(1)   Diagnosis of COPD"
-  },
-  {
-    "heading": "-AND-     (2)   Submission of medical records (e.g., chart notes) documenting  all  of the following:",
-    "level": 2,
-    "page": 10,
-    "content": "(a)   Post-bronchodilator forced expiratory volume (FEV 1 ) / forced vital capacity  (FVC) ratio less than 0.7  (b)   Post-bronchodilator FEV 1  % predicted greater than or equal to 30% and less  than or equal to 70%  (c)   Patient has an eosinophilic phenotype defined by a baseline (pre-dupilumab  treatment) peripheral blood eosinophil level \u2265 300 cells/\u03bcL"
-  },
-  {
-    "heading": "-AND-     (3)   Uncontrolled or inadequately controlled COPD demonstrated by  both  of the",
-    "level": 2,
-    "page": 10,
-    "content": "following:\n(a)   One  of the following:\n\u00a9 2025 UnitedHealthcare Services, Inc.  11\ni.   Two or more COPD exacerbations in the previous year requiring treatment  with systemic corticosteroids and/or antibiotics  ii.   One or more COPD exacerbation(s) that resulted in hospitalization or  observation for over 24 hours in an emergency department or urgent care  facility in the past year"
-  },
-  {
-    "heading": "-AND-    (b)   COPD exacerbation(s) occurred while receiving maintenance therapy with  one",
-    "level": 3,
-    "page": 11,
-    "content": "of the following:     i.   Triple therapy with a long-acting muscarinic antagonist (LAMA), long- acting beta agonist (LABA), and inhaled corticosteroid (ICS) (e.g., Breztri  Aerosphere, Trelegy Ellipta)  ii.   Dual therapy with a LAMA and LABA (e.g., Anoro Ellipta, Bevespi  Aerosphere, Stiolto Respimat) and a failure, contraindication, or intolerance  to an inhaled corticosteroid (ICS)"
-  },
-  {
-    "heading": "-AND-    (6)   Patient is not receiving Dupixent in combination with  any  of the following for",
-    "level": 2,
-    "page": 11,
-    "content": "treatment of the same indication:\n(a) Anti-interleukin-5 therapy [e.g., Nucala (mepolizumab), Cinqair (resilizumab),  Fasenra (benralizumab)]  (b) Anti-IgE therapy [e.g., Xolair (omalizumab)]  (c) Thymic stromal lymphopoietin (TSLP) inhibitor [e.g., Tezspire (tezepelumab)]"
-  },
-  {
-    "heading": "-AND-    (7)   Prescribed by  one  of the following:",
-    "level": 2,
-    "page": 11,
-    "content": "(a) Allergist\n\u00a9 2025 UnitedHealthcare Services, Inc.  12\n(b) Immunologist  (c) Pulmonologist"
-  },
-  {
-    "heading": "Authorization will be issued for 12 months.     2.   Reauthorization",
-    "level": 1,
-    "page": 12,
-    "content": "a.   Dupixent  will be approved based on  all  of the following criteria:\n(1)   Documentation of a positive clinical response to Dupixent therapy as demonstrated  by at least  one  of the following:\n(a)   Reduction in the frequency of COPD exacerbations  (b)   Increase in percent predicted FEV1 from pretreatment baseline  (c)   Reduction in severity or frequency of COPD-related symptoms (e.g., dyspnea,  wheezing, cough, sputum volume, decrease in sputum purulence)  (d)   Reduction in oral corticosteroid requirements"
-  },
-  {
-    "heading": "-AND-    (2)   Dupixent is being used add-on maintenance therapy in combination with  one  of the",
-    "level": 2,
-    "page": 12,
-    "content": "following:    (a)   Triple therapy with a long-acting muscarinic antagonist (LAMA), long-acting\nbeta agonist (LABA), and inhaled corticosteroid (ICS) (e.g., Breztri Aerosphere,  Trelegy Ellipta)  (b)   Dual therapy with a long-acting muscarinic antagonist (LAMA) and long-acting  beta agonist (LABA) (e.g., Anoro Ellipta, Bevespi Aerosphere, Stiolto  Respimat) and a failure, contraindication, or intolerance to an inhaled  corticosteroid (ICS)"
-  },
-  {
-    "heading": "-AND-    (3)   Patient is not receiving Dupixent in combination with  any  of the following for",
-    "level": 2,
-    "page": 12,
-    "content": "treatment of the same indication:\n(a)   Anti-interleukin-5 therapy [e.g., Nucala (mepolizumab), Cinqair (resilizumab),  Fasenra (benralizumab)]  (b)   Anti-IgE therapy [e.g., Xolair (omalizumab)]  (c)   Thymic stromal lymphopoietin (TSLP) inhibitor [e.g., Tezspire (tezepelumab)]"
-  },
-  {
-    "heading": "G.   Chronic Spontaneous Urticaria",
-    "level": 1,
-    "page": 13,
-    "content": "1.   Initial Authorization\na.   Dupixent  will be approved based on  all  of the following criteria:\n(1)   Diagnosis of chronic spontaneous urticaria"
-  },
-  {
-    "heading": "-AND-    (2)   One  of the following:",
-    "level": 2,
-    "page": 13,
-    "content": "(a)   Patient remains symptomatic despite at least a 2-week trial of, or history of  contraindication or intolerance to,  two  H1-antihistamines [e.g., Allegra  (fexofenadine), Benadryl (diphenhydramine), Claritin (loratadine)]^\n-OR-    (b)   Patient remains symptomatic despite at least a 2-week trial of, or history of  contraindication or intolerance to  both  of the following taken in  combination^:\ni.   A second generation H1-antihistamine [e.g., Allegra (fexofenadine),  Claritin (loratadine), Zyrtec (cetirizine)]"
-  },
-  {
-    "heading": "-AND-    ii.   One  of the following:",
-    "level": 3,
-    "page": 13,
-    "content": "\u2022   A different second generation H1-antihistamine [e.g., Allegra  (fexofenadine), Claritin (loratadine), Zyrtec (cetirizine)]  \u2022   A first generation H1-antihistamine [e.g., Benadryl  (diphenhydramine), Chlor-Trimeton (chlorpheniramine), Vistaril  (hydroxyzine)]  \u2022   An H2-antihistamine [e.g., Pepcid (famotidine), Tagamet HB  (cimetidine), Zantac (ranitidine)]   \u2022   A leukotriene modifier [e.g., Singulair (montelukast)]"
-  },
-  {
-    "heading": "-AND-    (4)   Prescribed by  one  of the following:",
-    "level": 2,
-    "page": 13,
-    "content": "(a)   Allergist  (b)   Dermatologist  (c)   Immunologist\n\u00a9 2025 UnitedHealthcare Services, Inc.  14"
-  },
-  {
-    "heading": "Authorization will be issued for 12 months.",
-    "level": 1,
-    "page": 14,
-    "content": "2.  Reauthorization\na.  Dupixent  will be approved based on  all  of the following criteria:\n(1)   Documentation of positive clinical response to Dupixent therapy (e.g., reduction in  exacerbations, itch severity, hives)\n-AND-    (2)   Patient is not receiving Dupixent in combination with Xolair (omalizumab) for  treatment of the same indication"
-  },
-  {
-    "heading": "-AND-    (3)   Prescribed by  one  of the following:",
-    "level": 2,
-    "page": 14,
-    "content": "(a)   Allergist  (b)   Dermatologist  (c)   Immunologist         Authorization will be issued for 12 months."
-  },
-  {
-    "heading": "H.   Bullous Pemphigoid",
-    "level": 1,
-    "page": 14,
-    "content": "1.   Initial Authorization\na.   Dupixent  will be approved based on both of the following criteria:\n(1)   Diagnosis of bullous pemphigoid"
-  },
-  {
-    "heading": "(2)   Prescribed by  one  of the following:",
-    "level": 2,
-    "page": 14,
-    "content": "(a)   Dermatologist  (b)   Allergist  (c)   Immunologist\nAuthorization will be issued for 12 months.\n2.   Reauthorization\na.   Dupixent  will be approved based on both of the following criteria:\n(1)   Documentation of positive clinical response to Dupixent therapy"
-  },
-  {
-    "heading": "(2)   Prescribed by  one  of the following:",
-    "level": 2,
-    "page": 15,
-    "content": "(a)   Dermatologist  (b)   Allergist  (c)   Immunologist\nAuthorization will be issued for 12 months.     a   State mandates may apply.  Any federal regulatory requirements and the member specific benefit  plan coverage may also impact coverage criteria. Other policies and utilization management  programs may apply.  b   For Connecticut, Kentucky and Mississippi business only a 30-day trial will be required.  ^Tried/failed alternative(s) are supported by FDA labeling.  * Elidel, Protopic/tacrolimus ointment, and Eucrisa require prior authorization.\nTable 1: Relative potencies of topical corticosteroids 3"
-  }
-]
+  "tables": [
+    {
+      "page": 1,
+      "data": [
+        {
+          "0": "Program Number",
+          "1": "2025 P 2116-22"
+        },
+        {
+          "0": "Program",
+          "1": "Prior Authorization/Medical Necessity"
+        },
+        {
+          "0": "Medications",
+          "1": "Dupixent\u00ae (dupilumab)"
+        },
+        {
+          "0": "P&T Approval Date",
+          "1": "1/2017, 5/2017, 7/2017, 7/2018, 12/2018, 4/2019, 10/2019, 4/2020, 5/2020, \n6/2020, 6/2021, 12/2021, 2/2022, 7/2022, 11/2022, 3/2023, 7/2023, 3/2024, \n11/2024, 3/2025, 6/2025, 8/2025"
+        },
+        {
+          "0": "Effective Date",
+          "1": "11/1/2025"
+        }
+      ],
+      "accuracy": 99.99999999999999
+    },
+    {
+      "page": 1,
+      "data": [
+        {
+          "0": "A.  Atopic Dermatitis \n \n1. \nInitial Authorization \n \na.  Dupixent will be approved based on all of the following criteria:  \n \n(1)  Diagnosis of moderate-to-severe chronic atopic dermatitis  \n \n-AND- \n \n(2)  History of failure, contraindication, or intolerance to two of the following \ntherapeutic classes of topical therapies (document drug, date of trial, and/ or \ncontraindication to medication)^:"
+        }
+      ],
+      "accuracy": 100.00000000000001
+    },
+    {
+      "page": 2,
+      "data": [
+        {
+          "0": "2\n(a)  Medium,high, or very-high potency topical corticosteroid [e.g., Elocon \n(mometasone furoate), Synalar (fluocinolone acetonide), Lidex (fluocinonide)]  \n(b)  Topical calcineurin inhibitor [e.g., Elidel (pimecrolimus), Protopic \n(tacrolimus)].*  \n(c)  Eucrisa (crisaborole)* \n \n-AND- \n \n(3)  Patient is not receiving Dupixent in combination with either of the following for \ntreatment of the same indication: \n \n(a)  Biologic immunomodulator [e.g., Adbry (tralokinumab-ldrm)] \n(b)  Janus kinase inhibitor [e.g., Rinvoq (upadacitinib), Xeljanz/XR (tofacitinib), \nOpzelura (topical ruxolitinib), Cibinqo (abrocitinib)] \n \n-AND- \n \n(4)  Prescribed by one of the following: \n \n(a)  Dermatologist \n(b)  Allergist \n(c)  Immunologist \n \nAuthorization will be issued for 12 months.  \n.  Reauthorization \n \na.  Dupixent will be approved based on all of the following criteria: \n \n(1)  Documentation of positive clinical response to Dupixent therapy \n \n-AND- \n \n(2)  Patient is not receiving Dupixent in combination with either of the following for \ntreatment of the same indication: \n \n(a)  Biologic immunomodulator [e.g., Adbry (tralokinumab-ldrm)] \n(b)  Janus kinase inhibitor [e.g., Rinvoq (upadacitinib), Xeljanz/XR (tofacitinib), \nOpzelura (topical ruxolitinib), Cibinqo (abrocitinib)] \n \n-AND- \n \n(3)  Prescribed by one of the following: \n \n(a)  Dermatologist \n(b)  Allergist \n(c)  Immunologist \n \nAuthorization will be issued for 12 months."
+        }
+      ],
+      "accuracy": 100.0
+    },
+    {
+      "page": 3,
+      "data": [
+        {
+          "0": "(\n  (\n  -\nB.  Asthma \n \n1. \nInitial Authorization \n \na.  Dupixent will be approved based on all of the following criteria:  \n \n(1)  Diagnosis of moderate-to-severe asthma \n \n-AND- \n2)  Classification of asthma as uncontrolled or inadequately controlled as defined by at \nleast one of the following: \na)  Poor symptom control (e.g., Asthma Control Questionnaire [ACQ] score \nconsistently greater than 1.5 or Asthma Control Test [ACT] score consistently \nless than 20) \n(b)  Two or more bursts of systemic corticosteroids for at least 3 days each in the \nprevious 12 months \n(c)  Asthma-related emergency treatment (e.g., emergency room visit, hospital \nadmission, or unscheduled physician\u2019s office visit for nebulizer or other urgent \ntreatment) \n(d)  Airflow limitation (e.g., after appropriate bronchodilator withhold forced \nexpiratory volume in 1 second [FEV1] less than 80% predicted [in the face of \nreduced FEV1/forced vital capacity [FVC] defined as less than the lower limit \nof normal]) \n(e)  Patient is currently dependent on oral corticosteroids for the treatment of \nasthma \n \n-AND- \n \n(3)  One of the following: \n \n(a)  Submission of medical records (e.g., chart notes, laboratory values, etc.) \ndocumenting that asthma is an eosinophilic phenotype as defined by a baseline \n(pre-dupilumab treatment) peripheral blood eosinophil level \u2265 150 cells/\u03bcL \n \n \n-OR- \n \n(b)  Patient is currently dependent on oral corticosteroids for the treatment of asthma \nAND- \n \n(4)  Dupixent will be used in combination with one of the following: \n \n(a)  One maximally dosed (appropriately adjusted for age) combination inhaled \ncorticosteroid (ICS)/long-acting beta2 agonist (LABA) [e.g., Advair/AirDuo \nRespiclick (fluticasone propionate/salmeterol), Symbicort \n(budesonide/formoterol), Breo Ellipta (fluticasone furoate/vilanterol)] \n \n \n-OR-"
+        }
+      ],
+      "accuracy": 100.00000000000003
+    },
+    {
+      "page": 4,
+      "data": [
+        {
+          "0": "2\n  -\n \n(b)  Combination therapy including both of the following: \n \ni. \nOne maximally dosed (appropriately adjusted for age) ICS product [e.g., \nciclesonide (Alvesco), mometasone furoate (Asmanex), beclomethasone \ndipropionate (QVAR)] \n \n \n-AND- \n \nii. \nOne additional asthma controller medication [e.g., LABA - olodaterol \n(Striverdi) or indacaterol (Arcapta); leukotriene receptor antagonist \u2013 \nmontelukast (Singulair); theophylline] \n \n-AND- \n \n(5)  Patient is not receiving Dupixent in combination with any of the following for \ntreatment of the same indication: \n \n(a)  Anti-interleukin-5 therapy [e.g., Nucala (mepolizumab), Cinqair (resilizumab), \nFasenra (benralizumab)] \n(b)  Anti-IgE therapy [e.g., Xolair (omalizumab)] \n(c)  Thymic stromal lymphopoietin (TSLP) inhibitor [e.g., Tezspire (tezepelumab)] \n \n-AND- \n \n(6)  Prescribed by one of the following: \n \n(a)  Allergist \n(b)  Immunologist \n(c)  Pulmonologist \n \nAuthorization will be issued for 12 months.  \n.  Reauthorization \n \na.  Dupixent will be approved based on all of the following criteria: \n \n(1)  Documentation of positive clinical response to Dupixent therapy as demonstrated \nby at least one of the following: \n \n(a)  Reduction in the frequency of exacerbations \n(b)  Decreased utilization of rescue medications \n(c)  Increase in percent predicted FEV1 from pretreatment baseline \n(d)  Reduction in severity or frequency of asthma-related symptoms (e.g., \nwheezing, shortness of breath, coughing, etc.) \n(e)  Reduction in oral corticosteroid requirements \nAND-"
+        }
+      ],
+      "accuracy": 99.99999999999989
+    },
+    {
+      "page": 5,
+      "data": [
+        {
+          "0": "C\n  (\n(2)  Dupixent is being used in combination with an ICS-containing maintenance \nmedication [e.g., Advair/AirDuo (fluticasone/salmeterol), Breo Ellipta (fluticasone \nfuroate/vilanterol), Symbicort (budesonide/ formoterol), Trelegy Ellipta \n(fluticasone furoate/umeclidinium/vilanterol)]. \n \n-AND- \n3)  Patient is not receiving Dupixent in combination with any of the following for \ntreatment of the same indication: \n \n(a)  Anti-interleukin-5 therapy [e.g., Nucala (mepolizumab), Cinqair (resilizumab), \nFasenra (benralizumab)] \n(b)  Anti-IgE therapy [e.g., Xolair (omalizumab)] \n(c)  Thymic stromal lymphopoietin (TSLP) inhibitor [e.g., Tezspire (tezepelumab)] \n \n \n-AND- \n \n(4)  Prescribed by one of the following: \n \n(a)  Allergist \n(b)  Immunologist \n(c)  Pulmonologist \n \nAuthorization will be issued for 12 months.  \n.  Chronic Rhinosinusitis with Nasal Polyposis \n \n1. \nInitial Authorization \n \na.  Dupixent will be approved based on all of the following criteria:  \n \n(1) Diagnosis of chronic rhinosinusitis with nasal polyposis (CRSwNP) defined by all \nof the following: \n \n(a)  Two or more of the following symptoms for longer than 12 weeks duration: \n \nNasal mucopurulent discharge  \ni. \nNasal obstruction, blockage, or congestion \nii. \nFacial pain, pressure, and/or fullness \niii. \nReduction or loss of sense of smell \niv. \n \n \n-AND- \n \n(b)  One of the following findings using nasal endoscopy and/or sinus computed \ntomography (CT): \n \nPurulent mucus or edema in the middle meatus or ethmoid regions \ni. \nPolyps in the nasal cavity or the middle meatus \nii. \nRadiographic imaging demonstrating mucosal thickening or partial or \niii. \ncomplete opacification of paranasal sinuses"
+        }
+      ],
+      "accuracy": 100.00000000000007
+    },
+    {
+      "page": 6,
+      "data": [
+        {
+          "0": "2\n  (\n \n-AND- \n \n(c)  One of the following: \n \nPresence of bilateral nasal polyposis \ni. \nPatient has previously required surgical removal of bilateral nasal polyps  \nii. \n \n-AND- \n \n(d)  One of the following: \n \nPatient has required prior sinus surgery \ni. \nPatient has required systemic corticosteroids (e.g., prednisone, \nii. \nmethylprednisolone) for CRSwNP in the previous 2 years \nPatient has been unable to obtain symptom relief after trial of two of the \niii. \nfollowing classes of agents^: \nNasal saline irrigations \n\u2022 \nIntranasal corticosteroids (e.g., fluticasone, mometasone, \n\u2022 \ntriamcinolone) \nAntileukotriene agents (e.g., montelukast, zafirlukast, zileuton) \n\u2022 \n \n-AND- \n \n(2)  Patient will receive Dupixent as add-on maintenance therapy in combination with \nintranasal corticosteroids (e.g., fluticasone, mometasone, triamcinolone). \n \n-AND- \n3)  Patient is not receiving Dupixent in combination with any of the following for \ntreatment of the same indication: \n \n(a)  Anti-interleukin-5 therapy [e.g., Cinqair (resilizumab), Fasenra (benralizumab), \nNucala (mepolizumab)]  \n(b)  Anti-IgE therapy [e.g., Xolair (omalizumab)] \n(c)  Thymic stromal lymphopoietin (TSLP) inhibitor [e.g., Tezspire (tezepelumab)] \n \n-AND- \n \n(4)  Prescribed by one of the following: \n \n(a)  Allergist  \n(b)  Immunologist  \n(c)  Otolaryngologist  \n(d)  Pulmonologist \n \nAuthorization will be issued for 12 months.  \n.  Reauthorization"
+        }
+      ],
+      "accuracy": 99.99999999999991
+    },
+    {
+      "page": 7,
+      "data": [
+        {
+          "0": "D\n  (\n  (\n  (\n  -\na.  Dupixent will be approved based on all of the following criteria: \n \n(1)  Documentation of positive clinical response to Dupixent therapy \n \n-AND- \n \n(2)  Patient will continue to receive Dupixent as add-on maintenance therapy in \ncombination with intranasal corticosteroids (e.g., fluticasone, mometasone, \ntriamcinolone). \nAND- \n3)  Patient is not receiving Dupixent in combination with any of the following for \ntreatment of the same indication: \na)  Anti-interleukin-5 therapy [e.g., Cinqair (resilizumab), Fasenra (benralizumab), \nNucala (mepolizumab)]  \n(b)  Anti-IgE therapy [e.g., Xolair (omalizumab)] \n(c)  Thymic stromal lymphopoietin (TSLP) inhibitor [e.g., Tezspire (tezepelumab)] \n \n-AND- \n \n(4)  Prescribed by one of the following: \n \n(a)  Allergist \n(b)  Immunologist \n(c)  Otolaryngologist \n(d)  Pulmonologist \n \nAuthorization will be issued for 12 months. \n.  Eosinophilic Esophagitis \n \n1. \nInitial Authorization \n \na.  Dupixent will be approved based on all of the following criteria: \n \n(1)  Diagnosis of eosinophilic esophagitis \n \n-AND- \n2)  Patient is experiencing symptoms related to esophageal dysfunction (e.g., \ndysphagia, food impaction, chest pain that is often centrally located and may not \nrespond to antacids, gastroesophageal reflux disease-like symptoms/refractory \nheartburn, upper abdominal pain) \n \n-AND- \n \n(3)  Submission of medical records (e.g., chart notes, laboratory values, etc.) \ndocumenting eosinophil-predominant inflammation on esophageal biopsy,"
+        }
+      ],
+      "accuracy": 99.99999999999987
+    },
+    {
+      "page": 8,
+      "data": [
+        {
+          "0": "(\n  -\nconsisting of a peak value of \u226515 intraepithelial eosinophils per high power field \n(HPF) (or 60 eosinophils per mm2) \n \n-AND- \n \n(4)  Secondary causes of esophageal eosinophilia have been ruled out \n \n-AND- \n \n(5)  Mucosal eosinophilia is isolated to the esophagus and symptoms have persisted \nafter an 8-week trial of at least one of the following:b \n \n(a)  Proton pump inhibitors (e.g., pantoprazole, omeprazole) \n(b)  Topical (esophageal) corticosteroids (e.g., budesonide, fluticasone) \n \n-AND- \n(6)  Patient is not receiving Dupixent in combination with any of the following for \ntreatment of the same indication: \n \n(a)  Anti-interleukin-5 therapy [e.g., Cinqair (resilizumab), Fasenra (benralizumab), \nNucala (mepolizumab)]  \n(b)  Anti-IgE therapy [e.g., Xolair (omalizumab)] \n(c)  Thymic stromal lymphopoietin (TSLP) inhibitor [e.g., Tezspire (tezepelumab)] \n-AND- \n \n(7) Prescribed by one of the following: \n \n(a)  Gastroenterologist \n(b)  Allergist \n \nAuthorization will be issued for 12 months.  \n \n2.  Reauthorization \n \na.  Dupixent will be approved based on all of the following criteria: \n \n(1)  Documentation of positive clinical response to Dupixent therapy as evidenced by \nimprovement of at least one of the following from baseline: \n \n(a)  Symptoms (e.g., dysphagia, chest pain, heartburn) \n(b)  Histologic measures (e.g., esophageal intraepithelial eosinophil count) \n(c)  Endoscopic measures (e.g., edema, furrows, exudates, rings, strictures) \nAND- \n2)  Patient is not receiving Dupixent in combination with any of the following for \ntreatment of the same indication:"
+        }
+      ],
+      "accuracy": 99.99999999999994
+    },
+    {
+      "page": 9,
+      "data": [
+        {
+          "0": "E\n(a)  Anti-interleukin-5 therapy [e.g., Cinqair (resilizumab), Fasenra (benralizumab), \nNucala (mepolizumab)]  \n(b)  Anti-IgE therapy [e.g., Xolair (omalizumab)] \n(c)  Thymic stromal lymphopoietin (TSLP) inhibitor [e.g., Tezspire (tezepelumab)] \n \n-AND- \n \n(3)  Prescribed by or in consultation with a gastroenterologist or allergist \n \nAuthorization will be issued for 12 months.  \n.  Prurigo Nodularis \n \n1. \nInitial Authorization \n \na.  Dupixent will be approved based on all of the following criteria: \n \n(1)  Diagnosis of prurigo nodularis \n \n-AND- \n \n(2)  Patient has greater than or equal to 20 nodular lesions \n \n-AND- \n \n(3)  History of failure, contraindication, or intolerance to previous prurigo nodularis \ntreatment(s) (e.g., topical corticosteroids, topical calcineurin inhibitors, topical \ncapsaicin)   \n \n-AND- \n \n(4)  Patient is not receiving Dupixent in combination with either of the following for \ntreatment of the same indication: \n \n(a)  Biologic immunomodulator [e.g., Adbry (tralokinumab-ldrm), Nemluvio \n(nemolizumab-ilto)] \n(b)  Janus kinase inhibitor [e.g., Rinvoq (upadacitinib), Xeljanz/XR (tofacitinib), \nOpzelura (topical ruxolitinib), Cibinqo (abrocitinib)] \n \n-AND- \n \n(5)  Prescribed by one of the following: \n \n(a)  Dermatologist \n(b)  Allergist \n(c)  Immunologist \n \nAuthorization will be issued for 12 months.  \n \n2.  Reauthorization"
+        }
+      ],
+      "accuracy": 99.99999999999987
+    },
+    {
+      "page": 10,
+      "data": [
+        {
+          "0": "(\n  (\n  (\n  -\n  -\n \na.  Dupixent will be approved based on all of the following criteria: \n \n(1)  Documentation of positive clinical response to Dupixent therapy \nAND- \n2)  Patient is not receiving Dupixent in combination with either of the following for \ntreatment of the same indication: \n \n(a)  Biologic immunomodulator [e.g., Adbry (tralokinumab-ldrm), Nemluvio \n(nemolizumab-ilto)] \n(b)  Janus kinase inhibitor [e.g., Rinvoq (upadacitinib), Xeljanz/XR (tofacitinib), \nOpzelura (topical ruxolitinib), Cibinqo (abrocitinib)] \n \n-AND- \n \n(3)  Prescribed by one of the following: \n \n(a)  Dermatologist \n(b)  Allergist \n(c)  Immunologist \n \nAuthorization will be issued for 12 months. \n \nF.  Chronic Obstructive Pulmonary Disorder (COPD) \n \n1. \nInitial Authorization \n \na.  Dupixent will be approved based on all of the following criteria:  \n \n(1)  Diagnosis of COPD \n \n-AND- \n2)  Submission of medical records (e.g., chart notes) documenting all of the following:  \na)  Post-bronchodilator forced expiratory volume (FEV1) / forced vital capacity \n(FVC) ratio less than 0.7 \n(b)  Post-bronchodilator FEV1 % predicted greater than or equal to 30% and less \nthan or equal to 70% \n(c)  Patient has an eosinophilic phenotype defined by a baseline (pre-dupilumab \ntreatment) peripheral blood eosinophil level \u2265 300 cells/\u03bcL \nAND- \n \n(3)  Uncontrolled or inadequately controlled COPD demonstrated by both of the \nfollowing:  \n \n(a)  One of the following:"
+        }
+      ],
+      "accuracy": 99.99999999999987
+    },
+    {
+      "page": 11,
+      "data": [
+        {
+          "0": "(\n  i\n  i\n  -\n  -\nTwo or more COPD exacerbations in the previous year requiring treatment \n. \nwith systemic corticosteroids and/or antibiotics \nOne or more COPD exacerbation(s) that resulted in hospitalization or \nii. \nobservation for over 24 hours in an emergency department or urgent care \nfacility in the past year \nAND- \n \n(b)  COPD exacerbation(s) occurred while receiving maintenance therapy with one \nof the following:  \nTriple therapy with a long-acting muscarinic antagonist (LAMA), long-\n. \nacting beta agonist (LABA), and inhaled corticosteroid (ICS) (e.g., Breztri \nAerosphere, Trelegy Ellipta) \nDual therapy with a LAMA and LABA (e.g., Anoro Ellipta, Bevespi \nii. \nAerosphere, Stiolto Respimat) and a failure, contraindication, or intolerance \nto an inhaled corticosteroid (ICS)  \n \n-AND- \n \n(4)  Symptoms of chronic productive cough for at least 3 months in the past year \n \n-AND- \n \n(5)  Dupixent will be used as add-on maintenance therapy in combination with one of \nthe following:  \na)  Triple therapy with a long-acting muscarinic antagonist (LAMA), long-acting \nbeta agonist (LABA), and inhaled corticosteroid (ICS) (e.g., Breztri Aerosphere, \nTrelegy Ellipta) \n(b)  Dual therapy with a LAMA and LABA (e.g., Anoro Ellipta, Bevespi \nAerosphere, Stiolto Respimat) and a failure, contraindication, or intolerance to \nan inhaled corticosteroid (ICS) \nAND- \n \n(6)  Patient is not receiving Dupixent in combination with any of the following for \ntreatment of the same indication: \n \n(a) Anti-interleukin-5 therapy [e.g., Nucala (mepolizumab), Cinqair (resilizumab), \nFasenra (benralizumab)] \n(b) Anti-IgE therapy [e.g., Xolair (omalizumab)] \n(c) Thymic stromal lymphopoietin (TSLP) inhibitor [e.g., Tezspire (tezepelumab)] \n \n-AND- \n \n(7)  Prescribed by one of the following: \n \n(a)  Allergist"
+        }
+      ],
+      "accuracy": 99.99999999999996
+    },
+    {
+      "page": 12,
+      "data": [
+        {
+          "0": "2\n  (\n  (\n  (\n  -\n(b)  Immunologist \n(c)  Pulmonologist \n \nAuthorization will be issued for 12 months.  \n.  Reauthorization \n \na.  Dupixent will be approved based on all of the following criteria: \n \n(1)  Documentation of a positive clinical response to Dupixent therapy as demonstrated \nby at least one of the following: \n \n(a)  Reduction in the frequency of COPD exacerbations \n(b)  Increase in percent predicted FEV1 from pretreatment baseline \n(c)  Reduction in severity or frequency of COPD-related symptoms (e.g., dyspnea, \nwheezing, cough, sputum volume, decrease in sputum purulence) \n(d)  Reduction in oral corticosteroid requirements \nAND- \n2)  Dupixent is being used add-on maintenance therapy in combination with one of the \nfollowing: \na)  Triple therapy with a long-acting muscarinic antagonist (LAMA), long-acting \nbeta agonist (LABA), and inhaled corticosteroid (ICS) (e.g., Breztri Aerosphere, \nTrelegy Ellipta) \n(b)  Dual therapy with a long-acting muscarinic antagonist (LAMA) and long-acting \nbeta agonist (LABA) (e.g., Anoro Ellipta, Bevespi Aerosphere, Stiolto \nRespimat) and a failure, contraindication, or intolerance to an inhaled \ncorticosteroid (ICS) \n-AND- \n3)  Patient is not receiving Dupixent in combination with any of the following for \ntreatment of the same indication: \n \n(a)  Anti-interleukin-5 therapy [e.g., Nucala (mepolizumab), Cinqair (resilizumab), \nFasenra (benralizumab)] \n(b)  Anti-IgE therapy [e.g., Xolair (omalizumab)] \n(c)  Thymic stromal lymphopoietin (TSLP) inhibitor [e.g., Tezspire (tezepelumab)] \n \n-AND- \n \n(4)  Prescribed by one of the following: \n \n(a)  Allergist \n(b)  Immunologist \n(c)  Pulmonologist \n \nAuthorization will be issued for 12 months."
+        }
+      ],
+      "accuracy": 100.0
+    },
+    {
+      "page": 13,
+      "data": [
+        {
+          "0": "(\n  (\n  (\nG.  Chronic Spontaneous Urticaria \n \n1. \nInitial Authorization \n \na.  Dupixent will be approved based on all of the following criteria:  \n \n(1)  Diagnosis of chronic spontaneous urticaria \n \n-AND- \n2)  One of the following: \nPatient remains symptomatic despite at least a 2-week trial of, or history of \na) \ncontraindication or intolerance to, two H1-antihistamines [e.g., Allegra \n(fexofenadine), Benadryl (diphenhydramine), Claritin (loratadine)]^ \n \n-OR- \n \nPatient remains symptomatic despite at least a 2-week trial of, or history of \n(b) \ncontraindication or intolerance to both of the following taken in \ncombination^: \n \nA second generation H1-antihistamine [e.g., Allegra (fexofenadine), \ni. \nClaritin (loratadine), Zyrtec (cetirizine)] \n \n-AND- \n \nii.  One of the following: \n \nA different second generation H1-antihistamine [e.g., Allegra \n\u2022 \n(fexofenadine), Claritin (loratadine), Zyrtec (cetirizine)] \nA first generation H1-antihistamine [e.g., Benadryl \n\u2022 \n(diphenhydramine), Chlor-Trimeton (chlorpheniramine), Vistaril \n(hydroxyzine)] \nAn H2-antihistamine [e.g., Pepcid (famotidine), Tagamet HB \n\u2022 \n(cimetidine), Zantac (ranitidine)]  \nA leukotriene modifier [e.g., Singulair (montelukast)] \n\u2022 \n \n-AND- \n \n(3)  Patient is not receiving Dupixent in combination with Xolair (omalizumab) for \ntreatment of the same indication \n \n-AND- \n \n(4)  Prescribed by one of the following: \na)  Allergist \n(b)  Dermatologist \n(c)  Immunologist"
+        }
+      ],
+      "accuracy": 99.99999999999991
+    },
+    {
+      "page": 14,
+      "data": [
+        {
+          "0": "(\n \nAuthorization will be issued for 12 months.  \n \n2.  Reauthorization \n \na.  Dupixent will be approved based on all of the following criteria: \n \n(1)  Documentation of positive clinical response to Dupixent therapy (e.g., reduction in \nexacerbations, itch severity, hives) \n \n-AND- \n \n(2)  Patient is not receiving Dupixent in combination with Xolair (omalizumab) for \ntreatment of the same indication \n \n-AND- \n \n(3)  Prescribed by one of the following: \na)  Allergist \n(b)  Dermatologist \n(c)  Immunologist \n \n     Authorization will be issued for 12 months.  \n \nH.  Bullous Pemphigoid \n \n1. \nInitial Authorization \n \na.  Dupixent will be approved based on both of the following criteria: \n \n(1)  Diagnosis of bullous pemphigoid \n \n-AND- \n \n(2)  Prescribed by one of the following: \n \n(a)  Dermatologist \n(b)  Allergist \n(c)  Immunologist \n \nAuthorization will be issued for 12 months.  \n \n2.  Reauthorization \n \na.  Dupixent will be approved based on both of the following criteria: \n \n(1)  Documentation of positive clinical response to Dupixent therapy \n \n-AND-"
+        }
+      ],
+      "accuracy": 99.99999999999987
+    },
+    {
+      "page": 15,
+      "data": [
+        {
+          "0": "a\n \n(2)  Prescribed by one of the following: \n \n(a)  Dermatologist \n(b)  Allergist \n(c)  Immunologist \n \nAuthorization will be issued for 12 months.  \n  State mandates may apply.  Any federal regulatory requirements and the member specific benefit \nplan coverage may also impact coverage criteria. Other policies and utilization management \nprograms may apply. \nb  For Connecticut, Kentucky and Mississippi business only a 30-day trial will be required. \n^Tried/failed alternative(s) are supported by FDA labeling. \n* Elidel, Protopic/tacrolimus ointment, and Eucrisa require prior authorization."
+        }
+      ],
+      "accuracy": 100.00000000000001
+    },
+    {
+      "page": 17,
+      "data": [
+        {
+          "0": "Program \nPrior Authorization/Medical Necessity - Dupixent (dupilumab)",
+          "1": ""
+        },
+        {
+          "0": "Change Control",
+          "1": ""
+        },
+        {
+          "0": "1/2017",
+          "1": "New program."
+        },
+        {
+          "0": "5/2017",
+          "1": "Updated background and references.  Dupixent approved on 3/28/2017."
+        },
+        {
+          "0": "7/2017",
+          "1": "Updated criteria to differentiate based on physician assessment of \nseverity.  Eucrisa added as required treatment in moderate severity \ndisease.  Added criteria allowing treatment if disease history required \ntreatment with systemic immunosuppressants.  Added criteria for \npatients previously on therapy.  Added sample pack language.  \nRemoved medical record submission requirement while adding \nrequirement for medication trial or contraindication documentation.  \nAdded corticosteroid potency table as reference."
+        },
+        {
+          "0": "7/2018",
+          "1": "Annual review with no change to coverage criteria.  Updated reference."
+        },
+        {
+          "0": "12/2018",
+          "1": "Updated background and formatting and added criteria for new \nindication for moderate-to-severe asthma."
+        },
+        {
+          "0": "4/2019",
+          "1": "Updated background and criteria for updated indication of adolescent \natopic dermatitis.  Removed criteria regarding history of systemic \nimmunosuppressant for atopic dermatitis use as allowance for initial \napproval as no longer critical with market availability surpassing 2 \nyears."
+        },
+        {
+          "0": "10/2019",
+          "1": "Updated Dupixent\u00ae (dupilumab) background and criteria for new \nindication for CRSwNP.  Updated references."
+        },
+        {
+          "0": "4/2020",
+          "1": "Updated criteria for atopic dermatitis requiring failure of two topicals \nfor all severities of atopic dermatitis"
+        },
+        {
+          "0": "5/2020",
+          "1": "Updated criteria for clarification without change to clinical intent"
+        },
+        {
+          "0": "6/2020",
+          "1": "Updated background and criteria to include new indication for \nmoderate-to-severe atopic dermatitis in children aged 6 to 11 years.  \nAligned specialist requirement across indications for initial \nauthorizations and reauthorization."
+        },
+        {
+          "0": "6/2021",
+          "1": "Annual review with no change to criteria.  Updated background, drug \nexamples, and references."
+        },
+        {
+          "0": "12/2021",
+          "1": "Updated background and criteria to include expanded indication of \nmoderate to severe eosinophilic or oral corticosteroid dependent asthma \nto patients aged 6 years and older.  Updated references."
+        },
+        {
+          "0": "2/2022",
+          "1": "Removed bypass of initial authorization for patients currently on \ntherapy with Dupixent for all indications.  Updated initial authorization \nperiod to 12 months. Updated agents not to be used in combination with \nDupixent for all indications.  Removed age requirement from atopic \ndermatitis and asthma coverage criteria. Updated coverage criteria for \nCRSwNP.  Updated references.  Added footnote to support FDA \nlabeled first line requirements."
+        }
+      ],
+      "accuracy": 99.99999999999991
+    },
+    {
+      "page": 18,
+      "data": [
+        {
+          "0": "7/2022",
+          "1": "Added clinical criteria for eosinophilic esophagitis.  Removed footnote \nregarding sample initiation from the asthma as this no longer applies.  \nUpdated background, state mandate, and references."
+        },
+        {
+          "0": "11/2022",
+          "1": "Updated criteria to include new indication for prurigo nodularis.  \nUpdated reference."
+        },
+        {
+          "0": "3/2023",
+          "1": "Updated not used in combination criteria for atopic dermatitis and \nprurigo nodularis."
+        },
+        {
+          "0": "7/2023",
+          "1": "Updated coverage criteria for severe asthma to align with GINA & \nERS/ATS guidelines. Added/updated examples of ICS-containing \nmaintenance medications and removed requirement that peripheral \nblood eosinophil level must be within 6 weeks.  Updated references."
+        },
+        {
+          "0": "3/2024",
+          "1": "Clarified topical steroid potency in atopic dermatitis with no change to \nclinical intent or coverage criteria.  Removed weight requirement from \nEosinophilic Esophagitis criteria.  Updated state mandate footnote, \nbackground and reference."
+        },
+        {
+          "0": "11/2024",
+          "1": "Added criteria to include new indication for chronic obstructive \npulmonary disorder. Updated background and reference."
+        },
+        {
+          "0": "3/2025",
+          "1": "Increased authorizations for eosinophilic esophagitis to 12 months."
+        },
+        {
+          "0": "6/2025",
+          "1": "Added criteria to include new indication for chronic spontaneous \nurticaria. Updated approval duration for prurigo nodularis. Updated \ncoverage criteria for concomitant use. Added Nemluvio to the list of \nexamples of biologic immunomodulators for prurigo nodularis. Updated \nbackground and reference."
+        },
+        {
+          "0": "8/2025",
+          "1": "Added criteria for the new indication for bullous pemphigoid.  Updated \nbackground and reference."
+        }
+      ],
+      "accuracy": 99.99999999999993
+    }
+  ],
+  "sections": [
+    {
+      "heading": "__preamble__",
+      "level": 0,
+      "page": 1,
+      "content": "\u00a9 2025 UnitedHealthcare Services, Inc.  1\nUnitedHealthcare Pharmacy  Clinical Pharmacy Programs\nProgram Number  2025 P 2116-22  Program  Prior Authorization/Medical Necessity  Medications  Dupixent \u00ae  (dupilumab)  P&T Approval Date  1/2017, 5/2017, 7/2017, 7/2018, 12/2018, 4/2019, 10/2019, 4/2020, 5/2020,  6/2020, 6/2021, 12/2021, 2/2022, 7/2022, 11/2022, 3/2023, 7/2023, 3/2024,  11/2024, 3/2025, 6/2025, 8/2025  Effective Date  11/1/2025    1.   Background:\nDupixent \u00ae  (dupilumab) is an interleukin-4 receptor alpha antagonist indicated for treatment of  patients aged 6 months and older with moderate-to-severe atopic dermatitis whose disease is  not adequately controlled with topical prescription therapies or when those therapies are not  advisable. Dupixent can be used with or without topical corticosteroids. Dupixent is also  indicated as an add-on maintenance treatment in patients with moderate-to-severe asthma aged  6 years and older with an eosinophilic phenotype or with oral corticosteroid dependent asthma,   as an add-on maintenance treatment in adult and pediatric patients aged 12 years and older  with inadequately controlled chronic rhinosinusitis with nasal polyposis (CRSwNP), for the  treatment of adult and pediatric patients aged 1 year and older, weighing at least 15 kg, with  eosinophilic esophagitis (EoE), for adult patients with prurigo nodularis (PN), as add-on  maintenance treatment of adult patients with inadequately controlled chronic obstructive  pulmonary disease (COPD) and an eosinophilic phenotype, for the treatment of adult and  pediatric patients aged 12 years and older with chronic spontaneous urticaria (CSU) who  remain symptomatic despite H1 antihistamine treatment, and for the treatment of adult patients  with bullous pemphigoid.    Limitation of Use:\nDupixent is not for the relief of acute bronchospasm or status asthmaticus and is not indicated for  other forms of urticaria."
+    },
+    {
+      "heading": "A.   Atopic Dermatitis",
+      "level": 1,
+      "page": 1,
+      "content": "1.   Initial Authorization\na.   Dupixent  will be approved based on  all  of the following criteria:\n(1)   Diagnosis of moderate-to-severe chronic atopic dermatitis"
+    },
+    {
+      "heading": "(2)   History of failure, contraindication, or intolerance to  two  of the following",
+      "level": 2,
+      "page": 1,
+      "content": "therapeutic classes of topical therapies (document drug, date of trial, and/ or  contraindication to medication) ^:\n\u00a9 2025 UnitedHealthcare Services, Inc.  2\n(a)   Medium,high, or very-high potency topical corticosteroid [e.g., Elocon\n(mometasone furoate), Synalar (fluocinolone acetonide), Lidex (fluocinonide)]     (b)   Topical calcineurin inhibitor [e.g., Elidel (pimecrolimus), Protopic  (tacrolimus)].*     (c)   Eucrisa (crisaborole)*\n(3)   Patient is not receiving Dupixent in combination with  either  of the following for\ntreatment of the same indication:\n(a)   Biologic immunomodulator [e.g., Adbry (tralokinumab-ldrm)]  (b)   Janus kinase inhibitor [e.g., Rinvoq (upadacitinib), Xeljanz/XR (tofacitinib),  Opzelura (topical ruxolitinib), Cibinqo (abrocitinib)]"
+    },
+    {
+      "heading": "-AND-    (4)   Prescribed by  one  of the following:",
+      "level": 2,
+      "page": 2,
+      "content": "(a)   Dermatologist  (b)   Allergist  (c)   Immunologist"
+    },
+    {
+      "heading": "Authorization will be issued for 12 months.     2.   Reauthorization",
+      "level": 1,
+      "page": 2,
+      "content": "a.   Dupixent  will be approved based on  all  of the following criteria:\n(1)   Documentation of positive clinical response to Dupixent therapy\n(2)   Patient is not receiving Dupixent in combination with  either  of the following for\ntreatment of the same indication:\n(a)   Biologic immunomodulator [e.g., Adbry (tralokinumab-ldrm)]  (b)   Janus kinase inhibitor [e.g., Rinvoq (upadacitinib), Xeljanz/XR (tofacitinib),  Opzelura (topical ruxolitinib), Cibinqo (abrocitinib)]"
+    },
+    {
+      "heading": "-AND-    (3)   Prescribed by  one  of the following:",
+      "level": 2,
+      "page": 2,
+      "content": "(a)   Dermatologist  (b)   Allergist  (c)   Immunologist\nAuthorization will be issued for 12 months.\n\u00a9 2025 UnitedHealthcare Services, Inc.  3"
+    },
+    {
+      "heading": "B.   Asthma",
+      "level": 1,
+      "page": 3,
+      "content": "1.   Initial Authorization\na.   Dupixent  will be approved based on  all  of the following criteria:\n(1)   Diagnosis of moderate-to-severe asthma\n-AND-     (2)   Classification of asthma as uncontrolled or inadequately controlled as defined by at  least  one  of the following:    (a)   Poor symptom control (e.g., Asthma Control Questionnaire [ACQ] score  consistently greater than 1.5 or Asthma Control Test [ACT] score consistently  less than 20)  (b)   Two or more bursts of systemic corticosteroids for at least 3 days each in the  previous 12 months  (c)   Asthma-related emergency treatment (e.g., emergency room visit, hospital  admission, or unscheduled physician\u2019s office visit for nebulizer or other urgent  treatment)  (d)   Airflow limitation (e.g., after appropriate bronchodilator withhold forced  expiratory volume in 1 second [FEV1] less than 80% predicted [in the face of  reduced FEV1/forced vital capacity [FVC] defined as less than the lower limit  of normal])  (e)   Patient is currently dependent on oral corticosteroids for the treatment of  asthma\n(3)   One  of the following:\n(a)   Submission of medical records (e.g., chart notes, laboratory values, etc.)  documenting that asthma is an eosinophilic phenotype as defined by a baseline  (pre-dupilumab treatment) peripheral blood eosinophil level \u2265 150 cells/\u03bcL\n-OR-"
+    },
+    {
+      "heading": "(b)   Patient is currently dependent on oral corticosteroids for the treatment of asthma",
+      "level": 2,
+      "page": 3,
+      "content": "(4)   Dupixent will be used in combination with  one  of the following:\n(a)   One  maximally dosed (appropriately adjusted for age) combination inhaled\ncorticosteroid (ICS)/long-acting beta 2  agonist (LABA) [e.g., Advair/AirDuo  Respiclick (fluticasone propionate/salmeterol), Symbicort  (budesonide/formoterol), Breo Ellipta (fluticasone furoate/vilanterol)]\n-OR-\n\u00a9 2025 UnitedHealthcare Services, Inc.  4\n(b)   Combination therapy including  both  of the following:\ni.   One  maximally dosed (appropriately adjusted for age) ICS product [e.g.,  ciclesonide (Alvesco), mometasone furoate (Asmanex), beclomethasone  dipropionate (QVAR)]      -AND-\nii.   One  additional asthma controller medication [e.g., LABA - olodaterol  (Striverdi) or indacaterol (Arcapta); leukotriene receptor antagonist \u2013  montelukast (Singulair); theophylline]"
+    },
+    {
+      "heading": "-AND-    (5)   Patient is not receiving Dupixent in combination with  any  of the following for",
+      "level": 2,
+      "page": 4,
+      "content": "treatment of the same indication:\n(a)   Anti-interleukin-5 therapy [e.g., Nucala (mepolizumab), Cinqair (resilizumab),  Fasenra (benralizumab)]  (b)   Anti-IgE therapy [e.g., Xolair (omalizumab)]  (c)   Thymic stromal lymphopoietin (TSLP) inhibitor [e.g., Tezspire (tezepelumab)]"
+    },
+    {
+      "heading": "-AND-    (6)   Prescribed by  one  of the following:",
+      "level": 2,
+      "page": 4,
+      "content": "(a)   Allergist  (b)   Immunologist  (c)   Pulmonologist    Authorization will be issued for 12 months.     2.   Reauthorization\na.   Dupixent  will be approved based on  all  of the following criteria:\n(1)   Documentation of positive clinical response to Dupixent therapy as demonstrated  by at least one of the following:\n(a)   Reduction in the frequency of exacerbations  (b)   Decreased utilization of rescue medications  (c)   Increase in percent predicted FEV1 from pretreatment baseline  (d)   Reduction in severity or frequency of asthma-related symptoms (e.g.,  wheezing, shortness of breath, coughing, etc.)  (e)   Reduction in oral corticosteroid requirements\n\u00a9 2025 UnitedHealthcare Services, Inc.  5\n(2)   Dupixent is being used in combination with an ICS-containing maintenance\nmedication [e.g., Advair/AirDuo (fluticasone/salmeterol), Breo Ellipta (fluticasone  furoate/vilanterol), Symbicort (budesonide/ formoterol), Trelegy Ellipta  (fluticasone furoate/umeclidinium/vilanterol)].\n-AND-    (3)   Patient is not receiving Dupixent in combination with any of the following for  treatment of the same indication:\n(a)   Anti-interleukin-5 therapy [e.g., Nucala (mepolizumab), Cinqair (resilizumab),  Fasenra (benralizumab)]  (b)   Anti-IgE therapy [e.g., Xolair (omalizumab)]  (c)   Thymic stromal lymphopoietin (TSLP) inhibitor [e.g., Tezspire (tezepelumab)]      -AND-\n(4)   Prescribed by  one  of the following:\n(a)   Allergist  (b)   Immunologist  (c)   Pulmonologist    Authorization will be issued for 12 months.     C.   Chronic Rhinosinusitis with Nasal Polyposis\n1.   Initial Authorization\na.   Dupixent  will be approved based on  all  of the following criteria:\n(1)   Diagnosis of chronic rhinosinusitis with nasal polyposis (CRSwNP) defined by  all\nof the following:\n(a)   Two or more  of the following symptoms for longer than 12 weeks duration:\ni.   Nasal mucopurulent discharge   ii.   Nasal obstruction, blockage, or congestion  iii.   Facial pain, pressure, and/or fullness  iv.   Reduction or loss of sense of smell\n-AND-    (b)   One  of the following findings using nasal endoscopy and/or sinus computed\ntomography (CT):\ni.   Purulent mucus or edema in the middle meatus or ethmoid regions  ii.   Polyps in the nasal cavity or the middle meatus  iii.   Radiographic imaging demonstrating mucosal thickening or partial or  complete opacification of paranasal sinuses\n\u00a9 2025 UnitedHealthcare Services, Inc.  6\n(c)   One  of the following:\ni.   Presence of bilateral nasal polyposis  ii.   Patient has previously required surgical removal of bilateral nasal polyps\n(d)   One  of the following:\ni.   Patient has required prior sinus surgery  ii.   Patient has required systemic corticosteroids (e.g., prednisone,  methylprednisolone) for CRSwNP in the previous 2 years  iii.   Patient has been unable to obtain symptom relief after trial of two of the  following classes of agents ^ :\n\u2022   Nasal saline irrigations  \u2022   Intranasal corticosteroids (e.g., fluticasone, mometasone,  triamcinolone)  \u2022   Antileukotriene agents (e.g., montelukast, zafirlukast, zileuton)\n(2)   Patient will receive Dupixent as add-on maintenance therapy in combination with  intranasal corticosteroids (e.g., fluticasone, mometasone, triamcinolone)."
+    },
+    {
+      "heading": "-AND-    (3)   Patient is  not  receiving Dupixent in combination with  any  of the following for",
+      "level": 2,
+      "page": 6,
+      "content": "treatment of the same indication:\n(a)   Anti-interleukin-5 therapy [e.g., Cinqair (resilizumab), Fasenra (benralizumab),  Nucala (mepolizumab)]   (b)   Anti-IgE therapy [e.g., Xolair (omalizumab)]  (c)   Thymic stromal lymphopoietin (TSLP) inhibitor [e.g., Tezspire (tezepelumab)]"
+    },
+    {
+      "heading": "-AND-    (4)   Prescribed by  one  of the following:",
+      "level": 1,
+      "page": 6,
+      "content": "(a)   Allergist   (b)   Immunologist   (c)   Otolaryngologist   (d)   Pulmonologist"
+    },
+    {
+      "heading": "Authorization will be issued for 12 months.     2.   Reauthorization",
+      "level": 1,
+      "page": 6,
+      "content": "\u00a9 2025 UnitedHealthcare Services, Inc.  7\na.   Dupixent  will be approved based on  all  of the following criteria:\n(1)   Documentation of positive clinical response to Dupixent therapy\n(2)   Patient will continue to receive Dupixent as add-on maintenance therapy in  combination with intranasal corticosteroids (e.g., fluticasone, mometasone,  triamcinolone)."
+    },
+    {
+      "heading": "-AND-    (3)   Patient is  not  receiving Dupixent in combination with  any  of the following for",
+      "level": 2,
+      "page": 7,
+      "content": "treatment of the same indication:    (a)   Anti-interleukin-5 therapy [e.g., Cinqair (resilizumab), Fasenra (benralizumab),  Nucala (mepolizumab)]   (b)   Anti-IgE therapy [e.g., Xolair (omalizumab)]  (c)   Thymic stromal lymphopoietin (TSLP) inhibitor [e.g., Tezspire (tezepelumab)]"
+    },
+    {
+      "heading": "-AND-    (4)   Prescribed by  one  of the following:",
+      "level": 2,
+      "page": 7,
+      "content": "(a)   Allergist  (b)   Immunologist  (c)   Otolaryngologist  (d)   Pulmonologist    Authorization will be issued for 12 months.    D.   Eosinophilic Esophagitis\n1.   Initial Authorization\na.   Dupixent  will be approved based on  all  of the following criteria:\n(1)   Diagnosis of eosinophilic esophagitis\n-AND-    (2)   Patient is experiencing symptoms related to esophageal dysfunction (e.g.,  dysphagia, food impaction, chest pain that is often centrally located and may not  respond to antacids, gastroesophageal reflux disease-like symptoms/refractory  heartburn, upper abdominal pain)\n(3)   Submission of medical records (e.g., chart notes, laboratory values, etc.)\ndocumenting eosinophil-predominant inflammation on esophageal biopsy,\n\u00a9 2025 UnitedHealthcare Services, Inc.  8\nconsisting of a peak value of \u226515 intraepithelial eosinophils per high power field  (HPF) (or 60 eosinophils per mm 2 )\n(4)   Secondary causes of esophageal eosinophilia have been ruled out\n-AND-    (5)   Mucosal eosinophilia is isolated to the esophagus and symptoms have persisted  after an 8-week trial of at least  one  of the following: b\n(a)   Proton pump inhibitors (e.g., pantoprazole, omeprazole)   (b)   Topical (esophageal) corticosteroids (e.g., budesonide, fluticasone)\n(6)    Patient is not receiving Dupixent in combination with  any  of the following for\ntreatment of the same indication:\n(a)   Anti-interleukin-5 therapy [e.g., Cinqair (resilizumab), Fasenra (benralizumab),  Nucala (mepolizumab)]   (b)   Anti-IgE therapy [e.g., Xolair (omalizumab)]  (c)   Thymic stromal lymphopoietin (TSLP) inhibitor [e.g., Tezspire (tezepelumab)]"
+    },
+    {
+      "heading": "-AND-    (7)   Prescribed by  one  of the following:",
+      "level": 2,
+      "page": 8,
+      "content": "(a)   Gastroenterologist  (b)   Allergist    Authorization will be issued for 12 months.\n2.   Reauthorization\na.   Dupixent  will be approved based on  all  of the following criteria:\n(1)   Documentation of positive clinical response to Dupixent therapy as evidenced by  improvement of at least  one  of the following from baseline:\n(a)   Symptoms (e.g., dysphagia, chest pain, heartburn)  (b)   Histologic measures (e.g., esophageal intraepithelial eosinophil count)  (c)   Endoscopic measures (e.g., edema, furrows, exudates, rings, strictures)"
+    },
+    {
+      "heading": "-AND-    (2)   Patient is not receiving Dupixent in combination with  any  of the following for",
+      "level": 2,
+      "page": 8,
+      "content": "treatment of the same indication:\n\u00a9 2025 UnitedHealthcare Services, Inc.  9\n(a)   Anti-interleukin-5 therapy [e.g., Cinqair (resilizumab), Fasenra (benralizumab),\nNucala (mepolizumab)]   (b)   Anti-IgE therapy [e.g., Xolair (omalizumab)]  (c)   Thymic stromal lymphopoietin (TSLP) inhibitor [e.g., Tezspire (tezepelumab)]\n(3)   Prescribed by or in consultation with a gastroenterologist or allergist"
+    },
+    {
+      "heading": "Authorization will be issued for 12 months.     E.   Prurigo Nodularis",
+      "level": 1,
+      "page": 9,
+      "content": "1.   Initial Authorization\na.   Dupixent  will be approved based on  all  of the following criteria:\n(1)   Diagnosis of prurigo nodularis"
+    },
+    {
+      "heading": "-AND-    (2)   Patient has greater than or equal to 20 nodular lesions",
+      "level": 2,
+      "page": 9,
+      "content": "-AND-    (3)   History of failure, contraindication, or intolerance to previous prurigo nodularis  treatment(s) (e.g., topical corticosteroids, topical calcineurin inhibitors, topical  capsaicin)"
+    },
+    {
+      "heading": "(4)   Patient is not receiving Dupixent in combination with  either  of the following for",
+      "level": 2,
+      "page": 9,
+      "content": "treatment of the same indication:\n(a)   Biologic immunomodulator [e.g., Adbry (tralokinumab-ldrm), Nemluvio  (nemolizumab-ilto)]  (b)   Janus kinase inhibitor [e.g., Rinvoq (upadacitinib), Xeljanz/XR (tofacitinib),  Opzelura (topical ruxolitinib), Cibinqo (abrocitinib)]"
+    },
+    {
+      "heading": "(5)   Prescribed by  one  of the following:",
+      "level": 2,
+      "page": 9,
+      "content": "(a)   Dermatologist  (b)   Allergist  (c)   Immunologist"
+    },
+    {
+      "heading": "Authorization will be issued for 12 months.",
+      "level": 1,
+      "page": 9,
+      "content": "2.   Reauthorization\n\u00a9 2025 UnitedHealthcare Services, Inc.  10\na.   Dupixent  will be approved based on  all  of the following criteria:\n(1)   Documentation of positive clinical response to Dupixent therapy"
+    },
+    {
+      "heading": "-AND-    (2)   Patient is not receiving Dupixent in combination with  either  of the following for",
+      "level": 2,
+      "page": 10,
+      "content": "treatment of the same indication:\n(a)   Biologic immunomodulator [e.g., Adbry (tralokinumab-ldrm), Nemluvio  (nemolizumab-ilto)]  (b)   Janus kinase inhibitor [e.g., Rinvoq (upadacitinib), Xeljanz/XR (tofacitinib),  Opzelura (topical ruxolitinib), Cibinqo (abrocitinib)]\n(3)   Prescribed by  one  of the following:\n(a)   Dermatologist  (b)   Allergist  (c)   Immunologist"
+    },
+    {
+      "heading": "Authorization will be issued for 12 months.    F.   Chronic Obstructive Pulmonary Disorder (COPD)",
+      "level": 1,
+      "page": 10,
+      "content": "1.   Initial Authorization\na.   Dupixent  will be approved based on  all  of the following criteria:\n(1)   Diagnosis of COPD"
+    },
+    {
+      "heading": "-AND-     (2)   Submission of medical records (e.g., chart notes) documenting  all  of the following:",
+      "level": 2,
+      "page": 10,
+      "content": "(a)   Post-bronchodilator forced expiratory volume (FEV 1 ) / forced vital capacity  (FVC) ratio less than 0.7  (b)   Post-bronchodilator FEV 1  % predicted greater than or equal to 30% and less  than or equal to 70%  (c)   Patient has an eosinophilic phenotype defined by a baseline (pre-dupilumab  treatment) peripheral blood eosinophil level \u2265 300 cells/\u03bcL"
+    },
+    {
+      "heading": "-AND-     (3)   Uncontrolled or inadequately controlled COPD demonstrated by  both  of the",
+      "level": 2,
+      "page": 10,
+      "content": "following:\n(a)   One  of the following:\n\u00a9 2025 UnitedHealthcare Services, Inc.  11\ni.   Two or more COPD exacerbations in the previous year requiring treatment  with systemic corticosteroids and/or antibiotics  ii.   One or more COPD exacerbation(s) that resulted in hospitalization or  observation for over 24 hours in an emergency department or urgent care  facility in the past year"
+    },
+    {
+      "heading": "-AND-    (b)   COPD exacerbation(s) occurred while receiving maintenance therapy with  one",
+      "level": 3,
+      "page": 11,
+      "content": "of the following:     i.   Triple therapy with a long-acting muscarinic antagonist (LAMA), long- acting beta agonist (LABA), and inhaled corticosteroid (ICS) (e.g., Breztri  Aerosphere, Trelegy Ellipta)  ii.   Dual therapy with a LAMA and LABA (e.g., Anoro Ellipta, Bevespi  Aerosphere, Stiolto Respimat) and a failure, contraindication, or intolerance  to an inhaled corticosteroid (ICS)"
+    },
+    {
+      "heading": "-AND-    (4)   Symptoms of chronic productive cough for at least 3 months in the past year",
+      "level": 1,
+      "page": 11,
+      "content": "(5)   Dupixent will be used as add-on maintenance therapy in combination with  one  of\nthe following:     (a)   Triple therapy with a long-acting muscarinic antagonist (LAMA), long-acting  beta agonist (LABA), and inhaled corticosteroid (ICS) (e.g., Breztri Aerosphere,  Trelegy Ellipta)  (b)   Dual therapy with a LAMA and LABA (e.g., Anoro Ellipta, Bevespi  Aerosphere, Stiolto Respimat) and a failure, contraindication, or intolerance to  an inhaled corticosteroid (ICS)"
+    },
+    {
+      "heading": "-AND-    (6)   Patient is not receiving Dupixent in combination with  any  of the following for",
+      "level": 2,
+      "page": 11,
+      "content": "treatment of the same indication:\n(a) Anti-interleukin-5 therapy [e.g., Nucala (mepolizumab), Cinqair (resilizumab),  Fasenra (benralizumab)]  (b) Anti-IgE therapy [e.g., Xolair (omalizumab)]  (c) Thymic stromal lymphopoietin (TSLP) inhibitor [e.g., Tezspire (tezepelumab)]"
+    },
+    {
+      "heading": "-AND-    (7)   Prescribed by  one  of the following:",
+      "level": 2,
+      "page": 11,
+      "content": "(a) Allergist\n\u00a9 2025 UnitedHealthcare Services, Inc.  12\n(b) Immunologist  (c) Pulmonologist"
+    },
+    {
+      "heading": "Authorization will be issued for 12 months.     2.   Reauthorization",
+      "level": 1,
+      "page": 12,
+      "content": "a.   Dupixent  will be approved based on  all  of the following criteria:\n(1)   Documentation of a positive clinical response to Dupixent therapy as demonstrated  by at least  one  of the following:\n(a)   Reduction in the frequency of COPD exacerbations  (b)   Increase in percent predicted FEV1 from pretreatment baseline  (c)   Reduction in severity or frequency of COPD-related symptoms (e.g., dyspnea,  wheezing, cough, sputum volume, decrease in sputum purulence)  (d)   Reduction in oral corticosteroid requirements"
+    },
+    {
+      "heading": "-AND-    (2)   Dupixent is being used add-on maintenance therapy in combination with  one  of the",
+      "level": 2,
+      "page": 12,
+      "content": "following:    (a)   Triple therapy with a long-acting muscarinic antagonist (LAMA), long-acting\nbeta agonist (LABA), and inhaled corticosteroid (ICS) (e.g., Breztri Aerosphere,  Trelegy Ellipta)  (b)   Dual therapy with a long-acting muscarinic antagonist (LAMA) and long-acting  beta agonist (LABA) (e.g., Anoro Ellipta, Bevespi Aerosphere, Stiolto  Respimat) and a failure, contraindication, or intolerance to an inhaled  corticosteroid (ICS)"
+    },
+    {
+      "heading": "-AND-    (3)   Patient is not receiving Dupixent in combination with  any  of the following for",
+      "level": 2,
+      "page": 12,
+      "content": "treatment of the same indication:\n(a)   Anti-interleukin-5 therapy [e.g., Nucala (mepolizumab), Cinqair (resilizumab),  Fasenra (benralizumab)]  (b)   Anti-IgE therapy [e.g., Xolair (omalizumab)]  (c)   Thymic stromal lymphopoietin (TSLP) inhibitor [e.g., Tezspire (tezepelumab)]\n(4)   Prescribed by  one  of the following:\n(a)   Allergist  (b)   Immunologist  (c)   Pulmonologist    Authorization will be issued for 12 months.\n\u00a9 2025 UnitedHealthcare Services, Inc.  13"
+    },
+    {
+      "heading": "G.   Chronic Spontaneous Urticaria",
+      "level": 1,
+      "page": 13,
+      "content": "1.   Initial Authorization\na.   Dupixent  will be approved based on  all  of the following criteria:\n(1)   Diagnosis of chronic spontaneous urticaria"
+    },
+    {
+      "heading": "-AND-    (2)   One  of the following:",
+      "level": 2,
+      "page": 13,
+      "content": "(a)   Patient remains symptomatic despite at least a 2-week trial of, or history of  contraindication or intolerance to,  two  H1-antihistamines [e.g., Allegra  (fexofenadine), Benadryl (diphenhydramine), Claritin (loratadine)]^\n-OR-    (b)   Patient remains symptomatic despite at least a 2-week trial of, or history of  contraindication or intolerance to  both  of the following taken in  combination^:\ni.   A second generation H1-antihistamine [e.g., Allegra (fexofenadine),  Claritin (loratadine), Zyrtec (cetirizine)]"
+    },
+    {
+      "heading": "-AND-    ii.   One  of the following:",
+      "level": 3,
+      "page": 13,
+      "content": "\u2022   A different second generation H1-antihistamine [e.g., Allegra  (fexofenadine), Claritin (loratadine), Zyrtec (cetirizine)]  \u2022   A first generation H1-antihistamine [e.g., Benadryl  (diphenhydramine), Chlor-Trimeton (chlorpheniramine), Vistaril  (hydroxyzine)]  \u2022   An H2-antihistamine [e.g., Pepcid (famotidine), Tagamet HB  (cimetidine), Zantac (ranitidine)]   \u2022   A leukotriene modifier [e.g., Singulair (montelukast)]\n(3)   Patient is not receiving Dupixent in combination with Xolair (omalizumab) for  treatment of the same indication"
+    },
+    {
+      "heading": "-AND-    (4)   Prescribed by  one  of the following:",
+      "level": 2,
+      "page": 13,
+      "content": "(a)   Allergist  (b)   Dermatologist  (c)   Immunologist\n\u00a9 2025 UnitedHealthcare Services, Inc.  14"
+    },
+    {
+      "heading": "Authorization will be issued for 12 months.",
+      "level": 1,
+      "page": 14,
+      "content": "2.  Reauthorization\na.  Dupixent  will be approved based on  all  of the following criteria:\n(1)   Documentation of positive clinical response to Dupixent therapy (e.g., reduction in  exacerbations, itch severity, hives)\n-AND-    (2)   Patient is not receiving Dupixent in combination with Xolair (omalizumab) for  treatment of the same indication"
+    },
+    {
+      "heading": "-AND-    (3)   Prescribed by  one  of the following:",
+      "level": 2,
+      "page": 14,
+      "content": "(a)   Allergist  (b)   Dermatologist  (c)   Immunologist         Authorization will be issued for 12 months."
+    },
+    {
+      "heading": "H.   Bullous Pemphigoid",
+      "level": 1,
+      "page": 14,
+      "content": "1.   Initial Authorization\na.   Dupixent  will be approved based on both of the following criteria:\n(1)   Diagnosis of bullous pemphigoid"
+    },
+    {
+      "heading": "(2)   Prescribed by  one  of the following:",
+      "level": 2,
+      "page": 14,
+      "content": "(a)   Dermatologist  (b)   Allergist  (c)   Immunologist\nAuthorization will be issued for 12 months.\n2.   Reauthorization\na.   Dupixent  will be approved based on both of the following criteria:\n(1)   Documentation of positive clinical response to Dupixent therapy\n\u00a9 2025 UnitedHealthcare Services, Inc.  15"
+    },
+    {
+      "heading": "(2)   Prescribed by  one  of the following:",
+      "level": 2,
+      "page": 15,
+      "content": "(a)   Dermatologist  (b)   Allergist  (c)   Immunologist\nAuthorization will be issued for 12 months.     a   State mandates may apply.  Any federal regulatory requirements and the member specific benefit  plan coverage may also impact coverage criteria. Other policies and utilization management  programs may apply.  b   For Connecticut, Kentucky and Mississippi business only a 30-day trial will be required.  ^Tried/failed alternative(s) are supported by FDA labeling.  * Elidel, Protopic/tacrolimus ointment, and Eucrisa require prior authorization.\nTable 1: Relative potencies of topical corticosteroids 3"
+    },
+    {
+      "heading": "Class  Drug  Dosage Form  Strength",
+      "level": 1,
+      "page": 15,
+      "content": "Very high  potency\nAugmented betamethasone  dipropionate\nOintment, gel  0.05\nClobetasol propionate   Cream, foam, ointment   0.05  Diflorasone diacetate   Ointment  0.05  Halobetasol propionate   Cream, ointment   0.05\nHigh Potency\nAmcinonide  Cream, lotion, ointment   0.1  Augmented betamethasone  dipropionate\nCream, lotion  0.05\nBetamethasone dipropionate   Cream, foam, ointment, solution   0.05  Desoximetasone  Cream, ointment   0.25  Desoximetasone   Gel  0.05  Diflorasone diacetate   Cream  0.05  Fluocinonide   Cream, gel, ointment, solution   0.05  Halcinonide  Cream, ointment   0.1  Mometasone furoate   Ointment   0.1  Triamcinolone acetonide   Cream, ointment   0.5\nMedium  potency\nBetamethasone valerate   Cream, foam, lotion, ointment   0.1  Clocortolone pivalate   Cream  0.1  Desoximetasone  Cream  0.05  Fluocinolone acetonide   Cream, ointment   0.025  Flurandrenolide   Cream, ointment, lotion  0.05  Fluticasone propionate   Cream  0.05  Fluticasone propionate   Ointment  0.005  Mometasone furoate   Cream, lotion  0.1  Triamcinolone acetonide   Cream, ointment, lotion   0.1  Lower- medium\npotency\nHydrocortisone butyrate   Cream, ointment, solution   0.1  Hydrocortisone probutate   Cream  0.1  Hydrocortisone valerate   Cream, ointment   0.2\n\u00a9 2025 UnitedHealthcare Services, Inc.  16\nPrednicarbate  Cream  0.1\nLow potency\nAlclometasone dipropionate   Cream, ointment   0.05  Desonide  Cream, gel, foam, ointment   0.05  Fluocinolone acetonide   Cream, solution   0.01\nLowest  potency\nDexamethasone  Cream  0.1  Hydrocortisone  Cream, lotion, ointment, solution   0.25, 0.5, 1  Hydrocortisone acetate   Cream, ointment   0.5-1    Table 2: Low, medium and high daily doses of inhaled corticosteroids 6\nAdults and adolescents (12 years of age and older)   Drug  Daily dose (mcg)    Low  Medium  High  Beclometasone dipropionate (CFC)  200-500  >500-1000  >1000  Beclometasone dipropionate (HFA)  100-200  >200-400  >400  Budesonide DPI  200-400  >400-800  >800  Ciclesonide (HFA)  80-160  >160-320  >320  Fluticasone furoate (DPI)  100  n.a  200  Fluticasone propionate (DPI)  100-250  >250-500  >500  Fluticasone propionate (HFA)  100-250  >250-500  >500  Mometasone furoate  110-220  >220-440  >440  Triamcinolone acetonide  400-1000  >1000-2000  >2000    3. Additional Clinical Programs:\n\u2022   Notwithstanding Coverage Criteria, UnitedHealthcare may approve initial and re-authorization  based solely on previous claim/medication history, diagnosis codes (ICD-10) and/or claim logic.  Use of automated approval and re-approval processes varies by program and/or therapeutic class  \u2022   Supply limitations may be in place    4. References:\n1.   Simpson EL, Bieber T, Guttman-Yassky E, et al. Two phase 3 trials of dupilumab versus placebo  in atopic dermatitis.  N Engl J Med. 2016 Sep 30.  2.   Dupixent \u00ae  [package insert].  Tarrytown, NY: Regeneron Pharmaceuticals, Inc. June 2025.  3.   Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2024.   Available at  http://www.ginasthma.org .  Accessed April 23, 2025.  4.   Castro M, Corren J, Pavord ID, et al.  Dupilumab efficacy and safety in moderate-to-severe  uncontrolled asthma. N Engl J Med.  2018; 378:2486-96.  5.   Rabe KF, Nair P, Brusselle G, et al. Efficacy and safety of dupilumab in glucocorticoid- dependent severe asthma.  N Engl J Med. 2018; 378:2475-85.  6.   Buchheit, Hamilos DL.  Chronic rhinosinusitis with nasal polyposis: management and prognosis.   UpToDate. Waltham, MA: UpToDate Inc. https://www.uptodate.com. Accessed on April 23,  2025.  7.   Holbrook EH.  Chronic rhinosinusitis: Clinical manifestations, pathophysiology, and diagnosis.   UpToDate. Waltham, MA: UpToDate Inc.  https://www.uptodate.com . Accessed on April 23,  2025.  8.   Holguin F, Cardet JC, Chung KF, et al. Management of severe asthma: a European Respiratory  Society/American Thoracic Society guideline. Eur Respir J. 2020 Jan 2;55(1):1900588. doi:  10.1183/13993003.00588-2019. PMID: 31558662\n\u00a9 2025 UnitedHealthcare Services, Inc.  17\n9.   Dellon ES, Muir AB, Katzka DA, et al. ACG Clinical Guideline: Diagnosis and Management of  Eosinophilic Esophagitis.  Am J Gastroenterol . 2025;120(1):31-59.  doi:10.14309/ajg.0000000000003194  10.   Boguniewicz M, Levy ML, Eichenfield LF, et al. Managing Childhood and Adolescent Atopic  Dermatitis in Primary Care: A US Expert Group Consensus.  The Journal of Pediatrics: Clinical  Practice . 2024; 14: 200121, ISSN 2950-5410. https://doi.org/10.1016/j.jpedcp.2024.200121.\nProgram  Prior Authorization/Medical Necessity - Dupixent (dupilumab)\nChange Control  1/2017  New program.  5/2017  Updated background and references.  Dupixent approved on 3/28/2017.  7/2017  Updated criteria to differentiate based on physician assessment of  severity.  Eucrisa added as required treatment in moderate severity  disease.  Added criteria allowing treatment if disease history required  treatment with systemic immunosuppressants.  Added criteria for  patients previously on therapy.  Added sample pack language.   Removed medical record submission requirement while adding  requirement for medication trial or contraindication documentation.   Added corticosteroid potency table as reference.    7/2018  Annual review with no change to coverage criteria.  Updated reference.  12/2018  Updated background and formatting and added criteria for new  indication for moderate-to-severe asthma.  4/2019  Updated background and criteria for updated indication of adolescent  atopic dermatitis.  Removed criteria regarding history of systemic  immunosuppressant for atopic dermatitis use as allowance for initial  approval as no longer critical with market availability surpassing 2  years.  10/2019  Updated Dupixent \u00ae  (dupilumab) background and criteria for new  indication for CRSwNP.  Updated references.  4/2020  Updated criteria for atopic dermatitis requiring failure of two topicals  for all severities of atopic dermatitis  5/2020  Updated criteria for clarification without change to clinical intent  6/2020  Updated background and criteria to include new indication for  moderate-to-severe atopic dermatitis in children aged 6 to 11 years.   Aligned specialist requirement across indications for initial  authorizations and reauthorization.  6/2021  Annual review with no change to criteria.  Updated background, drug  examples, and references.  12/2021  Updated background and criteria to include expanded indication of  moderate to severe eosinophilic or oral corticosteroid dependent asthma  to patients aged 6 years and older.  Updated references.  2/2022  Removed bypass of initial authorization for patients currently on  therapy with Dupixent for all indications.  Updated initial authorization  period to 12 months. Updated agents not to be used in combination with  Dupixent for all indications.  Removed age requirement from atopic  dermatitis and asthma coverage criteria. Updated coverage criteria for  CRSwNP.  Updated references.  Added footnote to support FDA  labeled first line requirements.\n\u00a9 2025 UnitedHealthcare Services, Inc.  18\n7/2022  Added clinical criteria for eosinophilic esophagitis.  Removed footnote  regarding sample initiation from the asthma as this no longer applies.   Updated background, state mandate, and references.  11/2022  Updated criteria to include new indication for prurigo nodularis.   Updated reference.  3/2023  Updated not used in combination criteria for atopic dermatitis and  prurigo nodularis.  7/2023  Updated coverage criteria for severe asthma to align with GINA &  ERS/ATS guidelines. Added/updated examples of ICS-containing  maintenance medications and removed requirement that peripheral  blood eosinophil level must be within 6 weeks.  Updated references.  3/2024  Clarified topical steroid potency in atopic dermatitis with no change to  clinical intent or coverage criteria.  Removed weight requirement from  Eosinophilic Esophagitis criteria.  Updated state mandate footnote,  background and reference.  11/2024  Added criteria to include new indication for chronic obstructive  pulmonary disorder. Updated background and reference.  3/2025  Increased authorizations for eosinophilic esophagitis to 12 months.  6/2025  Added criteria to include new indication for chronic spontaneous  urticaria. Updated approval duration for prurigo nodularis. Updated  coverage criteria for concomitant use. Added Nemluvio to the list of  examples of biologic immunomodulators for prurigo nodularis. Updated  background and reference.  8/2025  Added criteria for the new indication for bullous pemphigoid.  Updated  background and reference."
+    }
+  ]
+}
