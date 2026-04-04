@@ -1,0 +1,252 @@
+{
+  "confidence_scores": {
+    "overall": 1.0
+  },
+  "drug": {
+    "benefit_type": "medical",
+    "brand_name": "Avastin",
+    "drug_class": "Monoclonal antibody",
+    "generic_name": "bevacizumab",
+    "hcpcs_codes": [
+      "J9035"
+    ],
+    "j_codes": [
+      "J9035"
+    ],
+    "limitations_of_use": "Not for adjuvant treatment of colon cancer",
+    "route_of_administration": "intravenous (IV) infusion"
+  },
+  "indications": [
+    {
+      "description": "Metastatic colorectal cancer, in combination with intravenous fluorouracil-based chemotherapy for first- or second-line treatment",
+      "icd10_codes": [],
+      "initial_authorization": {
+        "authorization_duration_months": null,
+        "criteria": [
+          {
+            "criterion_type": "combination_restriction",
+            "description": "in combination with intravenous fluorouracil-based chemotherapy",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "line_of_therapy",
+            "description": "first- or second-line treatment",
+            "logic_operator": "OR"
+          }
+        ],
+        "required_prescriber_specialties": []
+      },
+      "name": "Metastatic colorectal cancer",
+      "pa_required": true,
+      "reauthorization": null,
+      "step_therapy_required": false
+    },
+    {
+      "description": "Metastatic colorectal cancer, in combination with fluoropyrimidine-irinotecan- or fluoropyrimidine-oxaliplatin-based chemotherapy for second-line treatment in patients who have progressed on a first-line bevacizumab product-containing regimen",
+      "icd10_codes": [],
+      "initial_authorization": {
+        "authorization_duration_months": null,
+        "criteria": [
+          {
+            "criterion_type": "combination_restriction",
+            "description": "in combination with fluoropyrimidine-irinotecan- or fluoropyrimidine-oxaliplatin-based chemotherapy",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "line_of_therapy",
+            "description": "second-line treatment",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "prior_therapy",
+            "description": "patients who have progressed on a first-line bevacizumab product-containing regimen",
+            "logic_operator": "AND"
+          }
+        ],
+        "required_prescriber_specialties": []
+      },
+      "name": "Metastatic colorectal cancer",
+      "pa_required": true,
+      "reauthorization": null,
+      "step_therapy_required": false
+    },
+    {
+      "description": "Unresectable, locally advanced, recurrent or metastatic non-squamous non-small cell lung cancer, in combination with carboplatin and paclitaxel, as first-line",
+      "icd10_codes": [],
+      "initial_authorization": {
+        "authorization_duration_months": null,
+        "criteria": [
+          {
+            "criterion_type": "combination_restriction",
+            "description": "in combination with carboplatin and paclitaxel",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "line_of_therapy",
+            "description": "first-line",
+            "logic_operator": "AND"
+          }
+        ],
+        "required_prescriber_specialties": []
+      },
+      "name": "Non-squamous non-small cell lung cancer",
+      "pa_required": true,
+      "reauthorization": null,
+      "step_therapy_required": false
+    },
+    {
+      "description": "Recurrent glioblastoma in adults",
+      "icd10_codes": [],
+      "initial_authorization": {
+        "authorization_duration_months": null,
+        "criteria": [],
+        "required_prescriber_specialties": []
+      },
+      "name": "Recurrent glioblastoma",
+      "pa_required": true,
+      "reauthorization": null,
+      "step_therapy_required": false
+    },
+    {
+      "description": "Metastatic renal cell carcinoma in combination with interferon alfa",
+      "icd10_codes": [],
+      "initial_authorization": {
+        "authorization_duration_months": null,
+        "criteria": [
+          {
+            "criterion_type": "combination_restriction",
+            "description": "in combination with interferon alfa",
+            "logic_operator": "AND"
+          }
+        ],
+        "required_prescriber_specialties": []
+      },
+      "name": "Metastatic renal cell carcinoma",
+      "pa_required": true,
+      "reauthorization": null,
+      "step_therapy_required": false
+    },
+    {
+      "description": "Persistent, recurrent, or metastatic cervical cancer, in combination with paclitaxel and cisplatin, or paclitaxel and topotecan",
+      "icd10_codes": [],
+      "initial_authorization": {
+        "authorization_duration_months": null,
+        "criteria": [
+          {
+            "criterion_type": "combination_restriction",
+            "description": "in combination with paclitaxel and cisplatin, or paclitaxel and topotecan",
+            "logic_operator": "AND"
+          }
+        ],
+        "required_prescriber_specialties": []
+      },
+      "name": "Persistent, recurrent, or metastatic cervical cancer",
+      "pa_required": true,
+      "reauthorization": null,
+      "step_therapy_required": false
+    },
+    {
+      "description": "Epithelial ovarian, fallopian tube, or primary peritoneal cancer in combination with carboplatin and paclitaxel, followed by a bevacizumab product as a single agent, for stage III or IV disease following initial surgical resection",
+      "icd10_codes": [],
+      "initial_authorization": {
+        "authorization_duration_months": null,
+        "criteria": [
+          {
+            "criterion_type": "combination_restriction",
+            "description": "in combination with carboplatin and paclitaxel, followed by a bevacizumab product as a single agent",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "disease_severity",
+            "description": "stage III or IV disease following initial surgical resection",
+            "logic_operator": "AND"
+          }
+        ],
+        "required_prescriber_specialties": []
+      },
+      "name": "Epithelial ovarian, fallopian tube, or primary peritoneal cancer",
+      "pa_required": true,
+      "reauthorization": null,
+      "step_therapy_required": false
+    },
+    {
+      "description": "Epithelial ovarian, fallopian tube, or primary peritoneal cancer in combination with paclitaxel, pegylated liposomal doxorubicin, or topotecan for platinum-resistant recurrent disease who received no more than 2 prior chemotherapy regimens",
+      "icd10_codes": [],
+      "initial_authorization": {
+        "authorization_duration_months": null,
+        "criteria": [
+          {
+            "criterion_type": "combination_restriction",
+            "description": "in combination with paclitaxel, pegylated liposomal doxorubicin, or topotecan",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "prior_therapy",
+            "description": "for platinum-resistant recurrent disease who received no more than 2 prior chemotherapy regimens",
+            "logic_operator": "AND"
+          }
+        ],
+        "required_prescriber_specialties": []
+      },
+      "name": "Epithelial ovarian, fallopian tube, or primary peritoneal cancer",
+      "pa_required": true,
+      "reauthorization": null,
+      "step_therapy_required": false
+    },
+    {
+      "description": "Epithelial ovarian, fallopian tube, or primary peritoneal cancer in combination with carboplatin and paclitaxel or carboplatin and gemcitabine, followed by a bevacizumab product as a single agent, for platinum-sensitive recurrent disease",
+      "icd10_codes": [],
+      "initial_authorization": {
+        "authorization_duration_months": null,
+        "criteria": [
+          {
+            "criterion_type": "combination_restriction",
+            "description": "in combination with carboplatin and paclitaxel or carboplatin and gemcitabine, followed by a bevacizumab product as a single agent",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "disease_severity",
+            "description": "for platinum-sensitive recurrent disease",
+            "logic_operator": "AND"
+          }
+        ],
+        "required_prescriber_specialties": []
+      },
+      "name": "Epithelial ovarian, fallopian tube, or primary peritoneal cancer",
+      "pa_required": true,
+      "reauthorization": null,
+      "step_therapy_required": false
+    },
+    {
+      "description": "Unresectable or metastatic hepatocellular carcinoma (HCC), in combination with atezolizumab, in patients who have not received prior systemic therapy",
+      "icd10_codes": [],
+      "initial_authorization": {
+        "authorization_duration_months": null,
+        "criteria": [
+          {
+            "criterion_type": "combination_restriction",
+            "description": "in combination with atezolizumab",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "prior_therapy",
+            "description": "in patients who have not received prior systemic therapy",
+            "logic_operator": "AND"
+          }
+        ],
+        "required_prescriber_specialties": []
+      },
+      "name": "Unresectable or metastatic hepatocellular carcinoma (HCC)",
+      "pa_required": true,
+      "reauthorization": null,
+      "step_therapy_required": false
+    }
+  ],
+  "payer": {
+    "effective_date": "2026-01-01",
+    "name": "Blue Cross NC",
+    "policy_id": null,
+    "policy_title": "Corporate Medical Policy: Preferred Injectable Oncology Program (Avastin example)",
+    "revision_date": "2026-01-01"
+  }
+}

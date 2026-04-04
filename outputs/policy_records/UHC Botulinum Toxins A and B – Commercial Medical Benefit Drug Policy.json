@@ -1,0 +1,28 @@
+{
+  "confidence_scores": {
+    "drug_identification": 1.0,
+    "overall": 0.95,
+    "pa_criteria_completeness": 0.95,
+    "review_flags": ""
+  },
+  "drug": {
+    "brand_name": "Botulinum Toxins A and B",
+    "generic_name": "Botulinum Toxins A and B",
+    "benefit_type": "medical",
+    "drug_class": "Neurotoxin",
+    "hcpcs_codes": [
+      "J0585",
+      "J0586",
+      "J0587",
+      "J0588",
+      "J0589"
+    ],
+    "j_codes": [
+      "J0585",
+      "J0586",
+      "J0587",
+      "J0588",
+      "J0589"
+    ]
+  }
+}

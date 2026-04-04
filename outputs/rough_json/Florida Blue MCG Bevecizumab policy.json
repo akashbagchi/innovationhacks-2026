@@ -1,0 +1,796 @@
+{
+  "source": "Florida Blue MCG Bevecizumab policy.pdf",
+  "document_format": {
+    "type": "per_drug",
+    "page_count": 15,
+    "drug_hits_title": 4,
+    "drug_hits_toc": 0,
+    "heading_count": 27
+  },
+  "tables": [
+    {
+      "page": 2,
+      "data": [
+        {
+          "0": "Indications and Specific Criteria",
+          "1": ""
+        },
+        {
+          "0": "Indication",
+          "1": "Criteria"
+        },
+        {
+          "0": "Ampullary Cancer",
+          "1": "BOTH of the following: \n1.  Member has unresectable, advanced, or metastatic intestinal \ntype disease \n2.  When used as a component of ONE of the following regimens: \na. \nFOLFOX (fluorouracil, leucovorin, oxaliplatin) \nb. \nCapeOX (capecitabine and oxaliplatin) \nc. \nFOLFIRINOX (fluorouracil, leucovorin, irinotecan, \noxaliplatin) \nd. \nCapecitabine \ne. \nFluorouracil and leucovorin \nf. \nFOLFIRI (fluorouracil, leucovorin, irinotecan)"
+        }
+      ],
+      "accuracy": 99.18073631106375
+    },
+    {
+      "page": 3,
+      "data": [
+        {
+          "0": "Cervical Cancer",
+          "1": "BOTH of the following: \n1.  Member\u2019s disease is persistent, recurrent, or metastatic \n2.  ONE of the following: \na.  When used in combination with paclitaxel and ONE of \nthe following: \ni. \ncisplatin \nii. \ncarboplatin \niii. \ntopotecan \nb.  When used in combination with chemotherapy and \npembrolizumab \nc.  When used in combination with chemotherapy and \natezolizumab \nd.  When used as a single agent as second-line or \nsubsequent therapy"
+        },
+        {
+          "0": "CNS Cancer",
+          "1": "When used for treatment of ONE of the following \n1. \nRecurrent or progressive disease as a single agent for ONE of the \nfollowing: \na.  Glioblastoma \nb.  High grade glioma \nc. \nIntracranial and/or spinal ependymoma (excludes \nsubependymoma \nd.  Meningiomas \ne.  WHO Grade 3 or 4 IDH-mutant Astrocytoma \nf.  WHO Grade 3 Oligodendroglioma (IDH-mutant, 1p19q \ncodeleted) \n2. \nRecurrent or progressive disease in combination with carmustine, \nlomustine, or temozolomide (with or without irinotecan) for ONE \nof the following: \na.  Glioblastoma \nb.  High grade glioma \nc.  Medulloblastoma \nd.  WHO Grade 3 or 4 IDH-mutant Astrocytoma \ne.  WHO Grade 3 Oligodendroglioma (IDH-mutant, 1p19q \ncodeleted) \n3. \nFor recurrent or progressive disease in combination with \ntemozolomide and irinotecan for medulloblastoma  \n4. \nFor symptoms of radiation necrosis, poorly controlled vasogenic \nedema or mass effect \n5. \nFor Neurofibromatosis type 2 vestibular schwannomas as a single \nagent \n6. \nFor pediatric diffuse high-grade gliomas or pediatric \nmedulloblastoma"
+        },
+        {
+          "0": "Colon and Rectal Cancer \n(also includes anal \nadenocarcinoma and \nappendiceal \nadenocarcinoma)",
+          "1": "BOTH of the following: \n1.  Member has ONE of the following: \na.  Metastatic disease \nb.  Unresectable disease \nc. \nAdvanced disease"
+        }
+      ],
+      "accuracy": 99.99999999999991
+    },
+    {
+      "page": 4,
+      "data": [
+        {
+          "0": "",
+          "1": "d.  Medically inoperable disease \n2.  ONE of the following: \na.  When used as a component of one of the following \nregimens: \ni. \nFOLFOX (fluorouracil, leucovorin, oxaliplatin) \nii. \nFOLFIRI (fluorouracil, leucovorin, irinotecan) \niii. \nCapeOX (capecitabine and oxaliplatin) \niv. \nFOLFIRINOX (fluorouracil, leucovorin, irinotecan, \noxaliplatin) \nv. \nIrinotecan \nvi. \nIrinotecan and oxaliplatin \nvii. \nCapecitabine \nviii. \n5-FU/LV (fluorouracil and leucovorin) \nb.  When used as subsequent therapy in combination with \ntrifluridine/tipiracil (Lonsurf) if disease progression on \nfluoropyrimidine-,oxaliplatin-, and irinotecan-based \ntherapy"
+        },
+        {
+          "0": "Hepatocellular carcinoma  When ALL of the following are met:",
+          "1": "1.  When used in combination with atezolizumab \n2.  ONE of the following: \na.  Unresectable disease and is not a candidate for \ntransplant \nb.  Metastatic disease \nc. \nInoperable due to performance status or comorbidities \nd. \nAt high risk of recurrence"
+        },
+        {
+          "0": "Hereditary hemorrhagic \ntelangiectasia",
+          "1": "When the member has ONE of the following: \n1. \nReceived red blood cell transfusions for HHT-associated bleeding \n2. \nLiver vascular malformations (LVMs) and symptomatic high-\noutput cardiac failure"
+        },
+        {
+          "0": "Kidney Cancer",
+          "1": "BOTH of the following: \n1.  Member has relapsed or stage IV disease \n2.  ANY of the following: \na.  When used in combination with interferon alfa-2b \nb.  When used in combination with everolimus (Afinitor) in \npersons with non-clear cell histology \nc.  When used in combination with erlotinib (Tarceva) in \npersons with advanced papillary renal cell carcinoma \nincluding hereditary leiomyomatosis and renal cell \ncarcinoma (HLRCC)"
+        },
+        {
+          "0": "Mesothelioma",
+          "1": "ONE of the following: \n1. \nPleural mesothelioma \na.  When used in combination with pemetrexed and \ncisplatin or carboplatin on day 1 every 3 weeks for 6 \ncycles followed by single-agent maintenance therapy \n2. \nPeritoneal mesothelioma, pericardial mesothelioma, and tunica \nvaginalis testis mesothelioma"
+        }
+      ],
+      "accuracy": 99.09428907848917
+    },
+    {
+      "page": 5,
+      "data": [
+        {
+          "0": "",
+          "1": "a.  When used in combination with pemetrexed and \ncisplatin or carboplatin on day 1 every 3 weeks for 6 \ncycles followed by single-agent maintenance therapy \nb.  When used in combination with atezolizumab as \nsubsequent therapy if not previously treated with \nimmune checkpoint inhibitors"
+        },
+        {
+          "0": "Non-small cell lung \ncancer (NSCLC)",
+          "1": "ALL of the following: \n1.  Member\u2019s NSCLC histology is non-squamous cell \n2.  Member\u2019s disease is advanced, recurrent, or metastatic \n3. \nONE of the following: \na.  Used in combination with pemetrexed and cisplatin \nb.  Used in combination with pemetrexed and carboplatin \nc. \nUsed in combination with paclitaxel and carboplatin \nd.  Used in combination with paclitaxel, carboplatin, and \natezolizumab \ne.  Used in combination with nab-paclitaxel and carboplatin \nwhen member has a documented hypersensitivity to \nconventional paclitaxel or docetaxel \nf. \nUsed in combination with atezolizumab for maintenance \ntherapy if previously used as part of first-line \natezolizumab/carboplatin/paclitaxel/bevacizumab \ng.  Used in combination with pemetrexed for maintenance \ntherapy if previously used with a first-line \npemetrexed/platinum chemotherapy regimen \nh.  Used in combination with erlotinib \ni. \nSingle agent maintenance therapy"
+        },
+        {
+          "0": "Ovarian Cancer [includes \nepithelial, fallopian tube, \nprimary peritoneal, and \nless common ovarian \nhistologies \n(carcinosarcoma or \nmalignant mixed \nMullerian tumors, clear \ncell carcinoma, mucinous \ncarcinoma, serous \ncarcinoma, endometrioid \ncarcinoma, borderline \nepithelial tumors with \ninvasive implants, \nmalignant sex cord-\nstromal tumors)]",
+          "1": "ONE of the following: \n1. \nFor treatment of recurrent or persistent disease as a single agent \nor in combination with ONE of the following: \na. \ncyclophosphamide \nb. \ncyclophosphamide and pembrolizumab \nc. \ngemcitabine \nd. \ngemcitabine and carboplatin \ne. \nliposomal doxorubicin and carboplatin \nf. \nliposomal doxorubicin \ng.  mirvetuximab soravtansine-gynx \nh. \npaclitaxel \ni. \npaclitaxel and carboplatin \nj. \ntopotecan \n2.  When used in combination with paclitaxel and carboplatin \n3.  When used in combination with docetaxel and carboplatin \n4.  When used in combination with docetaxel and oxaliplatin \n5.  When used as single agent maintenance therapy \n6.  When used in combination with olaparib or niraparib for \nmaintenance therapy after complete or partial remission with \nprimary treatment containing bevacizumab"
+        }
+      ],
+      "accuracy": 100.00000000000013
+    },
+    {
+      "page": 6,
+      "data": [
+        {
+          "0": "Radiation necrosis of the \nbrain",
+          "1": "When the member is symptomatic"
+        },
+        {
+          "0": "Small Bowel \nAdenocarcinoma",
+          "1": "BOTH of the following: \n1.  Member has advanced or metastatic disease \n2.  When used as a component of ONE of the following regimens: \na. \nFOLFOX (fluorouracil, leucovorin, oxaliplatin) \nb. \nFOLFIRI (fluorouracil, leucovorin, irinotecan) \nc. \nCapeOX (capecitabine and oxaliplatin) \nd. \nFOLFIRINOX (fluorouracil, leucovorin, irinotecan, \noxaliplatin) \ne. \nCapecitabine \nf. \n5-FU/LV (fluorouracil and leucovorin)"
+        },
+        {
+          "0": "Soft-tissue sarcoma (STS)",
+          "1": "ONE of the following: \n1.  Used as a single agent for angiosarcoma \n2.  Used in combination with temozolomide (Temodar) for \ntreatment of solitary fibrous tumor"
+        },
+        {
+          "0": "Uterine Neoplasm",
+          "1": "When used for ONE of the following: \n1.  Used as a single agent in members who have progressed on prior \ncytotoxic chemotherapy \n2.  Used in combination with carboplatin and paclitaxel \n3.  Used as single agent maintenance therapy"
+        },
+        {
+          "0": "Vaginal cancer",
+          "1": "When used as a single agent or with ONE of the following: \n1. \ncarboplatin and paclitaxel \n2. \ncisplatin and paclitaxel \n3. \npembrolizumab, paclitaxel and carboplatin \n4. \npembrolizumab, paclitaxel and cisplatin \n5. \ntopotecan and paclitaxel"
+        },
+        {
+          "0": "Vulvar cancer",
+          "1": "BOTH of the following: \n1.  Member has advanced, unresectable, recurrent or metastatic \ndisease \n2.  Will be used in combination with paclitaxel and either cisplatin or \ncarboplatin"
+        },
+        {
+          "0": "Other FDA-approved or \nNCCN supported \ndiagnosis (not previously \nlisted above)",
+          "1": "When ONE of the following are met: \n1.  Member is diagnosed with a condition that is consistent with an \nindication listed in the product\u2019s FDA-approved prescribing \ninformation (or package insert) AND member meets any \nadditional requirements listed in the \u201cIndications and Usage\u201d \nsection of the FDA-approved prescribing information (or package \ninsert) \n2. \nIndication AND usage is recognized in NCCN Drugs and Biologics \nCompendium as a Category 1 or 2A recommendation"
+        },
+        {
+          "0": "CNS, central nervous system",
+          "1": ""
+        }
+      ],
+      "accuracy": 99.8983757753909
+    },
+    {
+      "page": 7,
+      "data": [
+        {
+          "0": "FDA-approved indications and dosing for bevacizumab",
+          "1": ""
+        },
+        {
+          "0": "Indication",
+          "1": "Dosage Regimen\u2020"
+        },
+        {
+          "0": "Metastatic Colorectal Cancer",
+          "1": "5 mg/kg every 2 weeks with bolus irinotecan/5-FU/leucovorin"
+        },
+        {
+          "0": "",
+          "1": "10 mg/kg every 2 weeks with 5-FU/leucovorin/oxaliplatin"
+        },
+        {
+          "0": "",
+          "1": "5 mg/kg every 2 weeks or 7.5 mg every 3 weeks with \nfluoropyrimidine-irinotecan or fluoropyrimidine-oxaliplatin based \nchemotherapy after progression on first line bevacizumab containing \nregimen"
+        },
+        {
+          "0": "Non-squamous NSCLC",
+          "1": "15 mg/kg every 3 weeks with carboplatin/paclitaxel"
+        },
+        {
+          "0": "Recurrent Glioblastoma",
+          "1": "10 mg/kg every 2 weeks"
+        },
+        {
+          "0": "Metastatic RCC",
+          "1": "10 mg/kg every 2 weeks with interferon alfa"
+        },
+        {
+          "0": "Persistent, recurrent, or \nmetastatic carcinoma of the \ncervix",
+          "1": "15 mg/kg IV every 3 weeks with paclitaxel/cisplatin or \npaclitaxel/topotecan"
+        }
+      ],
+      "accuracy": 97.8242776983637
+    },
+    {
+      "page": 8,
+      "data": [
+        {
+          "0": "Stage III or IV epithelial \novarian, fallopian tube or \nprimary peritoneal cancer \nfollowing initial surgical \nresection",
+          "1": "15 mg/kg IV every 3 weeks with carboplatin or paclitaxel for up to 6 \ncycles, followed by 15 mg/kg every 3 weeks as a single agent, for a \ntotal of up to 22 cycles"
+        },
+        {
+          "0": "Platinum-resistant recurrent \nepithelial ovarian, fallopian \ntube or primary peritoneal \ncancer",
+          "1": "10 mg/kg IV every 2 weeks with paclitaxel, pegylated liposomal \ndoxorubicin or weekly topotecan"
+        },
+        {
+          "0": "",
+          "1": "15 mg/kg IV every 3 weeks with topotecan given every 3 weeks"
+        },
+        {
+          "0": "Platinum-sensitive recurrent \nepithelial ovarian, fallopian \ntube or primary peritoneal \ncancer",
+          "1": "15 mg/kg IV every 3 weeks with carboplatin/paclitaxel for 6 to 8 cycles \nfollowed by 15 mg/kg every 3 weeks as a single agent"
+        },
+        {
+          "0": "",
+          "1": "15 mg/kg IV every 3 weeks with carboplatin/gemcitabine for 6 to 10 \ncycles followed by 15 mg/kg every 3 weeks as a single agent"
+        },
+        {
+          "0": "Hepatocellular carcinoma",
+          "1": "15 mg/kg IV every 3 weeks with atezolizumab given every 3 weeks"
+        },
+        {
+          "0": "\u2020Bevacizumab should be administered as an intravenous (IV) infusion; do not administer as an IV \nbolus or push. \nNSCLC, non-small cell lung cancer; RCC, renal cell carcinoma.",
+          "1": ""
+        }
+      ],
+      "accuracy": 95.76316994046374
+    },
+    {
+      "page": 9,
+      "data": [
+        {
+          "0": "J9035",
+          "1": "Injection, bevacizumab, 10 mg"
+        },
+        {
+          "0": "Q5107",
+          "1": "Injection, bevacizumab-awwb, biosimilar, (Mvasi), 10 mg"
+        },
+        {
+          "0": "Q5118",
+          "1": "Injection, bevacizumab-bvzr, biosimilar (Zirabev), 10 mg"
+        },
+        {
+          "0": "Q5126",
+          "1": "Injection, bevacizumab-maly, biosimilar, (Alymsys), 10 mg"
+        },
+        {
+          "0": "Q5129",
+          "1": "Injection, bevacizumab-adcd (Vegzelma), biosimilar, 10 mg"
+        },
+        {
+          "0": "Q5160",
+          "1": "Injection, bevacizumab-nwgd (Jobevne), biosimilar, 10 mg"
+        }
+      ],
+      "accuracy": 99.99999999999999
+    },
+    {
+      "page": 10,
+      "data": [
+        {
+          "0": "C17.0",
+          "1": "Malignant neoplasm of duodenum"
+        },
+        {
+          "0": "C17.1",
+          "1": "Malignant neoplasm of jejunum"
+        },
+        {
+          "0": "C17.2",
+          "1": "Malignant neoplasm of ileum"
+        },
+        {
+          "0": "C17.8",
+          "1": "Malignant neoplasm of overlapping sites of small intestine"
+        },
+        {
+          "0": "C17.9",
+          "1": "Malignant neoplasm of small intestine, unspecified"
+        },
+        {
+          "0": "C18.0 \u2013 C18.9",
+          "1": "Malignant neoplasm of colon"
+        },
+        {
+          "0": "C19 \u2013 C20",
+          "1": "Malignant neoplasm of rectosigmoid junction and rectum"
+        },
+        {
+          "0": "C21.0 \u2013 C21.8",
+          "1": "Malignant neoplasm of anus and anal canal"
+        },
+        {
+          "0": "C22.0",
+          "1": "Liver cell carcinoma"
+        },
+        {
+          "0": "C22.3",
+          "1": "Angiosarcoma of liver"
+        },
+        {
+          "0": "C22.8",
+          "1": "Malignant neoplasm of liver, primary, unspecified as to type"
+        },
+        {
+          "0": "C22.9",
+          "1": "Malignant neoplasm of liver, not specified as primary or secondary"
+        },
+        {
+          "0": "C24.1",
+          "1": "Malignant neoplasm of ampulla of Vater"
+        },
+        {
+          "0": "C33 \u2013 C34.92",
+          "1": "Malignant neoplasm of trachea, bronchus and lung"
+        },
+        {
+          "0": "C38.4",
+          "1": "Malignant neoplasm of pleura"
+        },
+        {
+          "0": "C45.0 \u2013 C45.9",
+          "1": "Mesothelioma of pleura, peritonium, pericardium, and other sites"
+        },
+        {
+          "0": "C47.8",
+          "1": "Malignant neoplasm of overlapping sites of peripheral nerves and autonomic \nnervous system"
+        },
+        {
+          "0": "C48.0",
+          "1": "Malignant neoplasm of retroperitoneum"
+        },
+        {
+          "0": "C48.1",
+          "1": "Malignant neoplasm of specified parts of peritoneum"
+        },
+        {
+          "0": "C48.2",
+          "1": "Malignant neoplasm of peritoneum, unspecified"
+        },
+        {
+          "0": "C48.8",
+          "1": "Malignant neoplasm of overlapping sites of retroperitoneum and peritoneum"
+        },
+        {
+          "0": "C49.0 \u2013 C49.9",
+          "1": "Malignant neoplasm of connective and soft tissue"
+        },
+        {
+          "0": "C51.0 \u2013 C51.9",
+          "1": "Malignant neoplasm of vulva"
+        },
+        {
+          "0": "C52.0",
+          "1": "Malignant neoplasm of vagina"
+        },
+        {
+          "0": "C53.0 \u2013 C53.9",
+          "1": "Malignant neoplasm of endocervix, exocervix, overlapping sites of cervix uteri, \nunspecified cervix uteri"
+        },
+        {
+          "0": "C54.0 \u2013 C54.8",
+          "1": "Malignant neoplasm of corpus uteri"
+        },
+        {
+          "0": "C54.9",
+          "1": "Malignant neoplasm of corpus uteri, unspecified"
+        },
+        {
+          "0": "C55",
+          "1": "Malignant neoplasm of uterus, part unspecified"
+        },
+        {
+          "0": "C56.1 \u2013 C57.9",
+          "1": "Malignant neoplasm of ovary and other and unspecified female genital organs"
+        },
+        {
+          "0": "C64.1 \u2013 C64.9",
+          "1": "Malignant neoplasm of unspecified kidney, except renal pelvis"
+        },
+        {
+          "0": "C65.1 \u2013 C65.9",
+          "1": "Malignant neoplasm of unspecified renal pelvis"
+        },
+        {
+          "0": "C70.0 \u2013 C70.9",
+          "1": "Malignant neoplasm of meninges"
+        },
+        {
+          "0": "C71.0 \u2013 C71.9",
+          "1": "Malignant neoplasm of brain"
+        },
+        {
+          "0": "C72.0",
+          "1": "Malignant neoplasm of spinal cord"
+        },
+        {
+          "0": "C72.9",
+          "1": "Malignant neoplasm of central nervous system, unspecified"
+        },
+        {
+          "0": "C78.00 \u2013 C78.02",
+          "1": "Secondary malignant neoplasm of unspecified lung"
+        },
+        {
+          "0": "C78.6",
+          "1": "Secondary malignant neoplasm of retroperitoneum and peritoneum"
+        },
+        {
+          "0": "C78.7",
+          "1": "Secondary malignant neoplasm of liver and intrahepatic bile duct"
+        },
+        {
+          "0": "C79.31",
+          "1": "Secondary malignant neoplasm of brain"
+        },
+        {
+          "0": "C79.32",
+          "1": "Secondary malignant neoplasm of meninges"
+        }
+      ],
+      "accuracy": 99.99999999999996
+    },
+    {
+      "page": 11,
+      "data": [
+        {
+          "0": "C79.82",
+          "1": "Secondary malignant neoplasm of genital organs"
+        },
+        {
+          "0": "C79.89",
+          "1": "Secondary malignant neoplasm of other specified sites"
+        },
+        {
+          "0": "C79.9",
+          "1": "Secondary malignant neoplasm of unspecified site"
+        },
+        {
+          "0": "C83.30 \u2013 C83.89",
+          "1": "Diffuse large B-cell lymphoma [Primary CNS Lymphoma]"
+        },
+        {
+          "0": "C84.49",
+          "1": "Peripheral T-cell lymphoma, not elsewhere classified, extranodal and solid organ \nsites"
+        },
+        {
+          "0": "C85.89 \u2013 C85.99",
+          "1": "Other specified types of non-Hodgkin lymphoma, extranodal and solid organ \nsites"
+        },
+        {
+          "0": "D32.0 \u2013 D32.9",
+          "1": "Benign neoplasm of meninges"
+        },
+        {
+          "0": "D42.0 \u2013 D42.9",
+          "1": "Neoplasm of uncertain behavior of meninges"
+        },
+        {
+          "0": "D43.0 \u2013 D43.2",
+          "1": "Neoplasm of uncertain behavior of brain, unspecified"
+        },
+        {
+          "0": "D43.4",
+          "1": "Neoplasm of uncertain behavior of spinal cord"
+        },
+        {
+          "0": "D43.9",
+          "1": "Neoplasm of uncertain behavior of central nervous system, unspecified"
+        },
+        {
+          "0": "D49.2",
+          "1": "Neoplasm of unspecified behavior of bone, soft tissue, and skin"
+        },
+        {
+          "0": "G93.6",
+          "1": "Cerebral edema"
+        },
+        {
+          "0": "I67.89 \u2013 I67.9",
+          "1": "Other cerebrovascular disease"
+        },
+        {
+          "0": "I78.0",
+          "1": "Hereditary hemorrhagic telangiectasia"
+        },
+        {
+          "0": "Q85.02 \u2013 Q85.03",
+          "1": "Neurofibromatosis, type 2 and Schwannomatosis"
+        },
+        {
+          "0": "Q85.83",
+          "1": "Von Hippel-Lindau syndrome"
+        },
+        {
+          "0": "Y84.2",
+          "1": "Radiological procedure and radiotherapy as the cause of abnormal reaction of \nthe patient, or of later complication, without mention of misadventure at the \ntime of the procedure"
+        },
+        {
+          "0": "T66.XXXA",
+          "1": "Radiation sickness, unspecified, initial encounter"
+        },
+        {
+          "0": "T66.XXXD",
+          "1": "Radiation sickness, unspecified, subsequent encounter"
+        },
+        {
+          "0": "T66.XXXS",
+          "1": "Radiation sickness, unspecified, sequela"
+        }
+      ],
+      "accuracy": 100.00000000000004
+    },
+    {
+      "page": 13,
+      "data": [
+        {
+          "0": "11/15/06",
+          "1": "New Medical Coverage Guideline."
+        },
+        {
+          "0": "07/15/07",
+          "1": "Reviewed guideline: Maintain current coverage and limitations. Reformatted guideline, \nrenamed putting generic first, and references."
+        },
+        {
+          "0": "07/15/08",
+          "1": "Reviewed guideline with no change in coverage. Added statement regarding proper \ncoding, added related guideline and updated references."
+        },
+        {
+          "0": "04/15/09",
+          "1": "Review and revision of guideline; consisting of changing the name of the guideline, \nadding 5 new indications to the position statement, adding maximum dosing, updating \nreferences, and adding ICD-9 codes for cervical cancer."
+        },
+        {
+          "0": "10/01/09",
+          "1": "Revision to guideline; consisting of updating maximum dosing description in Position \nstatement, updating HCPCS coding and addition of 3 new diagnosis codes."
+        },
+        {
+          "0": "10/15/09",
+          "1": "Revision to guideline; consisting of updating codes."
+        },
+        {
+          "0": "01/01/10",
+          "1": "Annual HCPCS coding update: deleted HCPCS code Q2024."
+        },
+        {
+          "0": "01/15/10",
+          "1": "Revision to guideline; consisting of updating coding."
+        },
+        {
+          "0": "04/15/10",
+          "1": "Revision to guideline; consisting of updating coding."
+        },
+        {
+          "0": "08/01/10",
+          "1": "Review and revision to guideline; consisting of updating ICD-9 coding, black box \nwarning and references."
+        },
+        {
+          "0": "08/15/11",
+          "1": "Review and revision to guideline; consisting of updating coding and references."
+        }
+      ],
+      "accuracy": 99.99999999999997
+    },
+    {
+      "page": 14,
+      "data": [
+        {
+          "0": "07/15/12",
+          "1": "Revision to guideline; consisting of modifying dosage limitations."
+        },
+        {
+          "0": "08/15/12",
+          "1": "Review and revision to guideline; consisting reformatting position statement, update \nprecautions, coding, program exceptions and references."
+        },
+        {
+          "0": "12/15/12",
+          "1": "Revision to guideline; consisting of removing ophthalmologic indications and \nreferencing MCG# 09-J1000-78, Vascular Endothelial Growth Factor Inhibitors of Ocular \nNeovascularization."
+        },
+        {
+          "0": "04/15/13",
+          "1": "Revision to guideline; consisting of adding new indication to position statement."
+        },
+        {
+          "0": "08/15/13",
+          "1": "Review and revision to guideline; consisting of revising description section, revising and \nreformatting position statement, dosage/administration, and precautions sections; \nupdating references, program exceptions and coding."
+        },
+        {
+          "0": "08/15/14",
+          "1": "Review and revision to guideline; consisting of revising position statement, updating \nreferences, updating coding."
+        },
+        {
+          "0": "10/15/14",
+          "1": "Revision to guideline; consisting of revising position statement."
+        },
+        {
+          "0": "11/15/14",
+          "1": "Revision to guideline; consisting of position statement."
+        },
+        {
+          "0": "08/15/15",
+          "1": "Review and revision to guidelines; consisting of position statement, references."
+        },
+        {
+          "0": "11/01/15",
+          "1": "Revision: ICD-9 Codes deleted."
+        },
+        {
+          "0": "07/15/16",
+          "1": "Review and revision to guideline; consisting of revising position statement; updating \ndosing, warnings, coding and references."
+        },
+        {
+          "0": "01/15/17",
+          "1": "Revision to guideline; consisting of updating position statement, coding and references."
+        },
+        {
+          "0": "07/15/17",
+          "1": "Review and revision to guideline; consisting of revising position statement, description, \ndosing, coding and references."
+        },
+        {
+          "0": "11/15/17",
+          "1": "Revision to guideline; consisting of updating position statement and references."
+        },
+        {
+          "0": "07/15/18",
+          "1": "Review and revision to guideline; consisting of updating position statement, coding, \nwarnings and references."
+        },
+        {
+          "0": "08/15/18",
+          "1": "Revision to guideline; consisting of updating position statement and references."
+        },
+        {
+          "0": "01/01/19",
+          "1": "Revision: HCPCS code updates. Added Q5107."
+        },
+        {
+          "0": "07/15/19",
+          "1": "Review and revision to guideline; consisting of updating position statement and \nreferences"
+        },
+        {
+          "0": "10/01/19",
+          "1": "Revision: Added HCPCS Q5118."
+        },
+        {
+          "0": "10/15/19",
+          "1": "Review and revision to guideline; consisting of updating position statement, \ndescription, coding and references."
+        },
+        {
+          "0": "02/15/20",
+          "1": "Revision to guideline consisting of updating position statement and references."
+        },
+        {
+          "0": "04/01/20",
+          "1": "Review and revision to guideline consisting of updating the position statement."
+        },
+        {
+          "0": "05/15/20",
+          "1": "Revision to guideline; consisting of updating the position statement and references."
+        },
+        {
+          "0": "08/15/20",
+          "1": "Review and revision to guideline; consisting of updating the position statement, \ndescription, dosing and references."
+        },
+        {
+          "0": "07/15/21",
+          "1": "Review and revision to guideline; consisting of updating the position statement and \nreferences."
+        },
+        {
+          "0": "11/15/21",
+          "1": "Revision to guideline; consisting of updating the position statement, coding, and \nreferences."
+        },
+        {
+          "0": "06/15/22",
+          "1": "Review and revision to guideline; consisting of updating the position statement, \ndescription, dosing, coding, and references."
+        },
+        {
+          "0": "10/01/22",
+          "1": "Revision: Added HCPCS code C9142."
+        }
+      ],
+      "accuracy": 99.99999999999983
+    },
+    {
+      "page": 15,
+      "data": [
+        {
+          "0": "11/15/22",
+          "1": "Review and revision to guideline; consisting of adding bevacizumab-adcd (Vegzelma) to \nthe position statement, description, coding and dosing. Also included revisions to the \nposition statement for central nervous system cancer, ovarian, and vulvar cancer."
+        },
+        {
+          "0": "01/01/22",
+          "1": "Revision: Added HCPCS code Q5126 and deleted codes C9142 and J3590."
+        },
+        {
+          "0": "04/01/23",
+          "1": "Revision: Added HCPCS code Q5129 and deleted code J9999."
+        },
+        {
+          "0": "08/15/23",
+          "1": "Revision to guideline; consisting of updating the position statement for ampullary \ncancer, CNS cancer, hepatocellular carcinoma, mesothelioma, and ovarian cancer \n(NCCN). Update to coding and references."
+        },
+        {
+          "0": "02/15/24",
+          "1": "Review and revision to guideline; consisting of updating the position statement to \ninclude Avzivi. Update to Ampullary cancer, CNS cancer, cervical cancer and uterine \ncancer (NCCN)."
+        },
+        {
+          "0": "03/15/25",
+          "1": "Review and revision to guideline; consisting of updating the position statement to \ninclude hereditary hemorrhagic telangiectasia and vaginal cancer. Revisions included \nfor ampullary, cervical, CNS, colon, hepatic, kidney, ovarian, soft tissue sarcoma, \nuterine cancer. Updates to coding and references."
+        },
+        {
+          "0": "11/15/25",
+          "1": "Review and revision to guideline; consisting of updating the position statement to \ninclude Jobevne.  Update to cervical, CNS, hepatocellular and vulvar cancer and update \nto references."
+        },
+        {
+          "0": "01/01/26",
+          "1": "Revision: For Jobevne, added HCPCS code Q5160 and removed code J9999."
+        }
+      ],
+      "accuracy": 100.00000000000004
+    }
+  ],
+  "sections": [
+    {
+      "heading": "Revised:  01/01/26",
+      "level": 1,
+      "page": 1,
+      "content": "Subject: Bevacizumab (Avastin), bevacizumab-awwb  (Mvasi), bevacizumab-bvzr (Zirabev), and  bevacizumab-maly (Alymsys), bevacizumab-nwgd  (Jobevne), bevacizumab-tnjn (Avzivi), and  bevacizumab-adcd (Vegzelma) Injection\nTHIS MEDICAL COVERAGE GUIDELINE IS NOT AN AUTHORIZATION, CERTIFICATION, EXPLANATION OF BENEFITS, OR A  GUARANTEE OF PAYMENT, NOR DOES IT SUBSTITUTE FOR OR CONSTITUTE MEDICAL ADVICE. ALL MEDICAL DECISIONS ARE  SOLELY THE RESPONSIBILITY OF THE PATIENT AND PHYSICIAN. BENEFITS ARE DETERMINED BY THE GROUP CONTRACT,  MEMBER BENEFIT BOOKLET, AND/OR INDIVIDUAL SUBSCRIBER CERTIFICATE IN EFFECT AT THE TIME SERVICES WERE  RENDERED. THIS MEDICAL COVERAGE GUIDELINE APPLIES TO ALL LINES OF BUSINESS UNLESS OTHERWISE NOTED IN THE  PROGRAM EXCEPTIONS SECTION.\nDosage/  Administration\nPosition  Statement  Billing/Coding  Reimbursement  Program  Exceptions  Definitions\nRelated  Guidelines  Other  References  Updates"
+    },
+    {
+      "heading": "DESCRIPTION:",
+      "level": 1,
+      "page": 1,
+      "content": "Bevacizumab (Avastin) is a humanized monoclonal antibody that inhibits the binding of vascular  endothelial growth factor (VEGF) to its receptors, VEGFR-1 and VEGFR-2. This action neutralizes the bio  logical activity of VEGF ultimately inhibiting the formation of new tumor vessels. Alone, bevacizumab is  not directly cytotoxic; as such it is commonly used in combination with traditional cytotoxic treatment  modalities including chemotherapy, radiation therapy, and hormonal therapy in the treatment of  cancer.\nBevacizumab was initially approved by the US Food and Drug Administration (FDA) as a first-line  treatment option for metastatic colorectal cancer in combination with 5-flourouracil (5-FU). The initial  approval in colorectal cancer was expanded to include second-line therapy. Bevacizumab, in  combination with carboplatin and paclitaxel, was also FDA-approved for first-line treatment of locally  advanced, recurrent, or metastatic non-squamous, non-small cell lung cancer (NSCLC). Bevacizumab has  also been approved in combination with paclitaxel for use in persons who had not previously received  chemotherapy for metastatic HER2-negative breast cancer; however, in 2011, the FDA removed  approval for the breast cancer indication after review of clinical data indicated that the drug did not  prolong overall survival in breast cancer patients or provide sufficient benefit in slowing disease  progression to outweigh the significant risk. Bevacizumab has also been approved for the treatment of\nglioblastoma in persons with disease that has progressed on prior therapy, metastatic renal cell  carcinoma in combination with interferon-alfa, cervical cancer, ovarian cancer, fallopian tube cancer, or  primary peritoneal cancer in combination with chemotherapy, and hepatocellular carcinoma in  combination with atezolizumab.\nCurrent National Comprehensive Cancer Network (NCCN) guidelines support the use of bevacizumab in  a variety of cancers including ampullary cancer, cervical cancer, CNS cancer, colorectal cancer,  hepatocellular carcinoma, kidney cancer, mesothelioma, non-small cell lung cancer, ovarian cancer,  small bowel adenocarcinoma, soft tissue sarcoma, uterine, vaginal, and vulvar cancer. Bevacizumab- awwb (Mvasi), bevacizumab-bvzr (Zirabev), bevacizumab-maly (Alymsys), bevacizumab-nwgd (Jobevne),  bevacizumab-tnjn (Avzivi), and bevacizumab-adcd (Vegzelma) are FDA-approved biosimilars of  bevacizumab."
+    },
+    {
+      "heading": "POSITION STATEMENT:",
+      "level": 1,
+      "page": 2,
+      "content": "NOTE:  For ophthalmic indications, please refer to MCG # 09-J1000-78, Vascular Endothelial Growth  Factor Inhibitors of Ocular Neovascularization.\nI.   Initiation of bevacizumab (Avastin\u00ae), bevacizumab-awwb (Mvasi), bevacizumab-bvzr (Zirabev),  bevacizumab-maly (Alymsys), bevacizumab-nwgd (Jobevne), bevacizumab-tnjn (Avzivi), or  bevacizumab-adcd (Vegzelma)  meets the definition of medical necessity  when ALL of the following  are met:\n1.   When used to treat an indication listed in Table 1 and  ALL  of the indication-specific criteria are\nmet\n2.   When the dose does not exceed either of the following:\na.   10 mg/kg every 2 weeks\nb.   15 mg/kg every 3 weeks\n3.   For Avastin, Alymsys, Avzivi, Jobevne, or Vegzelma requests only, the member has an\ninadequate response, contraindication, or intolerance to bevacizumab-awwb (Mvasi) OR  bevacizumab-bvzr (Zirabev) \u2020  - documentation must be submitted"
+    },
+    {
+      "heading": "Indication   Criteria   Ampullary Cancer  BOTH  of the following:",
+      "level": 2,
+      "page": 2,
+      "content": "1.   Member has unresectable, advanced, or metastatic intestinal\ntype disease  2.   When used as a component of  ONE  of the following regimens:\na.   FOLFOX (fluorouracil, leucovorin, oxaliplatin)  b.   CapeOX (capecitabine and oxaliplatin)  c.   FOLFIRINOX (fluorouracil, leucovorin, irinotecan,\noxaliplatin)  d.   Capecitabine  e.   Fluorouracil and leucovorin  f.   FOLFIRI (fluorouracil, leucovorin, irinotecan)\nCervical Cancer  BOTH  of the following:\n1.   Member\u2019s disease is persistent, recurrent, or metastatic  2.   ONE  of the following:\na.   When used in combination with paclitaxel and  ONE  of\nthe following:\ni.   cisplatin  ii.   carboplatin  iii.   topotecan  b.   When used in combination with chemotherapy and\npembrolizumab  c.   When used in combination with chemotherapy and\natezolizumab  d.   When used as a single agent as second-line or\nsubsequent therapy  CNS Cancer  When used for treatment of  ONE  of the following\n1.   Recurrent or progressive disease as a single agent for  ONE  of the\nfollowing:\na.   Glioblastoma  b.   High grade glioma  c.   Intracranial and/or spinal ependymoma (excludes\nsubependymoma  d.   Meningiomas  e.   WHO Grade 3 or 4 IDH-mutant Astrocytoma  f.   WHO Grade 3 Oligodendroglioma (IDH-mutant, 1p19q\ncodeleted)  2.   Recurrent or progressive disease in combination with carmustine,\nlomustine, or temozolomide (with or without irinotecan) for  ONE   of the following:\na.   Glioblastoma  b.   High grade glioma  c.   Medulloblastoma  d.   WHO Grade 3 or 4 IDH-mutant Astrocytoma  e.   WHO Grade 3 Oligodendroglioma (IDH-mutant, 1p19q\ncodeleted)  3.   For recurrent or progressive disease in combination with\ntemozolomide and irinotecan for medulloblastoma   4.   For symptoms of radiation necrosis, poorly controlled vasogenic\nedema or mass effect  5.   For Neurofibromatosis type 2 vestibular schwannomas as a single\nagent  6.  For pediatric diffuse high-grade gliomas or pediatric\nmedulloblastoma   Colon and Rectal Cancer  (also includes anal  adenocarcinoma and  appendiceal  adenocarcinoma)\nBOTH  of the following:\n1.   Member has  ONE  of the following:\na.   Metastatic disease  b.   Unresectable disease  c.   Advanced disease\nd.   Medically inoperable disease  2.   ONE  of the following:\na.   When used as a component of one of the following\nregimens:\ni.   FOLFOX (fluorouracil, leucovorin, oxaliplatin)  ii.   FOLFIRI (fluorouracil, leucovorin, irinotecan)  iii.   CapeOX (capecitabine and oxaliplatin)  iv.   FOLFIRINOX (fluorouracil, leucovorin, irinotecan,\noxaliplatin)  v.   Irinotecan  vi.   Irinotecan and oxaliplatin  vii.   Capecitabine  viii.   5-FU/LV (fluorouracil and leucovorin)  b.  When used as subsequent therapy in combination with\ntrifluridine/tipiracil (Lonsurf) if disease progression on  fluoropyrimidine-,oxaliplatin-, and irinotecan-based  therapy   Hepatocellular carcinoma  When  ALL  of the following are met:\n1.   When used in combination with atezolizumab  2.   ONE  of the following:\na.   Unresectable disease and is not a candidate for\ntransplant  b.   Metastatic disease  c.   Inoperable due to performance status or comorbidities  d.  At high risk of recurrence   Hereditary hemorrhagic  telangiectasia\nWhen the member has  ONE  of the following:\n1.   Received red blood cell transfusions for HHT-associated bleeding  2.   Liver vascular malformations (LVMs) and symptomatic high-\noutput cardiac failure  Kidney Cancer  BOTH  of the following:\n1.   Member has relapsed or stage IV disease  2.   ANY  of the following:\na.   When used in combination with interferon alfa-2b  b.   When used in combination with everolimus (Afinitor) in\npersons with non-clear cell histology  c.   When used in combination with erlotinib (Tarceva) in\npersons with advanced papillary renal cell carcinoma  including hereditary leiomyomatosis and renal cell  carcinoma (HLRCC)  Mesothelioma   ONE  of the following:\n1.   Pleural mesothelioma\na.   When used in combination with pemetrexed and\ncisplatin or carboplatin on day 1 every 3 weeks for 6  cycles followed by single-agent maintenance therapy  2.   Peritoneal mesothelioma, pericardial mesothelioma, and tunica\nvaginalis testis mesothelioma\na.   When used in combination with pemetrexed and\ncisplatin or carboplatin on day 1 every 3 weeks for 6  cycles followed by single-agent maintenance therapy  b.   When used in combination with atezolizumab as\nsubsequent therapy if not previously treated with  immune checkpoint inhibitors  Non-small cell lung  cancer (NSCLC)\nALL  of the following:\n1.   Member\u2019s NSCLC histology is non-squamous cell  2.   Member\u2019s disease is advanced, recurrent, or metastatic  3.   ONE  of the following:\na.   Used in combination with pemetrexed and cisplatin  b.   Used in combination with pemetrexed and carboplatin  c.   Used in combination with paclitaxel and carboplatin  d.   Used in combination with paclitaxel, carboplatin, and\natezolizumab  e.   Used in combination with nab-paclitaxel and carboplatin\nwhen member has a documented hypersensitivity to  conventional paclitaxel or docetaxel  f.   Used in combination with atezolizumab for maintenance\ntherapy if previously used as part of first-line  atezolizumab/carboplatin/paclitaxel/bevacizumab  g.   Used in combination with pemetrexed for maintenance\ntherapy if previously used with a first-line  pemetrexed/platinum chemotherapy regimen  h.   Used in combination with erlotinib  i.   Single agent maintenance therapy  Ovarian Cancer [includes  epithelial, fallopian tube,  primary peritoneal, and  less common ovarian  histologies  (carcinosarcoma or  malignant mixed  Mullerian tumors, clear  cell carcinoma, mucinous  carcinoma, serous  carcinoma, endometrioid  carcinoma, borderline  epithelial tumors with  invasive implants,  malignant sex cord- stromal tumors)]\nONE  of the following:\n1.   For treatment of recurrent or persistent disease as a single agent\nor in combination with  ONE  of the following:\na.   cyclophosphamide  b.   cyclophosphamide and pembrolizumab  c.   gemcitabine  d.   gemcitabine and carboplatin  e.   liposomal doxorubicin and carboplatin  f.   liposomal doxorubicin  g.   mirvetuximab soravtansine-gynx  h.   paclitaxel  i.   paclitaxel and carboplatin  j.   topotecan  2.   When used in combination with paclitaxel and carboplatin  3.   When used in combination with docetaxel and carboplatin  4.   When used in combination with docetaxel and oxaliplatin  5.   When used as single agent maintenance therapy  6.   When used in combination with olaparib or niraparib for\nmaintenance therapy after complete or partial remission with  primary treatment containing bevacizumab\nRadiation necrosis of the  brain\nWhen the member is symptomatic\nSmall Bowel  Adenocarcinoma\nBOTH  of the following:\n1.   Member has advanced or metastatic disease  2.   When used as a component of  ONE  of the following regimens:\na.   FOLFOX (fluorouracil, leucovorin, oxaliplatin)  b.   FOLFIRI (fluorouracil, leucovorin, irinotecan)  c.   CapeOX (capecitabine and oxaliplatin)  d.   FOLFIRINOX (fluorouracil, leucovorin, irinotecan,\noxaliplatin)  e.   Capecitabine  f.   5-FU/LV (fluorouracil and leucovorin)  Soft-tissue sarcoma (STS)  ONE  of the following:\n1.   Used as a single agent for angiosarcoma  2.   Used in combination with temozolomide (Temodar) for\ntreatment of solitary fibrous tumor  Uterine Neoplasm  When used for  ONE  of the following:\n1.   Used as a single agent in members who have progressed on prior\ncytotoxic chemotherapy  2.   Used in combination with carboplatin and paclitaxel  3.   Used as single agent maintenance therapy  Vaginal cancer  When used as a single agent or with  ONE  of the following:\n1.   carboplatin and paclitaxel  2.   cisplatin and paclitaxel  3.   pembrolizumab, paclitaxel and carboplatin  4.   pembrolizumab, paclitaxel and cisplatin  5.   topotecan and paclitaxel  Vulvar cancer  BOTH  of the following:\n1.   Member has advanced, unresectable, recurrent or metastatic\ndisease  2.   Will be used in combination with paclitaxel and either cisplatin or\ncarboplatin   Other FDA-approved or  NCCN supported  diagnosis (not previously  listed above)\nWhen  ONE  of the following are met:\n1.   Member is diagnosed with a condition that is consistent with an\nindication listed in the product\u2019s FDA-approved prescribing  information (or package insert)  AND  member meets any  additional requirements listed in the \u201cIndications and Usage\u201d  section of the FDA-approved prescribing information (or package  insert)  2.   Indication  AND  usage is recognized in NCCN Drugs and Biologics\nCompendium as a Category 1 or 2A recommendation   CNS, central nervous system"
+    },
+    {
+      "heading": "Approval Duration : 180 days",
+      "level": 1,
+      "page": 6,
+      "content": "II.   Continuation of bevacizumab (Avastin\u00ae), bevacizumab-tnjn (Avzivi), bevacizumab-awwb (Mvasi),  bevacizumab-bvzr (Zirabev), bevacizumab-maly (Alymsys), bevacizumab-nwgd (Jobevne),or\nbevacizumab-adcd (Vegzelma)   meets the definition of medical necessity  for the indications in Table  1 above when  ALL  of the following criteria are met:\na.   The member has been previously approved by Florida Blue or another healthplan in the past 2\nyears,  OR  the member has previously met all indication-specific criteria\nb.   The dose does not exceed  EITHER  of the following:\n1.   10 mg/kg every 2 weeks\n2.   15 mg/kg every 3 weeks"
+    },
+    {
+      "heading": "Approval duration : 1 year",
+      "level": 1,
+      "page": 7,
+      "content": "\u2020 Step therapy does not apply for bevacizumab (Avastin), bevacizumab-maly (Alymsys), bevacizumab- tnjn (Avzivi), or Vegzelma if a prior health plan paid for the medication - documentation of a paid claim  within the past 90 days must be submitted"
+    },
+    {
+      "heading": "DOSAGE/ADMINISTRATION:",
+      "level": 1,
+      "page": 7,
+      "content": "THIS INFORMATION IS PROVIDED FOR INFORMATIONAL PURPOSES ONLY AND SHOULD NOT BE USED AS A SOURCE FOR  MAKING PRESCRIBING OR OTHER MEDICAL DETERMINATIONS. PROVIDERS SHOULD REFER TO THE MANUFACTURER\u2019S FULL  PRESCRIBING INFORMATION FOR DOSAGE GUIDELINES AND OTHER INFORMATION RELATED TO THIS MEDICATION BEFORE  MAKING ANY CLINICAL DECISIONS REGARDING ITS USAGE.\nFDA-approved:  the FDA-approved indications and dosing for bevacizumab are identified in Table 2.  Bevacizumab should be administered as an intravenous (IV) infusion. The first infusion should be  administered over 90 minutes. If the first infusion is tolerated, the second infusion can be administered  over 60 minutes; subsequent infusions can be administered over 30 minutes if the second infusion over  60 minutes is tolerated. See prescribing information for biosimilar products bevacizumab-awwb and  bevacizumab-bvzr."
+    },
+    {
+      "heading": "Table 2",
+      "level": 1,
+      "page": 7,
+      "content": "FDA-approved indications and dosing for bevacizumab  Indication  Dosage Regimen \u2020   Metastatic Colorectal Cancer  5 mg/kg every 2 weeks with bolus irinotecan/5-FU/leucovorin  10 mg/kg every 2 weeks with 5-FU/leucovorin/oxaliplatin  5 mg/kg every 2 weeks or 7.5 mg every 3 weeks with  fluoropyrimidine-irinotecan or fluoropyrimidine-oxaliplatin based  chemotherapy after progression on first line bevacizumab containing  regimen  Non-squamous NSCLC  15 mg/kg every 3 weeks with carboplatin/paclitaxel  Recurrent Glioblastoma  10 mg/kg every 2 weeks  Metastatic RCC  10 mg/kg every 2 weeks with interferon alfa  Persistent, recurrent, or  metastatic carcinoma of the  cervix\n15 mg/kg IV every 3 weeks with paclitaxel/cisplatin or  paclitaxel/topotecan\nStage III or IV epithelial  ovarian, fallopian tube or  primary peritoneal cancer  following initial surgical  resection\n15 mg/kg IV every 3 weeks with carboplatin or paclitaxel for up to 6  cycles, followed by 15 mg/kg every 3 weeks as a single agent, for a  total of up to 22 cycles\nPlatinum-resistant recurrent  epithelial ovarian, fallopian  tube or primary peritoneal  cancer\n10 mg/kg IV every 2 weeks with paclitaxel, pegylated liposomal  doxorubicin or weekly topotecan  15 mg/kg IV every 3 weeks with topotecan given every 3 weeks\nPlatinum-sensitive recurrent  epithelial ovarian, fallopian  tube or primary peritoneal  cancer\n15 mg/kg IV every 3 weeks with carboplatin/paclitaxel for 6 to 8 cycles  followed by 15 mg/kg every 3 weeks as a single agent  15 mg/kg IV every 3 weeks with carboplatin/gemcitabine for 6 to 10  cycles followed by 15 mg/kg every 3 weeks as a single agent  Hepatocellular carcinoma   15 mg/kg IV every 3 weeks with atezolizumab given every 3 weeks  \u2020 Bevacizumab should be administered as an intravenous (IV) infusion; do not administer as an IV  bolus or push.  NSCLC, non-small cell lung cancer; RCC, renal cell carcinoma.\nDose modifications : there are no recommended dose reductions for bevacizumab. Bevacizumab should  be discontinued in the following clinical situations:\n\uf0b7   Gastrointestinal perforations (gastrointestinal perforations, fistula formation in the  gastrointestinal tract, intra-abdominal abscess), fistula formation involving an internal organ\n\uf0b7   Wound dehiscence and wound healing complications requiring medical intervention, necrotizing  fasciitis\n\uf0b7   Serious hemorrhage (i.e., requiring medical intervention)\n\uf0b7   Severe arterial thromboembolic events\n\uf0b7   Life-threatening (Grade 4) venous thromboembolic events, including pulmonary embolism\n\uf0b7   Hypertensive crisis or hypertensive encephalopathy\n\uf0b7   Posterior Reversible Encephalopathy syndrome (PRES)\n\uf0b7   Nephrotic syndrome\n\uf0b7   Congestive Heart Failure\nBevacizumab should be temporarily suspended in the following clinical situations:\n\uf0b7   At least 4 weeks prior to elective surgery\n\uf0b7   Severe hypertension not controlled with medical management\n\uf0b7   Moderate to severe proteinuria pending further evaluation\n\uf0b7   Severe infusion reactions\nDrug Availability:  Bevacizumab, bevacizumab-adcd, bevacizumab-awwb, bevacizumab-bvzr, and  bevacizumab-maly are all supplied as a 100 mg/4 mL single-use vial and a 400 mg/16 mL single use vial."
+    },
+    {
+      "heading": "PRECAUTIONS:",
+      "level": 1,
+      "page": 9,
+      "content": "\uf0b7   Gastrointestinal Perforation or fistula: Discontinue bevacizumab if perforation or fistula  formation occurs.\n\uf0b7   Surgery and Wound Healing Complications: Discontinue in persons with wound dehiscence.  Discontinue at least 28 days prior to elective surgery. Do not initiate bevacizumab for at least 28  days after surgery and until the surgical wound is fully healed.\n\uf0b7   Hemorrhage: Severe or fatal hemorrhage, hemoptysis, gastrointestinal bleeding, CNS  hemorrhage, and vaginal bleeding are increased in bevacizumab- treated individuals. Do not  administer bevacizumab to individuals with serious hemorrhage or recent hemoptysis.  Discontinue for Grade 3-4 hemorrhage.\n\uf0b7   Arterial Thromboembolic Events (ATE) (e.g., myocardial infarction, cerebral infarction):  Discontinue bevacizumab for severe ATE.\n\uf0b7   Venous Thromboembolic Events: Discontinue bevacizumab for life-threatening events.\n\uf0b7   Hypertension: Monitor blood pressure and treat hypertension. Temporarily suspend  bevacizumab if not medically controlled. Discontinue bevacizumab for hypertensive crisis or  hypertensive encephalopathy.\n\uf0b7   Posterior Reversible Encephalopathy Syndrome (PRES): Discontinue bevacizumab.\n\uf0b7   Renal injury and Proteinuria: Monitor urine protein. Discontinue for nephrotic syndrome.  Temporarily suspend bevacizumab for moderate proteinuria.\n\uf0b7   Infusion Reactions: Stop for severe infusion reactions.\n\uf0b7   Embryo-fetal toxicity: Advise females of potential risk to a fetus and the need for use of effective  contraception.\n\uf0b7   Ovarian Failure: Inform females of reproductive potential of the risk of ovarian failure with  bevacizumab.\n\uf0b7   Congestive Heart Failure (CHF): discontinue if CHF occurs."
+    },
+    {
+      "heading": "HCPCS Coding:",
+      "level": 1,
+      "page": 9,
+      "content": "J9035  Injection, bevacizumab, 10 mg  Q5107  Injection, bevacizumab-awwb, biosimilar, (Mvasi), 10 mg  Q5118  Injection, bevacizumab-bvzr, biosimilar (Zirabev), 10 mg  Q5126   Injection, bevacizumab-maly, biosimilar, (Alymsys), 10 mg   Q5129  Injection, bevacizumab-adcd (Vegzelma), biosimilar, 10 mg  Q5160  Injection, bevacizumab-nwgd (Jobevne), biosimilar, 10 mg"
+    },
+    {
+      "heading": "ICD-10 Diagnosis Codes That Support Medical Necessity:",
+      "level": 1,
+      "page": 10,
+      "content": "C17.0  Malignant neoplasm of duodenum  C17.1  Malignant neoplasm of jejunum  C17.2  Malignant neoplasm of ileum  C17.8  Malignant neoplasm of overlapping sites of small intestine  C17.9  Malignant neoplasm of small intestine, unspecified  C18.0 \u2013 C18.9  Malignant neoplasm of colon  C19 \u2013 C20  Malignant neoplasm of rectosigmoid junction and rectum  C21.0 \u2013 C21.8  Malignant neoplasm of anus and anal canal  C22.0  Liver cell carcinoma  C22.3  Angiosarcoma of liver  C22.8  Malignant neoplasm of liver, primary, unspecified as to type  C22.9  Malignant neoplasm of liver, not specified as primary or secondary  C24.1  Malignant neoplasm of ampulla of Vater  C33 \u2013 C34.92  Malignant neoplasm of trachea, bronchus and lung  C38.4  Malignant neoplasm of pleura  C45.0 \u2013 C45.9  Mesothelioma of pleura, peritonium, pericardium, and other sites  C47.8  Malignant neoplasm of overlapping sites of peripheral nerves and autonomic  nervous system  C48.0  Malignant neoplasm of retroperitoneum  C48.1  Malignant neoplasm of specified parts of peritoneum  C48.2  Malignant neoplasm of peritoneum, unspecified  C48.8  Malignant neoplasm of overlapping sites of retroperitoneum and peritoneum  C49.0 \u2013 C49.9  Malignant neoplasm of connective and soft tissue  C51.0 \u2013 C51.9  Malignant neoplasm of vulva  C52.0  Malignant neoplasm of vagina  C53.0 \u2013 C53.9  Malignant neoplasm of endocervix, exocervix, overlapping sites of cervix uteri,  unspecified cervix uteri  C54.0 \u2013 C54.8  Malignant neoplasm of corpus uteri  C54.9  Malignant neoplasm of corpus uteri, unspecified  C55  Malignant neoplasm of uterus, part unspecified  C56.1 \u2013 C57.9  Malignant neoplasm of ovary and other and unspecified female genital organs  C64.1 \u2013 C64.9  Malignant neoplasm of unspecified kidney, except renal pelvis  C65.1 \u2013 C65.9  Malignant neoplasm of unspecified renal pelvis  C70.0 \u2013 C70.9  Malignant neoplasm of meninges  C71.0 \u2013 C71.9  Malignant neoplasm of brain  C72.0  Malignant neoplasm of spinal cord  C72.9  Malignant neoplasm of central nervous system, unspecified  C78.00 \u2013 C78.02  Secondary malignant neoplasm of unspecified lung  C78.6  Secondary malignant neoplasm of retroperitoneum and peritoneum  C78.7  Secondary malignant neoplasm of liver and intrahepatic bile duct  C79.31  Secondary malignant neoplasm of brain  C79.32  Secondary malignant neoplasm of meninges\nC79.82  Secondary malignant neoplasm of genital organs  C79.89  Secondary malignant neoplasm of other specified sites  C79.9  Secondary malignant neoplasm of unspecified site  C83.30 \u2013 C83.89  Diffuse large B-cell lymphoma [Primary CNS Lymphoma]  C84.49  Peripheral T-cell lymphoma, not elsewhere classified, extranodal and solid organ  sites  C85.89 \u2013 C85.99  Other specified types of non-Hodgkin lymphoma, extranodal and solid organ  sites  D32.0 \u2013 D32.9  Benign neoplasm of meninges  D42.0 \u2013 D42.9  Neoplasm of uncertain behavior of meninges  D43.0 \u2013 D43.2  Neoplasm of uncertain behavior of brain, unspecified  D43.4  Neoplasm of uncertain behavior of spinal cord  D43.9  Neoplasm of uncertain behavior of central nervous system, unspecified  D49.2  Neoplasm of unspecified behavior of bone, soft tissue, and skin  G93.6  Cerebral edema  I67.89 \u2013 I67.9  Other cerebrovascular disease  I78.0  Hereditary hemorrhagic telangiectasia  Q85.02 \u2013 Q85.03  Neurofibromatosis, type 2 and Schwannomatosis  Q85.83  Von Hippel-Lindau syndrome  Y84.2  Radiological procedure and radiotherapy as the cause of abnormal reaction of  the patient, or of later complication, without mention of misadventure at the  time of the procedure  T66.XXXA  Radiation sickness, unspecified, initial encounter  T66.XXXD  Radiation sickness, unspecified, subsequent encounter  T66.XXXS  Radiation sickness, unspecified, sequela"
+    },
+    {
+      "heading": "State Account Organization (SAO):  Follow SAO guidelines.",
+      "level": 1,
+      "page": 11,
+      "content": "Medicare Advantage Products:  No National Coverage Determination (NCD) and/or Local Coverage  Determination (LCD) were found at the time of the last guideline revised date for oncology indications.\nIf this Medical Coverage Guideline contains a step therapy requirement, in compliance with Florida law  627.42393, members or providers may request a step therapy protocol exemption to this requirement if  based on medical necessity. The process for requesting a protocol exemption can be found at  Coverage  Protocol Exemption Request ."
+    },
+    {
+      "heading": "RELATED GUIDELINES:",
+      "level": 1,
+      "page": 12,
+      "content": "Gemcitabine (Gemzar), 09-J0000-96   Irinotecan HCl (Camptosar) IV, 09-J0000-99   Tumor Markers, 05-86000-22   Vascular Endothelial Growth Factor Inhibitors of Ocular Neovascularization, 09-J1000-78  Verteporfin (Visudyne\u2122) Injection, 09-J1000-72"
+    },
+    {
+      "heading": "REFERENCES:",
+      "level": 1,
+      "page": 12,
+      "content": "1.   Alymsys (bevacizumab-maly) [package insert]. Amneal Pharmaceuticals LLC. Bridgewater (NJ): April\n2022.\n2.   Al-Samkari H, Albitar HA, Olitsky SE, Clancy MS, Iyer VN. Systemic bevacizumab for high-output\ncardiac failure in hereditary hemorrhagic telangiectasia: an international survey of HHT centers.  Orphanet J Rare Dis. 2019 Nov 14;14(1):256. doi: 10.1186/s13023-019-1239-6..\n3.   Avastin (bevacizumab) [package insert]. Genentech, Inc. South San Francisco (CA): September 2022.\n4.   Avzivi (bevacizumab-tnjn) [package insert]. Bio-Thera Solutions, Ltd. Guangzhou, Guangdong\nProvince, China: December 2023.\n5.   Clinical Pharmacology [Internet]. Tampa (FL): Gold Standard, Inc.; 2025 [cited 2025 Sept 30].\nAvailable from: http://www.clinicalpharmacology.com/.\n6.   ClinicalTrials.gov [Internet]. Bethesda (MD): National Library of Medicine; 2000 Feb 29 - [cited 2015-\n06-13]. Available from: http://clinicaltrials.gov/.\n7.   DRUGDEX\u00ae System [Internet]. Greenwood Village (CO): Thomson Micromedex; Updated periodically\n[cited 2025 Sept 30].\n8.   Dupuis-Girod S, Rivi\u00e8re S, Lavigne C, Fargeton AE, Gilbert-Dussardier B, Grobost V, Leguy-Seguin V,\nMaillard H, Mohamed S, Decullier E, Roux A, Bernard L, Saurin JC, Saroul N, Faure F, Cartier C,  Altwegg R, Laccourreye L, Oberti F, Beaudoin M, Dhelens C, Desvignes C, Azzopardi N, Paintaud G,  Hermann R, Chinet T. Efficacy and safety of intravenous bevacizumab on severe bleeding associated  with hemorrhagic hereditary telangiectasia: A national, randomized multicenter trial. J Intern Med.  2023 Dec;294(6):761-774. doi: 10.1111/joim.13714. Epub 2023 Aug 23.\n9.   Faughnan ME, Mager JJ, Hetts SW, Palda VA, Lang-Robertson K, Buscarini E, Deslandres E, Kasthuri\nRS, Lausman A, Poetker D, Ratjen F, Chesnutt MS, Clancy M, Whitehead KJ, Al-Samkari H, Chakinala  M, Conrad M, Cortes D, Crocione C, Darling J, de Gussem E, Derksen C, Dupuis-Girod S, Foy P,  Geisthoff U, Gossage JR, Hammill A, Heimdal K, Henderson K, Iyer VN, Kjeldsen AD, Komiyama M,  Korenblatt K, McDonald J, McMahon J, McWilliams J, Meek ME, Mei-Zahav M, Olitsky S, Palmer S,  Pantalone R, Piccirillo JF, Plahn B, Porteous MEM, Post MC, Radovanovic I, Rochon PJ, Rodriguez- Lopez J, Sabba C, Serra M, Shovlin C, Sprecher D, White AJ, Winship I, Zarrabeitia R. Second\nInternational Guidelines for the Diagnosis and Management of Hereditary Hemorrhagic  Telangiectasia. Ann Intern Med. 2020 Dec 15;173(12):989-1001.\n10.   Furuse M, Nonoguchi N, Kuroiwa T et al. A prospective, multicenter, single-arm clinical trial of\nbevacizumab for patients with surgically untreatable, symptomatic brain radiation necrosis.  Neurooncol Pract. 2016; 3(4):272-280.\n11.   Jobevne (bevacizumab-nwgd) [package insert]. Biocon Biologics, Inc.  Cambridge (MA): April 2025.\n12.   Mvasi (bevacizumab-awwb) [package insert]. Amgen, Inc. Thousand Oaks (CA): February 2023.\n13.   NCCN Drugs & Biologics Compendium [Internet]. Fort Washington (PA): National Comprehensive\nCancer Network; 2025 [cited 2025 Jan 30]. Available from:  http://www.nccn.org/professionals/drug_compendium/content/contents.asp/.\n14.   Orphan Drug Designations and Approval [Internet]. Silver Spring (MD): US Food and Drug\nAdministration; 2025 [cited 2025 Jan 30]. Available from:  http://www.accessdata.fda.gov/scripts/opdlisting/oopd/index.cfm/.\n15.   Simonetto DA, Singal AK, Garcia-Tsao G, Caldwell SH, Ahn J, Kamath PS. ACG Clinical Guideline:\nDisorders of the Hepatic and Mesenteric Circulation. Am J Gastroenterol. 2020 Jan;115(1):18-40\n16.   Vegzelma (bevacizumab-adcd) [package insert]. Celltrion, Inc.: February 2023.\n17.   Zirabev (bevacizumab-bvzr) [package insert]. Pfizer, Inc. New York (NY): August 2024."
+    },
+    {
+      "heading": "COMMITTEE APPROVAL:",
+      "level": 1,
+      "page": 13,
+      "content": "This Medical Coverage Guideline (MCG) was approved by the Florida Blue Pharmacy Coverage  Committee on 10/08/25."
+    },
+    {
+      "heading": "GUIDELINE UPDATE INFORMATION:",
+      "level": 1,
+      "page": 13,
+      "content": "11/15/06  New Medical Coverage Guideline.  07/15/07  Reviewed guideline: Maintain current coverage and limitations. Reformatted guideline,  renamed putting generic first, and references.  07/15/08  Reviewed guideline with no change in coverage. Added statement regarding proper  coding, added related guideline and updated references.  04/15/09  Review and revision of guideline; consisting of changing the name of the guideline,  adding 5 new indications to the position statement, adding maximum dosing, updating  references, and adding ICD-9 codes for cervical cancer.  10/01/09  Revision to guideline; consisting of updating maximum dosing description in Position  statement, updating HCPCS coding and addition of 3 new diagnosis codes.  10/15/09  Revision to guideline; consisting of updating codes.  01/01/10  Annual HCPCS coding update: deleted HCPCS code Q2024.  01/15/10  Revision to guideline; consisting of updating coding.  04/15/10  Revision to guideline; consisting of updating coding.  08/01/10  Review and revision to guideline; consisting of updating ICD-9 coding, black box  warning and references.  08/15/11  Review and revision to guideline; consisting of updating coding and references.\n07/15/12  Revision to guideline; consisting of modifying dosage limitations.  08/15/12  Review and revision to guideline; consisting reformatting position statement, update  precautions, coding, program exceptions and references.  12/15/12  Revision to guideline; consisting of removing ophthalmologic indications and  referencing MCG# 09-J1000-78, Vascular Endothelial Growth Factor Inhibitors of Ocular  Neovascularization.  04/15/13  Revision to guideline; consisting of adding new indication to position statement.  08/15/13  Review and revision to guideline; consisting of revising description section, revising and  reformatting position statement, dosage/administration, and precautions sections;  updating references, program exceptions and coding.  08/15/14  Review and revision to guideline; consisting of revising position statement, updating  references, updating coding.  10/15/14  Revision to guideline; consisting of revising position statement.  11/15/14  Revision to guideline; consisting of position statement.  08/15/15  Review and revision to guidelines; consisting of position statement, references.  11/01/15  Revision: ICD-9 Codes deleted.  07/15/16  Review and revision to guideline; consisting of revising position statement; updating  dosing, warnings, coding and references.  01/15/17  Revision to guideline; consisting of updating position statement, coding and references.  07/15/17  Review and revision to guideline; consisting of revising position statement, description,  dosing, coding and references.  11/15/17  Revision to guideline; consisting of updating position statement and references.  07/15/18  Review and revision to guideline; consisting of updating position statement, coding,  warnings and references.  08/15/18  Revision to guideline; consisting of updating position statement and references.  01/01/19  Revision: HCPCS code updates. Added Q5107.  07/15/19  Review and revision to guideline; consisting of updating position statement and  references  10/01/19  Revision: Added HCPCS Q5118.  10/15/19  Review and revision to guideline; consisting of updating position statement,  description, coding and references.  02/15/20  Revision to guideline consisting of updating position statement and references.  04/01/20  Review and revision to guideline consisting of updating the position statement.  05/15/20  Revision to guideline; consisting of updating the position statement and references.  08/15/20  Review and revision to guideline; consisting of updating the position statement,  description, dosing and references.  07/15/21  Review and revision to guideline; consisting of updating the position statement and  references.  11/15/21  Revision to guideline; consisting of updating the position statement, coding, and  references.  06/15/22  Review and revision to guideline; consisting of updating the position statement,  description, dosing, coding, and references.  10/01/22  Revision: Added HCPCS code C9142.\n11/15/22  Review and revision to guideline; consisting of adding bevacizumab-adcd (Vegzelma) to  the position statement, description, coding and dosing. Also included revisions to the  position statement for central nervous system cancer, ovarian, and vulvar cancer.  01/01/22  Revision: Added HCPCS code Q5126 and deleted codes C9142 and J3590.  04/01/23  Revision: Added HCPCS code Q5129 and deleted code J9999.   08/15/23  Revision to guideline; consisting of updating the position statement for ampullary  cancer, CNS cancer, hepatocellular carcinoma, mesothelioma, and ovarian cancer  (NCCN). Update to coding and references.  02/15/24  Review and revision to guideline; consisting of updating the position statement to  include Avzivi. Update to Ampullary cancer, CNS cancer, cervical cancer and uterine  cancer (NCCN).  03/15/25  Review and revision to guideline; consisting of updating the position statement to  include hereditary hemorrhagic telangiectasia and vaginal cancer. Revisions included  for ampullary, cervical, CNS, colon, hepatic, kidney, ovarian, soft tissue sarcoma,  uterine cancer. Updates to coding and references.  11/15/25  Review and revision to guideline; consisting of updating the position statement to  include Jobevne.  Update to cervical, CNS, hepatocellular and vulvar cancer and update  to references.  01/01/26  Revision: For Jobevne, added HCPCS code Q5160 and removed code J9999."
+    }
+  ]
+}

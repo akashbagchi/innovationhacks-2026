@@ -1,0 +1,16 @@
+{
+  "drug": {
+    "brand_name": "Rituxan",
+    "generic_name": "rituximab",
+    "benefit_type": "medical",
+    "drug_class": "CD20-directed cytolytic antibody",
+    "route_of_administration": "intravenous infusion"
+  },
+  "payer": {
+    "name": "Cigna",
+    "policy_id": "IP0319",
+    "policy_title": "Rituximab Intravenous Products for Non-Oncology Indications",
+    "effective_date": "2026-02-01",
+    "revision_date": "2026-02-01"
+  }
+}

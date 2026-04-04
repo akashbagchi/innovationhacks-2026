@@ -1,6 +1,13 @@
+**/.CLAUDE
+**/.claude
+**/CLAUDE.md 
+**/res/
+**/policy_data/
+*.zip
+.venv
 .env
-__pycache__/
+.logs/
+**/__pycache__/
 *.pyc
 node_modules/
-.venv/
 dist/

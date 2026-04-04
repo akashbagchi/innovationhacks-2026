@@ -1,0 +1,81 @@
+{
+  "payer": {
+    "name": "Priority Health",
+    "policy_title": "Priority Health 2026 MDL - Priority Health Commercial (Employer Group) and MyPriority",
+    "policy_id": "2026 MDL",
+    "effective_date": "2026",
+    "revision_date": "April 2, 2026"
+  },
+  "drug": {
+    "brand_name": "Various",
+    "generic_name": "Various",
+    "route_of_administration": "Intravenous, subcutaneous, intramuscular, topical, etc.",
+    "benefit_type": "Medical and pharmacy"
+  },
+  "indications": [
+    {
+      "name": "Various indications",
+      "pa_required": true,
+      "icd10_codes": [
+        "Various ICD-10 codes"
+      ],
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Various diagnostic criteria",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "step_therapy",
+            "description": "May require step therapy with certain drugs",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "lab_value",
+            "description": "May require certain lab values",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "age_weight",
+            "description": "May have age or weight restrictions",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "clinical_response",
+            "description": "May require demonstration of clinical response",
+            "logic_operator": "AND"
+          }
+        ],
+        "authorization_duration_months": 12
+      },
+      "reauthorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Continued evidence of the indicated condition",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "clinical_response",
+            "description": "Demonstration of continued clinical benefit",
+            "logic_operator": "AND"
+          }
+        ],
+        "authorization_duration_months": 12
+      },
+      "step_therapy_required": true
+    }
+  ],
+  "exclusions": [
+    {
+      "description": "None stated"
+    }
+  ],
+  "confidence_scores": {
+    "overall": 0.95,
+    "drug_identification": 0.95,
+    "pa_criteria_completeness": 0.9,
+    "review_flags": "None"
+  }
+}

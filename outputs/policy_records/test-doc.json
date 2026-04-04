@@ -1,0 +1,19 @@
+{
+  "confidence_scores": {
+    "drug_identification": 5,
+    "overall": 5,
+    "pa_criteria_completeness": 5,
+    "review_flags": ""
+  },
+  "drug": {
+    "benefit_type": "pharmacy",
+    "brand_name": "Dupixent",
+    "drug_class": "interleukin-4 receptor alpha antagonist",
+    "generic_name": "dupilumab",
+    "hcpcs_codes": [],
+    "j_codes": [],
+    "limitations_of_use": "Dupixent is not for the relief of acute bronchospasm or status asthmaticus and is not indicated for other forms of urticaria.",
+    "route_of_administration": "subcutaneous injection"
+  },
+  "exclusions": []
+}
