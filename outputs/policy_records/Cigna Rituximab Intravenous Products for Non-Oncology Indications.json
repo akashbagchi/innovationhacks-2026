@@ -1,16 +1,579 @@
 {
-  "drug": {
-    "brand_name": "Rituxan",
-    "generic_name": "rituximab",
-    "benefit_type": "medical",
-    "drug_class": "CD20-directed cytolytic antibody",
-    "route_of_administration": "intravenous infusion"
+  "confidence_scores": {
+    "overall": 1.0,
+    "drug_identification": 1.0,
+    "pa_criteria_completeness": 1.0,
+    "review_flags": ""
   },
+  "drug": {
+    "brand_name": [
+      "Riabni",
+      "Rituxan",
+      "Ruxience",
+      "Truxima"
+    ],
+    "generic_name": "rituximab",
+    "route_of_administration": "intravenous",
+    "limitations_of_use": "",
+    "benefit_type": "medical",
+    "drug_class": "CD20-directed cytolytic antibody"
+  },
+  "indications": [
+    {
+      "name": "Chronic lymphocytic leukemia (CLL)",
+      "pa_required": true,
+      "icd10_codes": [],
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "for the treatment of patients with previously untreated and previously treated CD20-positive disease",
+            "logic_operator": "AND"
+          }
+        ],
+        "required_prescriber_specialties": [],
+        "authorization_duration_months": 12
+      },
+      "reauthorization": {
+        "criteria": [],
+        "required_prescriber_specialties": [],
+        "authorization_duration_months": 12
+      },
+      "step_therapy_required": false
+    },
+    {
+      "name": "Granulomatosis with polyangiitis (Wegener's granulomatosis) and microscopic polyangiitis",
+      "pa_required": true,
+      "icd10_codes": [],
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "in adults, in combination with glucocorticoids",
+            "logic_operator": "AND"
+          }
+        ],
+        "required_prescriber_specialties": [],
+        "authorization_duration_months": 12
+      },
+      "reauthorization": {
+        "criteria": [],
+        "required_prescriber_specialties": [],
+        "authorization_duration_months": 12
+      },
+      "step_therapy_required": false
+    },
+    {
+      "name": "Non-Hodgkin lymphoma (NHL)",
+      "pa_required": true,
+      "icd10_codes": [],
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "for the following uses:\n- previously untreated follicular, CD20-positive disease, in combination with first-line chemotherapy, and in patients achieving a complete or partial response to rituximab in combination with chemotherapy, as a single-agent maintenance therapy.\n- for relapsed or refractory, low-grade or follicular, CD20-positive, B-cell disease.\n- for non-progressing (including stable disease) low-grade, CD20-positive, B-cell disease as a single agent after first-line cyclophosphamide/vincristine/prednisone (CVP) chemotherapy.\n- for previously untreated diffuse large B-cell, CD20-positive disease, in combination with cyclophosphamide/doxorubicin/vincristine/prednisone (CHOP) or other anthracycline-based chemotherapy regimens.",
+            "logic_operator": "AND"
+          }
+        ],
+        "required_prescriber_specialties": [],
+        "authorization_duration_months": 12
+      },
+      "reauthorization": {
+        "criteria": [],
+        "required_prescriber_specialties": [],
+        "authorization_duration_months": 12
+      },
+      "step_therapy_required": false
+    },
+    {
+      "name": "Pemphigus vulgaris",
+      "pa_required": true,
+      "icd10_codes": [],
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "for adults with moderate to severe disease",
+            "logic_operator": "AND"
+          }
+        ],
+        "required_prescriber_specialties": [],
+        "authorization_duration_months": 12
+      },
+      "reauthorization": {
+        "criteria": [],
+        "required_prescriber_specialties": [],
+        "authorization_duration_months": 12
+      },
+      "step_therapy_required": false
+    },
+    {
+      "name": "Rheumatoid arthritis",
+      "pa_required": true,
+      "icd10_codes": [],
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "in adult patients with moderately to severely active disease, in combination with methotrexate for patients who have had an inadequate response to one or more tumor necrosis factor inhibitors",
+            "logic_operator": "AND"
+          }
+        ],
+        "required_prescriber_specialties": [],
+        "authorization_duration_months": 12
+      },
+      "reauthorization": {
+        "criteria": [],
+        "required_prescriber_specialties": [],
+        "authorization_duration_months": 12
+      },
+      "step_therapy_required": false
+    },
+    {
+      "name": "Antineutrophil Cytoplasmic Antibody (ANCA)-Associated Vasculitis",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "The medication is being administered in combination with glucocorticoids.",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "prescriber",
+            "description": "Prescribed by or in consultation with a pulmonologist",
+            "logic_operator": "AND"
+          }
+        ],
+        "authorization_duration_months": 1
+      },
+      "reauthorization": {
+        "criteria": [
+          {
+            "criterion_type": "clinical_response",
+            "description": "According to the prescriber, the patient achieved disease control with induction treatment",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "other",
+            "description": "If the patient previously received a course of therapy, at least 16 weeks will elapse between courses",
+            "logic_operator": "AND"
+          }
+        ],
+        "authorization_duration_months": 6
+      },
+      "dosing": {
+        "adult": "Up to 1,000 mg administered by intravenous infusion for 6 doses",
+        "pediatric": "Up to 250 mg/m^2 administered by intravenous infusion for two doses"
+      }
+    },
+    {
+      "name": "Pemphigus Vulgaris",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Patient is being treated for a relapse",
+            "logic_operator": "OR"
+          },
+          {
+            "criterion_type": "diagnosis",
+            "description": "Patient is being treated for maintenance",
+            "logic_operator": "OR"
+          }
+        ],
+        "authorization_duration_months": 1
+      },
+      "reauthorization": {
+        "criteria": [
+          {
+            "criterion_type": "other",
+            "description": "Subsequent infusions will be administered no sooner than 16 weeks following the previous infusion of a rituximab product",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "prescriber",
+            "description": "Prescribed by or in consultation with a dermatologist",
+            "logic_operator": "AND"
+          }
+        ],
+        "authorization_duration_months": 6
+      },
+      "dosing": {
+        "adult": "Up to 1,000 mg administered by intravenous infusion for 6 doses"
+      }
+    },
+    {
+      "name": "Rheumatoid Arthritis",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "other",
+            "description": "Patient has already received one course of a Rituximab Product for Rheumatoid Arthritis",
+            "logic_operator": "OR"
+          },
+          {
+            "criterion_type": "other",
+            "description": "Patient has already received two or more courses of a Rituximab Product for Rheumatoid Arthritis",
+            "logic_operator": "OR"
+          }
+        ],
+        "authorization_duration_months": 1
+      }
+    },
+    {
+      "name": "Graft-Versus-Host Disease",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Patient has chronic graft-versus-host disease",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "step_therapy",
+            "description": "Patient has tried at least one systemic medication for graft-versus-host disease",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "prescriber",
+            "description": "Prescribed by or in consultation with a hematologist or nephrologist",
+            "logic_operator": "AND"
+          }
+        ],
+        "authorization_duration_months": 1
+      },
+      "reauthorization": {
+        "criteria": [
+          {
+            "criterion_type": "prescriber",
+            "description": "Prescribed by or in consultation with a hematologist or nephrologist",
+            "logic_operator": "AND"
+          }
+        ],
+        "authorization_duration_months": 1
+      },
+      "dosing": {
+        "adult": "Approve up to 500 mg/m^2 or up to 1,000 mg administered intravenously for 2 doses separated by at least 14 days"
+      }
+    },
+    {
+      "name": "Hematopoietic Cell Transplantation",
+      "pa_required": true,
+      "dosing": {
+        "adult": "<UNKNOWN>",
+        "pediatric": "<UNKNOWN>"
+      }
+    },
+    {
+      "name": "Immune Thrombocytopenia (ITP)",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "step_therapy",
+            "description": "Patient has tried one other therapy",
+            "logic_operator": "AND"
+          }
+        ],
+        "authorization_duration_months": 1
+      },
+      "reauthorization": {
+        "criteria": [
+          {
+            "criterion_type": "clinical_response",
+            "description": "Patient responded to therapy according to the prescriber",
+            "logic_operator": "AND"
+          }
+        ],
+        "authorization_duration_months": 1
+      }
+    },
+    {
+      "name": "Immunotherapy-Related Toxicities Associated with Checkpoint Inhibitors",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "According to the prescriber, patient developed an immunotherapy-related toxicity",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "other",
+            "description": "Patient developed this immunotherapy-related toxicity while receiving a checkpoint inhibitor",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "prescriber",
+            "description": "Prescribed by or in consultation with a hematologist or nephrologist",
+            "logic_operator": "AND"
+          }
+        ],
+        "authorization_duration_months": 1
+      },
+      "reauthorization": {
+        "criteria": [
+          {
+            "criterion_type": "prescriber",
+            "description": "Prescribed by or in consultation with a hematologist or nephrologist",
+            "logic_operator": "AND"
+          }
+        ],
+        "authorization_duration_months": 1
+      },
+      "dosing": {
+        "adult": "Approve up to 500 mg/m^2 or up to 1,000 mg administered intravenously for 2 doses separated by at least 14 days"
+      }
+    },
+    {
+      "name": "Multiple Sclerosis",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "step_therapy",
+            "description": "According to the prescriber, the patient has experienced inadequate efficacy or significant intolerance to at least TWO other disease-modifying agents for multiple sclerosis",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "other",
+            "description": "Patient is Currently Receiving Rituximab",
+            "logic_operator": "AND"
+          }
+        ],
+        "authorization_duration_months": 1
+      }
+    },
+    {
+      "name": "Systemic Lupus Erythematosus (SLE) [Lupus]",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "step_therapy",
+            "description": "Patient has tried at least ONE standard immunomodulating or immunosuppressant agent",
+            "logic_operator": "AND"
+          }
+        ],
+        "authorization_duration_months": 1
+      },
+      "reauthorization": {
+        "authorization_duration_months": 1
+      },
+      "dosing": {
+        "adult": "<UNKNOWN>",
+        "pediatric": "<UNKNOWN>"
+      }
+    },
+    {
+      "name": "Autoimmune Hemolytic Anemia",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "prescriber",
+            "description": "The medication is prescribed by or in consultation with a hematologist",
+            "logic_operator": "AND"
+          }
+        ],
+        "authorization_duration_months": 1
+      },
+      "dosing": {
+        "adult": "<UNKNOWN>",
+        "pediatric": "<UNKNOWN>"
+      }
+    },
+    {
+      "name": "Interstitial Lung Disease Associated with Systemic Autoimmune Rheumatic Disease",
+      "pa_required": true,
+      "dosing": {
+        "adult": "<UNKNOWN>",
+        "pediatric": "<UNKNOWN>"
+      }
+    },
+    {
+      "name": "Membranous Nephropathy",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "other",
+            "description": "According to the prescriber, the patient is at moderate risk or high risk for the progressive loss of kidney function",
+            "logic_operator": "AND"
+          }
+        ],
+        "authorization_duration_months": 1
+      },
+      "reauthorization": {
+        "authorization_duration_months": 1
+      },
+      "dosing": {
+        "adult": "<UNKNOWN>",
+        "pediatric": "<UNKNOWN>"
+      }
+    },
+    {
+      "name": "Minimal Change Disease",
+      "pa_required": true,
+      "dosing": {
+        "adult": "<UNKNOWN>",
+        "pediatric": "<UNKNOWN>"
+      }
+    },
+    {
+      "name": "Myasthenia Gravis",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Patient has confirmed anti-muscle-specific tyrosine kinase antibody-positive myasthenia gravis",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "step_therapy",
+            "description": "Patient meets ONE of the following (a or b): a.Patient previously received or is currently receiving pyridostigmine b. Patient has had inadequate efficacy, contraindication, or significant intolerance to pyridostigmine",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "step_therapy",
+            "description": "Patient has tried at least one immunosuppressant therapy",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "other",
+            "description": "Patient has evidence of unresolved symptoms of myasthenia gravis",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "prescriber",
+            "description": "Prescribed by or in consultation with a neurologist",
+            "logic_operator": "AND"
+          }
+        ],
+        "authorization_duration_months": 6
+      },
+      "reauthorization": {
+        "authorization_duration_months": 6
+      },
+      "dosing": {
+        "adult": "<UNKNOWN>",
+        "pediatric": "<UNKNOWN>"
+      }
+    },
+    {
+      "name": "Pediatric Nephrotic Syndrome",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "step_therapy",
+            "description": "Patient has tried at least one glucocorticoid-sparing agent for nephrotic syndrome",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "step_therapy",
+            "description": "Patient has tried at least one systemic corticosteroid",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "prescriber",
+            "description": "The medication is prescribed by or in consultation with a nephrologist",
+            "logic_operator": "AND"
+          }
+        ],
+        "authorization_duration_months": 1
+      },
+      "reauthorization": {
+        "authorization_duration_months": 1
+      },
+      "dosing": {
+        "adult": "<UNKNOWN>",
+        "pediatric": "<UNKNOWN>"
+      }
+    },
+    {
+      "name": "Solid Organ Transplantation",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "other",
+            "description": "The medication will be used for desensitization therapy prior to or immediately after transplantation",
+            "logic_operator": "OR"
+          },
+          {
+            "criterion_type": "other",
+            "description": "The medication will be used for antibody-mediated rejection",
+            "logic_operator": "OR"
+          },
+          {
+            "criterion_type": "prescriber",
+            "description": "The medication will be prescribed by or in consultation with a physician affiliated with a transplant center",
+            "logic_operator": "AND"
+          }
+        ],
+        "authorization_duration_months": "<UNKNOWN>"
+      },
+      "dosing": {
+        "adult": "<UNKNOWN>",
+        "pediatric": "<UNKNOWN>"
+      }
+    },
+    {
+      "name": "Thrombotic Thrombocytopenic Purpura",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "step_therapy",
+            "description": "The medication will be used in combination with systemic corticosteroids",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "step_therapy",
+            "description": "The medication will be used in combination with therapeutic plasma exchange",
+            "logic_operator": "AND"
+          }
+        ],
+        "authorization_duration_months": 1
+      },
+      "dosing": {
+        "adult": "<UNKNOWN>",
+        "pediatric": "<UNKNOWN>"
+      }
+    },
+    {
+      "name": "Non-oncology indications",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [],
+        "required_prescriber_specialties": [],
+        "authorization_duration_months": "<UNKNOWN>"
+      },
+      "reauthorization": {
+        "criteria": [],
+        "required_prescriber_specialties": [],
+        "authorization_duration_months": "<UNKNOWN>"
+      },
+      "step_therapy_required": false,
+      "icd10_codes": []
+    }
+  ],
   "payer": {
     "name": "Cigna",
     "policy_id": "IP0319",
     "policy_title": "Rituximab Intravenous Products for Non-Oncology Indications",
     "effective_date": "2026-02-01",
-    "revision_date": "2026-02-01"
-  }
+    "revision_date": "<UNKNOWN>"
+  },
+  "exclusions": [
+    {
+      "description": "Factor Inhibitors in an Individual with Hemophilia (this use was removed)"
+    }
+  ]
 }

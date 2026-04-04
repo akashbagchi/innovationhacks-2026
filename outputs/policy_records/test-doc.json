@@ -1,19 +1,144 @@
 {
   "confidence_scores": {
-    "drug_identification": 5,
-    "overall": 5,
-    "pa_criteria_completeness": 5,
-    "review_flags": ""
+    "overall": 1.0,
+    "drug_identification": 1.0,
+    "pa_criteria_completeness": 1.0,
+    "review_flags": null
   },
   "drug": {
-    "benefit_type": "pharmacy",
     "brand_name": "Dupixent",
-    "drug_class": "interleukin-4 receptor alpha antagonist",
     "generic_name": "dupilumab",
+    "benefit_type": "medical and pharmacy",
+    "drug_class": "interleukin-4 receptor alpha antagonist",
+    "route_of_administration": null,
     "hcpcs_codes": [],
     "j_codes": [],
-    "limitations_of_use": "Dupixent is not for the relief of acute bronchospasm or status asthmaticus and is not indicated for other forms of urticaria.",
-    "route_of_administration": "subcutaneous injection"
+    "limitations_of_use": "Dupixent is not for the relief of acute bronchospasm or status asthmaticus and is not indicated for other forms of urticaria."
   },
+  "payer": {
+    "name": "UnitedHealthcare",
+    "policy_id": "2025 P 2116-22",
+    "policy_title": "Prior Authorization/Medical Necessity - Dupixent",
+    "effective_date": "11/1/2025",
+    "revision_date": null
+  },
+  "indications": [
+    {
+      "name": "Chronic Spontaneous Urticaria",
+      "pa_required": true,
+      "icd10_codes": [
+        "<UNKNOWN>"
+      ],
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Diagnosis of chronic spontaneous urticaria",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "step_therapy",
+            "description": "Patient remains symptomatic despite at least a 2-week trial of, or history of contraindication or intolerance to, two H1-antihistamines [e.g., Allegra (fexofenadine), Benadryl (diphenhydramine), Claritin (loratadine)]",
+            "logic_operator": "OR"
+          },
+          {
+            "criterion_type": "step_therapy",
+            "description": "Patient remains symptomatic despite at least a 2-week trial of, or history of contraindication or intolerance to both of the following taken in combination: a second generation H1-antihistamine [e.g., Allegra (fexofenadine), Claritin (loratadine), Zyrtec (cetirizine)] AND one of the following: a different second generation H1-antihistamine, a first generation H1-antihistamine, an H2-antihistamine, or a leukotriene modifier",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "combination_restriction",
+            "description": "Patient is not receiving Dupixent in combination with Xolair (omalizumab) for treatment of the same indication",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "prescriber",
+            "description": "Prescribed by one of the following: Allergist, Dermatologist, Immunologist",
+            "logic_operator": "AND"
+          }
+        ],
+        "authorization_duration_months": 12,
+        "required_prescriber_specialties": [
+          "Allergist",
+          "Dermatologist",
+          "Immunologist"
+        ]
+      },
+      "reauthorization": {
+        "criteria": [
+          {
+            "criterion_type": "clinical_response",
+            "description": "Documentation of positive clinical response to Dupixent therapy (e.g., reduction in exacerbations, itch severity, hives)",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "combination_restriction",
+            "description": "Patient is not receiving Dupixent in combination with Xolair (omalizumab) for treatment of the same indication",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "prescriber",
+            "description": "Prescribed by one of the following: Allergist, Dermatologist, Immunologist",
+            "logic_operator": "AND"
+          }
+        ],
+        "authorization_duration_months": 12,
+        "required_prescriber_specialties": [
+          "Allergist",
+          "Dermatologist",
+          "Immunologist"
+        ]
+      },
+      "step_therapy_required": true
+    },
+    {
+      "name": "Bullous Pemphigoid",
+      "pa_required": true,
+      "icd10_codes": [
+        "<UNKNOWN>"
+      ],
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Diagnosis of bullous pemphigoid",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "prescriber",
+            "description": "Prescribed by one of the following: Dermatologist, Allergist, Immunologist",
+            "logic_operator": "AND"
+          }
+        ],
+        "authorization_duration_months": 12,
+        "required_prescriber_specialties": [
+          "Dermatologist",
+          "Allergist",
+          "Immunologist"
+        ]
+      },
+      "reauthorization": {
+        "criteria": [
+          {
+            "criterion_type": "clinical_response",
+            "description": "Documentation of positive clinical response to Dupixent therapy",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "prescriber",
+            "description": "Prescribed by one of the following: Dermatologist, Allergist, Immunologist",
+            "logic_operator": "AND"
+          }
+        ],
+        "authorization_duration_months": 12,
+        "required_prescriber_specialties": [
+          "Dermatologist",
+          "Allergist",
+          "Immunologist"
+        ]
+      },
+      "step_therapy_required": false
+    }
+  ],
   "exclusions": []
 }

@@ -1,28 +1,664 @@
 {
-  "confidence_scores": {
-    "drug_identification": 1.0,
-    "overall": 0.95,
-    "pa_criteria_completeness": 0.95,
-    "review_flags": ""
+  "payer": {
+    "name": "UnitedHealthcare",
+    "policy_title": "Botulinum Toxins A and B",
+    "policy_id": "2026D0017AN",
+    "effective_date": "01/01/2026",
+    "revision_date": null
   },
   "drug": {
-    "brand_name": "Botulinum Toxins A and B",
-    "generic_name": "Botulinum Toxins A and B",
-    "benefit_type": "medical",
-    "drug_class": "Neurotoxin",
-    "hcpcs_codes": [
-      "J0585",
-      "J0586",
-      "J0587",
-      "J0588",
-      "J0589"
+    "brand_name": [
+      "Dysport",
+      "Daxxify",
+      "Xeomin",
+      "Botox",
+      "Myobloc"
     ],
-    "j_codes": [
-      "J0585",
-      "J0586",
-      "J0587",
-      "J0588",
-      "J0589"
-    ]
+    "generic_name": [
+      "abobotulinumtoxinA",
+      "daxibotulinumtoxinA-lanm",
+      "incobotulinumtoxinA",
+      "onabotulinumtoxinA",
+      "rimabotulinumtoxinB"
+    ],
+    "benefit_type": "medical",
+    "route_of_administration": null,
+    "limitations_of_use": "Daxxify is typically excluded from coverage. Coverage reviews may be in place if required by law or the benefit plan.",
+    "hcpcs_codes": null,
+    "j_codes": null,
+    "drug_class": null
+  },
+  "indications": [
+    {
+      "name": "Achalasia",
+      "pa_required": true,
+      "icd10_codes": [],
+      "initial_authorization": {
+        "criteria": [],
+        "required_prescriber_specialties": [],
+        "authorization_duration_months": null
+      },
+      "reauthorization": {
+        "criteria": [],
+        "required_prescriber_specialties": [],
+        "authorization_duration_months": null
+      },
+      "step_therapy_required": false
+    },
+    {
+      "name": "Anal fissures, chronic",
+      "pa_required": true,
+      "icd10_codes": [],
+      "initial_authorization": {
+        "criteria": [],
+        "required_prescriber_specialties": [],
+        "authorization_duration_months": null
+      },
+      "reauthorization": {
+        "criteria": [],
+        "required_prescriber_specialties": [],
+        "authorization_duration_months": null
+      },
+      "step_therapy_required": false
+    },
+    {
+      "name": "Blepharospasm associated with dystonia",
+      "pa_required": true,
+      "icd10_codes": [],
+      "initial_authorization": {
+        "criteria": [],
+        "required_prescriber_specialties": [],
+        "authorization_duration_months": null
+      },
+      "reauthorization": {
+        "criteria": [],
+        "required_prescriber_specialties": [],
+        "authorization_duration_months": null
+      },
+      "step_therapy_required": false
+    },
+    {
+      "name": "Cervical dystonia (also known as spasmodic torticollis)",
+      "pa_required": true,
+      "icd10_codes": [],
+      "initial_authorization": {
+        "criteria": [],
+        "required_prescriber_specialties": [],
+        "authorization_duration_months": null
+      },
+      "reauthorization": {
+        "criteria": [],
+        "required_prescriber_specialties": [],
+        "authorization_duration_months": null
+      },
+      "step_therapy_required": false
+    },
+    {
+      "name": "Detrusor overactivity (also known as detrusor hyperreflexia) or detrusor-sphincter dyssynergia due to spinal cord injury or disease",
+      "pa_required": true,
+      "icd10_codes": [],
+      "initial_authorization": {
+        "criteria": [],
+        "required_prescriber_specialties": [],
+        "authorization_duration_months": null
+      },
+      "reauthorization": {
+        "criteria": [],
+        "required_prescriber_specialties": [],
+        "authorization_duration_months": null
+      },
+      "step_therapy_required": false
+    },
+    {
+      "name": "Essential tremor",
+      "pa_required": true,
+      "icd10_codes": [],
+      "initial_authorization": {
+        "criteria": [],
+        "required_prescriber_specialties": [],
+        "authorization_duration_months": null
+      },
+      "reauthorization": {
+        "criteria": [],
+        "required_prescriber_specialties": [],
+        "authorization_duration_months": null
+      },
+      "step_therapy_required": false
+    },
+    {
+      "name": "Hand dystonia (writer's, musician's, or typist's cramp)",
+      "pa_required": true,
+      "icd10_codes": [],
+      "initial_authorization": {
+        "criteria": [],
+        "required_prescriber_specialties": [],
+        "authorization_duration_months": null
+      },
+      "reauthorization": {
+        "criteria": [],
+        "required_prescriber_specialties": [],
+        "authorization_duration_months": null
+      },
+      "step_therapy_required": false
+    },
+    {
+      "name": "Hemifacial spasm (seventh cranial nerve disorders)",
+      "pa_required": true,
+      "icd10_codes": [],
+      "initial_authorization": {
+        "criteria": [],
+        "required_prescriber_specialties": [],
+        "authorization_duration_months": null
+      },
+      "reauthorization": {
+        "criteria": [],
+        "required_prescriber_specialties": [],
+        "authorization_duration_months": null
+      },
+      "step_therapy_required": false
+    },
+    {
+      "name": "Hyperhidrosis including gustatory sweating (i.e., Frey's syndrome)",
+      "pa_required": true,
+      "icd10_codes": [],
+      "initial_authorization": {
+        "criteria": [],
+        "required_prescriber_specialties": [],
+        "authorization_duration_months": null
+      },
+      "reauthorization": {
+        "criteria": [],
+        "required_prescriber_specialties": [],
+        "authorization_duration_months": null
+      },
+      "step_therapy_required": false
+    },
+    {
+      "name": "Oromandibular dystonia",
+      "pa_required": true,
+      "icd10_codes": [],
+      "initial_authorization": {
+        "criteria": [],
+        "required_prescriber_specialties": [],
+        "authorization_duration_months": null
+      },
+      "reauthorization": {
+        "criteria": [],
+        "required_prescriber_specialties": [],
+        "authorization_duration_months": null
+      },
+      "step_therapy_required": false
+    },
+    {
+      "name": "Sialorrhea",
+      "pa_required": true,
+      "icd10_codes": [],
+      "initial_authorization": {
+        "criteria": [],
+        "required_prescriber_specialties": [],
+        "authorization_duration_months": null
+      },
+      "reauthorization": {
+        "criteria": [],
+        "required_prescriber_specialties": [],
+        "authorization_duration_months": null
+      },
+      "step_therapy_required": false
+    },
+    {
+      "name": "Spasmodic dysphonia (i.e., laryngeal dystonia)",
+      "pa_required": true,
+      "icd10_codes": [],
+      "initial_authorization": {
+        "criteria": [],
+        "required_prescriber_specialties": [],
+        "authorization_duration_months": null
+      },
+      "reauthorization": {
+        "criteria": [],
+        "required_prescriber_specialties": [],
+        "authorization_duration_months": null
+      },
+      "step_therapy_required": false
+    },
+    {
+      "name": "Spasticity",
+      "pa_required": true,
+      "icd10_codes": [],
+      "initial_authorization": {
+        "criteria": [],
+        "required_prescriber_specialties": [],
+        "authorization_duration_months": null
+      },
+      "reauthorization": {
+        "criteria": [],
+        "required_prescriber_specialties": [],
+        "authorization_duration_months": null
+      },
+      "step_therapy_required": false
+    },
+    {
+      "name": "Strabismus",
+      "pa_required": true,
+      "icd10_codes": [],
+      "initial_authorization": {
+        "criteria": [],
+        "required_prescriber_specialties": [],
+        "authorization_duration_months": null
+      },
+      "reauthorization": {
+        "criteria": [],
+        "required_prescriber_specialties": [],
+        "authorization_duration_months": null
+      },
+      "step_therapy_required": false
+    },
+    {
+      "name": "Tongue dystonia",
+      "pa_required": true,
+      "icd10_codes": [],
+      "initial_authorization": {
+        "criteria": [],
+        "required_prescriber_specialties": [],
+        "authorization_duration_months": null
+      },
+      "reauthorization": {
+        "criteria": [],
+        "required_prescriber_specialties": [],
+        "authorization_duration_months": null
+      },
+      "step_therapy_required": false
+    },
+    {
+      "name": "Torsion dystonia",
+      "pa_required": true,
+      "icd10_codes": [],
+      "initial_authorization": {
+        "criteria": [],
+        "required_prescriber_specialties": [],
+        "authorization_duration_months": null
+      },
+      "reauthorization": {
+        "criteria": [],
+        "required_prescriber_specialties": [],
+        "authorization_duration_months": null
+      },
+      "step_therapy_required": false
+    },
+    {
+      "name": "Chronic migraine",
+      "pa_required": true,
+      "icd10_codes": [],
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Greater than or equal to 15 headache days per month",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "diagnosis",
+            "description": "Greater than or equal to 8 migraine days per month",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "diagnosis",
+            "description": "Headaches last 4 hours per day or longer",
+            "logic_operator": "AND"
+          }
+        ],
+        "required_prescriber_specialties": [],
+        "authorization_duration_months": null
+      },
+      "reauthorization": {
+        "criteria": [],
+        "required_prescriber_specialties": [],
+        "authorization_duration_months": null
+      },
+      "step_therapy_required": false
+    },
+    {
+      "description": "Cervical dystonia",
+      "icd10_codes": [
+        "G24.1",
+        "G24.2",
+        "G24.3",
+        "G24.4",
+        "G24.8",
+        "G24.9"
+      ],
+      "initial_authorization": {
+        "authorization_duration_months": 3,
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Diagnosis of cervical dystonia",
+            "logic_operator": "AND"
+          }
+        ],
+        "required_prescriber_specialties": [
+          "neurology",
+          "physical medicine and rehabilitation"
+        ]
+      },
+      "name": "Cervical dystonia",
+      "pa_required": true,
+      "reauthorization": {
+        "authorization_duration_months": 3,
+        "criteria": [
+          {
+            "criterion_type": "clinical_response",
+            "description": "Demonstrated clinical response to therapy",
+            "logic_operator": "AND"
+          }
+        ],
+        "required_prescriber_specialties": [
+          "neurology",
+          "physical medicine and rehabilitation"
+        ]
+      },
+      "step_therapy_required": false
+    },
+    {
+      "description": "Detrusor overactivity",
+      "icd10_codes": [
+        "N31.0",
+        "N31.1",
+        "N31.9",
+        "N32.81",
+        "N39.41",
+        "N39.46"
+      ],
+      "initial_authorization": {
+        "authorization_duration_months": 3,
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Diagnosis of detrusor overactivity",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "step_therapy",
+            "description": "Inadequate response or intolerance to anticholinergic medication",
+            "logic_operator": "AND"
+          }
+        ],
+        "required_prescriber_specialties": [
+          "urology",
+          "physical medicine and rehabilitation"
+        ]
+      },
+      "name": "Detrusor overactivity",
+      "pa_required": true,
+      "reauthorization": {
+        "authorization_duration_months": 3,
+        "criteria": [
+          {
+            "criterion_type": "clinical_response",
+            "description": "Demonstrated clinical response to therapy",
+            "logic_operator": "AND"
+          }
+        ],
+        "required_prescriber_specialties": [
+          "urology",
+          "physical medicine and rehabilitation"
+        ]
+      },
+      "step_therapy_required": false
+    },
+    {
+      "description": "Chronic migraine headache",
+      "icd10_codes": [
+        "G43.701",
+        "G43.709",
+        "G43.711",
+        "G43.719",
+        "G43.E01",
+        "G43.E09",
+        "G43.E11",
+        "G43.E19"
+      ],
+      "initial_authorization": {
+        "authorization_duration_months": 3,
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Diagnosis of chronic migraine",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "step_therapy",
+            "description": "Inadequate response or intolerance to at least 2 preventive migraine medications",
+            "logic_operator": "AND"
+          }
+        ],
+        "required_prescriber_specialties": [
+          "neurology",
+          "headache specialist"
+        ]
+      },
+      "name": "Chronic migraine headache",
+      "pa_required": true,
+      "reauthorization": {
+        "authorization_duration_months": 3,
+        "criteria": [
+          {
+            "criterion_type": "clinical_response",
+            "description": "Demonstrated clinical response to therapy, defined as a reduction in headache days per month of at least 2 days",
+            "logic_operator": "AND"
+          }
+        ],
+        "required_prescriber_specialties": [
+          "neurology",
+          "headache specialist"
+        ]
+      },
+      "step_therapy_required": true
+    },
+    {
+      "description": "Overactive bladder",
+      "icd10_codes": [
+        "N32.81",
+        "N39.41",
+        "N39.46"
+      ],
+      "initial_authorization": {
+        "authorization_duration_months": 3,
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Diagnosis of overactive bladder",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "step_therapy",
+            "description": "Inadequate response or intolerance to at least 2 anticholinergic medications",
+            "logic_operator": "AND"
+          }
+        ],
+        "required_prescriber_specialties": [
+          "urology"
+        ]
+      },
+      "name": "Overactive bladder",
+      "pa_required": true,
+      "reauthorization": {
+        "authorization_duration_months": 3,
+        "criteria": [
+          {
+            "criterion_type": "clinical_response",
+            "description": "Demonstrated clinical response to therapy, defined as a decrease in urinary incontinence episodes per day of at least 2.65",
+            "logic_operator": "AND"
+          }
+        ],
+        "required_prescriber_specialties": [
+          "urology"
+        ]
+      },
+      "step_therapy_required": true
+    },
+    {
+      "description": "Spasticity (associated with cerebral palsy)",
+      "icd10_codes": [
+        "G80.0",
+        "G80.1",
+        "G80.2",
+        "G80.3",
+        "G80.4",
+        "G80.8",
+        "G80.9",
+        "G81.10",
+        "G81.11",
+        "G81.12",
+        "G81.13",
+        "G81.14"
+      ],
+      "initial_authorization": {
+        "authorization_duration_months": 3,
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Diagnosis of spasticity associated with cerebral palsy",
+            "logic_operator": "AND"
+          }
+        ],
+        "required_prescriber_specialties": [
+          "neurology",
+          "physical medicine and rehabilitation",
+          "pediatrics"
+        ]
+      },
+      "name": "Spasticity (associated with cerebral palsy)",
+      "pa_required": true,
+      "reauthorization": {
+        "authorization_duration_months": 3,
+        "criteria": [
+          {
+            "criterion_type": "clinical_response",
+            "description": "Demonstrated clinical response to therapy, such as improved muscle tone or increased range of motion",
+            "logic_operator": "AND"
+          }
+        ],
+        "required_prescriber_specialties": [
+          "neurology",
+          "physical medicine and rehabilitation",
+          "pediatrics"
+        ]
+      },
+      "step_therapy_required": false
+    }
+  ],
+  "exclusions": [
+    {
+      "description": "Acquired nystagmus"
+    },
+    {
+      "description": "Anismus (pelvic floor dyssynergia)"
+    },
+    {
+      "description": "Benign prostatic hyperplasia"
+    },
+    {
+      "description": "Brachial plexus palsy"
+    },
+    {
+      "description": "Chronic daily headache"
+    },
+    {
+      "description": "Chronic low back pain"
+    },
+    {
+      "description": "Chronic prostatic pain"
+    },
+    {
+      "description": "Cricopharyngeal dysphagia (excludes achalasia)"
+    },
+    {
+      "description": "Epiphora following salivary gland transplantation"
+    },
+    {
+      "description": "Esophageal spasm"
+    },
+    {
+      "description": "Gastroparesis (including diabetic gastroparesis)"
+    },
+    {
+      "description": "Gustatory epiphora (crocodile tears)"
+    },
+    {
+      "description": "Lateral epicondylitis (tennis elbow)"
+    },
+    {
+      "description": "Lichen simplex"
+    },
+    {
+      "description": "Lower urinary tract (voiding) dysfunction"
+    },
+    {
+      "description": "Motor tics"
+    },
+    {
+      "description": "Myofascial pain syndrome"
+    },
+    {
+      "description": "Nasal hypersecretion"
+    },
+    {
+      "description": "Pain and/or wound healing after hemorrhoidectomy"
+    },
+    {
+      "description": "Pancreas divisum"
+    },
+    {
+      "description": "Piriformis syndrome"
+    },
+    {
+      "description": "Post-parotidectomy sialoceles"
+    },
+    {
+      "description": "Post-thoracotomy pseudoangina"
+    },
+    {
+      "description": "Proctalgia fugax"
+    },
+    {
+      "description": "Severe bruxism"
+    },
+    {
+      "description": "Severe paradoxical vocal cord movement"
+    },
+    {
+      "description": "Sphincter of Oddi dysfunction"
+    },
+    {
+      "description": "Temporomandibular disorders"
+    },
+    {
+      "description": "Tension-type headache"
+    },
+    {
+      "description": "Thyroid associated ophthalmopathy"
+    },
+    {
+      "description": "Tourette's syndrome"
+    },
+    {
+      "description": "Traumatic sixth nerve palsy"
+    },
+    {
+      "description": "Trigeminal neuralgia"
+    },
+    {
+      "description": "Trismus and stridor in amyotrophic lateral sclerosis"
+    },
+    {
+      "description": "Botulinum toxin is cosmetic when used to improve appearance, or in the absence of physiological functional impairment that would be improved by their use."
+    }
+  ],
+  "confidence_scores": {
+    "overall": 1.0,
+    "drug_identification": 1.0,
+    "pa_criteria_completeness": 1.0,
+    "review_flags": null
   }
 }
