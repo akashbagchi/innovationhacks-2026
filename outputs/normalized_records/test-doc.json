@@ -1,0 +1,1329 @@
+{
+  "normalization_version": "2026-04-04",
+  "source_filename": "test-doc.json",
+  "document_type": "policy",
+  "payer": {
+    "name": "UnitedHealth",
+    "policy_id": "2025 P 2116-22",
+    "policy_title": "Dupixent (dupilumab) Prior Authorization/Medical Necessity",
+    "effective_date": "2025-11-01",
+    "revision_date": "2025-08-01"
+  },
+  "drug": {
+    "display_name": "Dupixent",
+    "brand_names": [
+      "Dupixent"
+    ],
+    "generic_name": "dupilumab",
+    "normalized_generic_name": "dupilumab",
+    "j_codes": [],
+    "hcpcs_codes": [],
+    "benefit_type": "pharmacy",
+    "drug_class": "Interleukin-4 receptor alpha antagonist",
+    "route_of_administration": null,
+    "limitations_of_use": "Not for the relief of acute bronchospasm or status asthmaticus and not indicated for other forms of urticaria.",
+    "enrichment": {
+      "rxnorm_cui": null,
+      "loinc_codes": [],
+      "validated_icd10_codes": [],
+      "needs_rxnorm_lookup": true,
+      "needs_loinc_linking": false,
+      "needs_icd10_validation": false
+    }
+  },
+  "indications": [
+    {
+      "indication_id": "atopic-dermatitis-1",
+      "name": "Atopic Dermatitis",
+      "description": null,
+      "icd10_codes_explicit": [],
+      "icd10_codes_inferred": [],
+      "pa_required": true,
+      "step_therapy_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "original_criterion_type": "diagnosis",
+            "description": "Diagnosis of moderate-to-severe chronic atopic dermatitis",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "step_therapy",
+            "original_criterion_type": "step_therapy",
+            "description": "History of failure, contraindication, or intolerance to two of the following therapeutic classes of topical therapies (document drug, date of trial, and/or contraindication to medication): (a) Medium, high, or very-high potency topical corticosteroid [e.g., Elocon (mometasone furoate), Synalar (fluocinolone acetonide), Lidex (fluocinonide)]; (b) Topical calcineurin inhibitor [e.g., Elidel (pimecrolimus), Protopic (tacrolimus)]; (c) Eucrisa (crisaborole)",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "combination_restriction",
+            "original_criterion_type": "combination_restriction",
+            "description": "Patient is not receiving Dupixent in combination with either of the following for treatment of the same indication: (a) Biologic immunomodulator [e.g., Adbry (tralokinumab-ldrm)]; (b) Janus kinase inhibitor [e.g., Rinvoq (upadacitinib), Xeljanz/XR (tofacitinib), Opzelura (topical ruxolitinib), Cibinqo (abrocitinib)]",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "prescriber",
+            "original_criterion_type": "prescriber",
+            "description": "Prescribed by one of the following: (a) Dermatologist; (b) Allergist; (c) Immunologist",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          }
+        ],
+        "authorization_duration_months": 12,
+        "required_prescriber_specialties": [
+          "dermatologist",
+          "allergist",
+          "immunologist"
+        ]
+      },
+      "reauthorization": {
+        "criteria": [
+          {
+            "criterion_type": "clinical_response",
+            "original_criterion_type": "clinical_response",
+            "description": "Documentation of positive clinical response to Dupixent therapy",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "combination_restriction",
+            "original_criterion_type": "combination_restriction",
+            "description": "Patient is not receiving Dupixent in combination with either of the following for treatment of the same indication: (a) Biologic immunomodulator [e.g., Adbry (tralokinumab-ldrm)]; (b) Janus kinase inhibitor [e.g., Rinvoq (upadacitinib), Xeljanz/XR (tofacitinib), Opzelura (topical ruxolitinib), Cibinqo (abrocitinib)]",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "prescriber",
+            "original_criterion_type": "prescriber",
+            "description": "Prescribed by one of the following: (a) Dermatologist; (b) Allergist; (c) Immunologist",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          }
+        ],
+        "authorization_duration_months": 12,
+        "required_prescriber_specialties": [
+          "dermatologist",
+          "allergist",
+          "immunologist"
+        ]
+      },
+      "enrichment": {
+        "rxnorm_cui": null,
+        "loinc_codes": [],
+        "validated_icd10_codes": [],
+        "needs_rxnorm_lookup": false,
+        "needs_loinc_linking": false,
+        "needs_icd10_validation": false
+      }
+    },
+    {
+      "indication_id": "asthma-2",
+      "name": "Asthma",
+      "description": null,
+      "icd10_codes_explicit": [],
+      "icd10_codes_inferred": [],
+      "pa_required": true,
+      "step_therapy_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "original_criterion_type": "diagnosis",
+            "description": "Diagnosis of moderate-to-severe asthma",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "disease_severity",
+            "original_criterion_type": "disease_severity",
+            "description": "Classification of asthma as uncontrolled or inadequately controlled as defined by at least one of the following: (a) Poor symptom control (e.g., ACQ score consistently greater than 1.5 or ACT score consistently less than 20); (b) Two or more bursts of systemic corticosteroids for at least 3 days each in the previous 12 months; (c) Asthma-related emergency treatment (e.g., emergency room visit, hospital admission, or unscheduled physician's office visit for nebulizer or other urgent treatment); (d) Airflow limitation (e.g., after appropriate bronchodilator withhold FEV1 less than 80% predicted in the face of reduced FEV1/FVC defined as less than the lower limit of normal); (e) Patient is currently dependent on oral corticosteroids for the treatment of asthma",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "lab_value",
+            "original_criterion_type": "lab_value",
+            "description": "One of the following: (a) Submission of medical records documenting that asthma is an eosinophilic phenotype as defined by a baseline (pre-dupilumab treatment) peripheral blood eosinophil level \u2265 150 cells/\u03bcL; OR (b) Patient is currently dependent on oral corticosteroids for the treatment of asthma",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "step_therapy",
+            "original_criterion_type": "step_therapy",
+            "description": "Dupixent will be used in combination with one of the following: (a) One maximally dosed (appropriately adjusted for age) combination ICS/LABA [e.g., Advair/AirDuo Respiclick (fluticasone propionate/salmeterol), Symbicort (budesonide/formoterol), Breo Ellipta (fluticasone furoate/vilanterol)]; OR (b) Combination therapy including both: (i) One maximally dosed ICS product [e.g., ciclesonide (Alvesco), mometasone furoate (Asmanex), beclomethasone dipropionate (QVAR)] AND (ii) One additional asthma controller medication [e.g., LABA - olodaterol (Striverdi) or indacaterol (Arcapta); leukotriene receptor antagonist \u2013 montelukast (Singulair); theophylline]",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "combination_restriction",
+            "original_criterion_type": "combination_restriction",
+            "description": "Patient is not receiving Dupixent in combination with any of the following for treatment of the same indication: (a) Anti-interleukin-5 therapy [e.g., Nucala (mepolizumab), Cinqair (resilizumab), Fasenra (benralizumab)]; (b) Anti-IgE therapy [e.g., Xolair (omalizumab)]; (c) Thymic stromal lymphopoietin (TSLP) inhibitor [e.g., Tezspire (tezepelumab)]",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "prescriber",
+            "original_criterion_type": "prescriber",
+            "description": "Prescribed by one of the following: (a) Allergist; (b) Immunologist; (c) Pulmonologist",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          }
+        ],
+        "authorization_duration_months": 12,
+        "required_prescriber_specialties": [
+          "allergist",
+          "immunologist",
+          "pulmonologist"
+        ]
+      },
+      "reauthorization": {
+        "criteria": [
+          {
+            "criterion_type": "clinical_response",
+            "original_criterion_type": "clinical_response",
+            "description": "Documentation of positive clinical response to Dupixent therapy as demonstrated by at least one of the following: (a) Reduction in the frequency of exacerbations; (b) Decreased utilization of rescue medications; (c) Increase in percent predicted FEV1 from pretreatment baseline; (d) Reduction in severity or frequency of asthma-related symptoms (e.g., wheezing, shortness of breath, coughing, etc.); (e) Reduction in oral corticosteroid requirements",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          }
+        ],
+        "authorization_duration_months": 12,
+        "required_prescriber_specialties": [
+          "allergist",
+          "immunologist",
+          "pulmonologist"
+        ]
+      },
+      "enrichment": {
+        "rxnorm_cui": null,
+        "loinc_codes": [],
+        "validated_icd10_codes": [],
+        "needs_rxnorm_lookup": false,
+        "needs_loinc_linking": true,
+        "needs_icd10_validation": false
+      }
+    },
+    {
+      "indication_id": "asthma-add-on-maintenance-3",
+      "name": "Asthma (add-on maintenance)",
+      "description": null,
+      "icd10_codes_explicit": [],
+      "icd10_codes_inferred": [],
+      "pa_required": true,
+      "step_therapy_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "combination_restriction",
+            "original_criterion_type": "combination_restriction",
+            "description": "Dupixent is being used in combination with an ICS-containing maintenance medication [e.g., Advair/AirDuo (fluticasone/salmeterol), Breo Ellipta (fluticasone furoate/vilanterol), Symbicort (budesonide/formoterol), Trelegy Ellipta (fluticasone furoate/umeclidinium/vilanterol)].",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "combination_restriction",
+            "original_criterion_type": "combination_restriction",
+            "description": "Patient is not receiving Dupixent in combination with any of the following for treatment of the same indication: (a) Anti-interleukin-5 therapy [e.g., Nucala (mepolizumab), Cinqair (resilizumab), Fasenra (benralizumab)]; (b) Anti-IgE therapy [e.g., Xolair (omalizumab)]; (c) Thymic stromal lymphopoietin (TSLP) inhibitor [e.g., Tezspire (tezepelumab)].",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "prescriber",
+            "original_criterion_type": "prescriber",
+            "description": "Prescribed by one of the following: (a) Allergist; (b) Immunologist; (c) Pulmonologist.",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          }
+        ],
+        "authorization_duration_months": 12,
+        "required_prescriber_specialties": [
+          "allergist",
+          "immunologist",
+          "pulmonologist"
+        ]
+      },
+      "reauthorization": null,
+      "enrichment": {
+        "rxnorm_cui": null,
+        "loinc_codes": [],
+        "validated_icd10_codes": [],
+        "needs_rxnorm_lookup": false,
+        "needs_loinc_linking": false,
+        "needs_icd10_validation": false
+      }
+    },
+    {
+      "indication_id": "chronic-rhinosinusitis-with-nasal-polyposis-crswnp-4",
+      "name": "Chronic Rhinosinusitis with Nasal Polyposis (CRSwNP)",
+      "description": null,
+      "icd10_codes_explicit": [],
+      "icd10_codes_inferred": [],
+      "pa_required": true,
+      "step_therapy_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "original_criterion_type": "diagnosis",
+            "description": "Diagnosis of chronic rhinosinusitis with nasal polyposis (CRSwNP) defined by all of the following: (a) Two or more of the following symptoms for longer than 12 weeks duration: i. Nasal mucopurulent discharge; ii. Nasal obstruction, blockage, or congestion; iii. Facial pain, pressure, and/or fullness; iv. Reduction or loss of sense of smell. AND (b) One of the following findings using nasal endoscopy and/or sinus computed tomography (CT): i. Purulent mucus or edema in the middle meatus or ethmoid regions; ii. Polyps in the nasal cavity or the middle meatus; iii. Radiographic imaging demonstrating mucosal thickening or partial or complete opacification of paranasal sinuses. AND (c) One of the following: i. Presence of bilateral nasal polyposis; ii. Patient has previously required surgical removal of bilateral nasal polyps. AND (d) One of the following: i. Patient has required prior sinus surgery; ii. Patient has required systemic corticosteroids (e.g., prednisone, methylprednisolone) for CRSwNP in the previous 2 years; iii. Patient has been unable to obtain symptom relief after trial of two of the following classes of agents: Nasal saline irrigations; Intranasal corticosteroids (e.g., fluticasone, mometasone, triamcinolone); Antileukotriene agents (e.g., montelukast, zafirlukast, zileuton).",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "combination_restriction",
+            "original_criterion_type": "combination_restriction",
+            "description": "Patient will receive Dupixent as add-on maintenance therapy in combination with intranasal corticosteroids (e.g., fluticasone, mometasone, triamcinolone).",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "combination_restriction",
+            "original_criterion_type": "combination_restriction",
+            "description": "Patient is not receiving Dupixent in combination with any of the following for treatment of the same indication: (a) Anti-interleukin-5 therapy [e.g., Cinqair (resilizumab), Fasenra (benralizumab), Nucala (mepolizumab)]; (b) Anti-IgE therapy [e.g., Xolair (omalizumab)]; (c) Thymic stromal lymphopoietin (TSLP) inhibitor [e.g., Tezspire (tezepelumab)].",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "prescriber",
+            "original_criterion_type": "prescriber",
+            "description": "Prescribed by one of the following: (a) Allergist; (b) Immunologist; (c) Otolaryngologist; (d) Pulmonologist.",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          }
+        ],
+        "authorization_duration_months": 12,
+        "required_prescriber_specialties": [
+          "allergist",
+          "immunologist",
+          "otolaryngologist",
+          "pulmonologist"
+        ]
+      },
+      "reauthorization": {
+        "criteria": [
+          {
+            "criterion_type": "clinical_response",
+            "original_criterion_type": "clinical_response",
+            "description": "Documentation of positive clinical response to Dupixent therapy.",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "combination_restriction",
+            "original_criterion_type": "combination_restriction",
+            "description": "Patient will continue to receive Dupixent as add-on maintenance therapy in combination with intranasal corticosteroids (e.g., fluticasone, mometasone, triamcinolone).",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "combination_restriction",
+            "original_criterion_type": "combination_restriction",
+            "description": "Patient is not receiving Dupixent in combination with any of the following for treatment of the same indication: (a) Anti-interleukin-5 therapy [e.g., Cinqair (resilizumab), Fasenra (benralizumab), Nucala (mepolizumab)]; (b) Anti-IgE therapy [e.g., Xolair (omalizumab)]; (c) Thymic stromal lymphopoietin (TSLP) inhibitor [e.g., Tezspire (tezepelumab)].",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "prescriber",
+            "original_criterion_type": "prescriber",
+            "description": "Prescribed by one of the following: (a) Allergist; (b) Immunologist; (c) Otolaryngologist; (d) Pulmonologist.",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          }
+        ],
+        "authorization_duration_months": 12,
+        "required_prescriber_specialties": [
+          "allergist",
+          "immunologist",
+          "otolaryngologist",
+          "pulmonologist"
+        ]
+      },
+      "enrichment": {
+        "rxnorm_cui": null,
+        "loinc_codes": [],
+        "validated_icd10_codes": [],
+        "needs_rxnorm_lookup": false,
+        "needs_loinc_linking": false,
+        "needs_icd10_validation": false
+      }
+    },
+    {
+      "indication_id": "eosinophilic-esophagitis-5",
+      "name": "Eosinophilic Esophagitis",
+      "description": null,
+      "icd10_codes_explicit": [],
+      "icd10_codes_inferred": [],
+      "pa_required": true,
+      "step_therapy_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "original_criterion_type": "diagnosis",
+            "description": "Diagnosis of eosinophilic esophagitis.",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "disease_severity",
+            "original_criterion_type": "disease_severity",
+            "description": "Patient is experiencing symptoms related to esophageal dysfunction (e.g., dysphagia, food impaction, chest pain that is often centrally located and may not respond to antacids, gastroesophageal reflux disease-like symptoms/refractory heartburn, upper abdominal pain).",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "lab_value",
+            "original_criterion_type": "lab_value",
+            "description": "Submission of medical records (e.g., chart notes, laboratory values, etc.) documenting eosinophil-predominant inflammation on esophageal biopsy, consisting of a peak value of \u226515 intraepithelial eosinophils per high power field (HPF) (or 60 eosinophils per mm\u00b2).",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "other",
+            "original_criterion_type": "other",
+            "description": "Secondary causes of esophageal eosinophilia have been ruled out.",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "step_therapy",
+            "original_criterion_type": "step_therapy",
+            "description": "Mucosal eosinophilia is isolated to the esophagus and symptoms have persisted after an 8-week trial of at least one of the following: (a) Proton pump inhibitors (e.g., pantoprazole, omeprazole); (b) Topical (esophageal) corticosteroids (e.g., budesonide, fluticasone).",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "combination_restriction",
+            "original_criterion_type": "combination_restriction",
+            "description": "Patient is not receiving Dupixent in combination with any of the following for treatment of the same indication: (a) Anti-interleukin-5 therapy [e.g., Cinqair (resilizumab), Fasenra (benralizumab), Nucala (mepolizumab)]; (b) Anti-IgE therapy [e.g., Xolair (omalizumab)]; (c) Thymic stromal lymphopoietin (TSLP) inhibitor [e.g., Tezspire (tezepelumab)].",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "prescriber",
+            "original_criterion_type": "prescriber",
+            "description": "Prescribed by one of the following: (a) Gastroenterologist; (b) Allergist.",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          }
+        ],
+        "authorization_duration_months": 12,
+        "required_prescriber_specialties": [
+          "gastroenterologist",
+          "allergist"
+        ]
+      },
+      "reauthorization": {
+        "criteria": [
+          {
+            "criterion_type": "clinical_response",
+            "original_criterion_type": "clinical_response",
+            "description": "Documentation of positive clinical response to Dupixent therapy as evidenced by improvement of at least one of the following from baseline: (a) Symptoms (e.g., dysphagia, chest pain, heartburn); (b) Histologic measures (e.g., esophageal intraepithelial eosinophil count); (c) Endoscopic measures (e.g., edema, furrows, exudates, rings, strictures).",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "combination_restriction",
+            "original_criterion_type": "combination_restriction",
+            "description": "Patient is not receiving Dupixent in combination with any of the following for treatment of the same indication: (a) Anti-interleukin-5 therapy [e.g., Cinqair (resilizumab), Fasenra (benralizumab), Nucala (mepolizumab)]; (b) Anti-IgE therapy [e.g., Xolair (omalizumab)]; (c) Thymic stromal lymphopoietin (TSLP) inhibitor [e.g., Tezspire (tezepelumab)].",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "prescriber",
+            "original_criterion_type": "prescriber",
+            "description": "Prescribed by or in consultation with a gastroenterologist or allergist.",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          }
+        ],
+        "authorization_duration_months": 12,
+        "required_prescriber_specialties": [
+          "gastroenterologist",
+          "allergist"
+        ]
+      },
+      "enrichment": {
+        "rxnorm_cui": null,
+        "loinc_codes": [],
+        "validated_icd10_codes": [],
+        "needs_rxnorm_lookup": false,
+        "needs_loinc_linking": true,
+        "needs_icd10_validation": false
+      }
+    },
+    {
+      "indication_id": "prurigo-nodularis-6",
+      "name": "Prurigo Nodularis",
+      "description": null,
+      "icd10_codes_explicit": [],
+      "icd10_codes_inferred": [],
+      "pa_required": true,
+      "step_therapy_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "original_criterion_type": "diagnosis",
+            "description": "Diagnosis of prurigo nodularis.",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "disease_severity",
+            "original_criterion_type": "disease_severity",
+            "description": "Patient has greater than or equal to 20 nodular lesions.",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "step_therapy",
+            "original_criterion_type": "step_therapy",
+            "description": "History of failure, contraindication, or intolerance to previous prurigo nodularis treatment(s) (e.g., topical corticosteroids, topical calcineurin inhibitors, topical capsaicin).",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "combination_restriction",
+            "original_criterion_type": "combination_restriction",
+            "description": "Patient is not receiving Dupixent in combination with either of the following for treatment of the same indication: (a) Biologic immunomodulator [e.g., Adbry (tralokinumab-ldrm), Nemluvio (nemolizumab-ilto)]; (b) Janus kinase inhibitor [e.g., Rinvoq (upadacitinib), Xeljanz/XR (tofacitinib), Opzelura (topical ruxolitinib), Cibinqo (abrocitinib)].",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "prescriber",
+            "original_criterion_type": "prescriber",
+            "description": "Prescribed by one of the following: (a) Dermatologist; (b) Allergist; (c) Immunologist.",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          }
+        ],
+        "authorization_duration_months": 12,
+        "required_prescriber_specialties": [
+          "dermatologist",
+          "allergist",
+          "immunologist"
+        ]
+      },
+      "reauthorization": {
+        "criteria": [
+          {
+            "criterion_type": "clinical_response",
+            "original_criterion_type": "clinical_response",
+            "description": "Documentation of positive clinical response to Dupixent therapy.",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          }
+        ],
+        "authorization_duration_months": 12,
+        "required_prescriber_specialties": []
+      },
+      "enrichment": {
+        "rxnorm_cui": null,
+        "loinc_codes": [],
+        "validated_icd10_codes": [],
+        "needs_rxnorm_lookup": false,
+        "needs_loinc_linking": false,
+        "needs_icd10_validation": false
+      }
+    },
+    {
+      "indication_id": "chronic-obstructive-pulmonary-disorder-copd-7",
+      "name": "Chronic Obstructive Pulmonary Disorder (COPD)",
+      "description": null,
+      "icd10_codes_explicit": [],
+      "icd10_codes_inferred": [],
+      "pa_required": true,
+      "step_therapy_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "original_criterion_type": "diagnosis",
+            "description": "Diagnosis of COPD",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "lab_value",
+            "original_criterion_type": "lab_value",
+            "description": "Submission of medical records (e.g., chart notes) documenting all of the following: (a) Post-bronchodilator forced expiratory volume (FEV1) / forced vital capacity (FVC) ratio less than 0.7; (b) Post-bronchodilator FEV1 % predicted greater than or equal to 30% and less than or equal to 70%; (c) Patient has an eosinophilic phenotype defined by a baseline (pre-dupilumab treatment) peripheral blood eosinophil level \u2265 300 cells/\u03bcL",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "disease_severity",
+            "original_criterion_type": "disease_severity",
+            "description": "Uncontrolled or inadequately controlled COPD demonstrated by both of the following: (a) One of the following: (i) Two or more COPD exacerbations in the previous year requiring treatment with systemic corticosteroids and/or antibiotics; OR (ii) One or more COPD exacerbation(s) that resulted in hospitalization or observation for over 24 hours in an emergency department or urgent care facility in the past year; AND (b) COPD exacerbation(s) occurred while receiving maintenance therapy with one of the following: (i) Triple therapy with a long-acting muscarinic antagonist (LAMA), long-acting beta agonist (LABA), and inhaled corticosteroid (ICS) (e.g., Breztri Aerosphere, Trelegy Ellipta); OR (ii) Dual therapy with a LAMA and LABA (e.g., Anoro Ellipta, Bevespi Aerosphere, Stiolto Respimat) and a failure, contraindication, or intolerance to an inhaled corticosteroid (ICS)",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "combination_restriction",
+            "original_criterion_type": "combination_restriction",
+            "description": "Dupixent will be used as add-on maintenance therapy in combination with one of the following: (a) Triple therapy with a long-acting muscarinic antagonist (LAMA), long-acting beta agonist (LABA), and inhaled corticosteroid (ICS) (e.g., Breztri Aerosphere, Trelegy Ellipta); OR (b) Dual therapy with a LAMA and LABA (e.g., Anoro Ellipta, Bevespi Aerosphere, Stiolto Respimat) and a failure, contraindication, or intolerance to an inhaled corticosteroid (ICS)",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "combination_restriction",
+            "original_criterion_type": "combination_restriction",
+            "description": "Patient is not receiving Dupixent in combination with any of the following for treatment of the same indication: (a) Anti-interleukin-5 therapy [e.g., Nucala (mepolizumab), Cinqair (resilizumab), Fasenra (benralizumab)]; (b) Anti-IgE therapy [e.g., Xolair (omalizumab)]; (c) Thymic stromal lymphopoietin (TSLP) inhibitor [e.g., Tezspire (tezepelumab)]",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "prescriber",
+            "original_criterion_type": "prescriber",
+            "description": "Prescribed by one of the following: (a) Allergist; (b) Immunologist; (c) Pulmonologist",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          }
+        ],
+        "authorization_duration_months": 12,
+        "required_prescriber_specialties": [
+          "allergist",
+          "immunologist",
+          "pulmonologist"
+        ]
+      },
+      "reauthorization": {
+        "criteria": [
+          {
+            "criterion_type": "clinical_response",
+            "original_criterion_type": "clinical_response",
+            "description": "Documentation of a positive clinical response to Dupixent therapy as demonstrated by at least one of the following: (a) Reduction in the frequency of COPD exacerbations; (b) Increase in percent predicted FEV1 from pretreatment baseline; (c) Reduction in severity or frequency of COPD-related symptoms (e.g., dyspnea, wheezing, cough, sputum volume, decrease in sputum purulence); (d) Reduction in oral corticosteroid requirements",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "combination_restriction",
+            "original_criterion_type": "combination_restriction",
+            "description": "Dupixent is being used as add-on maintenance therapy in combination with one of the following: (a) Triple therapy with a long-acting muscarinic antagonist (LAMA), long-acting beta agonist (LABA), and inhaled corticosteroid (ICS) (e.g., Breztri Aerosphere, Trelegy Ellipta); OR (b) Dual therapy with a long-acting muscarinic antagonist (LAMA) and long-acting beta agonist (LABA) (e.g., Anoro Ellipta, Bevespi Aerosphere, Stiolto Respimat) and a failure, contraindication, or intolerance to an inhaled corticosteroid (ICS)",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "combination_restriction",
+            "original_criterion_type": "combination_restriction",
+            "description": "Patient is not receiving Dupixent in combination with any of the following for treatment of the same indication: (a) Anti-interleukin-5 therapy [e.g., Nucala (mepolizumab), Cinqair (resilizumab), Fasenra (benralizumab)]; (b) Anti-IgE therapy [e.g., Xolair (omalizumab)]; (c) Thymic stromal lymphopoietin (TSLP) inhibitor [e.g., Tezspire (tezepelumab)]",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "prescriber",
+            "original_criterion_type": "prescriber",
+            "description": "Prescribed by one of the following: (a) Allergist; (b) Immunologist; (c) Pulmonologist",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          }
+        ],
+        "authorization_duration_months": 12,
+        "required_prescriber_specialties": [
+          "allergist",
+          "immunologist",
+          "pulmonologist"
+        ]
+      },
+      "enrichment": {
+        "rxnorm_cui": null,
+        "loinc_codes": [],
+        "validated_icd10_codes": [],
+        "needs_rxnorm_lookup": false,
+        "needs_loinc_linking": true,
+        "needs_icd10_validation": false
+      }
+    },
+    {
+      "indication_id": "chronic-spontaneous-urticaria-8",
+      "name": "Chronic Spontaneous Urticaria",
+      "description": null,
+      "icd10_codes_explicit": [],
+      "icd10_codes_inferred": [],
+      "pa_required": true,
+      "step_therapy_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "original_criterion_type": "diagnosis",
+            "description": "Diagnosis of chronic spontaneous urticaria",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "step_therapy",
+            "original_criterion_type": "step_therapy",
+            "description": "One of the following: (a) Patient remains symptomatic despite at least a 2-week trial of, or history of contraindication or intolerance to, two H1-antihistamines [e.g., Allegra (fexofenadine), Benadryl (diphenhydramine), Claritin (loratadine)]; OR (b) Patient remains symptomatic despite at least a 2-week trial of, or history of contraindication or intolerance to both of the following taken in combination: (i) A second generation H1-antihistamine [e.g., Allegra (fexofenadine), Claritin (loratadine), Zyrtec (cetirizine)]; AND (ii) One of the following: a different second generation H1-antihistamine, a first generation H1-antihistamine [e.g., Benadryl (diphenhydramine), Chlor-Trimeton (chlorpheniramine), Vistaril (hydroxyzine)], an H2-antihistamine [e.g., Pepcid (famotidine), Tagamet HB (cimetidine), Zantac (ranitidine)], or a leukotriene modifier [e.g., Singulair (montelukast)]",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "combination_restriction",
+            "original_criterion_type": "combination_restriction",
+            "description": "Patient is not receiving Dupixent in combination with Xolair (omalizumab) for treatment of the same indication",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "prescriber",
+            "original_criterion_type": "prescriber",
+            "description": "Prescribed by one of the following: (a) Allergist; (b) Dermatologist; (c) Immunologist",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          }
+        ],
+        "authorization_duration_months": 12,
+        "required_prescriber_specialties": [
+          "allergist",
+          "dermatologist",
+          "immunologist"
+        ]
+      },
+      "reauthorization": {
+        "criteria": [
+          {
+            "criterion_type": "clinical_response",
+            "original_criterion_type": "clinical_response",
+            "description": "Documentation of positive clinical response to Dupixent therapy (e.g., reduction in exacerbations, itch severity, hives)",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "combination_restriction",
+            "original_criterion_type": "combination_restriction",
+            "description": "Patient is not receiving Dupixent in combination with Xolair (omalizumab) for treatment of the same indication",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "prescriber",
+            "original_criterion_type": "prescriber",
+            "description": "Prescribed by one of the following: (a) Allergist; (b) Dermatologist; (c) Immunologist",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          }
+        ],
+        "authorization_duration_months": 12,
+        "required_prescriber_specialties": [
+          "allergist",
+          "dermatologist",
+          "immunologist"
+        ]
+      },
+      "enrichment": {
+        "rxnorm_cui": null,
+        "loinc_codes": [],
+        "validated_icd10_codes": [],
+        "needs_rxnorm_lookup": false,
+        "needs_loinc_linking": false,
+        "needs_icd10_validation": false
+      }
+    },
+    {
+      "indication_id": "bullous-pemphigoid-9",
+      "name": "Bullous Pemphigoid",
+      "description": null,
+      "icd10_codes_explicit": [],
+      "icd10_codes_inferred": [],
+      "pa_required": true,
+      "step_therapy_required": false,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "original_criterion_type": "diagnosis",
+            "description": "Diagnosis of bullous pemphigoid",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "prescriber",
+            "original_criterion_type": "prescriber",
+            "description": "Prescribed by one of the following: (a) Dermatologist; (b) Allergist; (c) Immunologist",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          }
+        ],
+        "authorization_duration_months": 12,
+        "required_prescriber_specialties": [
+          "dermatologist",
+          "allergist",
+          "immunologist"
+        ]
+      },
+      "reauthorization": {
+        "criteria": [
+          {
+            "criterion_type": "clinical_response",
+            "original_criterion_type": "clinical_response",
+            "description": "Documentation of positive clinical response to Dupixent therapy",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          }
+        ],
+        "authorization_duration_months": 12,
+        "required_prescriber_specialties": [
+          "dermatologist",
+          "allergist",
+          "immunologist"
+        ]
+      },
+      "enrichment": {
+        "rxnorm_cui": null,
+        "loinc_codes": [],
+        "validated_icd10_codes": [],
+        "needs_rxnorm_lookup": false,
+        "needs_loinc_linking": false,
+        "needs_icd10_validation": false
+      }
+    },
+    {
+      "indication_id": "atopic-dermatitis-partial-combination-restriction-and-prescriber-criteria-extracted-from-document-context-10",
+      "name": "Atopic Dermatitis (partial \u2014 combination restriction and prescriber criteria extracted from document context)",
+      "description": null,
+      "icd10_codes_explicit": [],
+      "icd10_codes_inferred": [],
+      "pa_required": true,
+      "step_therapy_required": false,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "combination_restriction",
+            "original_criterion_type": "combination_restriction",
+            "description": "Patient is not receiving Dupixent in combination with either of the following for treatment of the same indication: (a) Biologic immunomodulator [e.g., Adbry (tralokinumab-ldrm), Nemluvio (nemolizumab-ilto)]; (b) Janus kinase inhibitor [e.g., Rinvoq (upadacitinib), Xeljanz/XR (tofacitinib), Opzelura (topical ruxolitinib), Cibinqo (abrocitinib)]",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "prescriber",
+            "original_criterion_type": "prescriber",
+            "description": "Prescribed by one of the following: (a) Dermatologist; (b) Allergist; (c) Immunologist",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          }
+        ],
+        "authorization_duration_months": 12,
+        "required_prescriber_specialties": [
+          "dermatologist",
+          "allergist",
+          "immunologist"
+        ]
+      },
+      "reauthorization": null,
+      "enrichment": {
+        "rxnorm_cui": null,
+        "loinc_codes": [],
+        "validated_icd10_codes": [],
+        "needs_rxnorm_lookup": false,
+        "needs_loinc_linking": false,
+        "needs_icd10_validation": false
+      }
+    },
+    {
+      "indication_id": "unknown-11",
+      "name": "<UNKNOWN>",
+      "description": null,
+      "icd10_codes_explicit": [],
+      "icd10_codes_inferred": [],
+      "pa_required": true,
+      "step_therapy_required": false,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "prescriber",
+            "original_criterion_type": "prescriber",
+            "description": "Prescribed by one of the following: (a) Dermatologist (b) Allergist (c) Immunologist",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          }
+        ],
+        "authorization_duration_months": 12,
+        "required_prescriber_specialties": [
+          "dermatologist",
+          "allergist",
+          "immunologist"
+        ]
+      },
+      "reauthorization": null,
+      "enrichment": {
+        "rxnorm_cui": null,
+        "loinc_codes": [],
+        "validated_icd10_codes": [],
+        "needs_rxnorm_lookup": false,
+        "needs_loinc_linking": false,
+        "needs_icd10_validation": false
+      }
+    },
+    {
+      "indication_id": "atopic-dermatitis-12",
+      "name": "Atopic Dermatitis",
+      "description": null,
+      "icd10_codes_explicit": [],
+      "icd10_codes_inferred": [],
+      "pa_required": true,
+      "step_therapy_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "original_criterion_type": "diagnosis",
+            "description": "Diagnosis of atopic dermatitis",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "step_therapy",
+            "original_criterion_type": "step_therapy",
+            "description": "Failure of two topical agents required for all severities of atopic dermatitis",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "other",
+            "original_criterion_type": "other",
+            "description": "Not used in combination with restricted agents as specified in policy",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          }
+        ],
+        "authorization_duration_months": 12,
+        "required_prescriber_specialties": []
+      },
+      "reauthorization": {
+        "criteria": [
+          {
+            "criterion_type": "clinical_response",
+            "original_criterion_type": "clinical_response",
+            "description": "Evidence of clinical response to Dupixent therapy",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "prescriber",
+            "original_criterion_type": "prescriber",
+            "description": "Specialist requirement aligned across indications for reauthorization",
+            "logic_operator": "AND",
+            "normalized_tokens": [
+              "prescriber_requirement"
+            ]
+          }
+        ],
+        "authorization_duration_months": 12,
+        "required_prescriber_specialties": []
+      },
+      "enrichment": {
+        "rxnorm_cui": null,
+        "loinc_codes": [],
+        "validated_icd10_codes": [],
+        "needs_rxnorm_lookup": false,
+        "needs_loinc_linking": false,
+        "needs_icd10_validation": false
+      }
+    },
+    {
+      "indication_id": "moderate-to-severe-asthma-13",
+      "name": "Moderate-to-Severe Asthma",
+      "description": null,
+      "icd10_codes_explicit": [],
+      "icd10_codes_inferred": [],
+      "pa_required": true,
+      "step_therapy_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "original_criterion_type": "diagnosis",
+            "description": "Diagnosis of moderate-to-severe uncontrolled asthma",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "disease_severity",
+            "original_criterion_type": "disease_severity",
+            "description": "Moderate-to-severe eosinophilic or oral corticosteroid dependent asthma; coverage expanded to patients aged 6 years and older",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "step_therapy",
+            "original_criterion_type": "step_therapy",
+            "description": "Coverage criteria for severe asthma aligned with GINA & ERS/ATS guidelines; failure of ICS-containing maintenance medications required",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "other",
+            "original_criterion_type": "other",
+            "description": "Not used in combination with restricted agents as specified in policy",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          }
+        ],
+        "authorization_duration_months": 12,
+        "required_prescriber_specialties": []
+      },
+      "reauthorization": {
+        "criteria": [
+          {
+            "criterion_type": "clinical_response",
+            "original_criterion_type": "clinical_response",
+            "description": "Evidence of clinical response to Dupixent therapy",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "prescriber",
+            "original_criterion_type": "prescriber",
+            "description": "Specialist requirement aligned across indications for reauthorization",
+            "logic_operator": "AND",
+            "normalized_tokens": [
+              "prescriber_requirement"
+            ]
+          }
+        ],
+        "authorization_duration_months": 12,
+        "required_prescriber_specialties": []
+      },
+      "enrichment": {
+        "rxnorm_cui": null,
+        "loinc_codes": [],
+        "validated_icd10_codes": [],
+        "needs_rxnorm_lookup": false,
+        "needs_loinc_linking": false,
+        "needs_icd10_validation": false
+      }
+    },
+    {
+      "indication_id": "chronic-rhinosinusitis-with-nasal-polyposis-crswnp-14",
+      "name": "Chronic Rhinosinusitis with Nasal Polyposis (CRSwNP)",
+      "description": null,
+      "icd10_codes_explicit": [],
+      "icd10_codes_inferred": [],
+      "pa_required": true,
+      "step_therapy_required": false,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "original_criterion_type": "diagnosis",
+            "description": "Diagnosis of chronic rhinosinusitis with nasal polyposis (CRSwNP)",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "other",
+            "original_criterion_type": "other",
+            "description": "Coverage criteria for CRSwNP as updated per policy revisions",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "other",
+            "original_criterion_type": "other",
+            "description": "Not used in combination with restricted agents as specified in policy",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          }
+        ],
+        "authorization_duration_months": 12,
+        "required_prescriber_specialties": []
+      },
+      "reauthorization": {
+        "criteria": [
+          {
+            "criterion_type": "clinical_response",
+            "original_criterion_type": "clinical_response",
+            "description": "Evidence of clinical response to Dupixent therapy",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "prescriber",
+            "original_criterion_type": "prescriber",
+            "description": "Specialist requirement aligned across indications for reauthorization",
+            "logic_operator": "AND",
+            "normalized_tokens": [
+              "prescriber_requirement"
+            ]
+          }
+        ],
+        "authorization_duration_months": 12,
+        "required_prescriber_specialties": []
+      },
+      "enrichment": {
+        "rxnorm_cui": null,
+        "loinc_codes": [],
+        "validated_icd10_codes": [],
+        "needs_rxnorm_lookup": false,
+        "needs_loinc_linking": false,
+        "needs_icd10_validation": false
+      }
+    },
+    {
+      "indication_id": "eosinophilic-esophagitis-15",
+      "name": "Eosinophilic Esophagitis",
+      "description": null,
+      "icd10_codes_explicit": [],
+      "icd10_codes_inferred": [],
+      "pa_required": true,
+      "step_therapy_required": false,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "original_criterion_type": "diagnosis",
+            "description": "Diagnosis of eosinophilic esophagitis",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "other",
+            "original_criterion_type": "other",
+            "description": "Clinical criteria for eosinophilic esophagitis as added per 7/2022 policy update; weight requirement removed per 3/2024 update",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "other",
+            "original_criterion_type": "other",
+            "description": "Not used in combination with restricted agents as specified in policy",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          }
+        ],
+        "authorization_duration_months": 12,
+        "required_prescriber_specialties": []
+      },
+      "reauthorization": {
+        "criteria": [
+          {
+            "criterion_type": "clinical_response",
+            "original_criterion_type": "clinical_response",
+            "description": "Evidence of clinical response to Dupixent therapy; authorization period increased to 12 months per 3/2025 update",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          }
+        ],
+        "authorization_duration_months": 12,
+        "required_prescriber_specialties": []
+      },
+      "enrichment": {
+        "rxnorm_cui": null,
+        "loinc_codes": [],
+        "validated_icd10_codes": [],
+        "needs_rxnorm_lookup": false,
+        "needs_loinc_linking": false,
+        "needs_icd10_validation": false
+      }
+    },
+    {
+      "indication_id": "prurigo-nodularis-16",
+      "name": "Prurigo Nodularis",
+      "description": null,
+      "icd10_codes_explicit": [],
+      "icd10_codes_inferred": [],
+      "pa_required": true,
+      "step_therapy_required": false,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "original_criterion_type": "diagnosis",
+            "description": "Diagnosis of prurigo nodularis",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "other",
+            "original_criterion_type": "other",
+            "description": "Not used in combination with restricted agents as updated per 3/2023 policy; examples of biologic immunomodulators include Nemluvio per 6/2025 update",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          }
+        ],
+        "authorization_duration_months": 12,
+        "required_prescriber_specialties": []
+      },
+      "reauthorization": {
+        "criteria": [
+          {
+            "criterion_type": "clinical_response",
+            "original_criterion_type": "clinical_response",
+            "description": "Evidence of clinical response to Dupixent therapy; approval duration updated per 6/2025 update",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          }
+        ],
+        "authorization_duration_months": 12,
+        "required_prescriber_specialties": []
+      },
+      "enrichment": {
+        "rxnorm_cui": null,
+        "loinc_codes": [],
+        "validated_icd10_codes": [],
+        "needs_rxnorm_lookup": false,
+        "needs_loinc_linking": false,
+        "needs_icd10_validation": false
+      }
+    },
+    {
+      "indication_id": "chronic-obstructive-pulmonary-disease-copd-17",
+      "name": "Chronic Obstructive Pulmonary Disease (COPD)",
+      "description": null,
+      "icd10_codes_explicit": [],
+      "icd10_codes_inferred": [],
+      "pa_required": true,
+      "step_therapy_required": false,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "original_criterion_type": "diagnosis",
+            "description": "Diagnosis of chronic obstructive pulmonary disease (COPD); new indication added per 11/2024 policy update",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          }
+        ],
+        "authorization_duration_months": 12,
+        "required_prescriber_specialties": []
+      },
+      "reauthorization": {
+        "criteria": [
+          {
+            "criterion_type": "clinical_response",
+            "original_criterion_type": "clinical_response",
+            "description": "Evidence of clinical response to Dupixent therapy",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          }
+        ],
+        "authorization_duration_months": 12,
+        "required_prescriber_specialties": []
+      },
+      "enrichment": {
+        "rxnorm_cui": null,
+        "loinc_codes": [],
+        "validated_icd10_codes": [],
+        "needs_rxnorm_lookup": false,
+        "needs_loinc_linking": false,
+        "needs_icd10_validation": false
+      }
+    },
+    {
+      "indication_id": "chronic-spontaneous-urticaria-18",
+      "name": "Chronic Spontaneous Urticaria",
+      "description": null,
+      "icd10_codes_explicit": [],
+      "icd10_codes_inferred": [],
+      "pa_required": true,
+      "step_therapy_required": false,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "original_criterion_type": "diagnosis",
+            "description": "Diagnosis of chronic spontaneous urticaria; new indication added per 6/2025 policy update",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "other",
+            "original_criterion_type": "other",
+            "description": "Coverage criteria for concomitant use updated per 6/2025 policy update",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          }
+        ],
+        "authorization_duration_months": 12,
+        "required_prescriber_specialties": []
+      },
+      "reauthorization": {
+        "criteria": [
+          {
+            "criterion_type": "clinical_response",
+            "original_criterion_type": "clinical_response",
+            "description": "Evidence of clinical response to Dupixent therapy",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          }
+        ],
+        "authorization_duration_months": 12,
+        "required_prescriber_specialties": []
+      },
+      "enrichment": {
+        "rxnorm_cui": null,
+        "loinc_codes": [],
+        "validated_icd10_codes": [],
+        "needs_rxnorm_lookup": false,
+        "needs_loinc_linking": false,
+        "needs_icd10_validation": false
+      }
+    },
+    {
+      "indication_id": "bullous-pemphigoid-19",
+      "name": "Bullous Pemphigoid",
+      "description": null,
+      "icd10_codes_explicit": [],
+      "icd10_codes_inferred": [],
+      "pa_required": true,
+      "step_therapy_required": false,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "original_criterion_type": "diagnosis",
+            "description": "Diagnosis of bullous pemphigoid; new indication added per 8/2025 policy update",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          }
+        ],
+        "authorization_duration_months": 12,
+        "required_prescriber_specialties": []
+      },
+      "reauthorization": {
+        "criteria": [
+          {
+            "criterion_type": "clinical_response",
+            "original_criterion_type": "clinical_response",
+            "description": "Evidence of clinical response to Dupixent therapy",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          }
+        ],
+        "authorization_duration_months": 12,
+        "required_prescriber_specialties": []
+      },
+      "enrichment": {
+        "rxnorm_cui": null,
+        "loinc_codes": [],
+        "validated_icd10_codes": [],
+        "needs_rxnorm_lookup": false,
+        "needs_loinc_linking": false,
+        "needs_icd10_validation": false
+      }
+    }
+  ],
+  "formulary_entries": [],
+  "exclusions": [
+    {
+      "description": "Dupixent must not be used in combination with restricted agents as specified in the policy (combination restrictions updated across all indications per 2/2022 and subsequent updates; specific concomitant use criteria updated 6/2025)"
+    }
+  ],
+  "confidence_scores": {
+    "overall": 0.95,
+    "drug_identification": 1.0,
+    "pa_criteria_completeness": 0.92,
+    "review_flags": "Document appears to be truncated \u2014 additional indications referenced in the Background section (CRSwNP, EoE, Prurigo Nodularis, COPD, CSU, Bullous Pemphigoid) were not present in the extracted sections. Reauthorization criteria for Asthma may be incomplete due to document truncation. Criteria captured only for Atopic Dermatitis and Asthma as those were the only fully segmented sections provided."
+  },
+  "review": {
+    "missing_fields": [],
+    "warnings": [
+      "No HCPCS/J-codes were extracted for this policy"
+    ],
+    "extractor_review_flags": [
+      "Document appears to be truncated \u2014 additional indications referenced in the Background section (CRSwNP, EoE, Prurigo Nodularis, COPD, CSU, Bullous Pemphigoid) were not present in the extracted sections. Reauthorization criteria for Asthma may be incomplete due to document truncation. Criteria captured only for Atopic Dermatitis and Asthma as those were the only fully segmented sections provided."
+    ]
+  }
+}

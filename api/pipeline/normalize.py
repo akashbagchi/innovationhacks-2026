@@ -44,6 +44,8 @@ _STEP_THERAPY_TERMS = (
     "sequencing requirements",
 )
 
+_HCPCS_CODE_PATTERN = re.compile(r"\b([A-Z]\d{4})\b")
+
 
 class NormalizedCriterion(BaseModel):
     criterion_type: str
@@ -83,6 +85,18 @@ class NormalizedIndication(BaseModel):
     enrichment: EnrichmentStatus = Field(default_factory=EnrichmentStatus)
 
 
+class NormalizedFormularyEntry(BaseModel):
+    entry_id: str
+    hcpcs_code: str | None = None
+    drug_name: str | None = None
+    description: str | None = None
+    coverage_level: str | None = None
+    category: str | None = None
+    notes: str | None = None
+    pa_required: bool = False
+    step_therapy_possible: bool = False
+
+
 class NormalizedDrug(BaseModel):
     display_name: str
     brand_names: list[str] = Field(default_factory=list)
@@ -106,9 +120,11 @@ class ReviewSummary(BaseModel):
 class NormalizedPolicyRecord(BaseModel):
     normalization_version: str = "2026-04-04"
     source_filename: str | None = None
+    document_type: str = "policy"
     payer: dict[str, Any]
     drug: NormalizedDrug
     indications: list[NormalizedIndication] = Field(default_factory=list)
+    formulary_entries: list[NormalizedFormularyEntry] = Field(default_factory=list)
     exclusions: list[dict[str, str]] = Field(default_factory=list)
     confidence_scores: dict[str, Any] = Field(default_factory=dict)
     review: ReviewSummary = Field(default_factory=ReviewSummary)
@@ -149,6 +165,15 @@ def _normalize_code_list(values: Any) -> list[str]:
         if text:
             normalized.append(text.upper())
     return _dedupe_preserve_order(normalized)
+
+
+def _extract_codes_from_text(value: Any) -> list[str]:
+    text = _clean_string(value)
+    if not text:
+        return []
+    return _dedupe_preserve_order(
+        [match.upper() for match in _HCPCS_CODE_PATTERN.findall(text.upper())]
+    )
 
 
 def _normalize_date(value: Any) -> str | None:
@@ -234,6 +259,65 @@ def _criterion_tokens(description: str) -> list[str]:
     if re.search(r"\bicd-?10\b", lowered):
         tokens.append("diagnosis_code")
     return _dedupe_preserve_order(tokens)
+
+
+def _infer_policy_level_codes(raw_record: dict[str, Any]) -> list[str]:
+    codes: list[str] = []
+
+    drug_raw = raw_record.get("drug") if isinstance(raw_record.get("drug"), dict) else {}
+    for key in ("brand_name", "generic_name", "drug_class", "limitations_of_use"):
+        codes.extend(_extract_codes_from_text(drug_raw.get(key)))
+
+    indications = raw_record.get("indications")
+    if isinstance(indications, list):
+        for indication in indications:
+            if not isinstance(indication, dict):
+                continue
+            codes.extend(_extract_codes_from_text(indication.get("name")))
+            codes.extend(_extract_codes_from_text(indication.get("description")))
+            auth_blocks = [
+                indication.get("initial_authorization"),
+                indication.get("reauthorization"),
+            ]
+            for auth in auth_blocks:
+                if not isinstance(auth, dict):
+                    continue
+                for criterion in auth.get("criteria") or []:
+                    if isinstance(criterion, dict):
+                        codes.extend(_extract_codes_from_text(criterion.get("description")))
+
+    exclusions = raw_record.get("exclusions")
+    if isinstance(exclusions, list):
+        for exclusion in exclusions:
+            if isinstance(exclusion, dict):
+                codes.extend(_extract_codes_from_text(exclusion.get("description")))
+
+    return _dedupe_preserve_order(codes)
+
+
+def _normalize_formulary_entry(raw: dict[str, Any], index: int) -> NormalizedFormularyEntry:
+    hcpcs_code = _clean_string(raw.get("hcpcs_code"))
+    drug_name = _clean_string(raw.get("drug_name"))
+    description = _clean_string(raw.get("description"))
+    coverage_level = _clean_string(raw.get("coverage_level"))
+    category = _clean_string(raw.get("category"))
+    notes = _clean_string(raw.get("notes"))
+    combined_text = " ".join(filter(None, [description, notes])).lower()
+
+    return NormalizedFormularyEntry(
+        entry_id=f"{_slugify(drug_name or hcpcs_code or f'entry-{index}')}-{index}",
+        hcpcs_code=hcpcs_code.upper() if hcpcs_code else None,
+        drug_name=None if drug_name == "N/A" else drug_name,
+        description=description,
+        coverage_level=coverage_level,
+        category=category,
+        notes=notes,
+        pa_required="pa" in combined_text,
+        step_therapy_possible=(
+            "covered alternative" in combined_text
+            or any(term in combined_text for term in _STEP_THERAPY_TERMS)
+        ),
+    )
 
 
 def _normalize_criterion(raw: dict[str, Any]) -> NormalizedCriterion:
@@ -331,11 +415,82 @@ def _normalize_indication(
     )
 
 
+def _normalize_formulary_record(
+    raw_record: dict[str, Any],
+    *,
+    source_filename: str | None,
+) -> NormalizedPolicyRecord:
+    review = ReviewSummary()
+    payer_raw = raw_record.get("payer") if isinstance(raw_record.get("payer"), dict) else {}
+    payer_name = _normalize_payer_name(payer_raw.get("name"), source_filename)
+    if payer_name == "Unknown Payer":
+        review.missing_fields.append("payer.name")
+
+    raw_entries = raw_record.get("drugs")
+    formulary_entries: list[NormalizedFormularyEntry] = []
+    if isinstance(raw_entries, list):
+        for index, entry in enumerate(raw_entries, start=1):
+            if isinstance(entry, dict):
+                formulary_entries.append(_normalize_formulary_entry(entry, index))
+    else:
+        review.missing_fields.append("drugs")
+
+    aggregated_codes = _dedupe_preserve_order(
+        [entry.hcpcs_code for entry in formulary_entries if entry.hcpcs_code]
+    )
+
+    if not formulary_entries:
+        review.warnings.append("No formulary entries were available to normalize")
+
+    return NormalizedPolicyRecord(
+        source_filename=source_filename,
+        document_type="formulary_list",
+        payer={
+            "name": payer_name,
+            "policy_id": _clean_string(payer_raw.get("policy_id")),
+            "policy_title": _clean_string(payer_raw.get("policy_title"))
+            or (Path(source_filename).stem if source_filename else "Unknown Policy"),
+            "effective_date": _normalize_date(payer_raw.get("effective_date")),
+            "revision_date": _normalize_date(payer_raw.get("revision_date")),
+        },
+        drug=NormalizedDrug(
+            display_name="Various",
+            brand_names=[],
+            generic_name="formulary",
+            normalized_generic_name="formulary",
+            j_codes=[],
+            hcpcs_codes=aggregated_codes,
+            benefit_type="medical",
+            drug_class=None,
+            route_of_administration=None,
+            limitations_of_use=None,
+            enrichment=EnrichmentStatus(
+                needs_rxnorm_lookup=False,
+                needs_loinc_linking=False,
+                needs_icd10_validation=False,
+            ),
+        ),
+        indications=[],
+        formulary_entries=formulary_entries,
+        exclusions=[],
+        confidence_scores={},
+        review=review,
+    )
+
+
 def normalize_policy_record(
     raw_record: dict[str, Any],
     *,
     source_filename: str | None = None,
 ) -> NormalizedPolicyRecord:
+    if raw_record.get("document_type") == "formulary_list" or isinstance(
+        raw_record.get("drugs"), list
+    ):
+        return _normalize_formulary_record(
+            raw_record,
+            source_filename=source_filename,
+        )
+
     review = ReviewSummary()
 
     payer_raw = raw_record.get("payer") if isinstance(raw_record.get("payer"), dict) else {}
@@ -359,13 +514,21 @@ def normalize_policy_record(
     if display_name == "Unknown Drug":
         review.missing_fields.append("drug.brand_name|drug.generic_name")
 
+    inferred_codes = _infer_policy_level_codes(raw_record)
+    structured_j_codes = _normalize_code_list(drug_raw.get("j_codes"))
+    structured_hcpcs_codes = _normalize_code_list(drug_raw.get("hcpcs_codes"))
+    all_hcpcs_codes = _dedupe_preserve_order(
+        structured_hcpcs_codes + structured_j_codes + inferred_codes
+    )
+    all_j_codes = [code for code in all_hcpcs_codes if code.startswith("J")]
+
     normalized_drug = NormalizedDrug(
         display_name=display_name,
         brand_names=brand_names,
         generic_name=generic_name,
         normalized_generic_name=generic_name.lower() if generic_name else None,
-        j_codes=_normalize_code_list(drug_raw.get("j_codes")),
-        hcpcs_codes=_normalize_code_list(drug_raw.get("hcpcs_codes")),
+        j_codes=all_j_codes,
+        hcpcs_codes=all_hcpcs_codes,
         benefit_type=_normalize_benefit_type(drug_raw.get("benefit_type")),
         drug_class=_clean_string(drug_raw.get("drug_class")),
         route_of_administration=_clean_string(drug_raw.get("route_of_administration")),
@@ -408,6 +571,7 @@ def normalize_policy_record(
 
     return NormalizedPolicyRecord(
         source_filename=source_filename,
+        document_type="policy",
         payer={
             "name": payer_name,
             "policy_id": _clean_string(payer_raw.get("policy_id")),
@@ -425,7 +589,11 @@ def normalize_policy_record(
 
 
 def normalize_record_file(input_path: Path, output_path: Path) -> NormalizedPolicyRecord:
-    raw_record = json.loads(input_path.read_text(encoding="utf-8"))
+    raw_text = input_path.read_text(encoding="utf-8")
+    if not raw_text.strip():
+        raise ValueError(f"Input file is empty: {input_path.name}")
+
+    raw_record = json.loads(raw_text)
     normalized = normalize_policy_record(raw_record, source_filename=input_path.name)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(
@@ -446,7 +614,10 @@ def run_normalization(
     normalized_records: list[NormalizedPolicyRecord] = []
     for input_path in sorted(input_dir.glob("*.json")):
         output_path = output_dir / input_path.name
-        normalized_records.append(normalize_record_file(input_path, output_path))
+        try:
+            normalized_records.append(normalize_record_file(input_path, output_path))
+        except Exception as exc:
+            print(f"[skip] {input_path.name}: {exc}")
     return normalized_records
 
 

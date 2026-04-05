@@ -1,5 +1,5 @@
 """
-Seed MongoDB with extracted policy JSONs from outputs/policy_records/.
+Seed MongoDB with normalized policy JSONs derived from outputs/policy_records/.
 Run from inside the api/ directory:  python seed_mongo.py
 Or from project root:                python api/seed_mongo.py
 """
@@ -11,6 +11,7 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 from motor.motor_asyncio import AsyncIOMotorClient
+from pipeline.normalize import normalize_policy_record
 
 load_dotenv()
 
@@ -550,5 +551,117 @@ async def seed():
     print("\nDone.")
 
 
+def _normalized_drug_id(record: dict) -> str:
+    drug = record.get("drug") or {}
+    generic = str(drug.get("normalized_generic_name") or "").strip().lower()
+    if generic:
+        return generic
+
+    display = str(drug.get("display_name") or "").strip().lower()
+    if display:
+        return display
+
+    return "unknown"
+
+
+async def seed_normalized():
+    client = AsyncIOMotorClient(os.getenv("MONGODB_URI"))
+    db = client.antonrx
+    now = datetime.now(timezone.utc)
+
+    print("=== Seeding normalized policies from extracted JSONs ===")
+    for filename, (fallback_drug_id, fallback_payer_canonical) in FILE_MAP.items():
+        path = RECORDS_DIR / filename
+        if not path.exists():
+            print(f"  [skip] {filename} â€” file not found")
+            continue
+
+        with open(path) as f:
+            extracted_record = json.load(f)
+
+        normalized_record = normalize_policy_record(
+            extracted_record,
+            source_filename=filename,
+        ).model_dump(mode="json", exclude_none=True)
+
+        drug_id = _normalized_drug_id(normalized_record)
+        if drug_id == "unknown":
+            drug_id = fallback_drug_id
+
+        payer_canonical = (normalized_record.get("payer") or {}).get(
+            "name",
+            fallback_payer_canonical,
+        )
+
+        doc = {
+            "status": "normalized",
+            "drug_id": drug_id,
+            "payer_canonical": payer_canonical,
+            "filename": filename,
+            "policy_record": normalized_record,
+            "normalized_at": now,
+            "source": "pipeline",
+        }
+        result = await db.policies.replace_one(
+            {"filename": filename}, doc, upsert=True
+        )
+        action = "inserted" if result.upserted_id else "updated"
+        print(f"  [{action}] {payer_canonical} / {drug_id}")
+
+    print("\n=== Seeding normalized mock portfolio policies ===")
+    for entry in MOCK_POLICIES:
+        normalized_record = normalize_policy_record(
+            entry["policy_record"],
+            source_filename=entry["filename"],
+        ).model_dump(mode="json", exclude_none=True)
+        normalized_drug_id = _normalized_drug_id(normalized_record)
+        doc = {
+            **entry,
+            "status": "normalized",
+            "drug_id": (
+                normalized_drug_id if normalized_drug_id != "unknown" else entry["drug_id"]
+            ),
+            "payer_canonical": (normalized_record.get("payer") or {}).get(
+                "name",
+                entry["payer_canonical"],
+            ),
+            "policy_record": normalized_record,
+            "normalized_at": now,
+            "source": "mock",
+        }
+        result = await db.policies.replace_one(
+            {"filename": entry["filename"]}, doc, upsert=True
+        )
+        action = "inserted" if result.upserted_id else "updated"
+        print(f"  [{action}] {doc['payer_canonical']} / {doc['drug_id']}")
+
+    print("\n=== Seeding change log ===")
+    for entry in MOCK_CHANGES:
+        doc = {**entry, "logged_at": now}
+        result = await db.policy_changelogs.replace_one(
+            {
+                "payer": entry["payer"],
+                "drug_id": entry["drug_id"],
+                "change_type": entry["change_type"],
+                "date": entry["date"],
+            },
+            doc,
+            upsert=True,
+        )
+        action = "inserted" if result.upserted_id else "updated"
+        print(f"  [{action}] {entry['severity']} â€” {entry['payer']} {entry['change_type']}")
+
+    print("\n=== Creating indexes ===")
+    await db.policies.create_index("drug_id")
+    await db.policies.create_index("payer_canonical")
+    await db.policies.create_index([("drug_id", 1), ("payer_canonical", 1)])
+    await db.policy_changelogs.create_index("drug_id")
+    await db.policy_changelogs.create_index("severity")
+    print("  [ok] indexes created")
+
+    client.close()
+    print("\nDone.")
+
+
 if __name__ == "__main__":
-    asyncio.run(seed())
+    asyncio.run(seed_normalized())

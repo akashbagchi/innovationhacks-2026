@@ -32,6 +32,7 @@ from pipeline.extract import (
     segment_sections,
 )
 from pipeline.diff import diff_policy_records
+from pipeline.normalize import normalize_policy_record
 
 
 # ── Result dataclass ──────────────────────────────────────────────────────────
@@ -72,7 +73,7 @@ async def run_pipeline() -> PipelineResult:
     # Build a set of doc_hashes already processed to avoid double-work
     already_done_hashes: set[str] = set()
     async for doc in policies.find(
-        {"status": "extracted", "doc_hash": {"$exists": True}},
+        {"status": {"$in": ["normalized", "extracted"]}, "doc_hash": {"$exists": True}},
         {"doc_hash": 1}
     ):
         if doc.get("doc_hash"):
@@ -156,7 +157,7 @@ async def _process_one(item: dict, result: PipelineResult) -> None:
 
     # Skip if already extracted (e.g. race condition or duplicate S3 key)
     existing_extracted = await policies.find_one(
-        {"doc_hash": doc_hash, "status": "extracted"}
+        {"doc_hash": doc_hash, "status": {"$in": ["normalized", "extracted"]}}
     )
     if existing_extracted:
         print(f"  [skip] already extracted: {filename}")
@@ -181,18 +182,26 @@ async def _process_one(item: dict, result: PipelineResult) -> None:
     if not extracted_records:
         raise RuntimeError("Extraction returned no records")
 
-    # Write each extracted record to MongoDB
-    for record_dict in extracted_records:
-        drug_id = (record_dict.get("drug") or {}).get("generic_name", "unknown").lower().strip()
-        payer_canonical = (record_dict.get("payer") or {}).get("name", item["payer_hint"])
-        drug_display = _drug_display(record_dict)
+    # Normalize each extracted record before writing to the golden layer.
+    for extracted_record in extracted_records:
+        normalized_record = normalize_policy_record(
+            extracted_record,
+            source_filename=filename,
+        ).model_dump(mode="json", exclude_none=True)
 
-        # Check for a prior extracted version of the same (drug, payer)
+        drug_id = _normalized_drug_id(normalized_record)
+        payer_canonical = (normalized_record.get("payer") or {}).get(
+            "name",
+            item["payer_hint"],
+        )
+        drug_display = _drug_display(normalized_record)
+
+        # Check for a prior normalized version of the same (drug, payer)
         prior = await policies.find_one(
             {
                 "drug_id": drug_id,
                 "payer_canonical": payer_canonical,
-                "status": "extracted",
+                "status": {"$in": ["normalized", "extracted"]},
             }
         )
 
@@ -213,7 +222,7 @@ async def _process_one(item: dict, result: PipelineResult) -> None:
             # Diff old vs new
             changes = diff_policy_records(
                 old=prior.get("policy_record") or {},
-                new=record_dict,
+                new=normalized_record,
                 payer=payer_canonical,
                 drug=drug_display,
                 drug_id=drug_id,
@@ -224,14 +233,14 @@ async def _process_one(item: dict, result: PipelineResult) -> None:
                 print(f"  [diff] {len(changes)} changes detected for {payer_canonical}/{drug_id}")
 
         new_doc = {
-            "status": "extracted",
+            "status": "normalized",
             "drug_id": drug_id,
             "payer_canonical": payer_canonical,
             "filename": filename,
             "doc_hash": doc_hash,
             "s3_key": s3_key,
-            "policy_record": record_dict,
-            "extracted_at": now,
+            "policy_record": normalized_record,
+            "normalized_at": now,
             "version": version_number,
             "source": item["source"],
         }
@@ -250,7 +259,7 @@ async def _process_one(item: dict, result: PipelineResult) -> None:
         print(f"  [ok] {payer_canonical} / {drug_id} (v{version_number})")
 
     await extraction_audit_log.insert_one({
-        "event": "extraction_complete",
+        "event": "normalization_complete",
         "s3_key": s3_key,
         "filename": filename,
         "doc_hash": doc_hash,
@@ -364,6 +373,19 @@ def _drug_display(record: dict) -> str:
     if brand and generic:
         return f"{brand} ({generic})"
     return brand or generic or "Unknown drug"
+
+
+def _normalized_drug_id(record: dict) -> str:
+    drug = record.get("drug") or {}
+    generic = str(drug.get("normalized_generic_name") or "").strip().lower()
+    if generic:
+        return generic
+
+    display = str(drug.get("display_name") or "").strip().lower()
+    if display:
+        return display
+
+    return "unknown"
 
 
 async def _log_run(result: PipelineResult, started_at: datetime) -> None:

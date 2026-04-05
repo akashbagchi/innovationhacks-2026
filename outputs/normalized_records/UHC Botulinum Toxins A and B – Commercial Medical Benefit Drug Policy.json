@@ -1,0 +1,341 @@
+{
+  "normalization_version": "2026-04-04",
+  "source_filename": "UHC Botulinum Toxins A and B \u2013 Commercial Medical Benefit Drug Policy.json",
+  "document_type": "policy",
+  "payer": {
+    "name": "UnitedHealth",
+    "policy_id": "2026D0017AN",
+    "policy_title": "Botulinum Toxins A and B \u2013 Commercial Medical Benefit Drug Policy",
+    "effective_date": "2026-01-01",
+    "revision_date": null
+  },
+  "drug": {
+    "display_name": "Botox / Dysport / Xeomin / Myobloc / Daxxify",
+    "brand_names": [
+      "Botox / Dysport / Xeomin / Myobloc / Daxxify"
+    ],
+    "generic_name": "onabotulinumtoxinA / abobotulinumtoxinA / incobotulinumtoxinA / rimabotulinumtoxinB / daxibotulinumtoxinA-lanm",
+    "normalized_generic_name": "onabotulinumtoxina / abobotulinumtoxina / incobotulinumtoxina / rimabotulinumtoxinb / daxibotulinumtoxina-lanm",
+    "j_codes": [],
+    "hcpcs_codes": [],
+    "benefit_type": "medical",
+    "drug_class": "Botulinum Toxin Type A and B",
+    "route_of_administration": null,
+    "limitations_of_use": "Daxxify (daxibotulinumtoxinA-lanm) is typically excluded from coverage. Coverage reviews may be in place if required by law or the benefit plan. Coverage for Dysport, Xeomin, Botox, Myobloc is contingent on criteria in the General Requirements and Diagnosis-Specific Requirements sections.",
+    "enrichment": {
+      "rxnorm_cui": null,
+      "loinc_codes": [],
+      "validated_icd10_codes": [],
+      "needs_rxnorm_lookup": true,
+      "needs_loinc_linking": false,
+      "needs_icd10_validation": false
+    }
+  },
+  "indications": [
+    {
+      "indication_id": "all-covered-indications-general-requirements-1",
+      "name": "All Covered Indications \u2013 General Requirements",
+      "description": null,
+      "icd10_codes_explicit": [],
+      "icd10_codes_inferred": [],
+      "pa_required": true,
+      "step_therapy_required": false,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "original_criterion_type": "diagnosis",
+            "description": "Diagnosis (applicable diagnosis must be present)",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "other",
+            "original_criterion_type": "other",
+            "description": "Botulinum toxin administration is no more frequent than every 12 weeks, regardless of diagnosis",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "prescriber",
+            "original_criterion_type": "prescriber",
+            "description": "One of the following: (a) Prescriber attests dosing is in accordance with the United States Food and Drug Administration (FDA) approved labeling; OR (b) For indications without FDA approved dosing, prescriber attests there is published clinical evidence to support the dosing",
+            "logic_operator": "AND",
+            "normalized_tokens": [
+              "prescriber_requirement"
+            ]
+          }
+        ],
+        "authorization_duration_months": null,
+        "required_prescriber_specialties": []
+      },
+      "reauthorization": null,
+      "enrichment": {
+        "rxnorm_cui": null,
+        "loinc_codes": [],
+        "validated_icd10_codes": [],
+        "needs_rxnorm_lookup": false,
+        "needs_loinc_linking": false,
+        "needs_icd10_validation": false
+      }
+    },
+    {
+      "indication_id": "cervical-dystonia-2",
+      "name": "Cervical Dystonia",
+      "description": null,
+      "icd10_codes_explicit": [],
+      "icd10_codes_inferred": [],
+      "pa_required": true,
+      "step_therapy_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "original_criterion_type": "diagnosis",
+            "description": "Diagnosis of cervical dystonia",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "step_therapy",
+            "original_criterion_type": "step_therapy",
+            "description": "History of failure, contraindication, or intolerance to one of the following: Botox, Dysport, Xeomin",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "other",
+            "original_criterion_type": "other",
+            "description": "Initial authorization will be for no more than 12 months",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          }
+        ],
+        "authorization_duration_months": 12,
+        "required_prescriber_specialties": []
+      },
+      "reauthorization": {
+        "criteria": [
+          {
+            "criterion_type": "other",
+            "original_criterion_type": "other",
+            "description": "Reauthorization will be for no more than 12 months",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          }
+        ],
+        "authorization_duration_months": 12,
+        "required_prescriber_specialties": []
+      },
+      "enrichment": {
+        "rxnorm_cui": null,
+        "loinc_codes": [],
+        "validated_icd10_codes": [],
+        "needs_rxnorm_lookup": false,
+        "needs_loinc_linking": false,
+        "needs_icd10_validation": false
+      }
+    },
+    {
+      "indication_id": "detrusor-overactivity-3",
+      "name": "Detrusor Overactivity",
+      "description": null,
+      "icd10_codes_explicit": [],
+      "icd10_codes_inferred": [],
+      "pa_required": true,
+      "step_therapy_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "original_criterion_type": "diagnosis",
+            "description": "Diagnosis of detrusor overactivity",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "step_therapy",
+            "original_criterion_type": "step_therapy",
+            "description": "History of failure, contraindication, or intolerance to one of the following: Botox, Dysport",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "other",
+            "original_criterion_type": "other",
+            "description": "Initial authorization will be for no more than 12 months",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          }
+        ],
+        "authorization_duration_months": 12,
+        "required_prescriber_specialties": []
+      },
+      "reauthorization": {
+        "criteria": [
+          {
+            "criterion_type": "other",
+            "original_criterion_type": "other",
+            "description": "Reauthorization will be for no more than 12 months",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          }
+        ],
+        "authorization_duration_months": 12,
+        "required_prescriber_specialties": []
+      },
+      "enrichment": {
+        "rxnorm_cui": null,
+        "loinc_codes": [],
+        "validated_icd10_codes": [],
+        "needs_rxnorm_lookup": false,
+        "needs_loinc_linking": false,
+        "needs_icd10_validation": false
+      }
+    },
+    {
+      "indication_id": "sialorrhea-4",
+      "name": "Sialorrhea",
+      "description": null,
+      "icd10_codes_explicit": [],
+      "icd10_codes_inferred": [],
+      "pa_required": true,
+      "step_therapy_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "original_criterion_type": "diagnosis",
+            "description": "Diagnosis of sialorrhea",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "step_therapy",
+            "original_criterion_type": "step_therapy",
+            "description": "History of failure, contraindication, or intolerance to one of the following: Botox, Dysport, Xeomin",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "other",
+            "original_criterion_type": "other",
+            "description": "Initial authorization will be for no more than 12 months",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          }
+        ],
+        "authorization_duration_months": 12,
+        "required_prescriber_specialties": []
+      },
+      "reauthorization": {
+        "criteria": [
+          {
+            "criterion_type": "other",
+            "original_criterion_type": "other",
+            "description": "Reauthorization will be for no more than 12 months",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          }
+        ],
+        "authorization_duration_months": 12,
+        "required_prescriber_specialties": []
+      },
+      "enrichment": {
+        "rxnorm_cui": null,
+        "loinc_codes": [],
+        "validated_icd10_codes": [],
+        "needs_rxnorm_lookup": false,
+        "needs_loinc_linking": false,
+        "needs_icd10_validation": false
+      }
+    },
+    {
+      "indication_id": "spasticity-5",
+      "name": "Spasticity",
+      "description": null,
+      "icd10_codes_explicit": [],
+      "icd10_codes_inferred": [],
+      "pa_required": true,
+      "step_therapy_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "original_criterion_type": "diagnosis",
+            "description": "Diagnosis of spasticity",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "step_therapy",
+            "original_criterion_type": "step_therapy",
+            "description": "History of failure, contraindication, or intolerance to one of the following: Botox, Dysport, Xeomin",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          },
+          {
+            "criterion_type": "other",
+            "original_criterion_type": "other",
+            "description": "Initial authorization will be for no more than 12 months",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          }
+        ],
+        "authorization_duration_months": 12,
+        "required_prescriber_specialties": []
+      },
+      "reauthorization": {
+        "criteria": [
+          {
+            "criterion_type": "other",
+            "original_criterion_type": "other",
+            "description": "Reauthorization will be for no more than 12 months",
+            "logic_operator": "AND",
+            "normalized_tokens": []
+          }
+        ],
+        "authorization_duration_months": 12,
+        "required_prescriber_specialties": []
+      },
+      "enrichment": {
+        "rxnorm_cui": null,
+        "loinc_codes": [],
+        "validated_icd10_codes": [],
+        "needs_rxnorm_lookup": false,
+        "needs_loinc_linking": false,
+        "needs_icd10_validation": false
+      }
+    }
+  ],
+  "formulary_entries": [],
+  "exclusions": [
+    {
+      "description": "Daxxify (daxibotulinumtoxinA-lanm) is typically excluded from coverage. Refer to the Medical Benefit Drug Policy titled Medical Benefit Therapeutic Equivalent Medications \u2013 Excluded Drugs and the corresponding excluded drug list with preferred alternatives."
+    },
+    {
+      "description": "Daxxify (daxibotulinumtoxinA) is typically excluded from coverage; coverage reviews may be in place if required by law or the benefit plan. Refer to the Medical Benefit Drug Policy titled Medical Benefit Therapeutic Equivalent Medications \u2013 Excluded Drugs and the corresponding excluded drug list with preferred alternatives."
+    },
+    {
+      "description": "Pelvic floor spasticity (and associated pain conditions) \u2013 removed from proven indications list as of 01/01/2026."
+    },
+    {
+      "description": "Stiff-person syndrome \u2013 removed from proven indications list as of 01/01/2026."
+    }
+  ],
+  "confidence_scores": {
+    "overall": 0.62,
+    "drug_identification": 0.95,
+    "pa_criteria_completeness": 0.35,
+    "review_flags": "Document is truncated at page 2 of 28. Only the General Requirements (applicable to all indications) were captured. The Diagnosis-Specific Requirements section \u2014 which contains individual indication-level PA criteria \u2014 was not included in the provided text. Multiple covered indications and their specific criteria are missing. Full extraction requires the remaining 26 pages. Daxxify exclusion noted. Confidence in completeness is low due to document truncation."
+  },
+  "review": {
+    "missing_fields": [],
+    "warnings": [
+      "No HCPCS/J-codes were extracted for this policy"
+    ],
+    "extractor_review_flags": [
+      "Document is truncated at page 2 of 28. Only the General Requirements (applicable to all indications) were captured. The Diagnosis-Specific Requirements section \u2014 which contains individual indication-level PA criteria \u2014 was not included in the provided text. Multiple covered indications and their specific criteria are missing. Full extraction requires the remaining 26 pages. Daxxify exclusion noted. Confidence in completeness is low due to document truncation."
+    ]
+  }
+}
