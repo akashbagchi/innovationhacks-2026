@@ -5,7 +5,7 @@ from db.mongo import policy_changelogs
 router = APIRouter()
 
 
-@router.get("/")
+@router.get("")
 async def list_changes(drug_id: str = "", severity: str = ""):
     query: dict = {}
     if drug_id:

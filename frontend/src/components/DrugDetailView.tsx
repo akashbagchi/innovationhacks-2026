@@ -23,12 +23,14 @@ const tabs: { id: Tab; label: string }[] = [
   { id: 'digest',     label: 'Change Digest' },
 ]
 
+const mono: React.CSSProperties = { fontFamily: "'IBM Plex Mono', monospace" }
+const LABEL: React.CSSProperties = { ...mono, fontSize: '9px', letterSpacing: '0.2em', textTransform: 'uppercase' as const, color: '#918D88' }
+
 export function DrugDetailView({ drug, onBack, changes }: DrugDetailViewProps) {
-  const [activeTab, setActiveTab] = useState<Tab>('comparison')
+  const [activeTab, setActiveTab]         = useState<Tab>('comparison')
   const [limitationsOpen, setLimitationsOpen] = useState(false)
 
-  // Pull drug-level fields from the first policy that has them
-  const benefitType = drug.policies.find(p => p.drug.benefit_type)?.drug.benefit_type
+  const benefitType      = drug.policies.find(p => p.drug.benefit_type)?.drug.benefit_type
   const limitationsOfUse = drug.policies.find(p => p.drug.limitations_of_use)?.drug.limitations_of_use
 
   const totalPA  = drug.policies.reduce((s, p) => s + p.indications.filter(i => i.pa_required).length, 0)
@@ -40,168 +42,132 @@ export function DrugDetailView({ drug, onBack, changes }: DrugDetailViewProps) {
   )
 
   return (
-    <div className="flex-1 flex flex-col min-h-screen" style={{ background: '#F2EFE9' }}>
+    <div style={{ background: '#F0EFEB', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       {/* Drug header */}
-      <div className="px-8 pt-6 pb-0" style={{ background: '#fff', borderBottom: '1px solid #E2E7EF' }}>
-        <div className="max-w-6xl">
-          {/* Back */}
-          <button onClick={onBack}
-            className="flex items-center gap-1.5 text-xs mb-5 group"
-            style={{ color: '#9AA3AF' }}>
-            <ArrowLeft size={13} className="group-hover:-translate-x-0.5 transition-transform" />
-            Back to portfolio
-          </button>
+      <div style={{ background: '#FFFFFF', borderBottom: '1px solid #D8D4CC', padding: '16px 26px 0', flexShrink: 0 }}>
+        {/* Back */}
+        <button onClick={onBack}
+          className="flex items-center gap-1.5 mb-4 group"
+          style={{ color: '#918D88', fontSize: '12px', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>
+          <ArrowLeft size={12} className="group-hover:-translate-x-0.5 transition-transform" />
+          Back to portfolio
+        </button>
 
-          <div className="flex items-start justify-between pb-5">
-            {/* Identity */}
-            <div className="flex items-start gap-4">
-              <div className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
-                style={{ background: 'linear-gradient(135deg, #2D6A90, #0A8F7C)' }}>
-                <span className="text-white text-base font-bold">{drug.brandName.charAt(0)}</span>
-              </div>
-              <div>
-                <div className="flex items-center gap-2.5 flex-wrap">
-                  <h1 className="text-xl font-semibold" style={{ color: '#0E1117' }}>{drug.brandName}</h1>
-                  <span style={{ color: '#E2E7EF' }}>·</span>
-                  <span className="text-sm font-mono" style={{ color: '#6B7583' }}>{drug.genericName}</span>
-                  <span className="text-[10px] font-mono px-2 py-0.5 rounded"
-                    style={{ background: '#EEF1F6', color: '#6B7583' }}>
-                    {drug.jCode}
-                  </span>
-                </div>
-                <div className="flex items-center gap-2 mt-1.5 flex-wrap">
-                  <span className="inline-flex items-center gap-1 text-[11px] font-medium px-2.5 py-1 rounded-full"
-                    style={{ background: '#EBF4FA', color: '#2D6A90' }}>
-                    {drug.drugClass}
-                  </span>
-                  {benefitType && (
-                    <span className="inline-flex items-center gap-1 text-[11px] font-medium px-2.5 py-1 rounded-full capitalize"
-                      style={{ background: benefitType === 'medical' ? '#FEF3C7' : '#F0FDF4', color: benefitType === 'medical' ? '#92400E' : '#166534' }}>
-                      {benefitType} benefit
-                    </span>
-                  )}
-                  {drug.changeCount > 0 && (
-                    <span className="inline-flex items-center gap-1 text-[11px] font-medium px-2.5 py-1 rounded-full"
-                      style={{ background: '#FEE2E2', color: '#DC2626' }}>
-                      {drug.changeCount} changes this quarter
-                    </span>
-                  )}
-                </div>
-              </div>
+        <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', paddingBottom: '14px', borderBottom: '1px solid #EBEBEB' }}>
+          {/* Identity */}
+          <div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap', marginBottom: '6px' }}>
+              <h1 style={{ fontSize: '18px', fontWeight: 700, color: '#131210' }}>{drug.brandName}</h1>
+              <span style={{ color: '#D8D4CC' }}>·</span>
+              <span style={{ ...mono, fontSize: '12px', color: '#4A4845' }}>{drug.genericName}</span>
+              <span style={{ ...mono, fontSize: '10px', padding: '2px 7px', borderRadius: '1px', background: '#F0EFEB', border: '1px solid #D8D4CC', color: '#4A4845' }}>{drug.jCode}</span>
             </div>
-
-            {/* Stats — clinical language, not stringency hero */}
-            <div className="flex gap-8 text-right">
-              {[
-                { label: 'PA burden',       value: `${totalPA}/${totalInd}`, color: totalPA > totalInd * 0.6 ? '#DC2626' : '#10A090' },
-                { label: 'Lives at risk',   value: drug.livesAtRisk, color: '#0E1117' },
-                { label: 'Payers tracked',  value: `${drug.policies.length}`, color: '#0E1117' },
-              ].map((stat, i) => (
-                <motion.div key={i} initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.06 }}>
-                  <p className="text-xl font-bold tabular-nums" style={{ color: stat.color }}>{stat.value}</p>
-                  <p className="text-[10px] mt-0.5" style={{ color: '#9AA3AF' }}>{stat.label}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
-          {/* Limitations of use — collapsible warning */}
-          {limitationsOfUse && (
-            <div className="mb-4 rounded-lg overflow-hidden" style={{ border: '1px solid #FCD34D', background: '#FFFBEB' }}>
-              <button
-                onClick={() => setLimitationsOpen(o => !o)}
-                className="w-full flex items-center justify-between px-4 py-2.5 text-left"
-              >
-                <span className="text-[11px] font-semibold" style={{ color: '#92400E' }}>
-                  Limitations of use
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
+              <span style={{ ...mono, fontSize: '9px', letterSpacing: '0.08em', textTransform: 'uppercase', padding: '2px 7px', background: '#F0EFEB', border: '1px solid #D8D4CC', color: '#4A4845', borderRadius: '1px' }}>
+                {drug.drugClass}
+              </span>
+              {benefitType && (
+                <span style={{ ...mono, fontSize: '9px', letterSpacing: '0.08em', textTransform: 'uppercase', padding: '2px 7px', background: '#F8EDDC', border: '1px solid rgba(139,100,40,0.2)', color: '#8B6428', borderRadius: '1px' }}>
+                  {benefitType} benefit
                 </span>
-                <ChevronDown size={13} style={{
-                  color: '#92400E',
-                  transform: limitationsOpen ? 'rotate(180deg)' : 'none',
-                  transition: 'transform 0.12s',
-                  flexShrink: 0,
-                }} />
-              </button>
-              {limitationsOpen && (
-                <p className="px-4 pb-3 text-xs leading-relaxed" style={{ color: '#78350F' }}>
-                  {limitationsOfUse}
-                </p>
+              )}
+              {drug.changeCount > 0 && (
+                <span style={{ ...mono, fontSize: '9px', letterSpacing: '0.08em', textTransform: 'uppercase', padding: '2px 7px', background: '#FBEAEA', border: '1px solid rgba(184,28,28,0.2)', color: '#B81C1C', borderRadius: '1px' }}>
+                  {drug.changeCount} changes this quarter
+                </span>
               )}
             </div>
-          )}
+          </div>
 
-          {/* Trend strip — always visible, above tabs */}
-          <div className="flex gap-6 pb-5 border-b mb-0" style={{ borderBottomColor: '#E2E7EF' }}>
-            {drug.trends.map(t => {
-              const trendColor = t.direction === 'tightening' ? '#DC2626' : t.direction === 'loosening' ? '#10A090' : '#9AA3AF'
-              const dirLabel   = t.direction === 'tightening' ? '↑ tightening' : t.direction === 'loosening' ? '↓ loosening' : '→ stable'
-              const shortName  = t.payerName === 'Blue Cross NC' ? 'BCNC' : t.payerName === 'UnitedHealth' ? 'UHC' : t.payerName
-              const lastScore  = t.history[t.history.length - 1].score
-              return (
-                <div key={t.payerName} className="flex items-center gap-3 px-4 py-2.5 rounded-lg"
-                  style={{ background: '#F2EFE9', border: '1px solid #E2E7EF' }}>
-                  <div>
-                    <p className="text-[10px] font-semibold" style={{ color: '#6B7583' }}>{shortName}</p>
-                    <p className="text-xs font-semibold tabular-nums mt-0.5" style={{ color: trendColor }}>
-                      {dirLabel} <span className="font-bold">({t.delta > 0 ? '+' : ''}{t.delta} pts)</span>
-                    </p>
-                  </div>
-                  <SparkLine data={t.history.map(h => h.score)} color={trendColor} width={72} height={32} />
-                  <p className="text-lg font-bold tabular-nums" style={{ color: trendColor }}>{lastScore}</p>
+          {/* Stats */}
+          <div style={{ display: 'flex', gap: '28px', textAlign: 'right' }}>
+            {[
+              { label: 'PA burden',      value: `${totalPA}/${totalInd}`, color: totalPA > totalInd * 0.6 ? '#B81C1C' : '#1A7840' },
+              { label: 'Lives at risk',  value: drug.livesAtRisk, color: '#131210' },
+              { label: 'Payers tracked', value: `${drug.policies.length}`, color: '#131210' },
+            ].map((stat, i) => (
+              <motion.div key={i} initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}>
+                <p style={{ ...mono, fontSize: '18px', fontWeight: 600, color: stat.color, lineHeight: 1 }}>{stat.value}</p>
+                <p style={{ ...LABEL, marginTop: '3px' }}>{stat.label}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Limitations of use */}
+        {limitationsOfUse && (
+          <div style={{ margin: '10px 0', background: '#F8EDDC', border: '1px solid rgba(139,100,40,0.25)', borderRadius: '2px', overflow: 'hidden' }}>
+            <button onClick={() => setLimitationsOpen(o => !o)}
+              style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '8px 12px', background: 'none', border: 'none', cursor: 'pointer' }}>
+              <span style={{ ...mono, fontSize: '9px', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#8B6428' }}>Limitations of Use</span>
+              <ChevronDown size={12} style={{ color: '#8B6428', transform: limitationsOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.12s', flexShrink: 0 }} />
+            </button>
+            {limitationsOpen && (
+              <p style={{ padding: '0 12px 10px', fontSize: '12px', lineHeight: 1.6, color: '#4A4845' }}>{limitationsOfUse}</p>
+            )}
+          </div>
+        )}
+
+        {/* Trend strip */}
+        <div style={{ display: 'flex', gap: '10px', paddingBottom: '14px', flexWrap: 'wrap' }}>
+          {drug.trends.map(t => {
+            const tc        = t.direction === 'tightening' ? '#B81C1C' : t.direction === 'loosening' ? '#1A7840' : '#918D88'
+            const dirLabel  = t.direction === 'tightening' ? '↑ tightening' : t.direction === 'loosening' ? '↓ loosening' : '→ stable'
+            const shortName = t.payerName === 'Blue Cross NC' ? 'BCNC' : t.payerName === 'UnitedHealth' ? 'UHC' : t.payerName
+            const lastScore = t.history[t.history.length - 1].score
+            return (
+              <div key={t.payerName} style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '8px 12px', background: '#F0EFEB', border: '1px solid #D8D4CC', borderRadius: '2px' }}>
+                <div>
+                  <p style={{ ...LABEL, marginBottom: '2px' }}>{shortName}</p>
+                  <p style={{ ...mono, fontSize: '10px', fontWeight: 600, color: tc }}>{dirLabel} <span style={{ fontWeight: 700 }}>({t.delta > 0 ? '+' : ''}{t.delta} pts)</span></p>
                 </div>
-              )
-            })}
-            <div className="flex items-center ml-auto">
-              <p className="text-[10px]" style={{ color: '#C0CDD9' }}>Stringency over 4 quarters · higher = more restrictive</p>
-            </div>
-          </div>
+                <SparkLine data={t.history.map(h => h.score)} color={tc} width={64} height={28} />
+                <p style={{ ...mono, fontSize: '16px', fontWeight: 600, color: tc }}>{lastScore}</p>
+              </div>
+            )
+          })}
+          <p style={{ ...LABEL, alignSelf: 'center', marginLeft: 'auto' }}>Stringency over 4 quarters · higher = more restrictive</p>
+        </div>
 
-          {/* Tab bar */}
-          <div className="flex gap-0 -mb-px">
-            {tabs.map(tab => {
-              const isActive = activeTab === tab.id
-              return (
-                <button key={tab.id} onClick={() => setActiveTab(tab.id)}
-                  className="flex items-center gap-1.5 px-4 py-2.5 text-sm font-medium border-b-2 transition-all duration-100"
-                  style={{
-                    borderBottomColor: isActive ? '#2D6A90' : 'transparent',
-                    color: isActive ? '#2D6A90' : '#6B7583',
-                  }}>
-                  {tab.label}
-                  {tab.id === 'digest' && drugChanges.length > 0 && (
-                    <span className="text-[10px] font-semibold px-1.5 py-0.5 rounded-full ml-1"
-                      style={{ background: '#FEE2E2', color: '#DC2626' }}>
-                      {drugChanges.length}
-                    </span>
-                  )}
-                </button>
-              )
-            })}
-          </div>
+        {/* Tab bar */}
+        <div style={{ display: 'flex', gap: 0, marginBottom: '-1px' }}>
+          {tabs.map(tab => {
+            const isActive = activeTab === tab.id
+            return (
+              <button key={tab.id} onClick={() => setActiveTab(tab.id)}
+                style={{
+                  display: 'flex', alignItems: 'center', gap: '6px',
+                  padding: '9px 14px', fontSize: '13px', fontWeight: isActive ? 600 : 400,
+                  background: 'none', border: 'none', borderBottom: isActive ? '2px solid #EF5050' : '2px solid transparent',
+                  color: isActive ? '#EF5050' : '#4A4845', cursor: 'pointer', transition: 'all 0.1s',
+                }}>
+                {tab.label}
+                {tab.id === 'digest' && drugChanges.length > 0 && (
+                  <span style={{ ...mono, fontSize: '9px', padding: '1px 5px', borderRadius: '1px', background: '#FBEAEA', color: '#B81C1C' }}>
+                    {drugChanges.length}
+                  </span>
+                )}
+              </button>
+            )
+          })}
         </div>
       </div>
 
       {/* Tab content */}
-      <div className="flex-1 px-8 py-6 max-w-6xl w-full">
+      <div style={{ flex: 1, padding: '22px 26px' }}>
         <AnimatePresence mode="wait">
-          <motion.div
-            key={activeTab}
-            initial={{ opacity: 0, y: 6 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -4 }}
-            transition={{ duration: 0.12, ease: 'easeOut' }}
-          >
+          <motion.div key={activeTab}
+            initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
+            transition={{ duration: 0.1 }}>
             {activeTab === 'comparison' && (
-              <div className="grid gap-6" style={{ gridTemplateColumns: '1fr 300px' }}>
+              <div style={{ display: 'grid', gap: '16px', gridTemplateColumns: '1fr 300px' }}>
                 <ComparisonMatrix policies={drug.policies} />
                 <InsightPanel insights={drug.insights} drugName={drug.brandName} />
               </div>
             )}
-            {activeTab === 'criteria' && (
-              <CriteriaBreakdown policies={drug.policies} />
-            )}
+            {activeTab === 'criteria' && <CriteriaBreakdown policies={drug.policies} />}
             {activeTab === 'digest' && (
-              <div className="max-w-3xl">
+              <div style={{ maxWidth: '800px' }}>
                 <ChangeDigest changes={drugChanges.length > 0 ? drugChanges : changes} />
               </div>
             )}

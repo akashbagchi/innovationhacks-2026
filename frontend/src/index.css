@@ -2,107 +2,113 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/geist";
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap");
 
 @custom-variant dark (&:is(.dark *));
 
-/* ─── AntonRX Brand Palette ─────────────────────────────────────────────── */
+/* ─── Design tokens ──────────────────────────────────────────────────────── */
 @theme inline {
-  --font-sans: 'IBM Plex Sans', 'Geist Variable', system-ui, sans-serif;
-  --font-heading: 'Space Grotesk', 'IBM Plex Sans', system-ui, sans-serif;
+  --font-sans:    'IBM Plex Sans', system-ui, sans-serif;
+  --font-mono:    'IBM Plex Mono', monospace;
+  --font-heading: 'IBM Plex Sans', system-ui, sans-serif;
 
-  --color-brand-900: #123433;
-  --color-brand-800: #1d4f4b;
-  --color-brand-blue: #0f766e;
-  --color-brand-blue-dark: #155e59;
-  --color-brand-blue-pale: #d8f2ed;
+  /* Surfaces */
+  --color-bg:       #F0EFEB;
+  --color-surface:  #FFFFFF;
+  --color-rule:     #D8D4CC;
+  --color-rule2:    #EBEBEB;
 
-  --color-warm-bg: #f4f1e8;
-  --color-warm-card: rgba(255, 252, 245, 0.82);
-  --color-warm-border: rgba(53, 76, 72, 0.14);
-  --color-warm-subtle: #fffdf8;
+  /* Accents */
+  --color-orange:     #EF5050;
+  --color-amber:      #8B6428;
+  --color-amber-bg:   #F8EDDC;
+  --color-yellow:     #F0BC00;
 
-  --color-sidebar-bg: rgba(255, 252, 245, 0.9);
-  --color-sidebar-border: rgba(53, 76, 72, 0.14);
+  /* Text */
+  --color-ink:    #131210;
+  --color-muted:  #4A4845;
+  --color-faint:  #918D88;
 
-  --color-signal-red: #b93823;
-  --color-signal-red-pale: #f5d5cf;
-  --color-signal-amber: #d97706;
-  --color-signal-amber-pale: #fde8cc;
-  --color-signal-green: #1f7a4c;
-  --color-signal-green-pale: #d9f0df;
-
-  --color-status-tight-bg: #fde8cc;
-  --color-status-tight-text: #d97706;
-  --color-status-loose-bg: #d9f0df;
-  --color-status-loose-text: #1f7a4c;
-  --color-status-stable-bg: rgba(15, 118, 110, 0.1);
-  --color-status-stable-text: #0f766e;
-
-  --color-text-primary: #123433;
-  --color-text-muted: #5b716f;
-  --color-text-faint: #8b9692;
+  /* Signal */
+  --color-green:    #1A7840;
+  --color-green-bg: #E0F2E8;
+  --color-red:      #B81C1C;
+  --color-red-bg:   #FBEAEA;
 
   /* shadcn overrides */
-  --color-background:         var(--color-warm-bg);
-  --color-foreground:         var(--color-text-primary);
-  --color-primary:            var(--color-brand-blue-dark);
+  --color-background:         var(--color-bg);
+  --color-foreground:         var(--color-ink);
+  --color-primary:            var(--color-orange);
   --color-primary-foreground: #FFFFFF;
-  --color-muted:              #ECEAE4;
-  --color-muted-foreground:   var(--color-text-muted);
-  --color-border:             var(--color-warm-border);
-  --color-ring:               var(--color-brand-blue);
+  --color-muted:              var(--color-rule2);
+  --color-muted-foreground:   var(--color-muted);
+  --color-border:             var(--color-rule);
+  --color-ring:               var(--color-orange);
 }
 
 /* ─── Base ───────────────────────────────────────────────────────────────── */
-* { box-sizing: border-box; }
-
-html {
-  scroll-behavior: smooth;
-}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
   min-height: 100vh;
-  background:
-    radial-gradient(circle at top left, rgba(15, 118, 110, 0.14), transparent 28%),
-    radial-gradient(circle at right 20%, rgba(217, 119, 6, 0.12), transparent 25%),
-    linear-gradient(180deg, #f7f4ed 0%, var(--color-warm-bg) 100%);
-  color: var(--color-text-primary);
-  font-family: var(--font-sans);
+  background: #F0EFEB;
+  color: #131210;
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading);
-  letter-spacing: -0.03em;
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+  letter-spacing: -0.01em;
 }
 
-#root {
-  min-height: 100vh;
+#root { min-height: 100vh; }
+
+/* ─── Panel primitives ───────────────────────────────────────────────────── */
+.panel {
+  background: #FFFFFF;
+  border: 1px solid #D8D4CC;
+  border-radius: 2px;
 }
 
-.glass-card {
-  background: var(--color-warm-card);
-  border: 1px solid var(--color-warm-border);
-  box-shadow: 0 18px 48px rgba(18, 52, 51, 0.1);
-  backdrop-filter: blur(18px);
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: #F0EFEB;
+  border-bottom: 1px solid #D8D4CC;
 }
 
-.glass-hero {
-  background: linear-gradient(135deg, rgba(255, 253, 248, 0.88), rgba(233, 245, 243, 0.9));
-  border: 1px solid var(--color-warm-border);
-  box-shadow: 0 18px 48px rgba(18, 52, 51, 0.1);
-  backdrop-filter: blur(18px);
+/* ─── Mono label ─────────────────────────────────────────────────────────── */
+.label-mono {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #918D88;
 }
 
-/* ─── Search focus ring ──────────────────────────────────────────────────── */
-.brand-focus:focus-within {
-  box-shadow: 0 0 0 2px var(--color-brand-blue-pale);
-  border-color: var(--color-brand-blue);
+/* ─── Select / input ─────────────────────────────────────────────────────── */
+select, input { color-scheme: light; }
+
+select {
+  background: #FFFFFF;
+  border: 1px solid #D8D4CC;
+  border-radius: 2px;
+  color: #131210;
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+  font-size: 13px;
+  padding: 8px 12px;
+  outline: none;
+  appearance: auto;
 }
+
+select:focus { border-color: #EF5050; }
 
 /* ─── Scrollbar ──────────────────────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 4px; height: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: #D1CEC8; border-radius: 4px; }
+::-webkit-scrollbar-thumb { background: #D8D4CC; border-radius: 2px; }

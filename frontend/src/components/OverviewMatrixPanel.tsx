@@ -1,13 +1,6 @@
 import { useMemo, useState } from 'react'
 import type { DrugPortfolioEntry } from '../data/mockPortfolio'
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from './ui/dialog'
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from './ui/dialog'
 
 interface OverviewMatrixPanelProps {
   portfolio: DrugPortfolioEntry[]
@@ -29,173 +22,126 @@ interface MatrixRow {
 const DEFAULT_COLUMNS: MatrixColumn[] = ['coverage', 'pa', 'stepTherapy', 'criterionTypes', 'duration', 'confidence', 'updated']
 
 const columnLabels: Record<MatrixColumn, string> = {
-  coverage: 'Coverage',
-  pa: 'PA',
-  stepTherapy: 'Step Therapy',
-  criterionTypes: 'Criterion Types',
-  duration: 'Auth Duration',
-  confidence: 'Confidence',
-  updated: 'Updated',
+  coverage: 'Coverage', pa: 'PA', stepTherapy: 'Step Therapy',
+  criterionTypes: 'Criterion Types', duration: 'Auth Duration',
+  confidence: 'Confidence', updated: 'Updated',
 }
 
-const coverageStyles: Record<string, { bg: string; text: string }> = {
-  'PA Required': { bg: '#FEF0DB', text: '#C4660A' },
-  'No PA':       { bg: '#DDF4E5', text: '#18794E' },
-  'No Policy':   { bg: '#ECEDE9', text: '#5F6B66' },
+const coverageStyles: Record<string, { bg: string; text: string; border: string }> = {
+  'PA Required': { bg: '#FBEAEA', text: '#B81C1C', border: 'rgba(184,28,28,0.2)' },
+  'No PA':       { bg: '#E0F2E8', text: '#1A7840', border: 'rgba(26,120,64,0.2)' },
+  'No Policy':   { bg: '#EAF4FE', text: '#2870A8', border: 'rgba(40,112,168,0.25)' },
 }
 
-const criterionChipColors: Record<string, { bg: string; text: string }> = {
-  step_therapy:            { bg: '#FEF3C7', text: '#92400E' },
-  combination_restriction: { bg: '#EDE9FE', text: '#5B21B6' },
-  prior_therapy:           { bg: '#FEF9C3', text: '#713F12' },
-  line_of_therapy:         { bg: '#EBF4FA', text: '#2D6A90' },
-  disease_severity:        { bg: '#FEE2E2', text: '#B91C1C' },
-  lab_value:               { bg: '#D0F4F1', text: '#0A6B62' },
-  diagnosis:               { bg: '#F1F5F9', text: '#475569' },
-  prescriber:              { bg: '#DCFCE7', text: '#166534' },
-  clinical_response:       { bg: '#CCFBF1', text: '#0F766E' },
-  other:                   { bg: '#F8FAFC', text: '#64748B' },
+const criterionChipColors: Record<string, { bg: string; text: string; border: string }> = {
+  step_therapy:            { bg: '#F8EDDC', text: '#8B6428', border: 'rgba(139,100,40,0.2)' },
+  combination_restriction: { bg: '#F0EFEB', text: '#4A4845', border: '#D8D4CC' },
+  prior_therapy:           { bg: '#F8EDDC', text: '#8B6428', border: 'rgba(139,100,40,0.2)' },
+  line_of_therapy:         { bg: '#EAF4FE', text: '#2870A8', border: 'rgba(40,112,168,0.25)' },
+  disease_severity:        { bg: '#FBEAEA', text: '#B81C1C', border: 'rgba(184,28,28,0.2)' },
+  lab_value:               { bg: '#EAF4FE', text: '#2870A8', border: 'rgba(40,112,168,0.25)' },
+  diagnosis:               { bg: '#F0EFEB', text: '#4A4845', border: '#D8D4CC' },
+  prescriber:              { bg: '#EAF4FE', text: '#2870A8', border: 'rgba(40,112,168,0.25)' },
+  clinical_response:       { bg: '#EAF4FE', text: '#2870A8', border: 'rgba(40,112,168,0.25)' },
+  other:                   { bg: '#F0EFEB', text: '#918D88', border: '#D8D4CC' },
 }
+
+const mono: React.CSSProperties = { fontFamily: "'IBM Plex Mono', monospace" }
+const LABEL: React.CSSProperties = { ...mono, fontSize: '9px', letterSpacing: '0.2em', textTransform: 'uppercase' as const, color: '#918D88' }
 
 function formatDate(date?: string) {
   if (!date) return 'Unknown'
-
-  return new Intl.DateTimeFormat('en-US', {
-    month: 'short',
-    day: 'numeric',
-  }).format(new Date(date))
+  return new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric' }).format(new Date(date))
 }
 
 function normalizeConfidence(score: number) {
-  if (score >= 0.9) return 'High'
-  if (score >= 0.75) return 'Medium'
-  return 'Low'
+  return score >= 0.9 ? 'High' : score >= 0.75 ? 'Medium' : 'Low'
 }
 
 function buildMatrixRows(drug: DrugPortfolioEntry, indicationFilter: string): MatrixRow[] {
   return drug.policies.map(policy => {
     const indication = policy.indications.find(item => item.name === indicationFilter)
-
     if (!indication) {
       return {
-        payer: policy.payer.name,
-        coverage: 'No Policy',
-        pa: 'Unknown',
-        stepTherapy: 'Unknown',
-        criterionTypes: [],
-        duration: '—',
-        confidence: normalizeConfidence(policy.confidence_scores.overall),
+        payer: policy.payer.name, coverage: 'No Policy', pa: 'Unknown', stepTherapy: 'Unknown',
+        criterionTypes: [], duration: '—', confidence: normalizeConfidence(policy.confidence_scores.overall),
         updated: formatDate(policy.payer.revision_date ?? policy.payer.effective_date),
       }
     }
-
-    const uniqueTypes = Array.from(new Set(
-      indication.initial_authorization.criteria.map(c => c.criterion_type)
-    ))
-
-    const dur = indication.initial_authorization.authorization_duration_months
-    const duration = dur != null ? `${dur}mo` : '—'
-
+    const uniqueTypes = Array.from(new Set(indication.initial_authorization.criteria.map(c => c.criterion_type)))
+    const dur         = indication.initial_authorization.authorization_duration_months
     return {
       payer: policy.payer.name,
       coverage: indication.pa_required ? 'PA Required' : 'No PA',
       pa: indication.pa_required ? 'Required' : 'Not required',
       stepTherapy: indication.step_therapy_required ? 'Yes' : 'No',
-      criterionTypes: uniqueTypes,
-      duration,
+      criterionTypes: uniqueTypes, duration: dur != null ? `${dur}mo` : '—',
       confidence: normalizeConfidence(policy.confidence_scores.overall),
       updated: formatDate(policy.payer.revision_date ?? policy.payer.effective_date),
     }
   })
 }
 
-function MatrixTable({
-  rows,
-  visibleColumns,
-  previewCount,
-}: {
-  rows: MatrixRow[]
-  visibleColumns: MatrixColumn[]
-  previewCount?: number
-}) {
+function MatrixTable({ rows, visibleColumns, previewCount }: { rows: MatrixRow[]; visibleColumns: MatrixColumn[]; previewCount?: number }) {
   const displayedRows = typeof previewCount === 'number' ? rows.slice(0, previewCount) : rows
 
   return (
-    <div
-      className="overflow-hidden rounded-[24px] border"
-      style={{ borderColor: 'rgba(53, 76, 72, 0.14)', background: 'rgba(255, 255, 255, 0.58)' }}
-    >
-      <div className="overflow-x-auto">
-        <table className="min-w-full border-collapse text-left">
+    <div style={{ background: '#FFFFFF', border: '1px solid #D8D4CC', borderRadius: '2px', overflow: 'hidden' }}>
+      <div style={{ overflowX: 'auto' }}>
+        <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
           <thead>
-            <tr className="border-b border-[#EAE5DC]">
-              <th className="px-6 py-4 text-xs font-semibold text-[#6B7280]">Payer</th>
-              {visibleColumns.map(column => (
-                <th key={column} className="px-4 py-4 text-xs font-semibold text-[#6B7280]">
-                  {columnLabels[column]}
-                </th>
+            <tr style={{ borderBottom: '1px solid #D8D4CC', background: '#F0EFEB' }}>
+              <th style={{ ...LABEL, padding: '8px 12px' }}>Payer</th>
+              {visibleColumns.map(col => (
+                <th key={col} style={{ ...LABEL, padding: '8px 10px' }}>{columnLabels[col]}</th>
               ))}
             </tr>
           </thead>
           <tbody>
-            {displayedRows.map(row => (
-              <tr key={row.payer} className="border-b border-[#F0ECE4] last:border-b-0">
-                <td className="px-6 py-4 text-sm font-medium text-[#27404A]">{row.payer}</td>
-                {visibleColumns.map(column => {
-                  if (column === 'coverage') {
-                    const style = coverageStyles[row.coverage] ?? coverageStyles['No Policy']
+            {displayedRows.map((row, ri) => (
+              <tr key={row.payer} style={{ borderBottom: ri < displayedRows.length - 1 ? '1px solid #EBEBEB' : 'none', background: ri % 2 === 1 ? '#F7F5F0' : '#FFFFFF' }}>
+                <td style={{ padding: '8px 12px', fontSize: '12px', fontWeight: 600, color: '#131210' }}>{row.payer}</td>
+                {visibleColumns.map(col => {
+                  if (col === 'coverage') {
+                    const s = coverageStyles[row.coverage] ?? coverageStyles['No Policy']
                     return (
-                      <td key={column} className="px-4 py-4 text-sm">
-                        <span className="inline-flex rounded-full px-3 py-1 text-xs font-semibold"
-                          style={{ background: style.bg, color: style.text }}>
+                      <td key={col} style={{ padding: '8px 10px' }}>
+                        <span style={{ ...mono, fontSize: '9px', letterSpacing: '0.08em', textTransform: 'uppercase', padding: '2px 7px', borderRadius: '1px', background: s.bg, color: s.text, border: `1px solid ${s.border}` }}>
                           {row.coverage}
                         </span>
                       </td>
                     )
                   }
-
-                  if (column === 'stepTherapy') {
+                  if (col === 'stepTherapy') {
                     const isYes = row.stepTherapy === 'Yes'
                     return (
-                      <td key={column} className="px-4 py-4 text-sm">
-                        <span className="inline-flex rounded-full px-2.5 py-0.5 text-xs font-semibold"
-                          style={isYes
-                            ? { background: '#FEE2E2', color: '#B91C1C' }
-                            : { background: '#F1F5F9', color: '#64748B' }}>
+                      <td key={col} style={{ padding: '8px 10px' }}>
+                        <span style={{ ...mono, fontSize: '9px', letterSpacing: '0.08em', textTransform: 'uppercase', padding: '2px 7px', borderRadius: '1px', background: isYes ? '#FBEAEA' : '#F0EFEB', color: isYes ? '#B81C1C' : '#918D88', border: `1px solid ${isYes ? 'rgba(184,28,28,0.2)' : '#D8D4CC'}` }}>
                           {row.stepTherapy}
                         </span>
                       </td>
                     )
                   }
-
-                  if (column === 'criterionTypes') {
+                  if (col === 'criterionTypes') {
                     return (
-                      <td key={column} className="px-4 py-4">
+                      <td key={col} style={{ padding: '8px 10px' }}>
                         {row.criterionTypes.length > 0 ? (
-                          <div className="flex flex-wrap gap-1">
+                          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '3px' }}>
                             {row.criterionTypes.map(type => {
                               const chip = criterionChipColors[type] ?? criterionChipColors.other
                               return (
-                                <span key={type} className="text-[10px] font-medium px-1.5 py-0.5 rounded whitespace-nowrap"
-                                  style={{ background: chip.bg, color: chip.text }}>
+                                <span key={type} style={{ ...mono, fontSize: '9px', padding: '1px 5px', borderRadius: '1px', background: chip.bg, border: `1px solid ${chip.border}`, color: chip.text, whiteSpace: 'nowrap' }}>
                                   {type.replace(/_/g, ' ')}
                                 </span>
                               )
                             })}
                           </div>
-                        ) : (
-                          <span className="text-xs" style={{ color: '#C0CDD9' }}>—</span>
-                        )}
+                        ) : <span style={{ ...LABEL }}>—</span>}
                       </td>
                     )
                   }
-
-                  const value = row[column as 'pa' | 'duration' | 'confidence' | 'updated']
-                  return (
-                    <td key={column} className="px-4 py-4 text-sm text-[#36515C]">
-                      <span>{value}</span>
-                    </td>
-                  )
+                  const value = row[col as 'pa' | 'duration' | 'confidence' | 'updated']
+                  return <td key={col} style={{ padding: '8px 10px', fontSize: '12px', color: '#4A4845' }}>{value}</td>
                 })}
               </tr>
             ))}
@@ -207,106 +153,52 @@ function MatrixTable({
 }
 
 export function OverviewMatrixPanel({ portfolio }: OverviewMatrixPanelProps) {
-  const [selectedDrugId, setSelectedDrugId] = useState(portfolio[1]?.id ?? portfolio[0]?.id ?? '')
-  const selectedDrug = portfolio.find(entry => entry.id === selectedDrugId) ?? portfolio[0]
-  const indicationOptions = useMemo(
-    () => Array.from(new Set(selectedDrug.policies.flatMap(policy => policy.indications.map(indication => indication.name)))),
-    [selectedDrug]
-  )
+  const [selectedDrugId, setSelectedDrugId]     = useState(portfolio[1]?.id ?? portfolio[0]?.id ?? '')
+  const selectedDrug                             = portfolio.find(e => e.id === selectedDrugId) ?? portfolio[0]
+  const indicationOptions                        = useMemo(() => Array.from(new Set(selectedDrug.policies.flatMap(p => p.indications.map(i => i.name)))), [selectedDrug])
   const [selectedIndication, setSelectedIndication] = useState(indicationOptions[0] ?? '')
-  const [visibleColumns, setVisibleColumns] = useState<MatrixColumn[]>(DEFAULT_COLUMNS)
-  const matrixRows = useMemo(
-    () => buildMatrixRows(selectedDrug, selectedIndication || indicationOptions[0] || ''),
-    [selectedDrug, selectedIndication, indicationOptions]
-  )
+  const [visibleColumns, setVisibleColumns]      = useState<MatrixColumn[]>(DEFAULT_COLUMNS)
+  const activeIndication                         = selectedIndication || indicationOptions[0] || ''
+  const matrixRows                               = useMemo(() => buildMatrixRows(selectedDrug, activeIndication), [selectedDrug, activeIndication])
 
-  const activeIndication = selectedIndication || indicationOptions[0] || ''
-
-  function toggleColumn(column: MatrixColumn) {
-    setVisibleColumns(current =>
-      current.includes(column)
-        ? current.filter(item => item !== column)
-        : [...current, column]
-    )
+  function toggleColumn(col: MatrixColumn) {
+    setVisibleColumns(cur => cur.includes(col) ? cur.filter(c => c !== col) : [...cur, col])
   }
 
   return (
-    <div
-      className="space-y-4 rounded-[28px] border p-5 shadow-[0_18px_48px_rgba(18,52,51,0.1)] backdrop-blur-[18px]"
-      style={{ background: 'rgba(255, 252, 245, 0.82)', borderColor: 'rgba(53, 76, 72, 0.14)' }}
-    >
-      <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
-        <div>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#7A8B85]">Cross-Payer Matrix</p>
-          <h3 className="mt-2 text-[30px] font-semibold tracking-tight text-[#14343A]">
-            {selectedDrug.brandName} coverage snapshot
-          </h3>
-          <p className="mt-2 max-w-2xl text-sm leading-6 text-[#6B7D80]">
-            Choose the drug, narrow to an indication, and decide which matrix columns matter before expanding to the full view.
-          </p>
-        </div>
-
-        <div className="flex flex-wrap gap-2">
-          <span className="inline-flex rounded-full bg-[#E9E9E1] px-3 py-1.5 text-xs font-semibold text-[#36515C]">
-            Drug: {selectedDrug.brandName}
-          </span>
-          <span className="inline-flex rounded-full bg-[#E9E9E1] px-3 py-1.5 text-xs font-semibold text-[#36515C]">
-            Indication: {activeIndication}
-          </span>
-        </div>
+    <div style={{ background: '#FFFFFF', border: '1px solid #D8D4CC', borderRadius: '2px', padding: '16px', display: 'flex', flexDirection: 'column', gap: '14px' }}>
+      <div>
+        <p style={{ ...LABEL, color: '#EF5050', marginBottom: '4px' }}>Cross-Payer Matrix</p>
+        <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#131210', marginBottom: '4px' }}>{selectedDrug.brandName} coverage snapshot</h3>
+        <p style={{ fontSize: '12px', color: '#4A4845', lineHeight: 1.6 }}>Choose the drug, narrow to an indication, and select which columns to show.</p>
       </div>
 
-      <div className="grid gap-3 md:grid-cols-2">
-        <label className="space-y-2">
-          <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#8B9692]">Drug</span>
-          <select
-            value={selectedDrugId}
-            onChange={event => {
-              const nextDrug = portfolio.find(entry => entry.id === event.target.value)
-              const nextIndications = Array.from(new Set(nextDrug?.policies.flatMap(policy => policy.indications.map(indication => indication.name)) ?? []))
-              setSelectedDrugId(event.target.value)
-              setSelectedIndication(nextIndications[0] ?? '')
-            }}
-            className="w-full rounded-2xl border px-4 py-3 text-sm text-[#27404A] outline-none"
-            style={{ borderColor: 'rgba(53, 76, 72, 0.14)', background: 'rgba(255, 255, 255, 0.7)' }}
-          >
-            {portfolio.map(drug => (
-              <option key={drug.id} value={drug.id}>{drug.brandName}</option>
-            ))}
-          </select>
-        </label>
-
-        <label className="space-y-2">
-          <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#8B9692]">Indication</span>
-          <select
-            value={activeIndication}
-            onChange={event => setSelectedIndication(event.target.value)}
-            className="w-full rounded-2xl border px-4 py-3 text-sm text-[#27404A] outline-none"
-            style={{ borderColor: 'rgba(53, 76, 72, 0.14)', background: 'rgba(255, 255, 255, 0.7)' }}
-          >
-            {indicationOptions.map(indication => (
-              <option key={indication} value={indication}>{indication}</option>
-            ))}
-          </select>
-        </label>
+      {/* Selects */}
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
+        {[
+          { label: 'Drug', value: selectedDrugId, options: portfolio.map(d => ({ value: d.id, label: d.brandName })),
+            onChange: (v: string) => { const nd = portfolio.find(e => e.id === v); const ni = Array.from(new Set(nd?.policies.flatMap(p => p.indications.map(i => i.name)) ?? [])); setSelectedDrugId(v); setSelectedIndication(ni[0] ?? '') } },
+          { label: 'Indication', value: activeIndication, options: indicationOptions.map(i => ({ value: i, label: i })),
+            onChange: (v: string) => setSelectedIndication(v) },
+        ].map(({ label, value, options, onChange }) => (
+          <label key={label} style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+            <span style={{ ...LABEL }}>{label}</span>
+            <select value={value} onChange={e => onChange(e.target.value)}
+              style={{ background: '#F0EFEB', border: '1px solid #D8D4CC', borderRadius: '2px', color: '#131210', fontFamily: "'IBM Plex Sans',system-ui,sans-serif", fontSize: '13px', padding: '7px 10px', outline: 'none' }}>
+              {options.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
+            </select>
+          </label>
+        ))}
       </div>
 
-      <div className="flex flex-wrap gap-2">
-        {DEFAULT_COLUMNS.map(column => {
-          const active = visibleColumns.includes(column)
-
+      {/* Column toggles */}
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '5px' }}>
+        {DEFAULT_COLUMNS.map(col => {
+          const active = visibleColumns.includes(col)
           return (
-            <button
-              key={column}
-              type="button"
-              onClick={() => toggleColumn(column)}
-              className="rounded-full px-3 py-1.5 text-xs font-semibold transition-colors"
-              style={{
-                background: active ? '#14343A' : '#ECE8DF',
-                color: active ? '#FFFFFF' : '#5E706D',
-              }}
-            >
-              {columnLabels[column]}
+            <button key={col} type="button" onClick={() => toggleColumn(col)}
+              style={{ ...mono, fontSize: '9px', letterSpacing: '0.1em', textTransform: 'uppercase', padding: '3px 9px', borderRadius: '1px', border: '1px solid', cursor: 'pointer', transition: 'all 0.1s', background: active ? '#131210' : '#F0EFEB', color: active ? '#FFFFFF' : '#4A4845', borderColor: active ? '#131210' : '#D8D4CC' }}>
+              {columnLabels[col]}
             </button>
           )
         })}
@@ -314,33 +206,23 @@ export function OverviewMatrixPanel({ portfolio }: OverviewMatrixPanelProps) {
 
       <MatrixTable rows={matrixRows} visibleColumns={visibleColumns} previewCount={4} />
 
-      <div className="flex flex-col gap-3 border-t border-[#EAE5DC] pt-4 sm:flex-row sm:items-center sm:justify-between">
-        <p className="text-sm text-[#6B7D80]">
-          Showing the first {Math.min(4, matrixRows.length)} payer rows. Expand when you want the full comparison surface.
-        </p>
-
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: '12px', borderTop: '1px solid #EBEBEB' }}>
+        <p style={{ fontSize: '12px', color: '#4A4845' }}>Showing first {Math.min(4, matrixRows.length)} payer rows.</p>
         <Dialog>
           <DialogTrigger asChild>
-            <button
-              type="button"
-              className="inline-flex items-center justify-center rounded-full bg-[#14343A] px-4 py-2.5 text-sm font-semibold text-white"
-            >
+            <button type="button" style={{ background: '#131210', color: '#FFFFFF', border: 'none', borderRadius: '2px', padding: '7px 14px', fontSize: '12px', fontWeight: 600, cursor: 'pointer' }}>
               View full matrix
             </button>
           </DialogTrigger>
-          <DialogContent className="max-w-[1100px] rounded-[28px] border border-[#E5E2DC] bg-[#FCFBF8] p-0 text-[#14343A]">
-            <div className="border-b border-[#ECE7DE] px-7 py-6">
-              <DialogHeader className="gap-3">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#7A8B85]">Cross-Payer Matrix</p>
-                <DialogTitle className="text-2xl font-semibold tracking-tight text-[#14343A]">
-                  Full {selectedDrug.brandName} matrix for {activeIndication}
-                </DialogTitle>
-                <DialogDescription className="text-sm leading-6 text-[#6B7D80]">
-                  The expanded view keeps your current drug, indication, and visible-column choices intact.
-                </DialogDescription>
+          <DialogContent style={{ maxWidth: '1100px', borderRadius: '2px', border: '1px solid #D8D4CC', background: '#FFFFFF', padding: 0, color: '#131210' }}>
+            <div style={{ borderBottom: '1px solid #D8D4CC', padding: '20px 24px' }}>
+              <DialogHeader className="gap-2">
+                <p style={{ ...LABEL, color: '#EF5050' }}>Cross-Payer Matrix</p>
+                <DialogTitle style={{ fontSize: '18px', fontWeight: 700, color: '#131210' }}>Full {selectedDrug.brandName} matrix for {activeIndication}</DialogTitle>
+                <DialogDescription style={{ fontSize: '13px', color: '#4A4845' }}>Expanded view with current column and indication selections.</DialogDescription>
               </DialogHeader>
             </div>
-            <div className="max-h-[70vh] overflow-y-auto px-7 py-6">
+            <div style={{ maxHeight: '70vh', overflowY: 'auto', padding: '20px 24px' }}>
               <MatrixTable rows={matrixRows} visibleColumns={visibleColumns} />
             </div>
           </DialogContent>

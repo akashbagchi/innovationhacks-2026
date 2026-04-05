@@ -5,7 +5,7 @@ from db.mongo import policies
 router = APIRouter()
 
 
-@router.get("/")
+@router.get("")
 async def compare(drug: str = "", payers: str = ""):
     """
     Return all payer policy records for a drug, optionally filtered by payers

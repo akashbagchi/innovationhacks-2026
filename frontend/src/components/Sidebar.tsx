@@ -4,10 +4,10 @@ import type { ChangeEntry } from '../types/policy'
 import type { DrugPortfolioEntry } from '../data/mockPortfolio'
 
 const changeTypeShort: Record<string, string> = {
-  ADDED_STEP_THERAPY: 'step therapy added',
-  ADDED_CRITERION: 'criterion added',
-  MODIFIED_THRESHOLD: 'threshold changed',
-  MODIFIED_WORDING: 'wording updated',
+  ADDED_STEP_THERAPY:   'step therapy added',
+  ADDED_CRITERION:      'criterion added',
+  MODIFIED_THRESHOLD:   'threshold changed',
+  MODIFIED_WORDING:     'wording updated',
   MODIFIED_PA_REQUIRED: 'PA status changed',
 }
 
@@ -18,9 +18,9 @@ type NavItem = {
 }
 
 const navItems: NavItem[] = [
-  { id: 'portfolio', label: 'Overview', Icon: LayoutGrid },
-  { id: 'compare', label: 'Coverage Matrix', Icon: ArrowLeftRight },
-  { id: 'digest', label: 'Policy Changes', Icon: Bell },
+  { id: 'portfolio', label: 'Overview',        Icon: LayoutGrid },
+  { id: 'compare',   label: 'Coverage Matrix', Icon: ArrowLeftRight },
+  { id: 'digest',    label: 'Policy Changes',  Icon: Bell },
 ]
 
 interface SidebarProps {
@@ -31,9 +31,9 @@ interface SidebarProps {
 }
 
 export function Sidebar({ active, onNavigate, changes, portfolio }: SidebarProps) {
-  const allTrends = portfolio.flatMap(d => d.trends)
+  const allTrends       = portfolio.flatMap(d => d.trends)
   const tighteningCount = allTrends.filter(t => t.direction === 'tightening').length
-  const totalTrends = allTrends.length
+  const totalTrends     = allTrends.length
 
   const payerTightenCount: Record<string, number> = {}
   allTrends.filter(t => t.direction === 'tightening').forEach(t => {
@@ -49,62 +49,51 @@ export function Sidebar({ active, onNavigate, changes, portfolio }: SidebarProps
       ? 'UHC'
       : mostTighteningPayer
 
-  const alertCount = changes.filter(c => c.severity === 'HIGH').length
+  const alertCount     = changes.filter(c => c.severity === 'HIGH').length
   const watchlistItems = changes.filter(c => c.severity !== 'LOW').slice(0, 3)
+
+  const mono: React.CSSProperties = { fontFamily: "'IBM Plex Mono', monospace" }
+
   return (
-    <aside
-      className="glass-card sticky top-6 flex h-[calc(100vh-3rem)] w-[290px] flex-shrink-0 flex-col gap-4 rounded-[28px] p-5"
-      style={{
-        background: 'linear-gradient(180deg, rgba(255, 252, 245, 0.9), rgba(247, 242, 232, 0.84))',
-      }}
-    >
-      <div className="flex items-center gap-4">
-        <div
-          className="flex h-[62px] w-[62px] items-center justify-center rounded-[20px] overflow-hidden shadow-[0_14px_32px_rgba(18,52,51,0.18)]"
-          style={{
-            background: '#0E1117',
-          }}
-        >
-          <svg width="32" height="32" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-            <circle cx="9" cy="9" r="8" fill="#161C26" />
-            <path d="M1 9 A8 8 0 0 1 17 9 Z" fill="#7BA8C4" opacity="0.35" />
-            <path d="M4 13 L9 5 L14 13 Z" fill="#7BA8C4" />
-            <path d="M7 13 L9 8.5 L11 13 Z" fill="rgba(255,255,255,0.12)" />
-          </svg>
-        </div>
-        <div>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#5B716F]">Anton Rx Track</p>
-          <p className="mt-1 text-[1.7rem] font-bold leading-none tracking-tight">
-            <span style={{ color: '#0E1117' }}>ANTON</span>
-            <span style={{ color: '#7BA8C4' }}>Rx</span>
-          </p>
-          <p className="mt-1 text-[12px] font-medium uppercase tracking-[0.12em] text-[#5B716F]">Policy Intelligence</p>
-        </div>
+    <aside className="sticky top-0 flex h-screen w-[240px] flex-shrink-0 flex-col"
+      style={{ background: '#FFFFFF', borderRight: '1px solid #D8D4CC' }}>
+
+      {/* Logo */}
+      <div className="px-5 py-5" style={{ borderBottom: '1px solid #D8D4CC' }}>
+        <p style={{ ...mono, fontSize: '9px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#918D88', marginBottom: '3px' }}>
+          Anton Rx Track
+        </p>
+        <p style={{ fontSize: '22px', fontWeight: 700, letterSpacing: '-0.01em', lineHeight: 1 }}>
+          <span style={{ color: '#131210' }}>ANTON</span>
+          <span style={{ color: '#EF5050' }}>Rx</span>
+        </p>
+        <p style={{ ...mono, fontSize: '9px', letterSpacing: '0.14em', textTransform: 'uppercase', color: '#918D88', marginTop: '3px' }}>
+          Policy Intelligence
+        </p>
       </div>
 
-      <nav className="grid gap-2">
+      {/* Nav */}
+      <nav className="px-3 py-4 flex flex-col gap-0.5">
+        <p style={{ ...mono, fontSize: '9px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#918D88', padding: '0 8px', marginBottom: '5px' }}>
+          Navigation
+        </p>
+
         {navItems.map(({ id, label, Icon }) => {
           const isActive = active === id
-
           return (
-            <button
-              key={id}
-              type="button"
-              onClick={() => onNavigate(id)}
-              className="flex items-center gap-3 rounded-[14px] px-3.5 py-3 text-left text-[15px] transition-all duration-150"
+            <button key={id} type="button" onClick={() => onNavigate(id)}
+              className="flex items-center gap-2.5 px-2.5 py-2 text-left text-sm font-medium transition-all duration-100"
               style={{
-                background: isActive ? 'rgba(15, 118, 110, 0.12)' : 'transparent',
-                color: '#123433',
-                transform: isActive ? 'translateX(3px)' : 'none',
-              }}
-            >
-              <Icon size={16} strokeWidth={isActive ? 2.1 : 1.7} />
+                borderRadius: '2px',
+                background: isActive ? '#FBEAEA' : 'transparent',
+                border: isActive ? '1px solid rgba(239,80,80,0.25)' : '1px solid transparent',
+                color: isActive ? '#EF5050' : '#4A4845',
+              }}>
+              <Icon size={13} strokeWidth={isActive ? 2.2 : 1.8} />
               <span>{label}</span>
               {id === 'digest' && alertCount > 0 && (
-                <span
-                  className="ml-auto rounded-full px-2 py-0.5 text-[10px] font-semibold"
-                  style={{ background: '#F5D5CF', color: '#B93823' }}
-                >
+                <span className="ml-auto px-1.5 py-0.5 text-[9px] font-bold"
+                  style={{ ...mono, background: '#B81C1C', color: '#fff', borderRadius: '1px' }}>
                   {alertCount}
                 </span>
               )}
@@ -113,33 +102,46 @@ export function Sidebar({ active, onNavigate, changes, portfolio }: SidebarProps
         })}
       </nav>
 
-      <section className="rounded-[20px] border border-[#354C4824] bg-white/60 p-4">
-        <p className="mb-2 text-[11px] uppercase tracking-[0.12em] text-[#5B716F]">Quarter Signal</p>
-        <h2 className="m-0 text-[1.2rem] leading-tight text-[#123433]">{alertCount} high-impact changes</h2>
-        <p className="mt-3 text-sm leading-6 text-[#5B716F]">
-          {tighteningCount} of {totalTrends} payer trends tightening. <span className="font-medium text-[#123433]">{shortMTP}</span> adding the most restrictions this quarter.
+      {/* Quarter Signal */}
+      <div className="mx-3 p-3" style={{ background: '#F0EFEB', border: '1px solid #D8D4CC', borderRadius: '2px' }}>
+        <p style={{ ...mono, fontSize: '9px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#918D88', marginBottom: '6px' }}>
+          Quarter Signal
         </p>
-      </section>
+        <p style={{ fontSize: '15px', fontWeight: 700, color: '#131210', lineHeight: 1.2 }}>
+          {alertCount} high-impact changes
+        </p>
+        <p style={{ fontSize: '11px', color: '#4A4845', marginTop: '6px', lineHeight: 1.6 }}>
+          {tighteningCount} of {totalTrends} payer trends tightening.{' '}
+          <span style={{ color: '#131210', fontWeight: 600 }}>{shortMTP}</span>{' '}
+          adding the most restrictions.
+        </p>
+      </div>
 
-      <section className="mt-auto rounded-[20px] border border-[#354C4824] bg-white/60 p-4">
-        <p className="mb-2 text-[11px] uppercase tracking-[0.12em] text-[#5B716F]">Watchlist</p>
-        <ul className="space-y-2.5 text-xs leading-relaxed text-[#374151]">
+      {/* Watchlist */}
+      <div className="mx-3 mt-2.5 p-3 flex-1" style={{ background: '#F0EFEB', border: '1px solid #D8D4CC', borderRadius: '2px' }}>
+        <p style={{ ...mono, fontSize: '9px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#918D88', marginBottom: '8px' }}>
+          Watchlist
+        </p>
+        <ul className="space-y-2">
           {watchlistItems.map(item => (
-            <li key={`${item.payer}-${item.change_type}-${item.date}`} className="flex items-start gap-2">
-              <span
-                className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full"
-                style={{ background: item.severity === 'HIGH' ? '#DC2626' : '#D97706' }}
-              />
-              <span>
-                <span className="font-medium">{item.payer}</span> {changeTypeShort[item.change_type] ?? 'policy updated'} - {item.drug}
+            <li key={`${item.payer}-${item.change_type}-${item.date}`} className="flex items-start gap-2"
+              style={{ paddingBottom: '7px', borderBottom: '1px solid #EBEBEB' }}>
+              <span className="mt-1 flex-shrink-0" style={{
+                width: '5px', height: '5px', borderRadius: '50%',
+                background: item.severity === 'HIGH' ? '#B81C1C' : '#8B6428',
+              }} />
+              <span style={{ fontSize: '11px', color: '#4A4845', lineHeight: 1.5 }}>
+                <span style={{ color: '#131210', fontWeight: 600 }}>{item.payer}</span>{' '}
+                {changeTypeShort[item.change_type] ?? 'policy updated'} — {item.drug}
               </span>
             </li>
           ))}
         </ul>
-      </section>
+      </div>
 
-      <div className="pt-1">
-        <p className="text-[10px] font-mono" style={{ color: '#8B9692' }}>
+      {/* Footer */}
+      <div className="px-5 py-3" style={{ borderTop: '1px solid #D8D4CC' }}>
+        <p style={{ ...mono, fontSize: '10px', color: '#918D88' }}>
           {portfolio.length} products · Q1 2026
         </p>
       </div>

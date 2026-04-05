@@ -4,6 +4,9 @@ interface RecentChangeFeedProps {
   changes: ChangeEntry[]
 }
 
+const mono: React.CSSProperties = { fontFamily: "'IBM Plex Mono', monospace" }
+const LABEL: React.CSSProperties = { ...mono, fontSize: '9px', letterSpacing: '0.2em', textTransform: 'uppercase' as const, color: '#918D88' }
+
 const changeTypeLabels: Record<string, string> = {
   ADDED_STEP_THERAPY:   'Step Therapy Added',
   ADDED_CRITERION:      'Criterion Added',
@@ -15,83 +18,65 @@ const changeTypeLabels: Record<string, string> = {
 
 const severityOrder = { HIGH: 0, MED: 1, LOW: 2 }
 
+const sevStyle = {
+  HIGH: { bg: '#FBEAEA', text: '#B81C1C', border: 'rgba(184,28,28,0.2)' },
+  MED:  { bg: '#F8EDDC', text: '#8B6428', border: 'rgba(139,100,40,0.2)' },
+  LOW:  { bg: '#F0EFEB', text: '#918D88', border: '#D8D4CC' },
+}
+
 export function RecentChangeFeed({ changes }: RecentChangeFeedProps) {
   const sorted = [...changes].sort((a, b) => severityOrder[a.severity] - severityOrder[b.severity])
-  const severityMix = {
-    HIGH: changes.filter(change => change.severity === 'HIGH').length,
-    MED: changes.filter(change => change.severity === 'MED').length,
-    LOW: changes.filter(change => change.severity === 'LOW').length,
+  const mix = {
+    HIGH: changes.filter(c => c.severity === 'HIGH').length,
+    MED:  changes.filter(c => c.severity === 'MED').length,
+    LOW:  changes.filter(c => c.severity === 'LOW').length,
   }
   const total = Math.max(changes.length, 1)
 
   return (
-    <div
-      className="flex h-full flex-col overflow-hidden rounded-[26px] border shadow-[0_18px_48px_rgba(18,52,51,0.1)] backdrop-blur-[18px]"
-      style={{ background: 'rgba(255, 252, 245, 0.82)', borderColor: 'rgba(53, 76, 72, 0.14)' }}
-    >
-
+    <div style={{ background: '#FFFFFF', border: '1px solid #D8D4CC', borderRadius: '2px', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
       {/* Header */}
-      <div className="flex flex-shrink-0 items-start justify-between px-5 py-4"
-        style={{ borderBottom: '1px solid rgba(53, 76, 72, 0.09)' }}>
-        <div>
-          <p className="mb-1 text-[11px] font-semibold uppercase tracking-[0.14em]" style={{ color: '#5B716F' }}>
-            Recent Change Feed
-          </p>
-          <h3 className="text-[1.35rem] leading-tight" style={{ color: '#123433' }}>
-            What deserves attention now
-          </h3>
-        </div>
-        <span className="text-[10px] font-bold px-2 py-1 rounded-full flex-shrink-0"
-          style={{ background: '#F5D5CF', color: '#B93823' }}>
-          Live Alerts
-        </span>
+      <div style={{ padding: '10px 14px', background: '#F0EFEB', borderBottom: '1px solid #D8D4CC', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <p style={{ ...LABEL }}>Recent Changes</p>
+        <span style={{ ...mono, fontSize: '9px', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#EF5050' }}>All →</span>
       </div>
 
-      <div className="px-5 pt-4">
-        <div className="mb-2 flex items-center justify-between">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.16em]" style={{ color: '#8B9692' }}>
-            Severity mix
-          </p>
-          <p className="text-[10px]" style={{ color: '#8B9692' }}>
-            {changes.length} changes
-          </p>
+      {/* Severity mix bar */}
+      <div style={{ padding: '10px 14px', borderBottom: '1px solid #EBEBEB' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '5px' }}>
+          <p style={{ ...LABEL }}>Severity mix</p>
+          <p style={{ ...mono, fontSize: '9px', color: '#918D88' }}>{changes.length} changes</p>
         </div>
-        <div className="flex h-2 overflow-hidden rounded-full" style={{ background: 'rgba(18, 52, 51, 0.08)' }}>
-          {severityMix.HIGH > 0 && <div style={{ width: `${(severityMix.HIGH / total) * 100}%`, background: '#B93823' }} />}
-          {severityMix.MED > 0 && <div style={{ width: `${(severityMix.MED / total) * 100}%`, background: '#D97706' }} />}
-          {severityMix.LOW > 0 && <div style={{ width: `${(severityMix.LOW / total) * 100}%`, background: '#7BA8C4' }} />}
+        <div style={{ display: 'flex', height: '3px', background: '#EBEBEB', borderRadius: '1px', overflow: 'hidden', gap: '1px' }}>
+          {mix.HIGH > 0 && <div style={{ width: `${(mix.HIGH / total) * 100}%`, background: '#B81C1C' }} />}
+          {mix.MED  > 0 && <div style={{ width: `${(mix.MED  / total) * 100}%`, background: '#8B6428' }} />}
+          {mix.LOW  > 0 && <div style={{ width: `${(mix.LOW  / total) * 100}%`, background: '#918D88' }} />}
         </div>
-        <div className="mt-2 flex flex-wrap gap-3">
-          <span className="text-[10px]" style={{ color: '#8B9692' }}>High {severityMix.HIGH}</span>
-          <span className="text-[10px]" style={{ color: '#8B9692' }}>Med {severityMix.MED}</span>
-          <span className="text-[10px]" style={{ color: '#8B9692' }}>Low {severityMix.LOW}</span>
+        <div style={{ display: 'flex', gap: '12px', marginTop: '5px' }}>
+          {(['HIGH', 'MED', 'LOW'] as const).map(sev => (
+            <span key={sev} style={{ ...LABEL, color: sevStyle[sev].text }}>
+              {sev} {mix[sev]}
+            </span>
+          ))}
         </div>
       </div>
 
-      {/* Feed */}
-      <div className="flex-1 overflow-y-auto pt-2">
+      {/* Feed items */}
+      <div style={{ flex: 1, overflowY: 'auto' }}>
         {sorted.map((change, i) => {
-          const dotColor = change.severity === 'HIGH' ? '#DC2626'
-            : change.severity === 'MED' ? '#D97706' : '#9CA3AF'
+          const sev  = sevStyle[change.severity]
           const title = `${change.payer} — ${changeTypeLabels[change.change_type] ?? change.change_type}`
           return (
-            <div
-              key={i}
-              className="mx-4 my-2 flex items-start gap-3 rounded-[20px] border px-4 py-4"
-              style={{
-                borderColor: 'rgba(53, 76, 72, 0.14)',
-                background: 'rgba(255, 255, 255, 0.58)',
-              }}
-            >
-              <span className="w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0" style={{ background: dotColor }} />
-              <div className="flex-1 min-w-0">
-                <div className="flex items-start justify-between gap-2">
-                  <p className="text-sm font-semibold leading-snug" style={{ color: '#123433' }}>{title}</p>
-                  <p className="text-[11px] font-medium flex-shrink-0" style={{ color: '#5B716F' }}>{change.date}</p>
-                </div>
-                <p className="text-sm mt-1 leading-relaxed" style={{ color: '#5B716F' }}>{change.summary}</p>
-                <p className="text-[11px] mt-2 font-medium" style={{ color: '#8B9692' }}>{change.drug}</p>
+            <div key={i} style={{ padding: '11px 14px', borderBottom: '1px solid #EBEBEB' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '7px', marginBottom: '4px' }}>
+                <span style={{ ...mono, fontSize: '8px', letterSpacing: '0.1em', textTransform: 'uppercase', padding: '2px 5px', borderRadius: '1px', fontWeight: 600, background: sev.bg, color: sev.text, border: `1px solid ${sev.border}` }}>
+                  {change.severity}
+                </span>
+                <span style={{ ...mono, fontSize: '9px', color: '#918D88', marginLeft: 'auto' }}>{change.date}</span>
               </div>
+              <p style={{ fontSize: '12px', fontWeight: 600, color: '#131210', lineHeight: 1.3, marginBottom: '3px' }}>{title}</p>
+              <p style={{ fontSize: '11px', color: '#4A4845', lineHeight: 1.5, marginBottom: '3px' }}>{change.summary}</p>
+              <p style={{ ...mono, fontSize: '9px', color: '#EF5050' }}>{change.drug}</p>
             </div>
           )
         })}

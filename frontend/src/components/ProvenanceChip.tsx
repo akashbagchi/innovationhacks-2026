@@ -6,6 +6,8 @@ interface ProvenanceChipProps {
   policyTitle: string
 }
 
+const mono: React.CSSProperties = { fontFamily: "'IBM Plex Mono', monospace" }
+
 export function ProvenanceChip({ payer, policyTitle }: ProvenanceChipProps) {
   const [open, setOpen] = useState(false)
 
@@ -13,32 +15,45 @@ export function ProvenanceChip({ payer, policyTitle }: ProvenanceChipProps) {
     <>
       <button
         onClick={() => setOpen(true)}
-        className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs bg-slate-100 text-slate-600 hover:bg-slate-200 transition-colors border border-slate-200 font-mono"
+        style={{ ...mono, display: 'inline-flex', alignItems: 'center', gap: '4px', padding: '2px 7px', borderRadius: '1px', fontSize: '10px', background: '#F0EFEB', border: '1px solid #D8D4CC', color: '#4A4845', cursor: 'pointer', transition: 'border-color 0.1s' }}
+        onMouseEnter={e => (e.currentTarget.style.borderColor = '#EF5050')}
+        onMouseLeave={e => (e.currentTarget.style.borderColor = '#D8D4CC')}
       >
         <span>{payer}</span>
-        <span className="text-slate-400">|</span>
-        <span className="truncate max-w-[140px]">{policyTitle}</span>
-        <span className="text-slate-400">|</span>
-        <span>Page —</span>
+        <span style={{ color: '#D8D4CC' }}>|</span>
+        <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '140px' }}>{policyTitle}</span>
+        <span style={{ color: '#D8D4CC' }}>|</span>
+        <span>p. —</span>
       </button>
 
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="max-w-lg">
-          <DialogHeader>
-            <DialogTitle className="text-sm font-mono">Source Provenance</DialogTitle>
-          </DialogHeader>
-          <div className="space-y-3 text-sm">
-            <div className="grid grid-cols-2 gap-2 text-xs">
-              <div><span className="text-slate-500">Payer</span><p className="font-medium">{payer}</p></div>
-              <div><span className="text-slate-500">Policy</span><p className="font-medium">{policyTitle}</p></div>
-              <div><span className="text-slate-500">Page</span><p className="font-medium">— (pipeline pending)</p></div>
-              <div><span className="text-slate-500">Section</span><p className="font-medium">Coverage Criteria</p></div>
+        <DialogContent style={{ maxWidth: '480px', borderRadius: '2px', border: '1px solid #D8D4CC', background: '#FFFFFF', padding: 0, color: '#131210' }}>
+          <div style={{ borderBottom: '1px solid #D8D4CC', padding: '16px 20px' }}>
+            <DialogHeader>
+              <DialogTitle style={{ ...mono, fontSize: '11px', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#918D88', fontWeight: 400 }}>Source Provenance</DialogTitle>
+            </DialogHeader>
+          </div>
+          <div style={{ padding: '16px 20px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
+              {[
+                { label: 'Payer',   value: payer },
+                { label: 'Policy',  value: policyTitle },
+                { label: 'Page',    value: '— (pipeline pending)' },
+                { label: 'Section', value: 'Coverage Criteria' },
+              ].map(({ label, value }) => (
+                <div key={label}>
+                  <p style={{ ...mono, fontSize: '9px', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#918D88', marginBottom: '3px' }}>{label}</p>
+                  <p style={{ fontSize: '12px', fontWeight: 600, color: '#131210' }}>{value}</p>
+                </div>
+              ))}
             </div>
-            <div className="bg-slate-50 rounded p-3 border border-slate-200">
-              <p className="text-xs text-slate-500 mb-1">Source excerpt</p>
-              <p className="text-slate-400 italic text-xs">Source text excerpt will appear here once the extraction pipeline is connected.</p>
+            <div style={{ background: '#F0EFEB', border: '1px solid #D8D4CC', borderRadius: '2px', padding: '10px 12px' }}>
+              <p style={{ ...mono, fontSize: '9px', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#918D88', marginBottom: '4px' }}>Source excerpt</p>
+              <p style={{ fontSize: '11px', color: '#918D88', fontStyle: 'italic', lineHeight: 1.5 }}>Source text excerpt will appear here once the extraction pipeline is connected.</p>
             </div>
-            <button className="text-xs text-blue-500 hover:underline">View PDF (placeholder)</button>
+            <button style={{ ...mono, fontSize: '10px', letterSpacing: '0.08em', textTransform: 'uppercase', color: '#EF5050', background: 'none', border: 'none', cursor: 'pointer', padding: 0, textAlign: 'left' }}>
+              View PDF (placeholder)
+            </button>
           </div>
         </DialogContent>
       </Dialog>

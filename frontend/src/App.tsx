@@ -19,8 +19,6 @@ export default function App() {
   const [portfolio, setPortfolio]       = useState<DrugPortfolioEntry[]>(mockPortfolio)
   const [changes, setChanges]           = useState<ChangeEntry[]>(mockChanges)
 
-  // Hydrate portfolio policies from MongoDB via API.
-  // trends/insights/livesAtRisk remain from mock (require historical pipeline).
   useEffect(() => {
     Promise.all(
       mockPortfolio.map(async entry => {
@@ -33,18 +31,13 @@ export default function App() {
               .filter(p => p.policy_record != null)
               .map(p => p.policy_record),
           }
-        } catch {
-          return entry // fallback to mock if API unreachable
-        }
+        } catch { return entry }
       })
     ).then(setPortfolio)
   }, [])
 
-  // Hydrate change log from MongoDB.
   useEffect(() => {
-    fetchChanges()
-      .then(setChanges)
-      .catch(() => {/* keep mockChanges */})
+    fetchChanges().then(setChanges).catch(() => {})
   }, [])
 
   const drug = selectedDrug ? portfolio.find(d => d.id === selectedDrug) ?? null : null
@@ -55,90 +48,70 @@ export default function App() {
   }
 
   return (
-    <div className="flex min-h-screen gap-6 p-6" style={{ background: 'transparent' }}>
+    <div className="flex min-h-screen" style={{ background: '#F0EFEB' }}>
       <Sidebar active={activeNav} onNavigate={handleNavigate} changes={changes} portfolio={portfolio} />
 
-      <div className="flex-1 flex flex-col min-w-0 gap-6">
+      <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
         <AnimatePresence mode="wait">
 
           {activeNav === 'portfolio' && (
-            <motion.div
-              key={drug ? `drug-${drug.id}` : 'portfolio'}
+            <motion.div key={drug ? `drug-${drug.id}` : 'portfolio'}
               className="flex-1 flex flex-col"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.12 }}
-            >
-              {drug ? (
-                <DrugDetailView drug={drug} onBack={() => setSelectedDrug(null)} changes={changes} />
-              ) : (
-                <PortfolioView portfolio={portfolio} onSelectDrug={setSelectedDrug} changes={changes} />
-              )}
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+              transition={{ duration: 0.1 }}>
+              {drug
+                ? <DrugDetailView drug={drug} onBack={() => setSelectedDrug(null)} changes={changes} />
+                : <PortfolioView portfolio={portfolio} onSelectDrug={setSelectedDrug} changes={changes} />}
             </motion.div>
           )}
 
           {activeNav === 'compare' && (
-            <motion.div
-              key="compare"
-              className="flex-1 flex flex-col"
-              style={{ background: 'transparent' }}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.12 }}
-            >
-              <div className="glass-hero rounded-[30px] px-8 pt-7 pb-5">
-                <div className="max-w-6xl">
-                  <p className="text-[10px] font-semibold uppercase tracking-widest mb-1" style={{ color: '#0A4D8C' }}>
-                    Cross-Payer Intelligence
-                  </p>
-                  <h1 className="text-2xl font-semibold" style={{ color: '#0D1B2A' }}>Compare</h1>
-                  <p className="text-sm mt-1" style={{ color: '#5A6E8A' }}>
-                    Select a drug below for a focused cross-payer analysis
-                  </p>
-                  <div className="flex gap-2 mt-4 flex-wrap">
-                    {portfolio.map(d => (
-                      <button key={d.id}
-                        onClick={() => { setSelectedDrug(d.id); setActiveNav('portfolio') }}
-                        className="px-3 py-1.5 rounded-lg text-xs font-medium border transition-all"
-                        style={{ borderColor: '#E2E7EF', color: '#5A6E8A', background: '#fff' }}
-                      >
-                        {d.brandName}
-                        <span className="ml-1.5 text-[10px] font-mono" style={{ color: '#94A3B8' }}>{d.jCode}</span>
-                      </button>
-                    ))}
-                  </div>
+            <motion.div key="compare" className="flex-1 flex flex-col"
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+              transition={{ duration: 0.1 }}>
+              {/* Topbar */}
+              <div style={{ background: '#FFFFFF', borderBottom: '1px solid #D8D4CC' }} className="px-7 py-4 flex-shrink-0">
+                <p className="label-mono mb-1">Cross-Payer Intelligence</p>
+                <h1 className="text-base font-bold" style={{ color: '#131210' }}>Coverage Matrix</h1>
+                <p className="text-xs mt-1" style={{ color: '#4A4845' }}>
+                  Select a drug below for a focused cross-payer analysis
+                </p>
+                <div className="flex gap-2 mt-3 flex-wrap">
+                  {portfolio.map(d => (
+                    <button key={d.id}
+                      onClick={() => { setSelectedDrug(d.id); setActiveNav('portfolio') }}
+                      style={{
+                        background: '#F0EFEB', border: '1px solid #D8D4CC',
+                        borderRadius: '2px', color: '#4A4845',
+                        fontFamily: "'IBM Plex Mono', monospace",
+                        fontSize: '10px', letterSpacing: '0.06em',
+                        padding: '5px 10px', cursor: 'pointer',
+                      }}>
+                      {d.brandName}
+                      <span style={{ marginLeft: '8px', color: '#918D88' }}>{d.jCode}</span>
+                    </button>
+                  ))}
                 </div>
               </div>
-              <div className="mx-auto w-full max-w-[1520px] px-6 xl:px-10">
+              <div className="flex-1 overflow-y-auto p-7">
                 <ComparisonMatrix policies={portfolio[0].policies} />
               </div>
             </motion.div>
           )}
 
           {activeNav === 'digest' && (
-            <motion.div
-              key="digest"
-              className="flex-1 flex flex-col"
-              style={{ background: 'transparent' }}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.12 }}
-            >
-              <div className="glass-hero rounded-[30px] px-8 pt-7 pb-5">
-                <div className="max-w-6xl">
-                  <p className="text-[10px] font-semibold uppercase tracking-widest mb-1" style={{ color: '#0A4D8C' }}>
-                    Policy Surveillance
-                  </p>
-                  <h1 className="text-2xl font-semibold" style={{ color: '#0D1B2A' }}>Change Digest</h1>
-                  <p className="text-sm mt-1" style={{ color: '#5A6E8A' }}>
-                    All policy changes detected across your tracked formulary this quarter
-                  </p>
-                </div>
+            <motion.div key="digest" className="flex-1 flex flex-col"
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+              transition={{ duration: 0.1 }}>
+              {/* Topbar */}
+              <div style={{ background: '#FFFFFF', borderBottom: '1px solid #D8D4CC' }} className="px-7 py-4 flex-shrink-0">
+                <p className="label-mono mb-1">Policy Surveillance</p>
+                <h1 className="text-base font-bold" style={{ color: '#131210' }}>Change Digest</h1>
+                <p className="text-xs mt-1" style={{ color: '#4A4845' }}>
+                  All policy changes detected across your tracked formulary this quarter
+                </p>
               </div>
-              <div className="mx-auto w-full max-w-[980px] px-6 xl:px-10">
+              <div className="flex-1 overflow-y-auto p-7 max-w-4xl">
                 <ChangeDigest changes={changes} />
               </div>
             </motion.div>

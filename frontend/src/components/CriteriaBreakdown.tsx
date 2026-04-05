@@ -8,19 +8,22 @@ interface CriteriaBreakdownProps {
   policies: PolicyRecord[]
 }
 
-const PAYER_COLORS = ['#2D6A90', '#10A090', '#D97706']
+const mono: React.CSSProperties = { fontFamily: "'IBM Plex Mono', monospace" }
+const LABEL: React.CSSProperties = { ...mono, fontSize: '9px', letterSpacing: '0.2em', textTransform: 'uppercase' as const, color: '#918D88' }
+
+const PAYER_COLORS = ['#EF5050', '#91BFEB', '#CD944F']
 
 const CRITERION_COLORS: Record<string, string> = {
-  combination_restriction: '#7C3AED',
-  prior_therapy:           '#D97706',
-  line_of_therapy:         '#2D6A90',
-  disease_severity:        '#DC2626',
-  lab_value:               '#10A090',
-  diagnosis:               '#6B7583',
-  step_therapy:            '#EA580C',
-  prescriber:              '#16A34A',
-  clinical_response:       '#0891B2',
-  other:                   '#9AA3AF',
+  combination_restriction: '#4A4845',
+  prior_therapy:           '#CD944F',
+  line_of_therapy:         '#2870A8',
+  disease_severity:        '#B81C1C',
+  lab_value:               '#2870A8',
+  diagnosis:               '#918D88',
+  step_therapy:            '#CD944F',
+  prescriber:              '#2870A8',
+  clinical_response:       '#2870A8',
+  other:                   '#918D88',
 }
 
 const CRITERION_LABELS: Record<string, string> = {
@@ -37,12 +40,11 @@ const CRITERION_LABELS: Record<string, string> = {
 }
 
 export function CriteriaBreakdown({ policies }: CriteriaBreakdownProps) {
-  // Grouped bar chart data — 4 dimensions × 3 payers
   const barData = [
-    { label: 'PA Burden', key: 'pa' },
-    { label: 'Criteria Type', key: 'criteriaType' },
+    { label: 'PA Burden',    key: 'pa' },
+    { label: 'Criteria',     key: 'criteriaType' },
     { label: 'Auth Duration', key: 'duration' },
-    { label: 'Exclusions', key: 'exclusions' },
+    { label: 'Exclusions',   key: 'exclusions' },
   ].map(dim => {
     const entry: Record<string, string | number> = { label: dim.label }
     policies.forEach(p => {
@@ -52,7 +54,6 @@ export function CriteriaBreakdown({ policies }: CriteriaBreakdownProps) {
     return entry
   })
 
-  // Ranked barrier analysis — criterion type × (payer × indication) count
   const barrierCounts: Record<string, number> = {}
   policies.forEach(p => {
     p.indications.forEach(ind => {
@@ -61,95 +62,84 @@ export function CriteriaBreakdown({ policies }: CriteriaBreakdownProps) {
       })
     })
   })
-  const totalCriteria = Object.values(barrierCounts).reduce((a, b) => a + b, 0)
+  const totalCriteria  = Object.values(barrierCounts).reduce((a, b) => a + b, 0)
   const rankedBarriers = Object.entries(barrierCounts)
     .sort((a, b) => b[1] - a[1])
     .map(([type, count]) => ({ type, count, pct: Math.round((count / totalCriteria) * 100) }))
 
   return (
-    <div className="space-y-6">
-      {/* Section header */}
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+      {/* Header */}
       <div>
-        <p className="text-[10px] font-semibold uppercase tracking-widest mb-1" style={{ color: '#2D6A90' }}>
-          Criteria Analysis
-        </p>
-        <p className="text-sm font-semibold" style={{ color: '#0E1117' }}>Restriction Profile &amp; Access Barrier Composition</p>
+        <p style={{ ...LABEL, color: '#EF5050', marginBottom: '4px' }}>Criteria Analysis</p>
+        <p style={{ fontSize: '14px', fontWeight: 700, color: '#131210' }}>Restriction Profile &amp; Access Barrier Composition</p>
       </div>
 
-      {/* Grouped bar chart */}
-      <div className="rounded-xl p-5" style={{ background: '#fff', border: '1px solid #E2E7EF' }}>
-        <p className="text-xs font-semibold mb-0.5" style={{ color: '#0E1117' }}>Restriction Dimensions by Payer</p>
-        <p className="text-[11px] mb-4" style={{ color: '#6B7583' }}>
-          4 dimensions × {policies.length} payers — compare directly where each payer restricts access
-        </p>
-        <ResponsiveContainer width="100%" height={240}>
+      {/* Bar chart */}
+      <div style={{ background: '#FFFFFF', border: '1px solid #D8D4CC', borderRadius: '2px', padding: '16px' }}>
+        <p style={{ fontSize: '12px', fontWeight: 600, color: '#131210', marginBottom: '2px' }}>Restriction Dimensions by Payer</p>
+        <p style={{ ...LABEL, marginBottom: '16px' }}>{policies.length} payer{policies.length !== 1 ? 's' : ''} · 4 dimensions</p>
+        <ResponsiveContainer width="100%" height={220}>
           <BarChart data={barData} barGap={2} barCategoryGap="30%">
-            <CartesianGrid vertical={false} stroke="#E2E7EF" />
+            <CartesianGrid vertical={false} stroke="#EBEBEB" />
             <XAxis
               dataKey="label"
-              tick={{ fontSize: 11, fill: '#6B7583' }}
+              tick={{ fontSize: 11, fill: '#4A4845', fontFamily: "'IBM Plex Sans', system-ui, sans-serif" }}
               axisLine={false}
               tickLine={false}
             />
             <YAxis
-              tick={{ fontSize: 10, fill: '#9AA3AF' }}
+              tick={{ fontSize: 10, fill: '#918D88', fontFamily: "'IBM Plex Mono', monospace" }}
               axisLine={false}
               tickLine={false}
               width={28}
             />
             <Tooltip
-              cursor={{ fill: 'rgba(10,77,140,0.04)' }}
+              cursor={{ fill: 'rgba(239,80,80,0.04)' }}
               contentStyle={{
-                background: '#0E1117',
+                background: '#131210',
                 border: 'none',
-                borderRadius: '8px',
+                borderRadius: '2px',
                 fontSize: '11px',
-                color: '#fff',
+                color: '#FFFFFF',
+                fontFamily: "'IBM Plex Mono', monospace",
               }}
-              labelStyle={{ color: '#9AA3AF', marginBottom: '4px' }}
+              labelStyle={{ color: '#918D88', marginBottom: '4px' }}
             />
-            <Legend wrapperStyle={{ fontSize: '11px', color: '#6B7583', paddingTop: '12px' }} />
+            <Legend wrapperStyle={{ fontSize: '11px', color: '#4A4845', paddingTop: '12px', fontFamily: "'IBM Plex Sans', system-ui, sans-serif" }} />
             {policies.map((p, i) => (
-              <Bar key={p.payer.name} dataKey={p.payer.name} fill={PAYER_COLORS[i]} radius={[3, 3, 0, 0]} />
+              <Bar key={p.payer.name} dataKey={p.payer.name} fill={PAYER_COLORS[i]} radius={[0, 0, 0, 0]} />
             ))}
           </BarChart>
         </ResponsiveContainer>
       </div>
 
-      {/* Ranked barrier analysis */}
-      <div className="rounded-xl p-5" style={{ background: '#fff', border: '1px solid #E2E7EF' }}>
-        <p className="text-xs font-semibold mb-0.5" style={{ color: '#0E1117' }}>Ranked Access Barriers</p>
-        <p className="text-[11px] mb-5" style={{ color: '#6B7583' }}>
-          Criterion types ranked by frequency across all payer × indication combinations
-        </p>
-        <div className="space-y-3">
+      {/* Ranked barriers */}
+      <div style={{ background: '#FFFFFF', border: '1px solid #D8D4CC', borderRadius: '2px', padding: '16px' }}>
+        <p style={{ fontSize: '12px', fontWeight: 600, color: '#131210', marginBottom: '2px' }}>Ranked Access Barriers</p>
+        <p style={{ ...LABEL, marginBottom: '16px' }}>By frequency across all payer × indication combinations</p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
           {rankedBarriers.map(({ type, count, pct }, i) => {
-            const color = CRITERION_COLORS[type] ?? '#9AA3AF'
+            const color = CRITERION_COLORS[type] ?? '#918D88'
             const label = CRITERION_LABELS[type] ?? type.replace(/_/g, ' ')
             return (
-              <div key={type} className="flex items-center gap-3">
-                {/* Rank */}
-                <span className="text-[11px] font-bold tabular-nums w-4 flex-shrink-0 text-right"
-                  style={{ color: '#C0CDD9' }}>
+              <div key={type} style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <span style={{ ...mono, fontSize: '10px', fontWeight: 700, color: '#D8D4CC', width: '14px', flexShrink: 0, textAlign: 'right' }}>
                   {i + 1}
                 </span>
-                {/* Label */}
-                <span className="text-xs w-44 flex-shrink-0" style={{ color: '#334155' }}>{label}</span>
-                {/* Bar */}
-                <div className="flex-1 h-2 rounded-full" style={{ background: '#E2E7EF' }}>
-                  <div className="h-full rounded-full transition-all"
-                    style={{ width: `${pct}%`, background: color }} />
+                <span style={{ fontSize: '11px', color: '#131210', width: '160px', flexShrink: 0 }}>{label}</span>
+                <div style={{ flex: 1, height: '3px', background: '#EBEBEB' }}>
+                  <div style={{ height: '100%', width: `${pct}%`, background: color, transition: 'width 0.2s' }} />
                 </div>
-                {/* Count + pct */}
-                <span className="text-[11px] tabular-nums w-16 text-right" style={{ color: '#6B7583' }}>
-                  {count} <span style={{ color: '#C0CDD9' }}>({pct}%)</span>
+                <span style={{ ...mono, fontSize: '10px', color: '#4A4845', width: '60px', textAlign: 'right' }}>
+                  {count} <span style={{ color: '#918D88' }}>({pct}%)</span>
                 </span>
               </div>
             )
           })}
         </div>
-        <p className="text-[10px] mt-4 pt-3" style={{ borderTop: '1px solid #E2E7EF', color: '#9AA3AF' }}>
-          Count = number of (payer × indication) combinations containing this criterion type
+        <p style={{ ...LABEL, marginTop: '14px', paddingTop: '10px', borderTop: '1px solid #EBEBEB' }}>
+          Count = payer × indication combinations containing this criterion type
         </p>
       </div>
     </div>

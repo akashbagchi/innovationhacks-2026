@@ -6,24 +6,24 @@ interface InsightPanelProps {
   drugName?: string
 }
 
+const mono: React.CSSProperties = { fontFamily: "'IBM Plex Mono', monospace" }
+const LABEL: React.CSSProperties = { ...mono, fontSize: '9px', letterSpacing: '0.2em', textTransform: 'uppercase' as const, color: '#918D88' }
+
 const severityConfig = {
-  high:   { accent: '#DC2626', label: 'CRITICAL INSIGHT' },
-  medium: { accent: '#D97706', label: 'NOTABLE DIFFERENCE' },
-  low:    { accent: '#2D6A90', label: 'OBSERVATION' },
+  high:   { rail: '#B81C1C', label: 'CRITICAL INSIGHT' },
+  medium: { rail: '#8B6428', label: 'NOTABLE DIFFERENCE' },
+  low:    { rail: '#1A7840', label: 'OBSERVATION' },
 }
 
 export function InsightPanel({ insights, drugName }: InsightPanelProps) {
   return (
-    <div className="space-y-3">
-      {/* Header */}
-      <div className="mb-5">
-        <p className="text-[10px] font-semibold uppercase tracking-widest mb-1" style={{ color: '#2D6A90' }}>
-          AI Analysis
-        </p>
-        <p className="text-sm font-semibold" style={{ color: '#0E1117' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+      <div style={{ marginBottom: '8px' }}>
+        <p style={{ ...LABEL, color: '#EF5050', marginBottom: '3px' }}>AI Analysis</p>
+        <p style={{ fontSize: '14px', fontWeight: 700, color: '#131210' }}>
           Policy Insights{drugName ? ` — ${drugName}` : ''}
         </p>
-        <p className="text-xs mt-0.5" style={{ color: '#6B7583' }}>
+        <p style={{ fontSize: '11px', color: '#4A4845', marginTop: '2px' }}>
           {insights.length} findings · with recommended actions
         </p>
       </div>
@@ -31,42 +31,22 @@ export function InsightPanel({ insights, drugName }: InsightPanelProps) {
       {insights.map((insight, i) => {
         const cfg = severityConfig[insight.severity]
         return (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, x: 10 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: i * 0.06, duration: 0.15, ease: 'easeOut' }}
-            className="rounded-lg overflow-hidden"
-            style={{
-              background: '#fff',
-              border: '1px solid #E2E7EF',
-              borderLeft: `3px solid ${cfg.accent}`,
-            }}
-          >
-            <div className="px-4 py-3.5">
-              <p className="text-[10px] font-bold tracking-widest mb-2" style={{ color: cfg.accent }}>
-                {cfg.label}
-              </p>
-              <p className="text-xs leading-relaxed mb-3" style={{ color: '#334155' }}>
-                {insight.text}
-              </p>
-              {/* Action line */}
-              <div className="flex items-start gap-1.5 pt-2.5" style={{ borderTop: '1px solid #E2E7EF' }}>
-                <span className="text-[11px] flex-shrink-0 font-bold mt-px" style={{ color: cfg.accent }}>→</span>
-                <p className="text-[11px] leading-relaxed" style={{ color: '#475569' }}>
-                  {insight.action}
-                </p>
-              </div>
+          <motion.div key={i}
+            initial={{ opacity: 0, x: 6 }} animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: i * 0.05, duration: 0.13 }}
+            style={{ background: '#FFFFFF', border: '1px solid #D8D4CC', borderLeft: `3px solid ${cfg.rail}`, borderRadius: '2px', padding: '12px 13px' }}>
+            <p style={{ ...LABEL, color: cfg.rail, marginBottom: '6px' }}>{cfg.label}</p>
+            <p style={{ fontSize: '12px', lineHeight: 1.6, color: '#131210', marginBottom: '8px' }}>{insight.text}</p>
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '6px', paddingTop: '8px', borderTop: '1px solid #EBEBEB' }}>
+              <span style={{ ...mono, fontSize: '11px', color: cfg.rail, flexShrink: 0, marginTop: '1px' }}>→</span>
+              <p style={{ fontSize: '11px', lineHeight: 1.5, color: '#4A4845' }}>{insight.action}</p>
             </div>
           </motion.div>
         )
       })}
 
-      {/* Footer */}
-      <div className="rounded-lg px-3.5 py-2.5 mt-1" style={{ background: '#F5F6F8', border: '1px solid #E2E7EF' }}>
-        <p className="text-[10px]" style={{ color: '#9AA3AF' }}>
-          Structured extraction · LLM-generated narrative in production
-        </p>
+      <div style={{ padding: '10px 12px', background: '#F0EFEB', border: '1px solid #D8D4CC', borderRadius: '2px', marginTop: '4px' }}>
+        <p style={{ ...LABEL }}>Structured extraction · LLM-generated narrative in production</p>
       </div>
     </div>
   )

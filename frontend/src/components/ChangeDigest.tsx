@@ -5,10 +5,13 @@ interface ChangeDigestProps {
   changes: ChangeEntry[]
 }
 
+const mono: React.CSSProperties = { fontFamily: "'IBM Plex Mono', monospace" }
+const LABEL: React.CSSProperties = { ...mono, fontSize: '9px', letterSpacing: '0.2em', textTransform: 'uppercase' as const, color: '#918D88' }
+
 const severityConfig = {
-  HIGH: { accent: '#DC2626', label: 'HIGH' },
-  MED:  { accent: '#D97706', label: 'MED' },
-  LOW:  { accent: '#6B7583', label: 'LOW' },
+  HIGH: { rail: '#B81C1C', bg: '#FBEAEA', text: '#B81C1C', border: 'rgba(184,28,28,0.2)', label: 'HIGH' },
+  MED:  { rail: '#8B6428', bg: '#F8EDDC', text: '#8B6428', border: 'rgba(139,100,40,0.2)', label: 'MED' },
+  LOW:  { rail: '#918D88', bg: '#F0EFEB', text: '#918D88', border: '#D8D4CC', label: 'LOW' },
 }
 
 const changeTypeLabels: Record<string, string> = {
@@ -22,17 +25,17 @@ const changeTypeLabels: Record<string, string> = {
   REMOVED_INDICATION:   'Indication removed',
 }
 
-const criterionChipColors: Record<string, { bg: string; text: string }> = {
-  step_therapy:            { bg: '#FEF3C7', text: '#92400E' },
-  combination_restriction: { bg: '#EDE9FE', text: '#5B21B6' },
-  prior_therapy:           { bg: '#FEF9C3', text: '#713F12' },
-  line_of_therapy:         { bg: '#EBF4FA', text: '#2D6A90' },
-  disease_severity:        { bg: '#FEE2E2', text: '#B91C1C' },
-  lab_value:               { bg: '#D0F4F1', text: '#0A6B62' },
-  diagnosis:               { bg: '#F1F5F9', text: '#475569' },
-  prescriber:              { bg: '#DCFCE7', text: '#166534' },
-  clinical_response:       { bg: '#CCFBF1', text: '#0F766E' },
-  other:                   { bg: '#F8FAFC', text: '#64748B' },
+const criterionChipColors: Record<string, { bg: string; text: string; border: string }> = {
+  step_therapy:            { bg: '#F8EDDC', text: '#8B6428', border: 'rgba(139,100,40,0.2)' },
+  combination_restriction: { bg: '#F0EFEB', text: '#4A4845', border: '#D8D4CC' },
+  prior_therapy:           { bg: '#F8EDDC', text: '#8B6428', border: 'rgba(139,100,40,0.2)' },
+  line_of_therapy:         { bg: '#EAF4FE', text: '#2870A8', border: 'rgba(40,112,168,0.25)' },
+  disease_severity:        { bg: '#FBEAEA', text: '#B81C1C', border: 'rgba(184,28,28,0.2)' },
+  lab_value:               { bg: '#EAF4FE', text: '#2870A8', border: 'rgba(40,112,168,0.25)' },
+  diagnosis:               { bg: '#F0EFEB', text: '#4A4845', border: '#D8D4CC' },
+  prescriber:              { bg: '#EAF4FE', text: '#2870A8', border: 'rgba(40,112,168,0.25)' },
+  clinical_response:       { bg: '#EAF4FE', text: '#2870A8', border: 'rgba(40,112,168,0.25)' },
+  other:                   { bg: '#F0EFEB', text: '#918D88', border: '#D8D4CC' },
 }
 
 export function ChangeDigest({ changes }: ChangeDigestProps) {
@@ -40,119 +43,93 @@ export function ChangeDigest({ changes }: ChangeDigestProps) {
   const payerCount = new Set(changes.map(c => c.payer)).size
 
   return (
-    <div className="space-y-5">
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
       {/* Header */}
-      <div className="flex items-start justify-between">
+      <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
         <div>
-          <p className="text-[10px] font-semibold uppercase tracking-widest mb-1" style={{ color: '#2D6A90' }}>
-            Policy Surveillance
-          </p>
-          <p className="text-sm font-semibold" style={{ color: '#0E1117' }}>Q1 2026 — Policy Changes</p>
-          <p className="text-xs mt-1" style={{ color: '#6B7583' }}>
+          <p style={{ ...LABEL, color: '#EF5050', marginBottom: '4px' }}>Policy Surveillance</p>
+          <p style={{ fontSize: '14px', fontWeight: 700, color: '#131210' }}>Q1 2026 — Policy Changes</p>
+          <p style={{ fontSize: '12px', color: '#4A4845', marginTop: '3px' }}>
             {changes.length} changes across {payerCount} payer{payerCount !== 1 ? 's' : ''}
-            {highCount > 0 && (
-              <span className="ml-2 font-semibold" style={{ color: '#DC2626' }}>
-                · {highCount} high-severity
-              </span>
-            )}
+            {highCount > 0 && <span style={{ marginLeft: '8px', fontWeight: 600, color: '#B81C1C' }}>· {highCount} high-severity</span>}
           </p>
         </div>
-        <button className="text-xs px-3 py-1.5 rounded-lg border transition-colors"
-          style={{ borderColor: '#E2E7EF', color: '#6B7583', background: '#fff' }}>
+        <button style={{ ...mono, fontSize: '10px', letterSpacing: '0.1em', textTransform: 'uppercase', padding: '6px 12px', borderRadius: '2px', border: '1px solid #D8D4CC', background: '#FFFFFF', color: '#4A4845', cursor: 'pointer' }}>
           Subscribe to alerts
         </button>
       </div>
 
-      {/* Count chips */}
-      <div className="flex gap-2">
+      {/* Severity chips */}
+      <div style={{ display: 'flex', gap: '6px' }}>
         {(['HIGH', 'MED', 'LOW'] as const).map(sev => {
           const count = changes.filter(c => c.severity === sev).length
-          const cfg = severityConfig[sev]
+          const cfg   = severityConfig[sev]
           return (
-            <div key={sev} className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium"
-              style={{ background: '#fff', border: '1px solid #E2E7EF', color: cfg.accent }}>
-              <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: cfg.accent }} />
-              {count} {cfg.label}
+            <div key={sev} style={{ display: 'flex', alignItems: 'center', gap: '5px', padding: '4px 10px', background: cfg.bg, border: `1px solid ${cfg.border}`, borderRadius: '2px' }}>
+              <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: cfg.rail, flexShrink: 0 }} />
+              <span style={{ ...mono, fontSize: '9px', letterSpacing: '0.1em', textTransform: 'uppercase', color: cfg.text, fontWeight: 600 }}>
+                {count} {cfg.label}
+              </span>
             </div>
           )
         })}
       </div>
 
-      {/* Change entries */}
-      <div className="space-y-2.5">
+      {/* Entries */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
         {changes.map((change, i) => {
           const cfg = severityConfig[change.severity]
           return (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 6 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.05, duration: 0.15, ease: 'easeOut' }}
-              className="rounded-lg overflow-hidden"
-              style={{
-                background: '#fff',
-                border: '1px solid #E2E7EF',
-                borderLeft: `3px solid ${cfg.accent}`,
-              }}
-            >
-              <div className="px-4 py-3.5">
-                <div className="flex items-start justify-between gap-4">
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 flex-wrap mb-1.5">
-                      <span className="text-[10px] font-bold tracking-wider" style={{ color: cfg.accent }}>
-                        {cfg.label}
-                      </span>
-                      <span style={{ color: '#D0D9E4' }}>·</span>
-                      <span className="text-xs font-semibold" style={{ color: '#0E1117' }}>{change.payer}</span>
-                      <span style={{ color: '#D0D9E4' }}>·</span>
-                      <span className="text-xs" style={{ color: '#6B7583' }}>{change.drug}</span>
-                      <span style={{ color: '#D0D9E4' }}>·</span>
-                      <span className="text-[10px] font-mono px-1.5 py-0.5 rounded"
-                        style={{ background: '#F5F6F8', color: '#6B7583' }}>
-                        {changeTypeLabels[change.change_type] ?? change.change_type}
-                      </span>
-                      {change.criterion_type && (() => {
-                        const chip = criterionChipColors[change.criterion_type] ?? criterionChipColors.other
-                        return (
-                          <span className="text-[10px] font-medium px-1.5 py-0.5 rounded"
-                            style={{ background: chip.bg, color: chip.text }}>
-                            {change.criterion_type.replace(/_/g, ' ')}
-                          </span>
-                        )
-                      })()}
-                      {change.auth_phase === 'reauth' && (
-                        <span className="text-[10px] font-medium px-1.5 py-0.5 rounded"
-                          style={{ background: '#F0F4FF', color: '#4361BB' }}>
-                          reauth
-                        </span>
-                      )}
-                    </div>
-                    <p className="text-sm leading-relaxed" style={{ color: '#334155' }}>{change.summary}</p>
-                    {change.before_text && change.after_text && (
-                      <div className="flex items-center gap-2 mt-1.5 text-[11px]">
-                        <span className="px-1.5 py-0.5 rounded font-mono" style={{ background: '#FEE2E2', color: '#991B1B' }}>
-                          {change.before_text}mo
-                        </span>
-                        <span style={{ color: '#C0CDD9' }}>→</span>
-                        <span className="px-1.5 py-0.5 rounded font-mono" style={{ background: '#DCFCE7', color: '#166534' }}>
-                          {change.after_text}mo
-                        </span>
-                      </div>
-                    )}
-                  </div>
-                  <div className="text-[11px] flex-shrink-0 font-mono tabular-nums" style={{ color: '#9AA3AF' }}>
-                    {change.date}
-                  </div>
-                </div>
+            <motion.div key={i}
+              initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.04, duration: 0.13 }}
+              style={{ background: '#FFFFFF', border: '1px solid #D8D4CC', borderLeft: `3px solid ${cfg.rail}`, borderRadius: '2px', padding: '12px 14px' }}>
+              {/* Meta row */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap', marginBottom: '6px' }}>
+                <span style={{ ...mono, fontSize: '8px', letterSpacing: '0.1em', textTransform: 'uppercase', fontWeight: 600, color: cfg.text }}>
+                  {cfg.label}
+                </span>
+                <span style={{ color: '#D8D4CC' }}>·</span>
+                <span style={{ fontSize: '12px', fontWeight: 600, color: '#131210' }}>{change.payer}</span>
+                <span style={{ color: '#D8D4CC' }}>·</span>
+                <span style={{ fontSize: '12px', color: '#4A4845' }}>{change.drug}</span>
+                <span style={{ color: '#D8D4CC' }}>·</span>
+                <span style={{ ...mono, fontSize: '9px', padding: '1px 5px', borderRadius: '1px', background: '#F0EFEB', border: '1px solid #D8D4CC', color: '#4A4845' }}>
+                  {changeTypeLabels[change.change_type] ?? change.change_type}
+                </span>
+                {change.criterion_type && (() => {
+                  const chip = criterionChipColors[change.criterion_type] ?? criterionChipColors.other
+                  return (
+                    <span style={{ ...mono, fontSize: '9px', padding: '1px 5px', borderRadius: '1px', background: chip.bg, border: `1px solid ${chip.border}`, color: chip.text }}>
+                      {change.criterion_type.replace(/_/g, ' ')}
+                    </span>
+                  )
+                })()}
+                {change.auth_phase === 'reauth' && (
+                  <span style={{ ...mono, fontSize: '9px', padding: '1px 5px', borderRadius: '1px', background: '#F0EFEB', border: '1px solid #D8D4CC', color: '#4A4845' }}>reauth</span>
+                )}
+                <span style={{ ...mono, fontSize: '9px', color: '#918D88', marginLeft: 'auto' }}>{change.date}</span>
               </div>
+
+              <p style={{ fontSize: '12px', lineHeight: 1.6, color: '#131210' }}>{change.summary}</p>
+
+              {change.before_text && change.after_text && (
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: '6px' }}>
+                  <span style={{ ...mono, fontSize: '10px', padding: '2px 6px', borderRadius: '1px', background: '#FBEAEA', border: '1px solid rgba(184,28,28,0.2)', color: '#B81C1C' }}>
+                    {change.before_text}mo
+                  </span>
+                  <span style={{ color: '#D8D4CC' }}>→</span>
+                  <span style={{ ...mono, fontSize: '10px', padding: '2px 6px', borderRadius: '1px', background: '#E0F2E8', border: '1px solid rgba(26,120,64,0.2)', color: '#1A7840' }}>
+                    {change.after_text}mo
+                  </span>
+                </div>
+              )}
             </motion.div>
           )
         })}
       </div>
 
-      <p className="text-[10px] text-center" style={{ color: '#9AA3AF' }}>
-        Showing all changes for the current quarter
-      </p>
+      <p style={{ ...LABEL, textAlign: 'center' }}>Showing all changes for the current quarter</p>
     </div>
   )
 }
