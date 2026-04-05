@@ -1,0 +1,40 @@
+{
+  "summary": {
+    "documents_evaluated": 0,
+    "failed_documents": 0,
+    "warning_documents": 0,
+    "total_error_failures": 0,
+    "total_warning_failures": 0,
+    "portfolio_error_failures": 1,
+    "portfolio_warning_failures": 0,
+    "portfolio_checks_evaluated": 2,
+    "gate_status": "FAIL"
+  },
+  "documents": [],
+  "portfolio_checks": [
+    {
+      "check_id": "current_policy_uniqueness",
+      "severity": "ERROR",
+      "status": "PASS",
+      "message": "Current payer and drug combinations are unique"
+    },
+    {
+      "check_id": "current_policy_keys_present",
+      "severity": "ERROR",
+      "status": "FAIL",
+      "message": "Some current policy documents are missing stable payer or drug keys",
+      "details": {
+        "records": [
+          {
+            "_id": "69d1f12b357ffd3a04af8a69",
+            "drug_id": "unknown",
+            "payer_canonical": "Priority Health",
+            "filename": "Priority Health 2026 MDL - Priority Health Commercial (Employer Group) and MyPriority.pdf",
+            "version": 1
+          }
+        ]
+      }
+    }
+  ],
+  "generated_at": "2026-04-05T13:13:51.965229+00:00"
+}
