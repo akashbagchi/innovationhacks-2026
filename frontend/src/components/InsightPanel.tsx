@@ -1,8 +1,9 @@
 import { motion } from 'framer-motion'
-import type { InsightCard } from '../types/policy'
+import type { InsightCard, InsightSource } from '../types/policy'
 
 interface InsightPanelProps {
   insights: InsightCard[]
+  sources?: InsightSource[]
   drugName?: string
   loading?: boolean
 }
@@ -16,7 +17,7 @@ const severityConfig = {
   low:    { rail: '#1A7840', label: 'OBSERVATION' },
 }
 
-export function InsightPanel({ insights, drugName, loading }: InsightPanelProps) {
+export function InsightPanel({ insights, sources = [], drugName, loading }: InsightPanelProps) {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
       <div style={{ marginBottom: '8px' }}>
@@ -47,9 +48,26 @@ export function InsightPanel({ insights, drugName, loading }: InsightPanelProps)
       })}
 
       <div style={{ padding: '10px 12px', background: '#F0EFEB', border: '1px solid #D8D4CC', borderRadius: '2px', marginTop: '4px' }}>
-        <p style={{ ...LABEL, opacity: loading ? 0.4 : 1, transition: 'opacity 0.3s' }}>
+        <p style={{ ...LABEL, opacity: loading ? 0.4 : 1, transition: 'opacity 0.3s', marginBottom: sources.length ? '8px' : 0 }}>
           {loading ? 'Generating live analysis…' : 'Structured extraction · LLM-generated'}
         </p>
+        {!loading && sources.length > 0 && (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+            <p style={{ ...LABEL, color: '#4A4845', marginBottom: '2px' }}>Source documents</p>
+            {sources.map((src, i) => (
+              <div key={i} style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: '8px' }}>
+                <span style={{ fontSize: '10px', color: '#4A4845', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                  {src.payer}
+                </span>
+                {src.doc_hash && (
+                  <span style={{ ...mono, fontSize: '9px', color: '#918D88', flexShrink: 0 }} title={`sha256: ${src.doc_hash}`}>
+                    #{src.doc_hash.slice(0, 8)}
+                  </span>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   )

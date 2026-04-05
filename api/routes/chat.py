@@ -38,6 +38,7 @@ class SourceRef(BaseModel):
     drug_id: str
     s3_key: str | None = None
     mongo_id: str
+    doc_hash: str | None = None
 
 
 class ChatResponse(BaseModel):
@@ -226,6 +227,7 @@ def _collect_sources(docs: list[dict], sources: list[SourceRef], seen: set[str])
             drug_id=doc.get("drug_id", ""),
             s3_key=doc.get("s3_key"),
             mongo_id=mid,
+            doc_hash=doc.get("doc_hash"),
         ))
 
 
@@ -350,7 +352,10 @@ async def get_insights(drug_id: str):
 
     for block in response.content:
         if block.type == "tool_use" and block.name == "emit_insights":
-            return block.input  # {"insights": [...]}
+            return {
+                **block.input,  # {"insights": [...]}
+                "sources": [s.model_dump() for s in sources],
+            }
 
     raise HTTPException(status_code=500, detail="Model did not return insights")
 

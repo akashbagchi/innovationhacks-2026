@@ -10,7 +10,7 @@ import { SparkLine } from './SparkLine'
 import type { ChangeEntry } from '../types/policy'
 import { formatPayerName } from '../lib/formatters'
 import { fetchInsights } from '../lib/api'
-import type { InsightCard } from '../types/policy'
+import type { InsightCard, InsightSource } from '../types/policy'
 
 interface DrugDetailViewProps {
   drug: DrugPortfolioEntry
@@ -33,13 +33,18 @@ export function DrugDetailView({ drug, onBack, changes }: DrugDetailViewProps) {
   const [activeTab, setActiveTab]             = useState<Tab>('comparison')
   const [limitationsOpen, setLimitationsOpen] = useState(false)
   const [insights, setInsights]               = useState<InsightCard[]>(drug.insights)
+  const [insightSources, setInsightSources]   = useState<InsightSource[]>([])
   const [insightsLoading, setInsightsLoading] = useState(true)
 
   useEffect(() => {
     setInsights(drug.insights)
+    setInsightSources([])
     setInsightsLoading(true)
     fetchInsights(drug.genericName)
-      .then(data => { if (data.length) setInsights(data) })
+      .then(data => {
+        if (data.insights.length) setInsights(data.insights)
+        setInsightSources(data.sources)
+      })
       .catch(() => {})
       .finally(() => setInsightsLoading(false))
   }, [drug.id])
@@ -177,7 +182,7 @@ export function DrugDetailView({ drug, onBack, changes }: DrugDetailViewProps) {
               <div style={{ display: 'grid', gap: '16px', gridTemplateColumns: '1fr 300px', alignItems: 'start' }}>
                 <ComparisonMatrix policies={drug.policies} />
                 <div style={{ position: 'sticky', top: '22px', maxHeight: 'calc(100vh - 80px)', overflowY: 'auto' }}>
-                  <InsightPanel insights={insights} drugName={drug.brandName} loading={insightsLoading} />
+                  <InsightPanel insights={insights} sources={insightSources} drugName={drug.brandName} loading={insightsLoading} />
                 </div>
               </div>
             )}

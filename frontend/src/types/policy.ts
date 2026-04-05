@@ -82,10 +82,24 @@ export interface ChangeEntry {
   auth_phase?: 'initial' | 'reauth'
 }
 
+export interface InsightSource {
+  payer: string
+  policy_title: string
+  drug_id: string
+  mongo_id: string
+  s3_key?: string
+  doc_hash?: string
+}
+
 export interface InsightCard {
   severity: 'high' | 'medium' | 'low'
   text: string
   action: string
+}
+
+export interface InsightResponse {
+  insights: InsightCard[]
+  sources: InsightSource[]
 }
 
 export interface TrendPoint {
