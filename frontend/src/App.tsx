@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Sidebar } from './components/Sidebar'
 import { PortfolioView } from './components/PortfolioView'
@@ -6,13 +6,46 @@ import { DrugDetailView } from './components/DrugDetailView'
 import { ComparisonMatrix } from './components/ComparisonMatrix'
 import { ChangeDigest } from './components/ChangeDigest'
 import { mockChanges } from './data/mockChanges'
-import { portfolio } from './data/mockPortfolio'
+import { portfolio as mockPortfolio } from './data/mockPortfolio'
+import type { DrugPortfolioEntry } from './data/mockPortfolio'
+import type { ChangeEntry } from './types/policy'
+import { fetchPoliciesForDrug, fetchChanges } from './lib/api'
 
 type NavView = 'portfolio' | 'compare' | 'digest'
 
 export default function App() {
   const [activeNav, setActiveNav]       = useState<NavView>('portfolio')
   const [selectedDrug, setSelectedDrug] = useState<string | null>(null)
+  const [portfolio, setPortfolio]       = useState<DrugPortfolioEntry[]>(mockPortfolio)
+  const [changes, setChanges]           = useState<ChangeEntry[]>(mockChanges)
+
+  // Hydrate portfolio policies from MongoDB via API.
+  // trends/insights/livesAtRisk remain from mock (require historical pipeline).
+  useEffect(() => {
+    Promise.all(
+      mockPortfolio.map(async entry => {
+        try {
+          const livePayers = await fetchPoliciesForDrug(entry.id)
+          if (livePayers.length === 0) return entry
+          return {
+            ...entry,
+            policies: livePayers
+              .filter(p => p.policy_record != null)
+              .map(p => p.policy_record),
+          }
+        } catch {
+          return entry // fallback to mock if API unreachable
+        }
+      })
+    ).then(setPortfolio)
+  }, [])
+
+  // Hydrate change log from MongoDB.
+  useEffect(() => {
+    fetchChanges()
+      .then(setChanges)
+      .catch(() => {/* keep mockChanges */})
+  }, [])
 
   const drug = selectedDrug ? portfolio.find(d => d.id === selectedDrug) ?? null : null
 
@@ -23,7 +56,7 @@ export default function App() {
 
   return (
     <div className="flex min-h-screen gap-6 p-6" style={{ background: 'transparent' }}>
-      <Sidebar active={activeNav} onNavigate={handleNavigate} />
+      <Sidebar active={activeNav} onNavigate={handleNavigate} changes={changes} portfolio={portfolio} />
 
       <div className="flex-1 flex flex-col min-w-0 gap-6">
         <AnimatePresence mode="wait">
@@ -38,9 +71,9 @@ export default function App() {
               transition={{ duration: 0.12 }}
             >
               {drug ? (
-                <DrugDetailView drug={drug} onBack={() => setSelectedDrug(null)} />
+                <DrugDetailView drug={drug} onBack={() => setSelectedDrug(null)} changes={changes} />
               ) : (
-                <PortfolioView portfolio={portfolio} onSelectDrug={setSelectedDrug} />
+                <PortfolioView portfolio={portfolio} onSelectDrug={setSelectedDrug} changes={changes} />
               )}
             </motion.div>
           )}
@@ -106,7 +139,7 @@ export default function App() {
                 </div>
               </div>
               <div className="mx-auto w-full max-w-[980px] px-6 xl:px-10">
-                <ChangeDigest changes={mockChanges} />
+                <ChangeDigest changes={changes} />
               </div>
             </motion.div>
           )}

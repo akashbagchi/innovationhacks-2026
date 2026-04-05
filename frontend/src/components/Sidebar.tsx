@@ -1,28 +1,7 @@
 import { LayoutGrid, ArrowLeftRight, Bell } from 'lucide-react'
 import type { ComponentType } from 'react'
-import { mockChanges } from '../data/mockChanges'
-import { portfolio } from '../data/mockPortfolio'
-
-const allTrends = portfolio.flatMap(d => d.trends)
-const tighteningCount = allTrends.filter(t => t.direction === 'tightening').length
-const totalTrends = allTrends.length
-
-const payerTightenCount: Record<string, number> = {}
-allTrends.filter(t => t.direction === 'tightening').forEach(t => {
-  payerTightenCount[t.payerName] = (payerTightenCount[t.payerName] ?? 0) + 1
-})
-
-const mostTighteningPayer = Object.entries(payerTightenCount)
-  .sort((a, b) => b[1] - a[1])[0]?.[0] ?? 'Unknown'
-
-const shortMTP = mostTighteningPayer === 'Blue Cross NC'
-  ? 'BCNC'
-  : mostTighteningPayer === 'UnitedHealth'
-    ? 'UHC'
-    : mostTighteningPayer
-
-const alertCount = mockChanges.filter(change => change.severity === 'HIGH').length
-const watchlistItems = mockChanges.filter(change => change.severity !== 'LOW').slice(0, 3)
+import type { ChangeEntry } from '../types/policy'
+import type { DrugPortfolioEntry } from '../data/mockPortfolio'
 
 const changeTypeShort: Record<string, string> = {
   ADDED_STEP_THERAPY: 'step therapy added',
@@ -47,9 +26,31 @@ const navItems: NavItem[] = [
 interface SidebarProps {
   active: string
   onNavigate: (id: string) => void
+  changes: ChangeEntry[]
+  portfolio: DrugPortfolioEntry[]
 }
 
-export function Sidebar({ active, onNavigate }: SidebarProps) {
+export function Sidebar({ active, onNavigate, changes, portfolio }: SidebarProps) {
+  const allTrends = portfolio.flatMap(d => d.trends)
+  const tighteningCount = allTrends.filter(t => t.direction === 'tightening').length
+  const totalTrends = allTrends.length
+
+  const payerTightenCount: Record<string, number> = {}
+  allTrends.filter(t => t.direction === 'tightening').forEach(t => {
+    payerTightenCount[t.payerName] = (payerTightenCount[t.payerName] ?? 0) + 1
+  })
+
+  const mostTighteningPayer = Object.entries(payerTightenCount)
+    .sort((a, b) => b[1] - a[1])[0]?.[0] ?? 'Unknown'
+
+  const shortMTP = mostTighteningPayer === 'Blue Cross NC'
+    ? 'BCNC'
+    : mostTighteningPayer === 'UnitedHealth'
+      ? 'UHC'
+      : mostTighteningPayer
+
+  const alertCount = changes.filter(c => c.severity === 'HIGH').length
+  const watchlistItems = changes.filter(c => c.severity !== 'LOW').slice(0, 3)
   return (
     <aside
       className="glass-card sticky top-6 flex h-[calc(100vh-3rem)] w-[290px] flex-shrink-0 flex-col gap-4 rounded-[28px] p-5"

@@ -2,7 +2,6 @@ import { useState, type ReactNode } from 'react'
 import { motion } from 'framer-motion'
 import type { DrugPortfolioEntry } from '../data/mockPortfolio'
 import { computeStringency } from '../lib/stringency'
-import { mockChanges } from '../data/mockChanges'
 import type { ChangeEntry } from '../types/policy'
 import { SparkLine } from './SparkLine'
 import { CoverageHeatmap } from './CoverageHeatmap'
@@ -21,6 +20,7 @@ import {
 interface PortfolioViewProps {
   portfolio: DrugPortfolioEntry[]
   onSelectDrug: (id: string) => void
+  changes: ChangeEntry[]
 }
 
 interface HighImpactDetail {
@@ -129,10 +129,10 @@ function buildOutlierDetails(portfolio: DrugPortfolioEntry[]): OutlierDetail[] {
   })
 }
 
-function buildStats(portfolio: DrugPortfolioEntry[]): StatCardData[] {
+function buildStats(portfolio: DrugPortfolioEntry[], changes: ChangeEntry[]): StatCardData[] {
   const policiesTracked = portfolio.length * 3
   const payersMonitored = 3
-  const highImpactDetails = buildHighImpactDetails(mockChanges)
+  const highImpactDetails = buildHighImpactDetails(changes)
   const outlierDetails = buildOutlierDetails(portfolio)
   const highImpact = highImpactDetails.length
   const tighteningCount = portfolio.flatMap(d => d.trends).filter(t => t.direction === 'tightening').length
@@ -394,9 +394,9 @@ function DrugCard({ drug, onSelect }: { drug: DrugPortfolioEntry; onSelect: () =
   )
 }
 
-export function PortfolioView({ portfolio, onSelectDrug }: PortfolioViewProps) {
+export function PortfolioView({ portfolio, onSelectDrug, changes }: PortfolioViewProps) {
   const [search, setSearch] = useState('')
-  const stats = buildStats(portfolio)
+  const stats = buildStats(portfolio, changes)
 
   const filtered = portfolio.filter(drug =>
     drug.brandName.toLowerCase().includes(search.toLowerCase()) ||
@@ -416,7 +416,7 @@ export function PortfolioView({ portfolio, onSelectDrug }: PortfolioViewProps) {
 
           <div className="grid gap-4 2xl:grid-cols-[minmax(0,1.7fr)_380px]">
             <CoverageHeatmap portfolio={portfolio} onSelectDrug={onSelectDrug} />
-            <RecentChangeFeed changes={mockChanges} />
+            <RecentChangeFeed changes={changes} />
           </div>
 
           <div>
@@ -470,7 +470,7 @@ export function PortfolioView({ portfolio, onSelectDrug }: PortfolioViewProps) {
 
           <div className="grid gap-5 xl:grid-cols-[minmax(0,1.65fr)_minmax(360px,0.95fr)]">
             <OverviewMatrixPanel portfolio={portfolio} />
-            <OverviewPolicyDiffPanel portfolio={portfolio} changes={mockChanges} />
+            <OverviewPolicyDiffPanel portfolio={portfolio} changes={changes} />
           </div>
         </div>
       </div>
