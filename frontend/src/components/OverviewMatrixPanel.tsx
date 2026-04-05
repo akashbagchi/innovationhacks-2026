@@ -153,6 +153,18 @@ function MatrixTable({ rows, visibleColumns, previewCount }: { rows: MatrixRow[]
 }
 
 export function OverviewMatrixPanel({ portfolio }: OverviewMatrixPanelProps) {
+  if (portfolio.length === 0) {
+    return (
+      <div style={{ background: '#FFFFFF', border: '1px solid #D8D4CC', borderRadius: '2px', padding: '16px', display: 'flex', flexDirection: 'column', gap: '10px', minHeight: '280px', justifyContent: 'center' }}>
+        <p style={{ ...LABEL, color: '#91bfeb' }}>Cross-Payer Matrix</p>
+        <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#131210' }}>No live matrix data yet</h3>
+        <p style={{ fontSize: '12px', color: '#4A4845', lineHeight: 1.6 }}>
+          This view only renders live policy records. Run the pipeline and make sure normalized non-mock policies exist in MongoDB.
+        </p>
+      </div>
+    )
+  }
+
   const [selectedDrugId, setSelectedDrugId]     = useState(portfolio[1]?.id ?? portfolio[0]?.id ?? '')
   const selectedDrug                             = portfolio.find(e => e.id === selectedDrugId) ?? portfolio[0]
   const indicationOptions                        = useMemo(() => Array.from(new Set(selectedDrug.policies.flatMap(p => p.indications.map(i => i.name)))), [selectedDrug])

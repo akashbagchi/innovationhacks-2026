@@ -67,6 +67,18 @@ function derivePolicyChangeScope(selectedDrug: DrugPortfolioEntry, allChanges: C
 }
 
 export function OverviewPolicyDiffPanel({ portfolio, changes }: OverviewPolicyDiffPanelProps) {
+  if (portfolio.length === 0) {
+    return (
+      <div style={{ background: '#FFFFFF', border: '1px solid #D8D4CC', borderRadius: '2px', padding: '16px', display: 'flex', flexDirection: 'column', gap: '10px', minHeight: '280px', justifyContent: 'center' }}>
+        <p style={{ ...LABEL, color: '#91bfeb' }}>Policy Diff</p>
+        <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#131210' }}>No live diff data yet</h3>
+        <p style={{ fontSize: '12px', color: '#4A4845', lineHeight: 1.6 }}>
+          This panel only uses live portfolio entries and live changelog records. Once real policies are available, payer diffs will appear here automatically.
+        </p>
+      </div>
+    )
+  }
+
   const [selectedDrugId, setSelectedDrugId] = useState(portfolio[1]?.id ?? portfolio[0]?.id ?? '')
   const selectedDrug = portfolio.find(entry => entry.id === selectedDrugId) ?? portfolio[0]
   const policyPairs  = useMemo(() => buildPolicyPairs(selectedDrug), [selectedDrug])
