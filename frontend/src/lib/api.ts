@@ -1,4 +1,4 @@
-import type { PolicyRecord, ChangeEntry, InsightCard } from '../types/policy'
+import type { PolicyRecord, ChangeEntry, InsightResponse } from '../types/policy'
 import type { ChatSource } from '../types/chat'
 
 const BASE = import.meta.env.VITE_API_URL ?? 'http://localhost:8000'
@@ -45,11 +45,11 @@ export async function fetchChanges(drugId = '', severity = ''): Promise<ChangeEn
   return (data.changes ?? []) as ChangeEntry[]
 }
 
-export async function fetchInsights(drugId: string): Promise<InsightCard[]> {
+export async function fetchInsights(drugId: string): Promise<InsightResponse> {
   const res = await fetch(`${BASE}/v1/chat/insights/${encodeURIComponent(drugId)}`)
   if (!res.ok) throw new Error(`insights API error: ${res.status}`)
   const data = await res.json()
-  return (data.insights ?? []) as InsightCard[]
+  return { insights: data.insights ?? [], sources: data.sources ?? [] } as InsightResponse
 }
 
 export async function sendChatMessage(
