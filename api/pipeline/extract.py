@@ -8,6 +8,7 @@ import time
 from datetime import datetime
 from pathlib import Path
 import anthropic
+import instructor
 
 import pymupdf
 
@@ -31,7 +32,7 @@ def _is_formulary_table(tables: list[dict]) -> bool:
     if not tables:
         return False
     hcpcs_rows = 0
-    for table in tables[:10]:  # sample first 10 tables
+    for table in tables[:10]:
         for row in table.get("data", []):
             col0 = _clean(str(row.get("0", "")))
             if _HCPCS_RE.match(col0):
@@ -256,8 +257,8 @@ def ocr_fallback(pdf_path: str) -> list[dict]:
                     "bbox": (0, 0, image.width, image.height),
                     "x0": 0,
                     "text": text,
-                    "font_size": 10.0,  # unknown from OCR
-                    "is_bold": False,  # unknown from OCR
+                    "font_size": 10.0,
+                    "is_bold": False,
                 }
             )
     return blocks
@@ -579,7 +580,7 @@ def _prune_sections(sections: list[dict]) -> list[dict]:
     return [s for s in sections if len(s["content"].strip()) > 50]
 
 
-from .schema import POLICY_RECORD_SCHEMA
+from .models import PolicyRecord
 
 
 def _render_sections(sections: list[dict]) -> str:
@@ -592,12 +593,11 @@ def _render_sections(sections: list[dict]) -> str:
 
 def extract_policy_record(
     sections: list[dict], source_filename: str, drug_hint: str | None = None
-) -> dict:
+) -> PolicyRecord:
     """
-    Send pre-segmented document text to Claude and return a structured
-    PolicyRecord conforming to schema.POLICY_RECORD_SCHEMA.
+    Send pre-segmented document text to Claude and return a validated PolicyRecord.
     """
-    client = anthropic.Anthropic()
+    client = instructor.from_anthropic(anthropic.Anthropic())
 
     drug_scope = (
         f"\nFocus ONLY on the drug: {drug_hint}. Ignore PA criteria for any other drug.\n"
@@ -605,26 +605,19 @@ def extract_policy_record(
         else ""
     )
 
-    response = client.messages.create(
+    return client.messages.create(
         model="claude-3-haiku-20240307",
         max_tokens=4096,
-        tools=[
-            {
-                "name": "extract_policy_record",
-                "description": (
-                    "Extract structured prior authorization policy data from a health plan document. "
-                    "Capture every covered indication and all PA criteria exactly as stated. "
-                    "Do NOT hallucinate. Omit fields absent from the document rather than guessing."
-                ),
-                "input_schema": POLICY_RECORD_SCHEMA,
-            }
-        ],
-        tool_choice={"type": "tool", "name": "extract_policy_record"},
+        max_retries=3,
+        response_model=PolicyRecord,
         messages=[
             {
                 "role": "user",
                 "content": (
-                    f"Extract structured policy data from this health plan PA policy document: {source_filename}\n"
+                    "Extract structured prior authorization policy data from this health plan document. "
+                    "Capture every covered indication and all PA criteria exactly as stated. "
+                    "Do NOT hallucinate. Omit fields absent from the document rather than guessing.\n\n"
+                    f"Document: {source_filename}\n"
                     f"{drug_scope}"
                     "The document has been pre-segmented — each [SECTION] block contains raw text "
                     "from that portion of the document.\n\n"
@@ -633,12 +626,6 @@ def extract_policy_record(
             }
         ],
     )
-
-    for block in response.content:
-        if block.type == "tool_use" and block.name == "extract_policy_record":
-            return block.input
-
-    raise ValueError("LLM did not return a tool_use block")
 
 
 def _extract_and_write(
@@ -655,7 +642,7 @@ def _extract_and_write(
                 sections, source_filename, drug_hint=drug_hint
             )
             with open(record_out, "w") as f:
-                json.dump(record, f, indent=2)
+                json.dump(record.model_dump(exclude_none=True), f, indent=2)
             print(f"  → policy record → {record_out.name}")
             return
         except anthropic.RateLimitError:
@@ -674,7 +661,7 @@ def _extract_and_write(
             return
 
 
-_CHUNK_CHAR_BUDGET = 20_000
+_CHUNK_CHAR_BUDGET = 6_000
 
 
 def _split_sections(sections: list[dict]) -> list[list[dict]]:
@@ -714,15 +701,16 @@ def _extract_chunked(
     max_attempts: int = 3,
 ) -> None:
     """
-    Extraction for large documents: splits sections into token-budget chunks,
-    runs one LLM call per chunk, then merges indications and exclusions into a
-    single record. Falls back to single-pass for documents within budget.
+    Extraction for large documents: splits sections into token-budget chunks
     """
     chunks = _split_sections(sections)
     if len(chunks) == 1:
         _extract_and_write(
-            sections, source_filename, record_out,
-            drug_hint=drug_hint, max_attempts=max_attempts,
+            sections,
+            source_filename,
+            record_out,
+            drug_hint=drug_hint,
+            max_attempts=max_attempts,
         )
         return
 
@@ -734,8 +722,11 @@ def _extract_chunked(
     for i, chunk in enumerate(chunks):
         tmp_out = record_out.parent / f"_tmp_{i}_{record_out.name}"
         _extract_and_write(
-            chunk, source_filename, tmp_out,
-            drug_hint=drug_hint, max_attempts=max_attempts,
+            chunk,
+            source_filename,
+            tmp_out,
+            drug_hint=drug_hint,
+            max_attempts=max_attempts,
         )
 
         if not tmp_out.exists():
