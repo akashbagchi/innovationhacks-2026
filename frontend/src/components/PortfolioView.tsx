@@ -44,6 +44,14 @@ interface StatCardData {
   value: number
   sub: string
   highlight?: boolean
+  viz?: {
+    label: string
+    segments: Array<{
+      value: number
+      color: string
+      tooltip: string
+    }>
+  }
   details?: {
     eyebrow: string
     title: string
@@ -144,17 +152,39 @@ function buildStats(portfolio: DrugPortfolioEntry[]): StatCardData[] {
       label: 'Policies Tracked',
       value: policiesTracked,
       sub: '+0 this quarter',
+      viz: {
+        label: 'Portfolio mix',
+        segments: portfolio.map((drug, index) => ({
+          value: drug.policies.length,
+          color: ['#155E59', '#D97706', '#7BA8C4'][index % 3],
+          tooltip: `${drug.brandName}: ${drug.policies.length} policies`,
+        })),
+      },
     },
     {
       label: 'Payers Monitored',
       value: payersMonitored,
       sub: 'Commercial + Medicare LCDs',
+      viz: {
+        label: 'Coverage source mix',
+        segments: [
+          { value: 2, color: '#155E59', tooltip: 'Commercial payers' },
+          { value: 1, color: '#D8F2ED', tooltip: 'Medicare / LCD benchmark' },
+        ],
+      },
     },
     {
       label: 'High-Impact Changes',
       value: highImpact,
       sub: `${tighteningCount} tightening, ${looseningCount} loosening`,
       highlight: highImpact > 0,
+      viz: {
+        label: 'Direction of change',
+        segments: [
+          { value: tighteningCount, color: '#B93823', tooltip: `${tighteningCount} tightening` },
+          { value: looseningCount, color: '#1F7A4C', tooltip: `${looseningCount} loosening` },
+        ],
+      },
       details: {
         eyebrow: 'Quarterly change audit',
         title: 'What is driving the high-impact count',
@@ -167,6 +197,21 @@ function buildStats(portfolio: DrugPortfolioEntry[]): StatCardData[] {
       label: 'Outlier Policies',
       value: outlierPolicies,
       sub: 'Unique restrictions flagged',
+      viz: {
+        label: 'Outlier direction',
+        segments: [
+          {
+            value: outlierDetails.filter(item => item.badge.includes('Stricter')).length,
+            color: '#D97706',
+            tooltip: 'Stricter than peers',
+          },
+          {
+            value: outlierDetails.filter(item => item.badge.includes('Looser')).length,
+            color: '#7BA8C4',
+            tooltip: 'Looser than peers',
+          },
+        ],
+      },
       details: {
         eyebrow: 'Cross-payer anomaly review',
         title: 'Why these policies are considered outliers',
@@ -188,6 +233,7 @@ const stagger = {
 }
 
 function StatCard({ stat, index }: { stat: StatCardData; index: number }) {
+  const [hoveredViz, setHoveredViz] = useState<string | null>(null)
   const cardBody = (
     <div
       className="h-full rounded-[26px] border p-5 text-left transition-all duration-200 shadow-[0_18px_48px_rgba(18,52,51,0.1)] backdrop-blur-[18px]"
@@ -202,6 +248,43 @@ function StatCard({ stat, index }: { stat: StatCardData; index: number }) {
           {stat.value}
         </p>
         <p className="text-[11px]" style={{ color: '#9CA3AF' }}>{stat.sub}</p>
+        {stat.viz && stat.viz.segments.some(segment => segment.value > 0) && (
+          <div className="mt-4">
+            <div className="mb-2 flex items-center justify-between">
+              <span className="text-[10px] font-semibold uppercase tracking-[0.16em]" style={{ color: '#8B9692' }}>
+                {stat.viz.label}
+              </span>
+            </div>
+            <div className="relative">
+              <div className="flex h-2 overflow-hidden rounded-full" style={{ background: 'rgba(18, 52, 51, 0.08)' }}>
+              {stat.viz.segments.map(segment => {
+                const total = stat.viz?.segments.reduce((sum, item) => sum + item.value, 0) ?? 1
+                if (segment.value <= 0) return null
+
+                return (
+                  <div
+                    key={`${stat.label}-${segment.tooltip}`}
+                    onMouseEnter={() => setHoveredViz(segment.tooltip)}
+                    onMouseLeave={() => setHoveredViz(null)}
+                    style={{
+                      width: `${(segment.value / total) * 100}%`,
+                      background: segment.color,
+                    }}
+                  />
+                )
+              })}
+              </div>
+              {hoveredViz && (
+                <div
+                  className="pointer-events-none absolute left-0 top-4 z-10 rounded-lg px-2.5 py-2 text-[11px] font-medium shadow-[0_10px_28px_rgba(18,52,51,0.18)]"
+                  style={{ background: '#123433', color: '#FFFDF8' }}
+                >
+                  {hoveredViz}
+                </div>
+              )}
+            </div>
+          </div>
+        )}
         {stat.details && (
           <p className="mt-4 text-[11px] font-semibold uppercase tracking-[0.18em]" style={{ color: '#2D6A90' }}>
             View details

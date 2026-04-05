@@ -17,6 +17,12 @@ const severityOrder = { HIGH: 0, MED: 1, LOW: 2 }
 
 export function RecentChangeFeed({ changes }: RecentChangeFeedProps) {
   const sorted = [...changes].sort((a, b) => severityOrder[a.severity] - severityOrder[b.severity])
+  const severityMix = {
+    HIGH: changes.filter(change => change.severity === 'HIGH').length,
+    MED: changes.filter(change => change.severity === 'MED').length,
+    LOW: changes.filter(change => change.severity === 'LOW').length,
+  }
+  const total = Math.max(changes.length, 1)
 
   return (
     <div
@@ -41,8 +47,29 @@ export function RecentChangeFeed({ changes }: RecentChangeFeedProps) {
         </span>
       </div>
 
+      <div className="px-5 pt-4">
+        <div className="mb-2 flex items-center justify-between">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.16em]" style={{ color: '#8B9692' }}>
+            Severity mix
+          </p>
+          <p className="text-[10px]" style={{ color: '#8B9692' }}>
+            {changes.length} changes
+          </p>
+        </div>
+        <div className="flex h-2 overflow-hidden rounded-full" style={{ background: 'rgba(18, 52, 51, 0.08)' }}>
+          {severityMix.HIGH > 0 && <div style={{ width: `${(severityMix.HIGH / total) * 100}%`, background: '#B93823' }} />}
+          {severityMix.MED > 0 && <div style={{ width: `${(severityMix.MED / total) * 100}%`, background: '#D97706' }} />}
+          {severityMix.LOW > 0 && <div style={{ width: `${(severityMix.LOW / total) * 100}%`, background: '#7BA8C4' }} />}
+        </div>
+        <div className="mt-2 flex flex-wrap gap-3">
+          <span className="text-[10px]" style={{ color: '#8B9692' }}>High {severityMix.HIGH}</span>
+          <span className="text-[10px]" style={{ color: '#8B9692' }}>Med {severityMix.MED}</span>
+          <span className="text-[10px]" style={{ color: '#8B9692' }}>Low {severityMix.LOW}</span>
+        </div>
+      </div>
+
       {/* Feed */}
-      <div className="flex-1 overflow-y-auto">
+      <div className="flex-1 overflow-y-auto pt-2">
         {sorted.map((change, i) => {
           const dotColor = change.severity === 'HIGH' ? '#DC2626'
             : change.severity === 'MED' ? '#D97706' : '#9CA3AF'
