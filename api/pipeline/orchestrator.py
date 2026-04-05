@@ -33,6 +33,13 @@ from pipeline.extract import (
 )
 from pipeline.diff import diff_policy_records
 from pipeline.normalize import normalize_policy_record
+from pipeline.quality import (
+    build_empty_quality_report,
+    evaluate_normalized_record,
+    evaluate_portfolio_quality,
+    summarize_quality_documents,
+    write_quality_report,
+)
 
 
 # ── Result dataclass ──────────────────────────────────────────────────────────
@@ -43,15 +50,24 @@ class PipelineResult:
         self.skipped: int = 0
         self.errors: list[dict] = []
         self.changes_detected: int = 0
+        self.quality_documents: list[dict] = []
+        self.quality_portfolio_checks: list[dict] = []
+        self.quality_report_path: str | None = None
         self.started_at = datetime.now(timezone.utc)
         self.finished_at: datetime | None = None
 
     def to_dict(self) -> dict:
+        quality_summary = summarize_quality_documents(
+            self.quality_documents,
+            self.quality_portfolio_checks,
+        )
         return {
             "processed": self.processed,
             "skipped": self.skipped,
             "errors": self.errors,
             "changes_detected": self.changes_detected,
+            "quality_summary": quality_summary,
+            "quality_report_path": self.quality_report_path,
             "started_at": self.started_at.isoformat(),
             "finished_at": self.finished_at.isoformat() if self.finished_at else None,
         }
@@ -110,6 +126,15 @@ async def run_pipeline() -> PipelineResult:
         })
 
     if not work_items:
+        result.quality_portfolio_checks = await _evaluate_current_portfolio_quality()
+        report = _finalize_quality_report(result)
+        result.quality_report_path = write_quality_report(report)
+        await extraction_audit_log.insert_one({
+            "event": "data_quality_report",
+            "report_path": result.quality_report_path,
+            "summary": report["summary"],
+            "timestamp": datetime.now(timezone.utc),
+        })
         result.finished_at = datetime.now(timezone.utc)
         await _log_run(result, now)
         return result
@@ -138,6 +163,16 @@ async def run_pipeline() -> PipelineResult:
                 "error": str(exc),
                 "timestamp": datetime.now(timezone.utc),
             })
+
+    result.quality_portfolio_checks = await _evaluate_current_portfolio_quality()
+    report = _finalize_quality_report(result)
+    result.quality_report_path = write_quality_report(report)
+    await extraction_audit_log.insert_one({
+        "event": "data_quality_report",
+        "report_path": result.quality_report_path,
+        "summary": report["summary"],
+        "timestamp": datetime.now(timezone.utc),
+    })
 
     result.finished_at = datetime.now(timezone.utc)
     await _log_run(result, now)
@@ -260,6 +295,18 @@ async def _process_one(item: dict, result: PipelineResult) -> None:
             "version": version_number,
             "source": item["source"],
         }
+
+        result.quality_documents.append(
+            evaluate_normalized_record(
+                normalized_record,
+                filename=filename,
+                s3_key=s3_key,
+                payer_canonical=payer_canonical,
+                drug_id=drug_id,
+                source=item["source"],
+                version=version_number,
+            )
+        )
 
         if item.get("mongo_id") and len(extracted_records) == 1:
             # Update the existing stub
@@ -411,7 +458,46 @@ async def _log_run(result: PipelineResult, started_at: datetime) -> None:
         "skipped": result.skipped,
         "errors": len(result.errors),
         "changes_detected": result.changes_detected,
+        "quality_summary": summarize_quality_documents(
+            result.quality_documents,
+            result.quality_portfolio_checks,
+        ),
+        "quality_report_path": result.quality_report_path,
         "started_at": started_at,
         "finished_at": result.finished_at,
         "timestamp": result.finished_at or datetime.now(timezone.utc),
     })
+
+
+def _finalize_quality_report(result: PipelineResult) -> dict:
+    if not result.quality_documents:
+        report = build_empty_quality_report()
+        report["summary"] = summarize_quality_documents(
+            [],
+            result.quality_portfolio_checks,
+        )
+        report["portfolio_checks"] = result.quality_portfolio_checks
+        return report
+    return {
+        "summary": summarize_quality_documents(
+            result.quality_documents,
+            result.quality_portfolio_checks,
+        ),
+        "documents": result.quality_documents,
+        "portfolio_checks": result.quality_portfolio_checks,
+    }
+
+
+async def _evaluate_current_portfolio_quality() -> list[dict]:
+    current_docs = await policies.find(
+        {"status": {"$in": ["normalized", "extracted"]}},
+        {
+            "_id": 1,
+            "drug_id": 1,
+            "payer_canonical": 1,
+            "filename": 1,
+            "version": 1,
+            "status": 1,
+        },
+    ).to_list(length=5000)
+    return evaluate_portfolio_quality(current_docs)
