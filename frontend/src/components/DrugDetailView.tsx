@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowLeft, ChevronDown } from 'lucide-react'
 import type { DrugPortfolioEntry } from '../data/mockPortfolio'
@@ -9,6 +9,8 @@ import { ChangeDigest } from './ChangeDigest'
 import { SparkLine } from './SparkLine'
 import type { ChangeEntry } from '../types/policy'
 import { formatPayerName } from '../lib/formatters'
+import { fetchInsights } from '../lib/api'
+import type { InsightCard } from '../types/policy'
 
 interface DrugDetailViewProps {
   drug: DrugPortfolioEntry
@@ -28,8 +30,19 @@ const mono: React.CSSProperties = { fontFamily: "'IBM Plex Mono', monospace" }
 const LABEL: React.CSSProperties = { ...mono, fontSize: '9px', letterSpacing: '0.2em', textTransform: 'uppercase' as const, color: '#918D88' }
 
 export function DrugDetailView({ drug, onBack, changes }: DrugDetailViewProps) {
-  const [activeTab, setActiveTab]         = useState<Tab>('comparison')
+  const [activeTab, setActiveTab]             = useState<Tab>('comparison')
   const [limitationsOpen, setLimitationsOpen] = useState(false)
+  const [insights, setInsights]               = useState<InsightCard[]>(drug.insights)
+  const [insightsLoading, setInsightsLoading] = useState(true)
+
+  useEffect(() => {
+    setInsights(drug.insights)
+    setInsightsLoading(true)
+    fetchInsights(drug.genericName)
+      .then(data => { if (data.length) setInsights(data) })
+      .catch(() => {})
+      .finally(() => setInsightsLoading(false))
+  }, [drug.id])
 
   const benefitType      = drug.policies.find(p => p.drug.benefit_type)?.drug.benefit_type
   const limitationsOfUse = drug.policies.find(p => p.drug.limitations_of_use)?.drug.limitations_of_use
@@ -163,7 +176,7 @@ export function DrugDetailView({ drug, onBack, changes }: DrugDetailViewProps) {
             {activeTab === 'comparison' && (
               <div style={{ display: 'grid', gap: '16px', gridTemplateColumns: '1fr 300px' }}>
                 <ComparisonMatrix policies={drug.policies} />
-                <InsightPanel insights={drug.insights} drugName={drug.brandName} />
+                <InsightPanel insights={insights} drugName={drug.brandName} loading={insightsLoading} />
               </div>
             )}
             {activeTab === 'criteria' && <CriteriaBreakdown policies={drug.policies} />}

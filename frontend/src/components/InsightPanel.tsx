@@ -4,6 +4,7 @@ import type { InsightCard } from '../types/policy'
 interface InsightPanelProps {
   insights: InsightCard[]
   drugName?: string
+  loading?: boolean
 }
 
 const mono: React.CSSProperties = { fontFamily: "'IBM Plex Mono', monospace" }
@@ -15,7 +16,7 @@ const severityConfig = {
   low:    { rail: '#1A7840', label: 'OBSERVATION' },
 }
 
-export function InsightPanel({ insights, drugName }: InsightPanelProps) {
+export function InsightPanel({ insights, drugName, loading }: InsightPanelProps) {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
       <div style={{ marginBottom: '8px' }}>
@@ -46,7 +47,9 @@ export function InsightPanel({ insights, drugName }: InsightPanelProps) {
       })}
 
       <div style={{ padding: '10px 12px', background: '#F0EFEB', border: '1px solid #D8D4CC', borderRadius: '2px', marginTop: '4px' }}>
-        <p style={{ ...LABEL }}>Structured extraction · LLM-generated narrative in production</p>
+        <p style={{ ...LABEL, opacity: loading ? 0.4 : 1, transition: 'opacity 0.3s' }}>
+          {loading ? 'Generating live analysis…' : 'Structured extraction · LLM-generated'}
+        </p>
       </div>
     </div>
   )

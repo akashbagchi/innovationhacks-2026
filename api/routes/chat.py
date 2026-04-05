@@ -293,6 +293,68 @@ async def _execute_tool(
 # Route
 # ---------------------------------------------------------------------------
 
+INSIGHT_TOOL: dict = {
+    "name": "emit_insights",
+    "description": "Output structured insight cards derived from cross-payer policy analysis.",
+    "input_schema": {
+        "type": "object",
+        "properties": {
+            "insights": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "severity": {"type": "string", "enum": ["high", "medium", "low"]},
+                        "text":     {"type": "string", "description": "The key finding, 1-2 sentences."},
+                        "action":   {"type": "string", "description": "Recommended action for medical affairs or market access."},
+                    },
+                    "required": ["severity", "text", "action"],
+                },
+                "minItems": 1,
+                "maxItems": 4,
+            }
+        },
+        "required": ["insights"],
+    },
+}
+
+INSIGHT_SYSTEM = """\
+You are a medical policy analyst. You will be given cross-payer prior-authorization policy data for a drug.
+Identify 2-4 clinically or commercially significant findings: critical coverage restrictions, notable payer \
+differences, and administrative burden variations. For each finding provide a severity (high/medium/low), \
+a concise factual statement, and a concrete recommended action for medical affairs or market access teams.\
+"""
+
+
+@router.get("/insights/{drug_id}")
+async def get_insights(drug_id: str):
+    sources: list[SourceRef] = []
+    seen: set[str] = set()
+    policy_data = await _execute_tool("compare_payers", {"drug_id": drug_id}, sources, seen)
+
+    client = anthropic.Anthropic()
+    response = client.messages.create(
+        model="claude-sonnet-4-6",
+        max_tokens=1024,
+        system=INSIGHT_SYSTEM,
+        tools=[INSIGHT_TOOL],
+        tool_choice={"type": "tool", "name": "emit_insights"},
+        messages=[{
+            "role": "user",
+            "content": (
+                f"Analyze these cross-payer PA policies for {drug_id} and produce insight cards:\n\n"
+                f"{policy_data}"
+            ),
+        }],
+    )
+
+    for block in response.content:
+        if block.type == "tool_use" and block.name == "emit_insights":
+            return block.input  # {"insights": [...]}
+
+    raise HTTPException(status_code=500, detail="Model did not return insights")
+
+
 @router.post("")
 async def chat(request: ChatRequest) -> ChatResponse:
     client = anthropic.Anthropic()
