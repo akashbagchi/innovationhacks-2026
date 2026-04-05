@@ -168,7 +168,7 @@ export function OverviewMatrixPanel({ portfolio }: OverviewMatrixPanelProps) {
   return (
     <div style={{ background: '#FFFFFF', border: '1px solid #D8D4CC', borderRadius: '2px', padding: '16px', display: 'flex', flexDirection: 'column', gap: '14px' }}>
       <div>
-        <p style={{ ...LABEL, color: '#EF5050', marginBottom: '4px' }}>Cross-Payer Matrix</p>
+        <p style={{ ...LABEL, color: '#91bfeb', marginBottom: '4px' }}>Cross-Payer Matrix</p>
         <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#131210', marginBottom: '4px' }}>{selectedDrug.brandName} coverage snapshot</h3>
         <p style={{ fontSize: '12px', color: '#4A4845', lineHeight: 1.6 }}>Choose the drug, narrow to an indication, and select which columns to show.</p>
       </div>
@@ -217,7 +217,7 @@ export function OverviewMatrixPanel({ portfolio }: OverviewMatrixPanelProps) {
           <DialogContent style={{ maxWidth: '1100px', borderRadius: '2px', border: '1px solid #D8D4CC', background: '#FFFFFF', padding: 0, color: '#131210' }}>
             <div style={{ borderBottom: '1px solid #D8D4CC', padding: '20px 24px' }}>
               <DialogHeader className="gap-2">
-                <p style={{ ...LABEL, color: '#EF5050' }}>Cross-Payer Matrix</p>
+                <p style={{ ...LABEL, color: '#91bfeb' }}>Cross-Payer Matrix</p>
                 <DialogTitle style={{ fontSize: '18px', fontWeight: 700, color: '#131210' }}>Full {selectedDrug.brandName} matrix for {activeIndication}</DialogTitle>
                 <DialogDescription style={{ fontSize: '13px', color: '#4A4845' }}>Expanded view with current column and indication selections.</DialogDescription>
               </DialogHeader>

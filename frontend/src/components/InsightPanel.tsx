@@ -19,7 +19,7 @@ export function InsightPanel({ insights, drugName }: InsightPanelProps) {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
       <div style={{ marginBottom: '8px' }}>
-        <p style={{ ...LABEL, color: '#EF5050', marginBottom: '3px' }}>AI Analysis</p>
+        <p style={{ ...LABEL, color: '#91bfeb', marginBottom: '3px' }}>AI Analysis</p>
         <p style={{ fontSize: '14px', fontWeight: 700, color: '#131210' }}>
           Policy Insights{drugName ? ` — ${drugName}` : ''}
         </p>

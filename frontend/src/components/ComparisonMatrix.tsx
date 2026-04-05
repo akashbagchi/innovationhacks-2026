@@ -195,7 +195,7 @@ export function ComparisonMatrix({ policies }: ComparisonMatrixProps) {
 
                                 {ind.reauthorization && (
                                   <div style={{ marginTop: '6px', paddingTop: '6px', borderTop: '1px dashed #D8D4CC' }}>
-                                    <p style={{ ...LABEL, color: '#EF5050', marginBottom: '5px' }}>
+                                    <p style={{ ...LABEL, color: '#91bfeb', marginBottom: '5px' }}>
                                       Reauthorization{ind.reauthorization.authorization_duration_months != null && ` · ${ind.reauthorization.authorization_duration_months}mo`}
                                     </p>
                                     {ind.reauthorization.criteria.length > 0 ? (

@@ -65,7 +65,7 @@ export function Sidebar({ active, onNavigate, changes, portfolio }: SidebarProps
         </p>
         <p style={{ fontSize: '22px', fontWeight: 700, letterSpacing: '-0.01em', lineHeight: 1 }}>
           <span style={{ color: '#131210' }}>ANTON</span>
-          <span style={{ color: '#EF5050' }}>Rx</span>
+          <span style={{ color: '#91bfeb' }}>Rx</span>
         </p>
         <p style={{ ...mono, fontSize: '9px', letterSpacing: '0.14em', textTransform: 'uppercase', color: '#918D88', marginTop: '3px' }}>
           Policy Intelligence
@@ -85,9 +85,9 @@ export function Sidebar({ active, onNavigate, changes, portfolio }: SidebarProps
               className="flex items-center gap-2.5 px-2.5 py-2 text-left text-sm font-medium transition-all duration-100"
               style={{
                 borderRadius: '2px',
-                background: isActive ? '#FBEAEA' : 'transparent',
-                border: isActive ? '1px solid rgba(239,80,80,0.25)' : '1px solid transparent',
-                color: isActive ? '#EF5050' : '#4A4845',
+                background: isActive ? '#EAF3FC' : 'transparent',
+                border: isActive ? '1px solid rgba(145,191,235,0.45)' : '1px solid transparent',
+                color: isActive ? '#3d85c8' : '#4A4845',
               }}>
               <Icon size={13} strokeWidth={isActive ? 2.2 : 1.8} />
               <span>{label}</span>

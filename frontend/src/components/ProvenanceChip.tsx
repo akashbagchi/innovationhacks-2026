@@ -16,7 +16,7 @@ export function ProvenanceChip({ payer, policyTitle }: ProvenanceChipProps) {
       <button
         onClick={() => setOpen(true)}
         style={{ ...mono, display: 'inline-flex', alignItems: 'center', gap: '4px', padding: '2px 7px', borderRadius: '1px', fontSize: '10px', background: '#F0EFEB', border: '1px solid #D8D4CC', color: '#4A4845', cursor: 'pointer', transition: 'border-color 0.1s' }}
-        onMouseEnter={e => (e.currentTarget.style.borderColor = '#EF5050')}
+        onMouseEnter={e => (e.currentTarget.style.borderColor = '#91bfeb')}
         onMouseLeave={e => (e.currentTarget.style.borderColor = '#D8D4CC')}
       >
         <span>{payer}</span>
@@ -51,7 +51,7 @@ export function ProvenanceChip({ payer, policyTitle }: ProvenanceChipProps) {
               <p style={{ ...mono, fontSize: '9px', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#918D88', marginBottom: '4px' }}>Source excerpt</p>
               <p style={{ fontSize: '11px', color: '#918D88', fontStyle: 'italic', lineHeight: 1.5 }}>Source text excerpt will appear here once the extraction pipeline is connected.</p>
             </div>
-            <button style={{ ...mono, fontSize: '10px', letterSpacing: '0.08em', textTransform: 'uppercase', color: '#EF5050', background: 'none', border: 'none', cursor: 'pointer', padding: 0, textAlign: 'left' }}>
+            <button style={{ ...mono, fontSize: '10px', letterSpacing: '0.08em', textTransform: 'uppercase', color: '#91bfeb', background: 'none', border: 'none', cursor: 'pointer', padding: 0, textAlign: 'left' }}>
               View PDF (placeholder)
             </button>
           </div>

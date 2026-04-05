@@ -11,7 +11,7 @@ interface CriteriaBreakdownProps {
 const mono: React.CSSProperties = { fontFamily: "'IBM Plex Mono', monospace" }
 const LABEL: React.CSSProperties = { ...mono, fontSize: '9px', letterSpacing: '0.2em', textTransform: 'uppercase' as const, color: '#918D88' }
 
-const PAYER_COLORS = ['#EF5050', '#91BFEB', '#CD944F']
+const PAYER_COLORS = ['#91bfeb', '#2870A8', '#CD944F']
 
 const CRITERION_COLORS: Record<string, string> = {
   combination_restriction: '#4A4845',
@@ -71,7 +71,7 @@ export function CriteriaBreakdown({ policies }: CriteriaBreakdownProps) {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
       {/* Header */}
       <div>
-        <p style={{ ...LABEL, color: '#EF5050', marginBottom: '4px' }}>Criteria Analysis</p>
+        <p style={{ ...LABEL, color: '#91bfeb', marginBottom: '4px' }}>Criteria Analysis</p>
         <p style={{ fontSize: '14px', fontWeight: 700, color: '#131210' }}>Restriction Profile &amp; Access Barrier Composition</p>
       </div>
 

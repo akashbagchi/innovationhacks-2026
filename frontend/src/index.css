@@ -19,7 +19,7 @@
   --color-rule2:    #EBEBEB;
 
   /* Accents */
-  --color-orange:     #EF5050;
+  --color-blue:       #91bfeb;
   --color-amber:      #8B6428;
   --color-amber-bg:   #F8EDDC;
   --color-yellow:     #F0BC00;
@@ -38,12 +38,12 @@
   /* shadcn overrides */
   --color-background:         var(--color-bg);
   --color-foreground:         var(--color-ink);
-  --color-primary:            var(--color-orange);
+  --color-primary:            var(--color-blue);
   --color-primary-foreground: #FFFFFF;
   --color-muted:              var(--color-rule2);
   --color-muted-foreground:   var(--color-muted);
   --color-border:             var(--color-rule);
-  --color-ring:               var(--color-orange);
+  --color-ring:               var(--color-blue);
 }
 
 /* ─── Base ───────────────────────────────────────────────────────────────── */
@@ -106,7 +106,7 @@ select {
   appearance: auto;
 }
 
-select:focus { border-color: #EF5050; }
+select:focus { border-color: #91bfeb; }
 
 /* ─── Scrollbar ──────────────────────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 4px; height: 4px; }

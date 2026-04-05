@@ -130,7 +130,7 @@ function StatCard({ stat, index }: { stat: StatCardData; index: number }) {
           </div>
         )}
 
-        {stat.details && <p style={{ ...LABEL, color: '#EF5050', marginTop: '12px', letterSpacing: '0.12em' }}>View details →</p>}
+        {stat.details && <p style={{ ...LABEL, color: '#91bfeb', marginTop: '12px', letterSpacing: '0.12em' }}>View details →</p>}
       </div>
     </div>
   )
@@ -154,7 +154,7 @@ function StatCard({ stat, index }: { stat: StatCardData; index: number }) {
       <DialogContent style={{ maxWidth: '720px', borderRadius: '2px', border: '1px solid #D8D4CC', background: '#FFFFFF', padding: 0, color: '#131210', boxShadow: '0 4px 32px rgba(26,23,20,0.12)' }}>
         <div style={{ borderBottom: '1px solid #D8D4CC', padding: '20px 24px' }}>
           <DialogHeader className="gap-2">
-            <p style={{ ...LABEL, color: '#EF5050' }}>{stat.details.eyebrow}</p>
+            <p style={{ ...LABEL, color: '#91bfeb' }}>{stat.details.eyebrow}</p>
             <DialogTitle style={{ fontSize: '18px', fontWeight: 700, color: '#131210' }}>{stat.details.title}</DialogTitle>
             <DialogDescription style={{ fontSize: '13px', lineHeight: 1.6, color: '#4A4845' }}>{stat.details.description}</DialogDescription>
           </DialogHeader>
@@ -190,7 +190,7 @@ function DrugCard({ drug, onSelect }: { drug: DrugPortfolioEntry; onSelect: () =
   return (
     <motion.button onClick={onSelect} className="w-full text-left"
       style={{ background: '#FFFFFF', border: '1px solid #D8D4CC', borderRadius: '2px', padding: '13px' }}
-      whileHover={{ borderColor: '#EF5050' }}>
+      whileHover={{ borderColor: '#91bfeb' }}>
 
       <div className="flex items-start justify-between mb-2">
         <div>

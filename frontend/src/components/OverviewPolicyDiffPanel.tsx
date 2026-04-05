@@ -85,7 +85,7 @@ export function OverviewPolicyDiffPanel({ portfolio, changes }: OverviewPolicyDi
       {/* Header */}
       <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '12px' }}>
         <div>
-          <p style={{ ...LABEL, color: '#EF5050', marginBottom: '4px' }}>Policy Diff</p>
+          <p style={{ ...LABEL, color: '#91bfeb', marginBottom: '4px' }}>Policy Diff</p>
           <h3 style={{ fontSize: '16px', fontWeight: 700, color: '#131210', lineHeight: 1.2 }}>
             {selectedPair || policyPairs[0]?.label || 'Revision snapshot'}
           </h3>

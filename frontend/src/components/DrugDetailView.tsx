@@ -139,8 +139,8 @@ export function DrugDetailView({ drug, onBack, changes }: DrugDetailViewProps) {
                 style={{
                   display: 'flex', alignItems: 'center', gap: '6px',
                   padding: '9px 14px', fontSize: '13px', fontWeight: isActive ? 600 : 400,
-                  background: 'none', border: 'none', borderBottom: isActive ? '2px solid #EF5050' : '2px solid transparent',
-                  color: isActive ? '#EF5050' : '#4A4845', cursor: 'pointer', transition: 'all 0.1s',
+                  background: 'none', border: 'none', borderBottom: isActive ? '2px solid #91bfeb' : '2px solid transparent',
+                  color: isActive ? '#91bfeb' : '#4A4845', cursor: 'pointer', transition: 'all 0.1s',
                 }}>
                 {tab.label}
                 {tab.id === 'digest' && drugChanges.length > 0 && (

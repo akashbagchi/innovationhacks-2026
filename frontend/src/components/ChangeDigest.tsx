@@ -47,7 +47,7 @@ export function ChangeDigest({ changes }: ChangeDigestProps) {
       {/* Header */}
       <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
         <div>
-          <p style={{ ...LABEL, color: '#EF5050', marginBottom: '4px' }}>Policy Surveillance</p>
+          <p style={{ ...LABEL, color: '#91bfeb', marginBottom: '4px' }}>Policy Surveillance</p>
           <p style={{ fontSize: '14px', fontWeight: 700, color: '#131210' }}>Q1 2026 — Policy Changes</p>
           <p style={{ fontSize: '12px', color: '#4A4845', marginTop: '3px' }}>
             {changes.length} changes across {payerCount} payer{payerCount !== 1 ? 's' : ''}

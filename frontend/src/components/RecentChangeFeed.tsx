@@ -38,7 +38,7 @@ export function RecentChangeFeed({ changes }: RecentChangeFeedProps) {
       {/* Header */}
       <div style={{ padding: '10px 14px', background: '#F0EFEB', borderBottom: '1px solid #D8D4CC', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <p style={{ ...LABEL }}>Recent Changes</p>
-        <span style={{ ...mono, fontSize: '9px', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#EF5050' }}>All →</span>
+        <span style={{ ...mono, fontSize: '9px', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#91bfeb' }}>All →</span>
       </div>
 
       {/* Severity mix bar */}
@@ -76,7 +76,7 @@ export function RecentChangeFeed({ changes }: RecentChangeFeedProps) {
               </div>
               <p style={{ fontSize: '12px', fontWeight: 600, color: '#131210', lineHeight: 1.3, marginBottom: '3px' }}>{title}</p>
               <p style={{ fontSize: '11px', color: '#4A4845', lineHeight: 1.5, marginBottom: '3px' }}>{change.summary}</p>
-              <p style={{ ...mono, fontSize: '9px', color: '#EF5050' }}>{change.drug}</p>
+              <p style={{ ...mono, fontSize: '9px', color: '#91bfeb' }}>{change.drug}</p>
             </div>
           )
         })}
