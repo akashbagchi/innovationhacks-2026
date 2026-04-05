@@ -19,22 +19,24 @@ export function RecentChangeFeed({ changes }: RecentChangeFeedProps) {
   const sorted = [...changes].sort((a, b) => severityOrder[a.severity] - severityOrder[b.severity])
 
   return (
-    <div className="rounded-xl overflow-hidden h-full flex flex-col"
-      style={{ background: '#fff', border: '1px solid #E5E2DC' }}>
+    <div
+      className="flex h-full flex-col overflow-hidden rounded-[26px] border shadow-[0_18px_48px_rgba(18,52,51,0.1)] backdrop-blur-[18px]"
+      style={{ background: 'rgba(255, 252, 245, 0.82)', borderColor: 'rgba(53, 76, 72, 0.14)' }}
+    >
 
       {/* Header */}
-      <div className="px-5 py-4 flex items-start justify-between flex-shrink-0"
-        style={{ borderBottom: '1px solid #F0EDE7' }}>
+      <div className="flex flex-shrink-0 items-start justify-between px-5 py-4"
+        style={{ borderBottom: '1px solid rgba(53, 76, 72, 0.09)' }}>
         <div>
-          <p className="text-[10px] font-bold uppercase tracking-widest mb-1" style={{ color: '#9CA3AF' }}>
+          <p className="mb-1 text-[11px] font-semibold uppercase tracking-[0.14em]" style={{ color: '#5B716F' }}>
             Recent Change Feed
           </p>
-          <p className="text-sm font-semibold" style={{ color: '#0E1117' }}>
+          <h3 className="text-[1.35rem] leading-tight" style={{ color: '#123433' }}>
             What deserves attention now
-          </p>
+          </h3>
         </div>
         <span className="text-[10px] font-bold px-2 py-1 rounded-full flex-shrink-0"
-          style={{ background: '#FEE2E2', color: '#DC2626' }}>
+          style={{ background: '#F5D5CF', color: '#B93823' }}>
           Live Alerts
         </span>
       </div>
@@ -48,17 +50,20 @@ export function RecentChangeFeed({ changes }: RecentChangeFeedProps) {
           return (
             <div
               key={i}
-              className="px-5 py-3.5 flex items-start gap-3"
-              style={{ borderBottom: i < sorted.length - 1 ? '1px solid #F5F3EF' : 'none' }}
+              className="mx-4 my-2 flex items-start gap-3 rounded-[20px] border px-4 py-4"
+              style={{
+                borderColor: 'rgba(53, 76, 72, 0.14)',
+                background: 'rgba(255, 255, 255, 0.58)',
+              }}
             >
               <span className="w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0" style={{ background: dotColor }} />
               <div className="flex-1 min-w-0">
                 <div className="flex items-start justify-between gap-2">
-                  <p className="text-xs font-semibold leading-snug" style={{ color: '#0E1117' }}>{title}</p>
-                  <p className="text-[10px] font-mono flex-shrink-0" style={{ color: '#9CA3AF' }}>{change.date}</p>
+                  <p className="text-sm font-semibold leading-snug" style={{ color: '#123433' }}>{title}</p>
+                  <p className="text-[11px] font-medium flex-shrink-0" style={{ color: '#5B716F' }}>{change.date}</p>
                 </div>
-                <p className="text-xs mt-0.5 leading-relaxed" style={{ color: '#6B7280' }}>{change.summary}</p>
-                <p className="text-[10px] mt-1 font-medium" style={{ color: '#9CA3AF' }}>{change.drug}</p>
+                <p className="text-sm mt-1 leading-relaxed" style={{ color: '#5B716F' }}>{change.summary}</p>
+                <p className="text-[11px] mt-2 font-medium" style={{ color: '#8B9692' }}>{change.drug}</p>
               </div>
             </div>
           )

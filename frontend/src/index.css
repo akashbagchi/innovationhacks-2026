@@ -2,52 +2,46 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/geist";
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@400;500;700&display=swap");
 
 @custom-variant dark (&:is(.dark *));
 
 /* ─── AntonRX Brand Palette ─────────────────────────────────────────────── */
 @theme inline {
-  --font-sans: 'Geist Variable', system-ui, sans-serif;
+  --font-sans: 'IBM Plex Sans', 'Geist Variable', system-ui, sans-serif;
+  --font-heading: 'Space Grotesk', 'IBM Plex Sans', system-ui, sans-serif;
 
-  /* Brand near-black */
-  --color-brand-900: #0E1117;
-  --color-brand-800: #1A2030;
+  --color-brand-900: #123433;
+  --color-brand-800: #1d4f4b;
+  --color-brand-blue: #0f766e;
+  --color-brand-blue-dark: #155e59;
+  --color-brand-blue-pale: #d8f2ed;
 
-  /* AntonRX steel blue — from the Rx logo */
-  --color-brand-blue:       #7BA8C4;
-  --color-brand-blue-dark:  #2D6A90;
-  --color-brand-blue-pale:  #EBF4FA;
+  --color-warm-bg: #f4f1e8;
+  --color-warm-card: rgba(255, 252, 245, 0.82);
+  --color-warm-border: rgba(53, 76, 72, 0.14);
+  --color-warm-subtle: #fffdf8;
 
-  /* Warm cream surfaces — inspired by design reference */
-  --color-warm-bg:     #F2EFE9;
-  --color-warm-card:   #FFFFFF;
-  --color-warm-border: #E5E2DC;
-  --color-warm-subtle: #F9F8F5;
+  --color-sidebar-bg: rgba(255, 252, 245, 0.9);
+  --color-sidebar-border: rgba(53, 76, 72, 0.14);
 
-  /* Sidebar */
-  --color-sidebar-bg:     #FFFFFF;
-  --color-sidebar-border: #ECEAE4;
+  --color-signal-red: #b93823;
+  --color-signal-red-pale: #f5d5cf;
+  --color-signal-amber: #d97706;
+  --color-signal-amber-pale: #fde8cc;
+  --color-signal-green: #1f7a4c;
+  --color-signal-green-pale: #d9f0df;
 
-  /* Signal colors — data only, never decorative */
-  --color-signal-red:        #DC2626;
-  --color-signal-red-pale:   #FEE2E2;
-  --color-signal-amber:      #D97706;
-  --color-signal-amber-pale: #FEF3C7;
-  --color-signal-green:      #10A090;
-  --color-signal-green-pale: #D0F4F1;
+  --color-status-tight-bg: #fde8cc;
+  --color-status-tight-text: #d97706;
+  --color-status-loose-bg: #d9f0df;
+  --color-status-loose-text: #1f7a4c;
+  --color-status-stable-bg: rgba(15, 118, 110, 0.1);
+  --color-status-stable-text: #0f766e;
 
-  /* Status pills — heatmap */
-  --color-status-tight-bg:   #FEF3C7;
-  --color-status-tight-text: #92400E;
-  --color-status-loose-bg:   #D1FAE5;
-  --color-status-loose-text: #065F46;
-  --color-status-stable-bg:  #F3F4F6;
-  --color-status-stable-text: #6B7280;
-
-  /* Text */
-  --color-text-primary: #0E1117;
-  --color-text-muted:   #6B7280;
-  --color-text-faint:   #9CA3AF;
+  --color-text-primary: #123433;
+  --color-text-muted: #5b716f;
+  --color-text-faint: #8b9692;
 
   /* shadcn overrides */
   --color-background:         var(--color-warm-bg);
@@ -63,12 +57,43 @@
 /* ─── Base ───────────────────────────────────────────────────────────────── */
 * { box-sizing: border-box; }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
-  background: var(--color-warm-bg);
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(15, 118, 110, 0.14), transparent 28%),
+    radial-gradient(circle at right 20%, rgba(217, 119, 6, 0.12), transparent 25%),
+    linear-gradient(180deg, #f7f4ed 0%, var(--color-warm-bg) 100%);
   color: var(--color-text-primary);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  letter-spacing: -0.03em;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.glass-card {
+  background: var(--color-warm-card);
+  border: 1px solid var(--color-warm-border);
+  box-shadow: 0 18px 48px rgba(18, 52, 51, 0.1);
+  backdrop-filter: blur(18px);
+}
+
+.glass-hero {
+  background: linear-gradient(135deg, rgba(255, 253, 248, 0.88), rgba(233, 245, 243, 0.9));
+  border: 1px solid var(--color-warm-border);
+  box-shadow: 0 18px 48px rgba(18, 52, 51, 0.1);
+  backdrop-filter: blur(18px);
 }
 
 /* ─── Search focus ring ──────────────────────────────────────────────────── */

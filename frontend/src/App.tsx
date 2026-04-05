@@ -22,10 +22,10 @@ export default function App() {
   }
 
   return (
-    <div className="flex min-h-screen" style={{ background: '#F2EFE9' }}>
+    <div className="flex min-h-screen gap-6 p-6" style={{ background: 'transparent' }}>
       <Sidebar active={activeNav} onNavigate={handleNavigate} />
 
-      <div className="flex-1 flex flex-col min-w-0">
+      <div className="flex-1 flex flex-col min-w-0 gap-6">
         <AnimatePresence mode="wait">
 
           {activeNav === 'portfolio' && (
@@ -48,14 +48,14 @@ export default function App() {
           {activeNav === 'compare' && (
             <motion.div
               key="compare"
-              className="flex-1 flex flex-col min-h-screen"
-              style={{ background: '#F2EFE9' }}
+              className="flex-1 flex flex-col"
+              style={{ background: 'transparent' }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.12 }}
             >
-              <div className="px-8 pt-7 pb-5" style={{ background: '#fff', borderBottom: '1px solid #E2E7EF' }}>
+              <div className="glass-hero rounded-[30px] px-8 pt-7 pb-5">
                 <div className="max-w-6xl">
                   <p className="text-[10px] font-semibold uppercase tracking-widest mb-1" style={{ color: '#0A4D8C' }}>
                     Cross-Payer Intelligence
@@ -78,7 +78,7 @@ export default function App() {
                   </div>
                 </div>
               </div>
-              <div className="px-8 py-6 max-w-6xl w-full">
+              <div className="mx-auto w-full max-w-[1520px] px-6 xl:px-10">
                 <ComparisonMatrix policies={portfolio[0].policies} />
               </div>
             </motion.div>
@@ -87,14 +87,14 @@ export default function App() {
           {activeNav === 'digest' && (
             <motion.div
               key="digest"
-              className="flex-1 flex flex-col min-h-screen"
-              style={{ background: '#F2EFE9' }}
+              className="flex-1 flex flex-col"
+              style={{ background: 'transparent' }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.12 }}
             >
-              <div className="px-8 pt-7 pb-5" style={{ background: '#fff', borderBottom: '1px solid #E2E7EF' }}>
+              <div className="glass-hero rounded-[30px] px-8 pt-7 pb-5">
                 <div className="max-w-6xl">
                   <p className="text-[10px] font-semibold uppercase tracking-widest mb-1" style={{ color: '#0A4D8C' }}>
                     Policy Surveillance
@@ -105,7 +105,7 @@ export default function App() {
                   </p>
                 </div>
               </div>
-              <div className="px-8 py-6 max-w-3xl w-full">
+              <div className="mx-auto w-full max-w-[980px] px-6 xl:px-10">
                 <ChangeDigest changes={mockChanges} />
               </div>
             </motion.div>
