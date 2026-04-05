@@ -1,6 +1,7 @@
 import contextlib
 import io
 import json
+import collections
 import re
 import statistics
 import sys
@@ -593,7 +594,7 @@ def _render_sections(sections: list[dict]) -> str:
 
 def extract_policy_record(
     sections: list[dict], source_filename: str, drug_hint: str | None = None
-) -> PolicyRecord:
+) -> tuple[PolicyRecord, int]:
     """
     Send pre-segmented document text to Claude and return a validated PolicyRecord.
     """
@@ -605,11 +606,12 @@ def extract_policy_record(
         else ""
     )
 
-    return client.messages.create(
-        model="claude-3-haiku-20240307",
+    record, completion = client.messages.create_with_completion(
+        model="claude-sonnet-4-6",
         max_tokens=4096,
         max_retries=3,
         response_model=PolicyRecord,
+        tool_choice={"type": "tool", "name": "PolicyRecord"},
         messages=[
             {
                 "role": "user",
@@ -627,6 +629,8 @@ def extract_policy_record(
         ],
     )
 
+    return record, completion.usage.output_tokens
+
 
 def _extract_and_write(
     sections: list[dict],
@@ -638,9 +642,11 @@ def _extract_and_write(
     """LLM extraction with exponential-backoff retry, writes result to record_out."""
     for attempt in range(max_attempts):
         try:
-            record = extract_policy_record(
+            record, output_tokens = extract_policy_record(
                 sections, source_filename, drug_hint=drug_hint
             )
+            if _token_bucket:
+                _token_bucket.consume(output_tokens)
             with open(record_out, "w") as f:
                 json.dump(record.model_dump(exclude_none=True), f, indent=2)
             print(f"  → policy record → {record_out.name}")
@@ -657,11 +663,41 @@ def _extract_and_write(
                     f"  [error] LLM extraction failed after {max_attempts} attempts: rate limit exhausted"
                 )
         except Exception as e:
+            msg = str(e)
+            if ("429" in msg or "rate_limit" in msg) and attempt < max_attempts - 1:
+                wait = 60 * (attempt + 1)
+                print(f"  [rate limit] waiting {wait}s before retry {attempt + 1}...")
+                time.sleep(wait)
+                continue
             print(f"  [error] LLM extraction failed: {e}")
             return
 
 
-_CHUNK_CHAR_BUDGET = 6_000
+class _TokenBucket:
+    """Sliding 60-second window output-token rate limiter."""
+
+    def __init__(self, limit: int):
+        self._limit = limit
+        self._window: collections.deque[tuple[float, int]] = collections.deque()
+
+    def consume(self, tokens: int) -> None:
+        now = time.time()
+        while self._window and self._window[0][0] < now - 60.0:
+            self._window.popleft()
+        used = sum(t for _, t in self._window)
+        if used + tokens > self._limit:
+            sleep_for = (self._window[0][0] + 60.0) - now + 0.5
+            if sleep_for > 0:
+                print(
+                    f" [throttle] output window at {used}/{self._limit}, sleeping {sleep_for:.0f}s"
+                )
+                time.sleep(sleep_for)
+        self._window.append((time.time(), tokens))
+
+
+_token_bucket: _TokenBucket | None = None
+
+_CHUNK_CHAR_BUDGET = 8_000
 
 
 def _split_sections(sections: list[dict]) -> list[list[dict]]:
@@ -811,6 +847,9 @@ def _run():
     records_dir = _PROJECT_ROOT / "outputs" / "policy_records"
     sections_dir.mkdir(parents=True, exist_ok=True)
     records_dir.mkdir(parents=True, exist_ok=True)
+
+    global _token_bucket
+    _token_bucket = _TokenBucket(limit=16_000)
 
     for pdf_file in sorted(input_dir.glob("*.pdf")):
         print(f"\nProcessing: {pdf_file.name}")

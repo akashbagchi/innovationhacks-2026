@@ -2,294 +2,35 @@
   "payer": {
     "name": "UnitedHealthcare",
     "policy_id": "2026D0017AN",
-    "policy_title": "Botulinum Toxins A and B",
+    "policy_title": "Botulinum Toxins A and B \u2013 Commercial Medical Benefit Drug Policy",
     "effective_date": "2026-01-01"
   },
   "drug": {
-    "brand_name": "Botulinum Toxins A and B",
-    "generic_name": "Botulinum Toxins A and B",
-    "benefit_type": "medical"
+    "brand_name": "Botox / Dysport / Xeomin / Myobloc / Daxxify",
+    "generic_name": "onabotulinumtoxinA / abobotulinumtoxinA / incobotulinumtoxinA / rimabotulinumtoxinB / daxibotulinumtoxinA-lanm",
+    "drug_class": "Botulinum Toxin Type A and B",
+    "benefit_type": "medical",
+    "limitations_of_use": "Daxxify (daxibotulinumtoxinA-lanm) is typically excluded from coverage. Coverage reviews may be in place if required by law or the benefit plan. Coverage for Dysport, Xeomin, Botox, Myobloc is contingent on criteria in the General Requirements and Diagnosis-Specific Requirements sections."
   },
   "indications": [
     {
-      "name": "<UNKNOWN>",
-      "pa_required": true,
-      "initial_authorization": {
-        "criteria": []
-      }
-    },
-    {
-      "name": "Achalasia",
-      "description": "Achalasia",
+      "name": "All Covered Indications \u2013 General Requirements",
       "pa_required": true,
       "initial_authorization": {
         "criteria": [
           {
             "criterion_type": "diagnosis",
-            "description": "Diagnosis of achalasia",
-            "logic_operator": "AND"
-          }
-        ]
-      }
-    },
-    {
-      "name": "Anal fissures, chronic",
-      "description": "Anal fissures, chronic",
-      "pa_required": true,
-      "initial_authorization": {
-        "criteria": [
-          {
-            "criterion_type": "diagnosis",
-            "description": "Diagnosis of chronic anal fissures",
-            "logic_operator": "AND"
-          }
-        ]
-      }
-    },
-    {
-      "name": "Blepharospasm associated with dystonia",
-      "description": "Blepharospasm associated with dystonia",
-      "pa_required": true,
-      "initial_authorization": {
-        "criteria": [
-          {
-            "criterion_type": "diagnosis",
-            "description": "Diagnosis of blepharospasm associated with dystonia",
-            "logic_operator": "AND"
-          }
-        ]
-      }
-    },
-    {
-      "name": "Cervical dystonia (spasmodic torticollis)",
-      "description": "Cervical dystonia (also known as spasmodic torticollis)",
-      "pa_required": true,
-      "initial_authorization": {
-        "criteria": [
-          {
-            "criterion_type": "diagnosis",
-            "description": "Diagnosis of cervical dystonia (spasmodic torticollis)",
+            "description": "Diagnosis (applicable diagnosis must be present)",
             "logic_operator": "AND"
           },
           {
-            "criterion_type": "step_therapy",
-            "description": "History of failure, contraindication, or intolerance to one of the following: Botox, Dysport, Xeomin",
-            "logic_operator": "AND"
-          }
-        ],
-        "authorization_duration_months": 12
-      },
-      "reauthorization": {
-        "criteria": [],
-        "authorization_duration_months": 12
-      }
-    },
-    {
-      "name": "Detrusor overactivity (detrusor hyperreflexia) or detrusor-sphincter dyssynergia due to spinal cord injury or disease",
-      "description": "Detrusor overactivity (also known as detrusor hyperreflexia) or detrusor-sphincter dyssynergia due to spinal cord injury or disease",
-      "pa_required": true,
-      "initial_authorization": {
-        "criteria": [
-          {
-            "criterion_type": "diagnosis",
-            "description": "Diagnosis of detrusor overactivity",
+            "criterion_type": "other",
+            "description": "Botulinum toxin administration is no more frequent than every 12 weeks, regardless of diagnosis",
             "logic_operator": "AND"
           },
           {
-            "criterion_type": "step_therapy",
-            "description": "History of failure, contraindication, or intolerance to one of the following: Botox, Dysport",
-            "logic_operator": "AND"
-          }
-        ],
-        "authorization_duration_months": 12
-      },
-      "reauthorization": {
-        "criteria": [],
-        "authorization_duration_months": 12
-      }
-    },
-    {
-      "name": "Essential tremor",
-      "description": "Essential tremor",
-      "pa_required": true,
-      "initial_authorization": {
-        "criteria": [
-          {
-            "criterion_type": "diagnosis",
-            "description": "Diagnosis of essential tremor",
-            "logic_operator": "AND"
-          }
-        ]
-      }
-    },
-    {
-      "name": "Hand dystonia (writer's, musician's, or typist's cramp)",
-      "description": "Hand dystonia (writer's, musician's, or typist's cramp)",
-      "pa_required": true,
-      "initial_authorization": {
-        "criteria": [
-          {
-            "criterion_type": "diagnosis",
-            "description": "Diagnosis of hand dystonia (writer's, musician's, or typist's cramp)",
-            "logic_operator": "AND"
-          }
-        ]
-      }
-    },
-    {
-      "name": "Hemifacial spasm (seventh cranial nerve disorders)",
-      "description": "Hemifacial spasm (seventh cranial nerve disorders)",
-      "pa_required": true,
-      "initial_authorization": {
-        "criteria": [
-          {
-            "criterion_type": "diagnosis",
-            "description": "Diagnosis of hemifacial spasm (seventh cranial nerve disorders)",
-            "logic_operator": "AND"
-          }
-        ]
-      }
-    },
-    {
-      "name": "Hyperhidrosis including gustatory sweating (Frey's syndrome)",
-      "description": "Hyperhidrosis including gustatory sweating (i.e., Frey's syndrome)",
-      "pa_required": true,
-      "initial_authorization": {
-        "criteria": [
-          {
-            "criterion_type": "diagnosis",
-            "description": "Diagnosis of hyperhidrosis including gustatory sweating (Frey's syndrome)",
-            "logic_operator": "AND"
-          }
-        ]
-      }
-    },
-    {
-      "name": "Oromandibular dystonia",
-      "description": "Oromandibular dystonia",
-      "pa_required": true,
-      "initial_authorization": {
-        "criteria": [
-          {
-            "criterion_type": "diagnosis",
-            "description": "Diagnosis of oromandibular dystonia",
-            "logic_operator": "AND"
-          }
-        ]
-      }
-    },
-    {
-      "name": "Sialorrhea",
-      "description": "Sialorrhea",
-      "pa_required": true,
-      "initial_authorization": {
-        "criteria": [
-          {
-            "criterion_type": "diagnosis",
-            "description": "Diagnosis of sialorrhea",
-            "logic_operator": "AND"
-          },
-          {
-            "criterion_type": "step_therapy",
-            "description": "History of failure, contraindication, or intolerance to one of the following: Botox, Dysport, Xeomin",
-            "logic_operator": "AND"
-          }
-        ],
-        "authorization_duration_months": 12
-      },
-      "reauthorization": {
-        "criteria": [],
-        "authorization_duration_months": 12
-      }
-    },
-    {
-      "name": "Spasmodic dysphonia (laryngeal dystonia)",
-      "description": "Spasmodic dysphonia (i.e., laryngeal dystonia)",
-      "pa_required": true,
-      "initial_authorization": {
-        "criteria": [
-          {
-            "criterion_type": "diagnosis",
-            "description": "Diagnosis of spasmodic dysphonia (laryngeal dystonia)",
-            "logic_operator": "AND"
-          }
-        ]
-      }
-    },
-    {
-      "name": "Spasticity",
-      "description": "Spasticity",
-      "pa_required": true,
-      "initial_authorization": {
-        "criteria": [
-          {
-            "criterion_type": "diagnosis",
-            "description": "Diagnosis of spasticity",
-            "logic_operator": "AND"
-          },
-          {
-            "criterion_type": "step_therapy",
-            "description": "History of failure, contraindication, or intolerance to one of the following: Botox, Dysport, Xeomin",
-            "logic_operator": "AND"
-          }
-        ],
-        "authorization_duration_months": 12
-      },
-      "reauthorization": {
-        "criteria": [],
-        "authorization_duration_months": 12
-      }
-    },
-    {
-      "name": "Strabismus",
-      "description": "Strabismus",
-      "pa_required": true,
-      "initial_authorization": {
-        "criteria": [
-          {
-            "criterion_type": "diagnosis",
-            "description": "Diagnosis of strabismus",
-            "logic_operator": "AND"
-          }
-        ]
-      }
-    },
-    {
-      "name": "Tongue dystonia",
-      "description": "Tongue dystonia",
-      "pa_required": true,
-      "initial_authorization": {
-        "criteria": [
-          {
-            "criterion_type": "diagnosis",
-            "description": "Diagnosis of tongue dystonia",
-            "logic_operator": "AND"
-          }
-        ]
-      }
-    },
-    {
-      "name": "Torsion dystonia",
-      "description": "Torsion dystonia",
-      "pa_required": true,
-      "initial_authorization": {
-        "criteria": [
-          {
-            "criterion_type": "diagnosis",
-            "description": "Diagnosis of torsion dystonia",
-            "logic_operator": "AND"
-          }
-        ]
-      }
-    },
-    {
-      "name": "Chronic migraine headache",
-      "pa_required": true,
-      "initial_authorization": {
-        "criteria": [
-          {
-            "criterion_type": "diagnosis",
-            "description": "Diagnosis of chronic migraine defined by all of the following: greater than or equal to 15 headache days per month, greater than or equal to 8 migraine days per month, headaches last 4 hours per day or longer",
+            "criterion_type": "prescriber",
+            "description": "One of the following: (a) Prescriber attests dosing is in accordance with the United States Food and Drug Administration (FDA) approved labeling; OR (b) For indications without FDA approved dosing, prescriber attests there is published clinical evidence to support the dosing",
             "logic_operator": "AND"
           }
         ]
@@ -298,106 +39,7 @@
     {
       "name": "Cervical Dystonia",
       "pa_required": true,
-      "initial_authorization": {
-        "criteria": [
-          {
-            "criterion_type": "diagnosis",
-            "description": "Diagnosis of cervical dystonia",
-            "logic_operator": "AND"
-          }
-        ],
-        "authorization_duration_months": 12,
-        "required_prescriber_specialties": [
-          "neurology",
-          "physical medicine and rehabilitation"
-        ]
-      }
-    },
-    {
-      "name": "Detrusor Overactivity",
-      "pa_required": true,
-      "initial_authorization": {
-        "criteria": [
-          {
-            "criterion_type": "diagnosis",
-            "description": "Diagnosis of idiopathic or neurogenic detrusor overactivity",
-            "logic_operator": "AND"
-          },
-          {
-            "criterion_type": "other",
-            "description": "Experienced 3 or more urgency urinary incontinence episodes in a 3-day period and an average of 8 or more micturitions per day",
-            "logic_operator": "AND"
-          },
-          {
-            "criterion_type": "step_therapy",
-            "description": "Inadequate response or intolerance to anticholinergic medication",
-            "logic_operator": "AND"
-          }
-        ],
-        "authorization_duration_months": 12
-      },
-      "reauthorization": {
-        "criteria": [
-          {
-            "criterion_type": "clinical_response",
-            "description": "Positive response to treatment",
-            "logic_operator": "AND"
-          }
-        ],
-        "authorization_duration_months": 12
-      }
-    },
-    {
-      "name": "Chronic Migraine",
-      "pa_required": true,
-      "initial_authorization": {
-        "criteria": [
-          {
-            "criterion_type": "diagnosis",
-            "description": "Diagnosis of chronic migraine (\u2265 15 days per month with headache lasting 4 hours a day or longer)",
-            "logic_operator": "AND"
-          }
-        ],
-        "authorization_duration_months": 12
-      },
-      "reauthorization": {
-        "criteria": [
-          {
-            "criterion_type": "clinical_response",
-            "description": "Positive response to treatment",
-            "logic_operator": "AND"
-          }
-        ],
-        "authorization_duration_months": 12
-      }
-    },
-    {
-      "name": "Spasticity (Associated With Cerebral Palsy)",
-      "pa_required": true,
-      "initial_authorization": {
-        "criteria": [
-          {
-            "criterion_type": "diagnosis",
-            "description": "Diagnosis of spasticity associated with cerebral palsy",
-            "logic_operator": "AND"
-          }
-        ],
-        "authorization_duration_months": 12
-      },
-      "reauthorization": {
-        "criteria": [
-          {
-            "criterion_type": "clinical_response",
-            "description": "Positive response to treatment",
-            "logic_operator": "AND"
-          }
-        ],
-        "authorization_duration_months": 12
-      }
-    },
-    {
-      "name": "Cervical dystonia",
-      "pa_required": true,
+      "step_therapy_required": true,
       "initial_authorization": {
         "criteria": [
           {
@@ -409,18 +51,30 @@
             "criterion_type": "step_therapy",
             "description": "History of failure, contraindication, or intolerance to one of the following: Botox, Dysport, Xeomin",
             "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "other",
+            "description": "Initial authorization will be for no more than 12 months",
+            "logic_operator": "AND"
           }
         ],
         "authorization_duration_months": 12
       },
       "reauthorization": {
-        "criteria": [],
+        "criteria": [
+          {
+            "criterion_type": "other",
+            "description": "Reauthorization will be for no more than 12 months",
+            "logic_operator": "AND"
+          }
+        ],
         "authorization_duration_months": 12
       }
     },
     {
-      "name": "Detrusor overactivity",
+      "name": "Detrusor Overactivity",
       "pa_required": true,
+      "step_therapy_required": true,
       "initial_authorization": {
         "criteria": [
           {
@@ -432,18 +86,30 @@
             "criterion_type": "step_therapy",
             "description": "History of failure, contraindication, or intolerance to one of the following: Botox, Dysport",
             "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "other",
+            "description": "Initial authorization will be for no more than 12 months",
+            "logic_operator": "AND"
           }
         ],
         "authorization_duration_months": 12
       },
       "reauthorization": {
-        "criteria": [],
+        "criteria": [
+          {
+            "criterion_type": "other",
+            "description": "Reauthorization will be for no more than 12 months",
+            "logic_operator": "AND"
+          }
+        ],
         "authorization_duration_months": 12
       }
     },
     {
       "name": "Sialorrhea",
       "pa_required": true,
+      "step_therapy_required": true,
       "initial_authorization": {
         "criteria": [
           {
@@ -455,18 +121,30 @@
             "criterion_type": "step_therapy",
             "description": "History of failure, contraindication, or intolerance to one of the following: Botox, Dysport, Xeomin",
             "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "other",
+            "description": "Initial authorization will be for no more than 12 months",
+            "logic_operator": "AND"
           }
         ],
         "authorization_duration_months": 12
       },
       "reauthorization": {
-        "criteria": [],
+        "criteria": [
+          {
+            "criterion_type": "other",
+            "description": "Reauthorization will be for no more than 12 months",
+            "logic_operator": "AND"
+          }
+        ],
         "authorization_duration_months": 12
       }
     },
     {
       "name": "Spasticity",
       "pa_required": true,
+      "step_therapy_required": true,
       "initial_authorization": {
         "criteria": [
           {
@@ -478,38 +156,45 @@
             "criterion_type": "step_therapy",
             "description": "History of failure, contraindication, or intolerance to one of the following: Botox, Dysport, Xeomin",
             "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "other",
+            "description": "Initial authorization will be for no more than 12 months",
+            "logic_operator": "AND"
           }
         ],
         "authorization_duration_months": 12
       },
       "reauthorization": {
-        "criteria": [],
+        "criteria": [
+          {
+            "criterion_type": "other",
+            "description": "Reauthorization will be for no more than 12 months",
+            "logic_operator": "AND"
+          }
+        ],
         "authorization_duration_months": 12
       }
     }
   ],
-  "confidence_scores": {
-    "overall": 0.6,
-    "review_flags": "Missing indication details, unable to extract PA criteria"
-  },
   "exclusions": [
     {
-      "description": "Botox, Daxxify, Dysport, Myobloc, and Xeomin are unproven and not medically necessary for the treatment of chronic migraine headache."
+      "description": "Daxxify (daxibotulinumtoxinA-lanm) is typically excluded from coverage. Refer to the Medical Benefit Drug Policy titled Medical Benefit Therapeutic Equivalent Medications \u2013 Excluded Drugs and the corresponding excluded drug list with preferred alternatives."
     },
     {
-      "description": "Botox, Daxxify, Dysport, Myobloc, and Xeomin are unproven and not medically necessary for the treatment of the following conditions: acquired nystagmus, anismus (pelvic floor dyssynergia), benign prostatic hyperplasia, brachial plexus palsy, chronic daily headache, chronic low back pain, chronic prostatic pain, cricopharyngeal dysphagia (excludes achalasia), epiphora following salivary gland transplantation, esophageal spasm, gastroparesis (including diabetic gastroparesis), gustatory epiphora (crocodile tears), lateral epicondylitis (tennis elbow), lichen simplex, lower urinary tract (voiding) dysfunction, motor tics, myofascial pain syndrome, nasal hypersecretion, pain and/or wound healing after hemorrhoidectomy, pancreas divisum, piriformis syndrome, post-parotidectomy sialoceles, post-thoracotomy pseudoangina, proctalgia fugax, severe bruxism, severe paradoxical vocal cord movement, sphincter of Oddi dysfunction, temporomandibular disorders, tension-type headache, thyroid associated ophthalmopathy, Tourette's syndrome, traumatic sixth nerve palsy, trigeminal neuralgia, trismus and stridor in amyotrophic lateral sclerosis."
+      "description": "Daxxify (daxibotulinumtoxinA) is typically excluded from coverage; coverage reviews may be in place if required by law or the benefit plan. Refer to the Medical Benefit Drug Policy titled Medical Benefit Therapeutic Equivalent Medications \u2013 Excluded Drugs and the corresponding excluded drug list with preferred alternatives."
     },
     {
-      "description": "Cosmetic use to improve appearance"
+      "description": "Pelvic floor spasticity (and associated pain conditions) \u2013 removed from proven indications list as of 01/01/2026."
     },
     {
-      "description": "Medical and surgical treatment of excessive sweating (hyperhidrosis)"
-    },
-    {
-      "description": "Pelvic floor spasticity (and associated pain conditions)"
-    },
-    {
-      "description": "Stiff-person syndrome"
+      "description": "Stiff-person syndrome \u2013 removed from proven indications list as of 01/01/2026."
     }
-  ]
+  ],
+  "confidence_scores": {
+    "overall": 0.62,
+    "drug_identification": 0.95,
+    "pa_criteria_completeness": 0.35,
+    "review_flags": "Document is truncated at page 2 of 28. Only the General Requirements (applicable to all indications) were captured. The Diagnosis-Specific Requirements section \u2014 which contains individual indication-level PA criteria \u2014 was not included in the provided text. Multiple covered indications and their specific criteria are missing. Full extraction requires the remaining 26 pages. Daxxify exclusion noted. Confidence in completeness is low due to document truncation."
+  }
 }
