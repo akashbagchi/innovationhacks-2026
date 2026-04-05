@@ -4,34 +4,39 @@ from datetime import datetime, timezone
 from fastapi import APIRouter, UploadFile, File, Form, HTTPException
 from botocore.exceptions import ClientError
 
-from db.s3 import upload_pdf, hash_exists
+from db.s3 import upload_document, hash_exists
 from db.mongo import policies, extraction_audit_log
 
 router = APIRouter()
 
 
+_ACCEPTED_EXTENSIONS = {".pdf", ".docx"}
+
+
 @router.post("/", status_code=201)
-async def ingest_pdf(
+async def ingest_document(
     file: UploadFile = File(...),
     payer: str = Form(...),
     policy_id: str = Form(...),
 ):
     """
-    Ingest a policy PDF:
+    Ingest a policy document (PDF or DOCX):
       1. Compute SHA-256 hash
       2. Reject duplicates (same hash already in S3 for this payer)
       3. Upload to S3
       4. Write stub document to MongoDB (status=pending_extraction)
       5. Write audit log entry
     """
-    if not file.filename or not file.filename.lower().endswith(".pdf"):
-        raise HTTPException(status_code=400, detail="Only PDF files are accepted.")
+    import os
+    ext = os.path.splitext(file.filename or "")[1].lower()
+    if not file.filename or ext not in _ACCEPTED_EXTENSIONS:
+        raise HTTPException(status_code=400, detail="Only PDF and DOCX files are accepted.")
 
-    pdf_bytes = await file.read()
-    if not pdf_bytes:
+    file_bytes = await file.read()
+    if not file_bytes:
         raise HTTPException(status_code=400, detail="Uploaded file is empty.")
 
-    doc_hash = hashlib.sha256(pdf_bytes).hexdigest()
+    doc_hash = hashlib.sha256(file_bytes).hexdigest()
 
     # ── Deduplication check ───────────────────────────────────────────────
     try:
@@ -54,7 +59,7 @@ async def ingest_pdf(
 
     # ── Upload to S3 ──────────────────────────────────────────────────────
     try:
-        s3_result = upload_pdf(pdf_bytes, payer, policy_id)
+        s3_result = upload_document(file_bytes, payer, policy_id, filename=file.filename or "")
     except ClientError as e:
         raise HTTPException(status_code=502, detail=f"S3 upload failed: {str(e)}")
 
@@ -78,7 +83,7 @@ async def ingest_pdf(
 
     # ── Audit log ─────────────────────────────────────────────────────────
     await extraction_audit_log.insert_one({
-        "event": "pdf_uploaded",
+        "event": "document_uploaded",
         "mongo_id": mongo_id,
         "doc_hash": doc_hash,
         "s3_key": s3_key,
