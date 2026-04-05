@@ -1,11 +1,48 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
+from bson import ObjectId
+from bson.errors import InvalidId
+
+from db.mongo import policies
 
 router = APIRouter()
 
+
+def _serialize(doc: dict) -> dict:
+    doc["_id"] = str(doc["_id"])
+    return doc
+
+
 @router.get("/search")
 async def search(drug: str = "", payer: str = ""):
-    return {"results": [], "query": {"drug": drug, "payer": payer}}
+    query: dict = {}
+    if drug:
+        query["drug_id"] = {"$regex": drug, "$options": "i"}
+    if payer:
+        query["payer_canonical"] = {"$regex": payer, "$options": "i"}
+
+    results = await policies.find(query).to_list(length=200)
+    return {"results": [_serialize(r) for r in results], "count": len(results)}
+
+
+@router.get("/by-drug/{drug_id}")
+async def get_by_drug(drug_id: str):
+    """Return all payer policies for a single drug (used by ComparisonMatrix)."""
+    results = await policies.find({"drug_id": drug_id}).to_list(length=50)
+    return {
+        "drug_id": drug_id,
+        "policies": [_serialize(r) for r in results],
+        "count": len(results),
+    }
+
 
 @router.get("/{policy_id}")
 async def get_policy(policy_id: str):
-    return {"policy_id": policy_id, "status": "stub"}
+    try:
+        oid = ObjectId(policy_id)
+    except InvalidId:
+        raise HTTPException(status_code=400, detail="Invalid policy_id format")
+
+    doc = await policies.find_one({"_id": oid})
+    if not doc:
+        raise HTTPException(status_code=404, detail="Policy not found")
+    return _serialize(doc)

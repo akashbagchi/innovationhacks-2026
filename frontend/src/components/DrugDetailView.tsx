@@ -7,11 +7,12 @@ import { InsightPanel } from './InsightPanel'
 import { CriteriaBreakdown } from './CriteriaBreakdown'
 import { ChangeDigest } from './ChangeDigest'
 import { SparkLine } from './SparkLine'
-import { mockChanges } from '../data/mockChanges'
+import type { ChangeEntry } from '../types/policy'
 
 interface DrugDetailViewProps {
   drug: DrugPortfolioEntry
   onBack: () => void
+  changes: ChangeEntry[]
 }
 
 type Tab = 'comparison' | 'criteria' | 'digest'
@@ -22,13 +23,13 @@ const tabs: { id: Tab; label: string }[] = [
   { id: 'digest',     label: 'Change Digest' },
 ]
 
-export function DrugDetailView({ drug, onBack }: DrugDetailViewProps) {
+export function DrugDetailView({ drug, onBack, changes }: DrugDetailViewProps) {
   const [activeTab, setActiveTab] = useState<Tab>('comparison')
 
   const totalPA  = drug.policies.reduce((s, p) => s + p.indications.filter(i => i.pa_required).length, 0)
   const totalInd = drug.policies.reduce((s, p) => s + p.indications.length, 0)
 
-  const drugChanges = mockChanges.filter(c =>
+  const drugChanges = changes.filter(c =>
     c.drug.toLowerCase().includes(drug.brandName.toLowerCase()) ||
     c.drug.toLowerCase().includes(drug.genericName.toLowerCase())
   )
@@ -165,7 +166,7 @@ export function DrugDetailView({ drug, onBack }: DrugDetailViewProps) {
             )}
             {activeTab === 'digest' && (
               <div className="max-w-3xl">
-                <ChangeDigest changes={drugChanges.length > 0 ? drugChanges : mockChanges} />
+                <ChangeDigest changes={drugChanges.length > 0 ? drugChanges : changes} />
               </div>
             )}
           </motion.div>
