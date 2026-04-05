@@ -10,11 +10,29 @@ export interface LivePayer {
   policy_record: PolicyRecord
 }
 
+export interface PolicySearchResult {
+  _id: string
+  status?: string
+  drug_id?: string
+  payer_canonical?: string
+  filename?: string
+  source?: string
+  version?: number
+  policy_record?: PolicyRecord | null
+}
+
 export async function fetchPoliciesForDrug(drugId: string): Promise<LivePayer[]> {
   const res = await fetch(`${BASE}/v1/compare?drug=${encodeURIComponent(drugId)}`)
   if (!res.ok) throw new Error(`compare API error: ${res.status}`)
   const data = await res.json()
   return (data.payers ?? []) as LivePayer[]
+}
+
+export async function fetchAllPolicies(): Promise<PolicySearchResult[]> {
+  const res = await fetch(`${BASE}/v1/policies/search`)
+  if (!res.ok) throw new Error(`policies search API error: ${res.status}`)
+  const data = await res.json()
+  return (data.results ?? []) as PolicySearchResult[]
 }
 
 export async function fetchChanges(drugId = '', severity = ''): Promise<ChangeEntry[]> {

@@ -5,42 +5,279 @@ import { PortfolioView } from './components/PortfolioView'
 import { DrugDetailView } from './components/DrugDetailView'
 import { ComparisonMatrix } from './components/ComparisonMatrix'
 import { ChangeDigest } from './components/ChangeDigest'
-import { mockChanges } from './data/mockChanges'
-import { portfolio as mockPortfolio } from './data/mockPortfolio'
 import type { DrugPortfolioEntry } from './data/mockPortfolio'
-import type { ChangeEntry } from './types/policy'
-import { fetchPoliciesForDrug, fetchChanges } from './lib/api'
+import type { ChangeEntry, InsightCard, PayerTrend, PolicyRecord } from './types/policy'
+import { fetchAllPolicies, fetchChanges, type PolicySearchResult } from './lib/api'
 import { ChatPanel } from './components/ChatPanel'
+import { computeStringency } from './lib/stringency'
 
 type NavView = 'portfolio' | 'compare' | 'digest'
+
+function sourcePriority(source?: string) {
+  if (source === 'pipeline' || source === 's3_scan') return 3
+  if (source === 'ingest') return 2
+  if (source === 'mock') return 1
+  return 0
+}
+
+function statusPriority(status?: string) {
+  if (status === 'normalized') return 3
+  if (status === 'extracted') return 2
+  return 1
+}
+
+function formatQuarter(date: Date) {
+  const quarter = Math.floor(date.getMonth() / 3) + 1
+  return `Q${quarter} ${date.getFullYear()}`
+}
+
+function latestPolicyDate(policies: PolicyRecord[]) {
+  const timestamps = policies
+    .map(policy => policy.payer.revision_date ?? policy.payer.effective_date)
+    .filter(Boolean)
+    .map(date => new Date(date as string))
+    .filter(date => !Number.isNaN(date.getTime()))
+    .map(date => date.getTime())
+
+  if (timestamps.length === 0) return new Date()
+  return new Date(Math.max(...timestamps))
+}
+
+function buildStableTrend(policies: PolicyRecord[]): PayerTrend[] {
+  const currentQuarter = formatQuarter(new Date())
+  return policies.map(policy => {
+    const score = computeStringency(policy).score
+    return {
+      payerName: policy.payer.name,
+      history: [
+        { quarter: currentQuarter, score },
+        { quarter: currentQuarter, score },
+        { quarter: currentQuarter, score },
+        { quarter: currentQuarter, score },
+      ],
+      delta: 0,
+      direction: 'stable',
+    }
+  })
+}
+
+function buildInsightsForDrug(drugName: string, changes: ChangeEntry[]): InsightCard[] {
+  const relevant = changes
+    .filter(change =>
+      (change.drug_id && change.drug_id.toLowerCase() === drugName.toLowerCase()) ||
+      change.drug.toLowerCase().includes(drugName.toLowerCase()),
+    )
+    .slice(0, 3)
+
+  if (relevant.length === 0) {
+    return [{
+      severity: 'low',
+      text: 'No major payer-specific change signal is currently attached to this product in the live changelog.',
+      action: 'Review the comparison and criteria tabs directly. New pipeline runs will automatically improve this view as more changelog entries are generated.',
+    }]
+  }
+
+  return relevant.map(change => ({
+    severity: change.severity === 'HIGH' ? 'high' : change.severity === 'MED' ? 'medium' : 'low',
+    text: `${change.payer}: ${change.summary}`,
+    action: change.after_text
+      ? `Review the updated criteria details and compare them against the previous version before sharing guidance with field teams.`
+      : `Use this change as the starting point for payer-specific review and escalation.`,
+  }))
+}
+
+function preferLiveDocs(docs: PolicySearchResult[]) {
+  return docs.filter(doc => doc.source !== 'mock')
+}
+
+function preferLiveChanges(changes: ChangeEntry[]) {
+  return changes.filter(change => change.source !== 'mock')
+}
+
+function normalizePolicyRecord(input: PolicySearchResult['policy_record']): PolicyRecord | null {
+  if (!input) return null
+
+  const raw = input as Record<string, unknown>
+  const payer = (raw.payer ?? {}) as Record<string, unknown>
+  const drug = (raw.drug ?? {}) as Record<string, unknown>
+  const indications = Array.isArray(raw.indications) ? raw.indications : null
+
+  if (!payer.name || !drug || !indications) return null
+
+  return {
+    payer: {
+      name: String(payer.name),
+      policy_id: typeof payer.policy_id === 'string' ? payer.policy_id : null,
+      policy_title: String(payer.policy_title ?? 'Untitled policy'),
+      effective_date: typeof payer.effective_date === 'string' ? payer.effective_date : undefined,
+      revision_date: typeof payer.revision_date === 'string' ? payer.revision_date : undefined,
+    },
+    drug: {
+      brand_name: String(
+        drug.brand_name ??
+        drug.display_name ??
+        (Array.isArray(drug.brand_names) ? drug.brand_names[0] : '') ??
+        drug.generic_name ??
+        'Unknown drug',
+      ),
+      generic_name: String(drug.generic_name ?? drug.normalized_generic_name ?? 'unknown'),
+      j_codes: Array.isArray(drug.j_codes) ? (drug.j_codes as string[]) : [],
+      hcpcs_codes: Array.isArray(drug.hcpcs_codes) ? (drug.hcpcs_codes as string[]) : [],
+      drug_class: typeof drug.drug_class === 'string' ? drug.drug_class : undefined,
+      route_of_administration: typeof drug.route_of_administration === 'string' ? drug.route_of_administration : undefined,
+      benefit_type: typeof drug.benefit_type === 'string' ? drug.benefit_type : undefined,
+      limitations_of_use: typeof drug.limitations_of_use === 'string' ? drug.limitations_of_use : undefined,
+    },
+    indications: indications
+      .map(indication => {
+        const rawIndication = (indication ?? {}) as Record<string, unknown>
+        const initial = (rawIndication.initial_authorization ?? {}) as Record<string, unknown>
+        const reauth = rawIndication.reauthorization && typeof rawIndication.reauthorization === 'object'
+          ? rawIndication.reauthorization as Record<string, unknown>
+          : null
+
+        return {
+          name: String(rawIndication.name ?? 'Unknown indication'),
+          description: typeof rawIndication.description === 'string' ? rawIndication.description : undefined,
+          icd10_codes: Array.isArray(rawIndication.icd10_codes)
+            ? rawIndication.icd10_codes as string[]
+            : Array.isArray(rawIndication.icd10_codes_explicit)
+              ? rawIndication.icd10_codes_explicit as string[]
+              : [],
+          pa_required: Boolean(rawIndication.pa_required),
+          step_therapy_required: Boolean(rawIndication.step_therapy_required),
+          initial_authorization: {
+            criteria: Array.isArray(initial.criteria) ? initial.criteria as PolicyRecord['indications'][number]['initial_authorization']['criteria'] : [],
+            authorization_duration_months: typeof initial.authorization_duration_months === 'number' ? initial.authorization_duration_months : null,
+            required_prescriber_specialties: Array.isArray(initial.required_prescriber_specialties) ? initial.required_prescriber_specialties as string[] : [],
+          },
+          reauthorization: reauth
+            ? {
+                criteria: Array.isArray(reauth.criteria) ? reauth.criteria as PolicyRecord['indications'][number]['initial_authorization']['criteria'] : [],
+                authorization_duration_months: typeof reauth.authorization_duration_months === 'number' ? reauth.authorization_duration_months : null,
+                required_prescriber_specialties: Array.isArray(reauth.required_prescriber_specialties) ? reauth.required_prescriber_specialties as string[] : [],
+              }
+            : null,
+        }
+      })
+      .filter(indication => indication.name),
+    exclusions: Array.isArray(raw.exclusions) ? raw.exclusions as PolicyRecord['exclusions'] : [],
+    confidence_scores: typeof raw.confidence_scores === 'object' && raw.confidence_scores !== null
+      ? raw.confidence_scores as PolicyRecord['confidence_scores']
+      : { overall: 0 },
+  }
+}
+
+function dedupePoliciesByPayer(policies: PolicySearchResult[]) {
+  const byPayer = new Map<string, PolicySearchResult>()
+  for (const doc of policies) {
+    const payerKey = doc.payer_canonical ?? doc.policy_record?.payer.name ?? doc._id
+    const existing = byPayer.get(payerKey)
+    if (!existing) {
+      byPayer.set(payerKey, doc)
+      continue
+    }
+
+    const incomingRank = [
+      sourcePriority(doc.source),
+      statusPriority(doc.status),
+      doc.version ?? 0,
+    ]
+    const existingRank = [
+      sourcePriority(existing.source),
+      statusPriority(existing.status),
+      existing.version ?? 0,
+    ]
+
+    if (
+      incomingRank[0] > existingRank[0] ||
+      (incomingRank[0] === existingRank[0] && incomingRank[1] > existingRank[1]) ||
+      (incomingRank[0] === existingRank[0] && incomingRank[1] === existingRank[1] && incomingRank[2] > existingRank[2])
+    ) {
+      byPayer.set(payerKey, doc)
+    }
+  }
+  return Array.from(byPayer.values())
+}
+
+function buildLivePortfolio(
+  docs: PolicySearchResult[],
+  changes: ChangeEntry[],
+): DrugPortfolioEntry[] {
+  const liveDocs = preferLiveDocs(docs).filter(
+    doc =>
+      (doc.status === 'normalized' || doc.status === 'extracted' || doc.status == null) &&
+      doc.policy_record != null &&
+      doc.drug_id,
+  )
+
+  const grouped = new Map<string, PolicySearchResult[]>()
+  for (const doc of liveDocs) {
+    const key = doc.drug_id as string
+    const current = grouped.get(key) ?? []
+    current.push(doc)
+    grouped.set(key, current)
+  }
+
+  return Array.from(grouped.entries())
+    .map(([drugId, docsForDrug]) => {
+      const deduped = dedupePoliciesByPayer(docsForDrug)
+      const policies = deduped
+        .map(doc => normalizePolicyRecord(doc.policy_record))
+        .filter((policy): policy is PolicyRecord => policy != null)
+
+      if (policies.length === 0) return null
+
+      const sample = policies[0]
+      const latestDate = latestPolicyDate(policies)
+      const matchingChanges = changes.filter(change =>
+        (change.drug_id && change.drug_id.toLowerCase() === drugId.toLowerCase()) ||
+        change.drug.toLowerCase().includes((sample.drug.brand_name || '').toLowerCase()) ||
+        change.drug.toLowerCase().includes((sample.drug.generic_name || '').toLowerCase()),
+      )
+
+      return {
+        id: drugId,
+        brandName: sample.drug.brand_name || sample.drug.generic_name || drugId,
+        genericName: sample.drug.generic_name || drugId,
+        drugClass: sample.drug.drug_class || 'Live imported policy',
+        jCode: sample.drug.j_codes?.[0] || sample.drug.hcpcs_codes?.[0] || 'N/A',
+        policies,
+        insights: buildInsightsForDrug(drugId, changes),
+        trends: buildStableTrend(policies),
+        livesAtRisk: `${policies.length} payer policy${policies.length === 1 ? '' : 'ies'} live`,
+        lastUpdated: latestDate.toISOString().slice(0, 10),
+        changeCount: matchingChanges.length,
+      } satisfies DrugPortfolioEntry
+    })
+    .filter((entry): entry is DrugPortfolioEntry => entry != null)
+    .sort((a, b) => a.brandName.localeCompare(b.brandName))
+}
 
 export default function App() {
   const [activeNav, setActiveNav]         = useState<NavView>('portfolio')
   const [selectedDrug, setSelectedDrug]   = useState<string | null>(null)
   const [compareDrugId, setCompareDrugId] = useState<string | null>(null)
-  const [portfolio, setPortfolio]       = useState<DrugPortfolioEntry[]>(mockPortfolio)
-  const [changes, setChanges]           = useState<ChangeEntry[]>(mockChanges)
+  const [portfolio, setPortfolio]       = useState<DrugPortfolioEntry[]>([])
+  const [changes, setChanges]           = useState<ChangeEntry[]>([])
   const [chatOpen, setChatOpen]         = useState(false)
 
   useEffect(() => {
-    Promise.all(
-      mockPortfolio.map(async entry => {
-        try {
-          const livePayers = await fetchPoliciesForDrug(entry.id)
-          if (livePayers.length === 0) return entry
-          return {
-            ...entry,
-            policies: livePayers
-              .filter(p => p.policy_record != null)
-              .map(p => p.policy_record),
-          }
-        } catch { return entry }
-      })
-    ).then(setPortfolio)
-  }, [])
+    Promise.allSettled([fetchAllPolicies(), fetchChanges()]).then(([policiesResult, changesResult]) => {
+      const nextChanges = changesResult.status === 'fulfilled' ? preferLiveChanges(changesResult.value) : []
+      setChanges(nextChanges)
 
-  useEffect(() => {
-    fetchChanges().then(setChanges).catch(() => {})
+      if (policiesResult.status !== 'fulfilled') {
+        setPortfolio([])
+        return
+      }
+
+      const livePortfolio = buildLivePortfolio(policiesResult.value, nextChanges)
+      setPortfolio(livePortfolio)
+      if (livePortfolio.length > 0 && !compareDrugId) {
+        setCompareDrugId(livePortfolio[0].id)
+      }
+    })
   }, [])
 
   const drug = selectedDrug ? portfolio.find(d => d.id === selectedDrug) ?? null : null

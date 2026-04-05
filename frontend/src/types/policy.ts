@@ -71,6 +71,8 @@ export interface ChangeEntry {
   severity: 'HIGH' | 'MED' | 'LOW'
   payer: string
   drug: string
+  drug_id?: string
+  source?: string
   change_type: string
   summary: string
   date: string

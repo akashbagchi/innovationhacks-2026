@@ -170,9 +170,9 @@ export function ComparisonMatrix({ policies }: ComparisonMatrixProps) {
                                     Initial auth: <span style={{ fontWeight: 600, color: '#131210' }}>{ind.initial_authorization.authorization_duration_months}mo</span>
                                   </p>
                                 )}
-                                {ind.initial_authorization.required_prescriber_specialties?.length > 0 && (
+                                {(ind.initial_authorization.required_prescriber_specialties ?? []).length > 0 && (
                                   <p style={{ fontSize: '11px', color: '#4A4845' }}>
-                                    Prescriber: <span style={{ fontWeight: 600, color: '#131210' }}>{ind.initial_authorization.required_prescriber_specialties.join(', ')}</span>
+                                    Prescriber: <span style={{ fontWeight: 600, color: '#131210' }}>{(ind.initial_authorization.required_prescriber_specialties ?? []).join(', ')}</span>
                                   </p>
                                 )}
                                 {ind.initial_authorization.criteria.length > 0 ? (
