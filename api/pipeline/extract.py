@@ -201,6 +201,56 @@ def extract_with_pdfplumber(pdf_path: str) -> list[dict]:
     return blocks
 
 
+def extract_docx_blocks(docx_path: str) -> list[dict]:
+    """
+    python-docx | Extract text blocks from a Word document.
+    Approximates page numbers based on paragraph count (~50 paras/page).
+    """
+    from docx import Document as DocxDocument
+
+    doc = DocxDocument(docx_path)
+    blocks = []
+    para_count = 0
+    PARAS_PER_PAGE = 50
+
+    for para in doc.paragraphs:
+        text = para.text.strip()
+        if not text:
+            continue
+
+        para_count += 1
+        page_num = (para_count // PARAS_PER_PAGE) + 1
+
+        # Derive font size and bold from runs
+        font_size = 10.0
+        is_bold = False
+        for run in para.runs:
+            if run.font.size:
+                font_size = run.font.size.pt
+            if run.bold:
+                is_bold = True
+
+        # Word heading styles are reliable signals
+        style_name = para.style.name.lower() if para.style else ""
+        if "heading" in style_name:
+            is_bold = True
+            if "1" in style_name:
+                font_size = max(font_size, 14.0)
+            elif "2" in style_name:
+                font_size = max(font_size, 12.0)
+
+        blocks.append({
+            "page_num": page_num,
+            "bbox": (0.0, para_count * 12.0, 500.0, (para_count + 1) * 12.0),
+            "x0": 0.0,
+            "text": text,
+            "font_size": font_size,
+            "is_bold": is_bold,
+        })
+
+    return blocks
+
+
 def extract_tables(pdf_path: str) -> list[dict]:
     """
     Camelot | table extraction.
@@ -268,10 +318,31 @@ def ocr_fallback(pdf_path: str) -> list[dict]:
 _LOW_YIELD_THRESHOLD = 50
 
 
+def _sniff_doctype(path: str) -> str:
+    """Return 'pdf' or 'docx' based on file magic bytes, falling back to extension."""
+    try:
+        with open(path, "rb") as f:
+            header = f.read(8)
+        if header[:4] == b"%PDF":
+            return "pdf"
+        if header[:2] == b"PK":  # ZIP-based — DOCX, XLSX, etc.
+            return "docx"
+    except OSError:
+        pass
+    ext = Path(path).suffix.lower()
+    return "docx" if ext == ".docx" else "pdf"
+
+
 def extract_all(pdf_path: str) -> tuple[list[dict], list[dict], int]:
     """
-    Orchestrates multi-library extraction.
+    Orchestrates multi-library extraction. Supports PDF and DOCX.
+    Detects actual file type from magic bytes — not filename extension.
     """
+    if _sniff_doctype(pdf_path) == "docx":
+        blocks = extract_docx_blocks(pdf_path)
+        page_count = max((b["page_num"] for b in blocks), default=1)
+        return blocks, [], page_count  # Camelot table extraction not applicable to docx
+
     doc = pymupdf.open(pdf_path)
     page_count = len(doc)
     doc.close()

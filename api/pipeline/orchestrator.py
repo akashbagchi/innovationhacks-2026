@@ -169,8 +169,11 @@ async def _process_one(item: dict, result: PipelineResult) -> None:
         return
 
     # Write to temp file — extraction functions need a file path
-    with tempfile.NamedTemporaryFile(suffix=".pdf", delete=False) as tmp:
+    import os as _os
+    file_ext = _os.path.splitext(filename)[1].lower() or ".pdf"
+    with tempfile.NamedTemporaryFile(suffix=file_ext, delete=False) as tmp:
         tmp.write(pdf_bytes)
+        tmp.flush()
         tmp_path = tmp.name
 
     try:
