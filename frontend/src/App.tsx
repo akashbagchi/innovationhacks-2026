@@ -12,6 +12,7 @@ import type { ChangeEntry, InsightCard, PayerTrend, PolicyRecord } from './types
 import { fetchAllPolicies, fetchChanges, type PolicySearchResult } from './lib/api'
 import { ChatPanel } from './components/ChatPanel'
 import { computeStringency } from './lib/stringency'
+import { canonicalizePayerName } from './lib/formatters'
 
 type NavView = 'portfolio' | 'compare' | 'digest'
 const DEMO_MODE_KEY = 'antonrx-demo-mode'
@@ -109,7 +110,7 @@ function normalizePolicyRecord(input: PolicySearchResult['policy_record']): Poli
 
   return {
     payer: {
-      name: String(payer.name),
+      name: canonicalizePayerName(String(payer.name)),
       policy_id: typeof payer.policy_id === 'string' ? payer.policy_id : null,
       policy_title: String(payer.policy_title ?? 'Untitled policy'),
       effective_date: typeof payer.effective_date === 'string' ? payer.effective_date : undefined,
@@ -174,7 +175,8 @@ function normalizePolicyRecord(input: PolicySearchResult['policy_record']): Poli
 function dedupePoliciesByPayer(policies: PolicySearchResult[]) {
   const byPayer = new Map<string, PolicySearchResult>()
   for (const doc of policies) {
-    const payerKey = doc.payer_canonical ?? doc.policy_record?.payer.name ?? doc._id
+    const rawPayerKey = doc.payer_canonical ?? doc.policy_record?.payer.name ?? doc._id
+    const payerKey = canonicalizePayerName(String(rawPayerKey))
     const existing = byPayer.get(payerKey)
     if (!existing) {
       byPayer.set(payerKey, doc)
