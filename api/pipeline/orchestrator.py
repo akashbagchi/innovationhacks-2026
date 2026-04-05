@@ -178,12 +178,25 @@ async def _process_one(item: dict, result: PipelineResult) -> None:
         tmp_path = tmp.name
 
     try:
-        extracted_records = _extract_from_path(tmp_path, filename)
+        import concurrent.futures
+        executor = concurrent.futures.ThreadPoolExecutor(max_workers=1)
+        future = executor.submit(_extract_from_path, tmp_path, filename)
+        try:
+            extracted_records = future.result(timeout=120)
+        except concurrent.futures.TimeoutError:
+            print(f"  [skip] extraction timed out after 120s for {filename} — skipping")
+            executor.shutdown(wait=False, cancel_futures=True)
+            result.skipped += 1
+            return
+        finally:
+            executor.shutdown(wait=False)
     finally:
         Path(tmp_path).unlink(missing_ok=True)
 
     if not extracted_records:
-        raise RuntimeError("Extraction returned no records")
+        print(f"  [skip] no records extracted from {filename} (file may be corrupted or unsupported format)")
+        result.skipped += 1
+        return
 
     # Normalize each extracted record before writing to the golden layer.
     for extracted_record in extracted_records:

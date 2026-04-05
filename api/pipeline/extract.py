@@ -208,7 +208,12 @@ def extract_docx_blocks(docx_path: str) -> list[dict]:
     """
     from docx import Document as DocxDocument
 
-    doc = DocxDocument(docx_path)
+    try:
+        doc = DocxDocument(docx_path)
+    except Exception as e:
+        print(f"  [warn] DOCX parse failed ({e}), skipping file")
+        return []
+
     blocks = []
     para_count = 0
     PARAS_PER_PAGE = 50
