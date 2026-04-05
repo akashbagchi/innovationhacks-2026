@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ChevronRight } from 'lucide-react'
+import { ChevronRight, Download } from 'lucide-react'
 import type { PolicyRecord } from '../types/policy'
 import { computeStringency } from '../lib/stringency'
 import { ProvenanceChip } from './ProvenanceChip'
@@ -23,6 +23,100 @@ const criterionColors: Record<string, { bg: string; text: string; border: string
   prescriber:              { bg: '#EAF4FE', text: '#2870A8', border: 'rgba(40,112,168,0.25)' },
   clinical_response:       { bg: '#EAF4FE', text: '#2870A8', border: 'rgba(40,112,168,0.25)' },
   other:                   { bg: '#F0EFEB', text: '#918D88', border: '#D8D4CC' },
+}
+
+function csvEscape(value: string | number | boolean | null | undefined) {
+  const stringValue = value == null ? '' : String(value)
+  if (/[",\n]/.test(stringValue)) {
+    return `"${stringValue.replace(/"/g, '""')}"`
+  }
+  return stringValue
+}
+
+function buildComparisonCsv(policies: PolicyRecord[]) {
+  const sorted = [...policies].sort((a, b) => computeStringency(b).score - computeStringency(a).score)
+  const rows = sorted.flatMap(policy => {
+    const { score } = computeStringency(policy)
+    const paCount = policy.indications.filter(i => i.pa_required).length
+    const stepCount = policy.indications.filter(i => i.step_therapy_required).length
+    const totalIndications = policy.indications.length
+    const avgCriteria = totalIndications > 0
+      ? (policy.indications.reduce((sum, indication) => sum + indication.initial_authorization.criteria.length, 0) / totalIndications).toFixed(1)
+      : ''
+    const authDurations = policy.indications
+      .map(i => i.initial_authorization.authorization_duration_months)
+      .filter((value): value is number => value != null)
+    const authDurationRange = authDurations.length > 0
+      ? `${Math.min(...authDurations)}-${Math.max(...authDurations)}mo`
+      : ''
+
+    return policy.indications.map(indication => ({
+      payer: policy.payer.name,
+      policy_id: policy.payer.policy_id ?? '',
+      policy_title: policy.payer.policy_title,
+      effective_date: policy.payer.effective_date ?? '',
+      revision_date: policy.payer.revision_date ?? '',
+      brand_name: policy.drug.brand_name,
+      generic_name: policy.drug.generic_name,
+      benefit_type: policy.drug.benefit_type ?? '',
+      stringency_score: score,
+      indications_covered: totalIndications,
+      pa_required_count: paCount,
+      step_therapy_count: stepCount,
+      auth_duration_range: authDurationRange,
+      avg_criteria_per_indication: avgCriteria,
+      exclusions_count: policy.exclusions?.length ?? 0,
+      indication_name: indication.name,
+      covered: true,
+      pa_required: indication.pa_required,
+      step_therapy_required: indication.step_therapy_required ?? false,
+      initial_auth_duration_months: indication.initial_authorization.authorization_duration_months ?? '',
+      initial_criteria_count: indication.initial_authorization.criteria.length,
+      initial_criteria: indication.initial_authorization.criteria.map(c => `${c.criterion_type}: ${c.description}`).join(' | '),
+      reauthorization_duration_months: indication.reauthorization?.authorization_duration_months ?? '',
+      reauthorization_criteria_count: indication.reauthorization?.criteria.length ?? 0,
+      reauthorization_criteria: indication.reauthorization?.criteria.map(c => `${c.criterion_type}: ${c.description}`).join(' | ') ?? '',
+      required_prescriber_specialties: indication.initial_authorization.required_prescriber_specialties?.join(' | ') ?? '',
+      exclusions: policy.exclusions?.map(exclusion => exclusion.description).join(' | ') ?? '',
+    }))
+  })
+
+  const header = [
+    'payer',
+    'policy_id',
+    'policy_title',
+    'effective_date',
+    'revision_date',
+    'brand_name',
+    'generic_name',
+    'benefit_type',
+    'stringency_score',
+    'indications_covered',
+    'pa_required_count',
+    'step_therapy_count',
+    'auth_duration_range',
+    'avg_criteria_per_indication',
+    'exclusions_count',
+    'indication_name',
+    'covered',
+    'pa_required',
+    'step_therapy_required',
+    'initial_auth_duration_months',
+    'initial_criteria_count',
+    'initial_criteria',
+    'reauthorization_duration_months',
+    'reauthorization_criteria_count',
+    'reauthorization_criteria',
+    'required_prescriber_specialties',
+    'exclusions',
+  ]
+
+  const lines = [
+    header.join(','),
+    ...rows.map(row => header.map(column => csvEscape(row[column as keyof typeof row])).join(',')),
+  ]
+
+  return lines.join('\n')
 }
 
 export function ComparisonMatrix({ policies }: ComparisonMatrixProps) {
@@ -58,8 +152,56 @@ export function ComparisonMatrix({ policies }: ComparisonMatrixProps) {
   const colTemplate = `160px repeat(${sorted.length}, 1fr)`
   const cellBase: React.CSSProperties = { padding: '8px 12px', borderLeft: '1px solid #EBEBEB', display: 'flex', alignItems: 'center' }
 
+  function handleExportCsv() {
+    if (sorted.length === 0) return
+
+    const csv = buildComparisonCsv(policies)
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8' })
+    const url = URL.createObjectURL(blob)
+    const anchor = document.createElement('a')
+    const drugName = sorted[0]?.drug.generic_name || sorted[0]?.drug.brand_name || 'comparison'
+    anchor.href = url
+    anchor.download = `${drugName.toLowerCase().replace(/[^a-z0-9]+/g, '-')}-comparison.csv`
+    document.body.appendChild(anchor)
+    anchor.click()
+    document.body.removeChild(anchor)
+    URL.revokeObjectURL(url)
+  }
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px' }}>
+        <div>
+          <p style={{ ...LABEL, color: '#91bfeb', marginBottom: '4px' }}>Comparison Matrix</p>
+          <p style={{ fontSize: '12px', color: '#4A4845' }}>
+            {sorted.length} payer{sorted.length === 1 ? '' : 's'} in view
+          </p>
+        </div>
+        <button
+          type="button"
+          onClick={handleExportCsv}
+          disabled={sorted.length === 0}
+          style={{
+            ...mono,
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '6px',
+            padding: '7px 10px',
+            borderRadius: '2px',
+            fontSize: '10px',
+            letterSpacing: '0.08em',
+            textTransform: 'uppercase',
+            background: sorted.length === 0 ? '#F7F5F0' : '#FFFFFF',
+            border: '1px solid #D8D4CC',
+            color: sorted.length === 0 ? '#B9B4AC' : '#4A4845',
+            cursor: sorted.length === 0 ? 'not-allowed' : 'pointer',
+          }}
+        >
+          <Download size={12} />
+          Export CSV
+        </button>
+      </div>
+
       {/* Summary scaffold */}
       <div style={{ background: '#FFFFFF', border: '1px solid #D8D4CC', borderRadius: '2px', overflow: 'hidden' }}>
         {/* Column headers */}
@@ -170,9 +312,9 @@ export function ComparisonMatrix({ policies }: ComparisonMatrixProps) {
                                     Initial auth: <span style={{ fontWeight: 600, color: '#131210' }}>{ind.initial_authorization.authorization_duration_months}mo</span>
                                   </p>
                                 )}
-                                {ind.initial_authorization.required_prescriber_specialties?.length > 0 && (
+                                {(ind.initial_authorization.required_prescriber_specialties ?? []).length > 0 && (
                                   <p style={{ fontSize: '11px', color: '#4A4845' }}>
-                                    Prescriber: <span style={{ fontWeight: 600, color: '#131210' }}>{ind.initial_authorization.required_prescriber_specialties.join(', ')}</span>
+                                    Prescriber: <span style={{ fontWeight: 600, color: '#131210' }}>{(ind.initial_authorization.required_prescriber_specialties ?? []).join(', ')}</span>
                                   </p>
                                 )}
                                 {ind.initial_authorization.criteria.length > 0 ? (
