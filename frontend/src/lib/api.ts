@@ -1,4 +1,5 @@
 import type { PolicyRecord, ChangeEntry } from '../types/policy'
+import type { ChatSource } from '../types/chat'
 
 const BASE = import.meta.env.VITE_API_URL ?? 'http://localhost:8000'
 
@@ -24,4 +25,17 @@ export async function fetchChanges(drugId = '', severity = ''): Promise<ChangeEn
   if (!res.ok) throw new Error(`changes API error: ${res.status}`)
   const data = await res.json()
   return (data.changes ?? []) as ChangeEntry[]
+}
+
+export async function sendChatMessage(
+  message: string,
+  history: { role: 'user' | 'assistant'; content: string }[],
+): Promise<{ reply: string; sources: ChatSource[] }> {
+  const res = await fetch(`${BASE}/v1/chat`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ message, history }),
+  })
+  if (!res.ok) throw new Error(`chat API error: ${res.status}`)
+  return res.json()
 }

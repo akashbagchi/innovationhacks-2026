@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routes import ingest, policies, compare, diff, simulate, changes, pipeline
+from routes import ingest, policies, compare, diff, simulate, changes, pipeline, chat
 
 app = FastAPI(title="Anton RX Policy Tracker API", redirect_slashes=False)
 
@@ -18,6 +18,7 @@ app.include_router(diff.router,     prefix="/v1/diff",     tags=["diff"])
 app.include_router(simulate.router, prefix="/v1/simulate", tags=["simulate"])
 app.include_router(changes.router,  prefix="/v1/changes",  tags=["changes"])
 app.include_router(pipeline.router, prefix="/v1/pipeline", tags=["pipeline"])
+app.include_router(chat.router,     prefix="/v1/chat",     tags=["chat"])
 
 @app.get("/health")
 async def health():

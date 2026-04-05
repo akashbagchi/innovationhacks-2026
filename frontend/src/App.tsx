@@ -10,6 +10,7 @@ import { portfolio as mockPortfolio } from './data/mockPortfolio'
 import type { DrugPortfolioEntry } from './data/mockPortfolio'
 import type { ChangeEntry } from './types/policy'
 import { fetchPoliciesForDrug, fetchChanges } from './lib/api'
+import { ChatPanel } from './components/ChatPanel'
 
 type NavView = 'portfolio' | 'compare' | 'digest'
 
@@ -19,6 +20,7 @@ export default function App() {
   const [compareDrugId, setCompareDrugId] = useState<string | null>(null)
   const [portfolio, setPortfolio]       = useState<DrugPortfolioEntry[]>(mockPortfolio)
   const [changes, setChanges]           = useState<ChangeEntry[]>(mockChanges)
+  const [chatOpen, setChatOpen]         = useState(false)
 
   useEffect(() => {
     Promise.all(
@@ -50,7 +52,7 @@ export default function App() {
 
   return (
     <div className="flex min-h-screen" style={{ background: '#F0EFEB' }}>
-      <Sidebar active={activeNav} onNavigate={handleNavigate} changes={changes} portfolio={portfolio} />
+      <Sidebar active={activeNav} onNavigate={handleNavigate} changes={changes} portfolio={portfolio} onChatToggle={() => setChatOpen(o => !o)} />
 
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
         <AnimatePresence mode="wait">
@@ -125,6 +127,7 @@ export default function App() {
 
         </AnimatePresence>
       </div>
+      <ChatPanel open={chatOpen} onClose={() => setChatOpen(false)} />
     </div>
   )
 }
