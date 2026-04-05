@@ -14,8 +14,9 @@ import { fetchPoliciesForDrug, fetchChanges } from './lib/api'
 type NavView = 'portfolio' | 'compare' | 'digest'
 
 export default function App() {
-  const [activeNav, setActiveNav]       = useState<NavView>('portfolio')
-  const [selectedDrug, setSelectedDrug] = useState<string | null>(null)
+  const [activeNav, setActiveNav]         = useState<NavView>('portfolio')
+  const [selectedDrug, setSelectedDrug]   = useState<string | null>(null)
+  const [compareDrugId, setCompareDrugId] = useState<string | null>(null)
   const [portfolio, setPortfolio]       = useState<DrugPortfolioEntry[]>(mockPortfolio)
   const [changes, setChanges]           = useState<ChangeEntry[]>(mockChanges)
 
@@ -79,22 +80,27 @@ export default function App() {
                 <div className="flex gap-2 mt-3 flex-wrap">
                   {portfolio.map(d => (
                     <button key={d.id}
-                      onClick={() => { setSelectedDrug(d.id); setActiveNav('portfolio') }}
+                      onClick={() => setCompareDrugId(d.id)}
                       style={{
-                        background: '#F0EFEB', border: '1px solid #D8D4CC',
-                        borderRadius: '2px', color: '#4A4845',
+                        background: compareDrugId === d.id ? '#131210' : '#F0EFEB',
+                        border: `1px solid ${compareDrugId === d.id ? '#131210' : '#D8D4CC'}`,
+                        borderRadius: '2px',
+                        color: compareDrugId === d.id ? '#FFFFFF' : '#4A4845',
                         fontFamily: "'IBM Plex Mono', monospace",
                         fontSize: '10px', letterSpacing: '0.06em',
                         padding: '5px 10px', cursor: 'pointer',
+                        transition: 'all 0.1s',
                       }}>
                       {d.brandName}
-                      <span style={{ marginLeft: '8px', color: '#918D88' }}>{d.jCode}</span>
+                      <span style={{ marginLeft: '8px', color: compareDrugId === d.id ? '#A8A5A0' : '#918D88' }}>{d.jCode}</span>
                     </button>
                   ))}
                 </div>
               </div>
               <div className="flex-1 overflow-y-auto p-7">
-                <ComparisonMatrix policies={portfolio[0].policies} />
+                <ComparisonMatrix
+                  policies={(portfolio.find(d => d.id === compareDrugId) ?? portfolio[0])?.policies ?? []}
+                />
               </div>
             </motion.div>
           )}

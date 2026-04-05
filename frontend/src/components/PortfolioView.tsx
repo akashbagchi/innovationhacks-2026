@@ -31,11 +31,8 @@ interface StatCardData {
   }
 }
 
-function shortPayer(name: string) {
-  if (name === 'Blue Cross NC') return 'BCNC'
-  if (name === 'UnitedHealth') return 'UHC'
-  return name
-}
+import { formatPayerName } from '../lib/formatters'
+function shortPayer(name: string) { return formatPayerName(name) }
 
 function formatChangeDate(date: string) {
   return new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', year: 'numeric' }).format(new Date(date))
@@ -49,7 +46,8 @@ function summarizeDirection(change: ChangeEntry) {
 }
 
 function buildStats(portfolio: DrugPortfolioEntry[], changes: ChangeEntry[]): StatCardData[] {
-  const policiesTracked = portfolio.length * 3
+  const policiesTracked = portfolio.reduce((sum, d) => sum + d.policies.length, 0)
+  const uniquePayers    = new Set(portfolio.flatMap(d => d.policies.map(p => p.payer.name))).size
   const highImpact      = changes.filter(c => c.severity === 'HIGH').length
   const tighteningCount = portfolio.flatMap(d => d.trends).filter(t => t.direction === 'tightening').length
   const looseningCount  = portfolio.flatMap(d => d.trends).filter(t => t.direction === 'loosening').length
@@ -76,8 +74,8 @@ function buildStats(portfolio: DrugPortfolioEntry[], changes: ChangeEntry[]): St
       viz: { label: 'Portfolio mix', segments: portfolio.map((d, i) => ({ value: d.policies.length, color: ['#1A7840', '#8B6428', '#7BA8C4'][i % 3], tooltip: `${d.brandName}: ${d.policies.length} policies` })) },
     },
     {
-      label: 'Payers Monitored', value: 3, sub: 'Commercial + Medicare LCDs',
-      viz: { label: 'Coverage source mix', segments: [{ value: 2, color: '#1A7840', tooltip: 'Commercial payers' }, { value: 1, color: '#A8D4C8', tooltip: 'Medicare / LCD' }] },
+      label: 'Payers Monitored', value: uniquePayers, sub: 'Commercial payer policies',
+      viz: { label: 'Portfolio mix', segments: portfolio.map((d, i) => ({ value: d.policies.length, color: ['#1A7840', '#8B6428', '#7BA8C4', '#7B5EA7'][i % 4], tooltip: `${d.brandName}: ${d.policies.length} payers` })) },
     },
     {
       label: 'High-Impact Changes', value: highImpact, sub: `${tighteningCount} tightening, ${looseningCount} loosening`,

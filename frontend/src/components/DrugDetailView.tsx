@@ -8,6 +8,7 @@ import { CriteriaBreakdown } from './CriteriaBreakdown'
 import { ChangeDigest } from './ChangeDigest'
 import { SparkLine } from './SparkLine'
 import type { ChangeEntry } from '../types/policy'
+import { formatPayerName } from '../lib/formatters'
 
 interface DrugDetailViewProps {
   drug: DrugPortfolioEntry
@@ -113,7 +114,7 @@ export function DrugDetailView({ drug, onBack, changes }: DrugDetailViewProps) {
           {drug.trends.map(t => {
             const tc        = t.direction === 'tightening' ? '#B81C1C' : t.direction === 'loosening' ? '#1A7840' : '#918D88'
             const dirLabel  = t.direction === 'tightening' ? '↑ tightening' : t.direction === 'loosening' ? '↓ loosening' : '→ stable'
-            const shortName = t.payerName === 'Blue Cross NC' ? 'BCNC' : t.payerName === 'UnitedHealth' ? 'UHC' : t.payerName
+            const shortName = formatPayerName(t.payerName)
             const lastScore = t.history[t.history.length - 1].score
             return (
               <div key={t.payerName} style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '8px 12px', background: '#F0EFEB', border: '1px solid #D8D4CC', borderRadius: '2px' }}>

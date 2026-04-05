@@ -1,5 +1,7 @@
+import { useMemo } from 'react'
 import { motion } from 'framer-motion'
 import type { DrugPortfolioEntry } from '../data/mockPortfolio'
+import { formatPayerName } from '../lib/formatters'
 
 interface CoverageHeatmapProps {
   portfolio: DrugPortfolioEntry[]
@@ -16,7 +18,12 @@ const statusConfig = {
 }
 
 export function CoverageHeatmap({ portfolio, onSelectDrug }: CoverageHeatmapProps) {
-  const payers = portfolio[0]?.trends.map(t => t.payerName) ?? []
+  // Union of all payer names across every drug in the portfolio
+  const payers = useMemo(() => {
+    const seen = new Set<string>()
+    portfolio.forEach(drug => drug.trends.forEach(t => seen.add(t.payerName)))
+    return Array.from(seen)
+  }, [portfolio])
 
   return (
     <div style={{ background: '#FFFFFF', border: '1px solid #D8D4CC', borderRadius: '2px', overflow: 'hidden' }}>
@@ -35,7 +42,7 @@ export function CoverageHeatmap({ portfolio, onSelectDrug }: CoverageHeatmapProp
           <span />
           {payers.map(payer => (
             <span key={payer} style={{ ...mono, fontSize: '9px', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#918D88', textAlign: 'center', display: 'block' }}>
-              {payer === 'Blue Cross NC' ? 'BCNC' : payer === 'UnitedHealth' ? 'UHC' : payer}
+              {formatPayerName(payer)}
             </span>
           ))}
         </div>
@@ -53,7 +60,13 @@ export function CoverageHeatmap({ portfolio, onSelectDrug }: CoverageHeatmapProp
             </div>
             {payers.map(payerName => {
               const trend = drug.trends.find(t => t.payerName === payerName)
-              if (!trend) return <span key={payerName} />
+              if (!trend) return (
+                <div key={payerName} className="flex flex-col items-center">
+                  <span style={{ display: 'block', width: '100%', textAlign: 'center', padding: '5px 8px', borderRadius: '2px', background: '#F7F6F3', color: '#C8C5BE', border: '1px dashed #D8D4CC', ...mono, fontSize: '9px' }}>
+                    —
+                  </span>
+                </div>
+              )
               const cfg = statusConfig[trend.direction]
               return (
                 <div key={payerName} className="flex flex-col items-center gap-1">

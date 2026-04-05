@@ -279,6 +279,93 @@ export const mockPolicies: PolicyRecord[] = [
 
   {
     payer: {
+      name: 'Florida Blue',
+      policy_id: '09-J1000-78',
+      policy_title: 'Bevacizumab (Avastin / Mvasi / Zirabev) Injection',
+      effective_date: '2026-01-01',
+      revision_date: '2026-01-01',
+    },
+    drug: {
+      brand_name: 'Avastin / Mvasi / Zirabev',
+      generic_name: 'bevacizumab',
+      j_codes: ['J9035'],
+      hcpcs_codes: ['J9035'],
+      drug_class: 'Humanized monoclonal antibody; VEGF inhibitor',
+      route_of_administration: 'intravenous (IV) infusion',
+      benefit_type: 'medical',
+      limitations_of_use: 'Not approved for ophthalmic indications. FDA removed breast cancer approval in 2011.',
+    },
+    indications: [
+      {
+        name: 'Oncologic Indications (NCCN/FDA-supported)',
+        icd10_codes: ['C17.0', 'C17.9', 'C18.0', 'C18.9', 'C19', 'C20', 'C22.0', 'C34.10', 'C56.1', 'C71.9'],
+        pa_required: true,
+        step_therapy_required: true,
+        initial_authorization: {
+          criteria: [
+            { criterion_type: 'diagnosis', description: 'Diagnosis is an NCCN/FDA-supported cancer: colorectal, HCC, NSCLC (non-squamous), ovarian, cervical, glioblastoma, or renal cell carcinoma', logic_operator: 'AND' },
+            { criterion_type: 'other', description: 'Dose does not exceed 10 mg/kg every 2 weeks or 15 mg/kg every 3 weeks', logic_operator: 'AND' },
+            { criterion_type: 'step_therapy', description: 'For brand bevacizumab (Avastin, Alymsys, Avzivi, Jobevne, or Vegzelma): must have documented inadequate response, contraindication, or intolerance to a biosimilar (bevacizumab-awwb [Mvasi] or bevacizumab-bvzr [Zirabev])', logic_operator: 'AND' },
+          ],
+        },
+      },
+      {
+        name: 'Metastatic colorectal cancer',
+        icd10_codes: ['C18.0', 'C18.1', 'C18.9', 'C19', 'C20'],
+        pa_required: true,
+        step_therapy_required: false,
+        initial_authorization: {
+          criteria: [
+            { criterion_type: 'combination_restriction', description: 'In combination with 5-FU-based chemotherapy for first- or second-line treatment', logic_operator: 'AND' },
+            { criterion_type: 'line_of_therapy', description: 'First- or second-line metastatic or unresectable', logic_operator: 'AND' },
+          ],
+        },
+      },
+      {
+        name: 'Non-squamous NSCLC',
+        icd10_codes: ['C34.10', 'C34.11', 'C34.12'],
+        pa_required: true,
+        step_therapy_required: false,
+        initial_authorization: {
+          criteria: [
+            { criterion_type: 'combination_restriction', description: 'In combination with carboplatin and paclitaxel', logic_operator: 'AND' },
+            { criterion_type: 'line_of_therapy', description: 'Locally advanced, recurrent, or metastatic non-squamous NSCLC — first-line', logic_operator: 'AND' },
+          ],
+        },
+      },
+      {
+        name: 'Hepatocellular carcinoma',
+        icd10_codes: ['C22.0'],
+        pa_required: true,
+        step_therapy_required: false,
+        initial_authorization: {
+          criteria: [
+            { criterion_type: 'combination_restriction', description: 'In combination with atezolizumab only', logic_operator: 'AND' },
+            { criterion_type: 'prior_therapy', description: 'Patient has not received prior systemic therapy for HCC', logic_operator: 'AND' },
+          ],
+        },
+      },
+      {
+        name: 'Recurrent glioblastoma',
+        icd10_codes: ['C71.9'],
+        pa_required: true,
+        step_therapy_required: false,
+        initial_authorization: {
+          criteria: [
+            { criterion_type: 'prior_therapy', description: 'Disease has progressed on prior therapy', logic_operator: 'AND' },
+          ],
+        },
+      },
+    ],
+    exclusions: [
+      { description: 'Not covered for ophthalmic (ocular) indications — refer to separate VEGF inhibitor ocular policy' },
+      { description: 'Not covered for adjuvant or metastatic breast cancer (FDA approval withdrawn 2011)' },
+    ],
+    confidence_scores: { overall: 0.82, drug_identification: 0.99, pa_criteria_completeness: 0.80 },
+  },
+
+  {
+    payer: {
       name: 'Cigna',
       policy_id: 'CPO-BEV-2025',
       policy_title: 'Cigna Coverage Policy: Bevacizumab (Avastin)',
@@ -353,17 +440,22 @@ export const mockPolicies: PolicyRecord[] = [
 export const mockInsights: InsightCard[] = [
   {
     severity: 'high',
+    text: 'Florida Blue added a biosimilar step therapy requirement effective Jan 1 2026 — brand bevacizumab (Avastin) now requires documented failure of Mvasi or Zirabev first. No other payer has this requirement.',
+    action: 'Immediately audit Florida Blue-insured patients pending authorization. Hub intake forms must now capture prior biosimilar trial documentation. Coordinate with specialty pharmacy partners to update prior auth workflows.',
+  },
+  {
+    severity: 'high',
     text: 'UnitedHealth is the most restrictive payer — requires step therapy on 3 of 6 indications and mandates specialist prescriber for all covered uses.',
     action: 'Prioritize Cigna for patient access programs — UHC step therapy requirement doubles time-to-treatment for mCRC and NSCLC. Brief field access teams on sequencing documentation requirements.',
   },
   {
     severity: 'medium',
-    text: 'Cigna is the only payer that does not require PA for recurrent glioblastoma, making it the least restrictive path for that indication.',
+    text: 'Cigna is the only payer that does not require PA for recurrent glioblastoma across all 4 tracked payers, making it the fastest access path for that indication.',
     action: 'Alert field access team: Cigna glioblastoma access requires no PA. Position Cigna as preferred pathway in pull-through messaging for neuro-oncology accounts.',
   },
   {
     severity: 'low',
-    text: 'All 3 payers cover metastatic colorectal cancer with bevacizumab, but UnitedHealth requires documented prior regimen failure for second-line use.',
-    action: 'Update reauthorization scheduling systems — UHC 6-month auth requires 2× annual reauth burden vs BCNC 12-month. Flag for hub services to proactively initiate renewals at month 5.',
+    text: 'Authorization duration for mCRC varies 2×: Cigna grants 12-month auth vs UHC 6-month, creating differential reauthorization burden across payers.',
+    action: 'Update reauthorization scheduling systems — UHC 6-month auth requires 2× annual reauth burden vs Cigna 12-month. Flag for hub services to proactively initiate renewals at month 5.',
   },
 ]

@@ -19,14 +19,106 @@ export const dupixentPolicies: PolicyRecord[] = [
     confidence_scores: { overall: 0.96 },
   },
   {
-    payer: { name: 'UnitedHealth', policy_id: 'CS-DERM-0018', policy_title: 'UnitedHealthcare: Dupilumab (Dupixent)', effective_date: '2025-10-01', revision_date: '2025-09-01' },
-    drug: { brand_name: 'Dupixent', generic_name: 'dupilumab', j_codes: ['J0222'], hcpcs_codes: ['J0222'], drug_class: 'IL-4/IL-13 receptor antagonist', route_of_administration: 'subcutaneous injection', benefit_type: 'medical' },
+    // Source: UHC policy 2025 P 2116-22 (extracted from test-doc.json, confidence 0.95)
+    payer: { name: 'UnitedHealth', policy_id: '2025 P 2116-22', policy_title: 'Dupixent (dupilumab) Prior Authorization/Medical Necessity', effective_date: '2025-11-01', revision_date: '2025-08-01' },
+    drug: { brand_name: 'Dupixent', generic_name: 'dupilumab', j_codes: ['J0222'], hcpcs_codes: ['J0222'], drug_class: 'Interleukin-4 receptor alpha antagonist', route_of_administration: 'subcutaneous injection', benefit_type: 'pharmacy', limitations_of_use: 'Not for the relief of acute bronchospasm or status asthmaticus.' },
     indications: [
-      { name: 'Atopic dermatitis', icd10_codes: ['L20.0'], pa_required: true, step_therapy_required: true, initial_authorization: { authorization_duration_months: 6, criteria: [{ criterion_type: 'step_therapy', description: 'Failure of ≥2 conventional systemic therapies (methotrexate or cyclosporine) for ≥12 weeks', logic_operator: 'AND' }, { criterion_type: 'prescriber', description: 'Must be prescribed by dermatologist or allergist', logic_operator: 'AND' }, { criterion_type: 'disease_severity', description: 'EASI score ≥16 documented', logic_operator: 'AND' }, { criterion_type: 'lab_value', description: 'eGFR >30 mL/min/1.73m² at baseline', logic_operator: 'AND' }] } },
-      { name: 'Asthma', icd10_codes: ['J45.50'], pa_required: true, step_therapy_required: true, initial_authorization: { authorization_duration_months: 6, criteria: [{ criterion_type: 'prior_therapy', description: 'Must fail ≥2 ICS/LABA combinations', logic_operator: 'AND' }, { criterion_type: 'lab_value', description: 'Eosinophils ≥300 or FeNO ≥25 ppb', logic_operator: 'AND' }] } },
+      {
+        name: 'Atopic Dermatitis',
+        icd10_codes: ['L20.0'],
+        pa_required: true,
+        step_therapy_required: true,
+        initial_authorization: {
+          authorization_duration_months: 12,
+          criteria: [
+            { criterion_type: 'diagnosis', description: 'Diagnosis of moderate-to-severe chronic atopic dermatitis', logic_operator: 'AND' },
+            { criterion_type: 'step_therapy', description: 'History of failure, contraindication, or intolerance to two of the following topical therapy classes: (a) Medium/high/very-high potency topical corticosteroid; (b) Topical calcineurin inhibitor [Elidel, Protopic]; (c) Eucrisa (crisaborole)', logic_operator: 'AND' },
+            { criterion_type: 'combination_restriction', description: 'Not receiving Dupixent in combination with a biologic immunomodulator or Janus kinase inhibitor for the same indication', logic_operator: 'AND' },
+            { criterion_type: 'prescriber', description: 'Prescribed by a dermatologist, allergist, or immunologist', logic_operator: 'AND' },
+          ],
+          required_prescriber_specialties: ['Dermatologist', 'Allergist', 'Immunologist'],
+        },
+        reauthorization: {
+          authorization_duration_months: 12,
+          criteria: [
+            { criterion_type: 'clinical_response', description: 'Documentation of positive clinical response to Dupixent therapy', logic_operator: 'AND' },
+            { criterion_type: 'combination_restriction', description: 'Not receiving Dupixent in combination with a biologic immunomodulator or Janus kinase inhibitor', logic_operator: 'AND' },
+            { criterion_type: 'prescriber', description: 'Prescribed by a dermatologist, allergist, or immunologist', logic_operator: 'AND' },
+          ],
+          required_prescriber_specialties: ['Dermatologist', 'Allergist', 'Immunologist'],
+        },
+      },
+      {
+        name: 'Asthma',
+        icd10_codes: ['J45.50', 'J45.51'],
+        pa_required: true,
+        step_therapy_required: true,
+        initial_authorization: {
+          authorization_duration_months: 12,
+          criteria: [
+            { criterion_type: 'diagnosis', description: 'Diagnosis of moderate-to-severe asthma', logic_operator: 'AND' },
+            { criterion_type: 'disease_severity', description: 'Asthma classified as uncontrolled or inadequately controlled: poor symptom control (ACQ >1.5 or ACT <20), ≥2 corticosteroid bursts in prior 12 months, emergency treatment, FEV1 <80% predicted, or OCS-dependent', logic_operator: 'AND' },
+            { criterion_type: 'lab_value', description: 'Baseline peripheral blood eosinophil level ≥150 cells/μL OR patient is currently dependent on oral corticosteroids for asthma', logic_operator: 'AND' },
+            { criterion_type: 'step_therapy', description: 'Dupixent used in combination with a maximally dosed ICS/LABA (e.g., Advair, Symbicort, Breo) or combination ICS + additional controller medication', logic_operator: 'AND' },
+            { criterion_type: 'combination_restriction', description: 'Not receiving Dupixent concurrently with anti-IL-5, anti-IgE, or TSLP inhibitor therapy for the same indication', logic_operator: 'AND' },
+            { criterion_type: 'prescriber', description: 'Prescribed by an allergist, immunologist, or pulmonologist', logic_operator: 'AND' },
+          ],
+          required_prescriber_specialties: ['Allergist', 'Immunologist', 'Pulmonologist'],
+        },
+        reauthorization: {
+          authorization_duration_months: 12,
+          criteria: [
+            { criterion_type: 'clinical_response', description: 'Documentation of positive clinical response: reduction in exacerbations, decreased rescue medication use, improvement in FEV1, reduction in OCS requirements, or symptom improvement', logic_operator: 'AND' },
+          ],
+          required_prescriber_specialties: ['Allergist', 'Immunologist', 'Pulmonologist'],
+        },
+      },
+      {
+        name: 'Chronic Rhinosinusitis with Nasal Polyposis (CRSwNP)',
+        icd10_codes: ['J33.0'],
+        pa_required: true,
+        step_therapy_required: true,
+        initial_authorization: {
+          authorization_duration_months: 12,
+          criteria: [
+            { criterion_type: 'diagnosis', description: 'CRSwNP: ≥2 symptoms for >12 weeks (nasal discharge, obstruction, facial pain, anosmia) confirmed by endoscopy or sinus CT; bilateral nasal polyposis or prior surgical removal; prior sinus surgery, systemic corticosteroids in last 2 years, or failure of 2 topical agent classes', logic_operator: 'AND' },
+            { criterion_type: 'combination_restriction', description: 'Dupixent used as add-on maintenance with intranasal corticosteroids; not concurrent with anti-IL-5, anti-IgE, or TSLP inhibitor', logic_operator: 'AND' },
+            { criterion_type: 'prescriber', description: 'Prescribed by allergist, immunologist, otolaryngologist, or pulmonologist', logic_operator: 'AND' },
+          ],
+          required_prescriber_specialties: ['Allergist', 'Immunologist', 'Otolaryngologist', 'Pulmonologist'],
+        },
+        reauthorization: {
+          authorization_duration_months: 12,
+          criteria: [
+            { criterion_type: 'clinical_response', description: 'Positive clinical response documented', logic_operator: 'AND' },
+            { criterion_type: 'combination_restriction', description: 'Continuing add-on maintenance with intranasal corticosteroids; not concurrent with anti-IL-5, anti-IgE, or TSLP inhibitor', logic_operator: 'AND' },
+          ],
+        },
+      },
+      {
+        name: 'Eosinophilic Esophagitis (EoE)',
+        icd10_codes: ['K20.0'],
+        pa_required: true,
+        step_therapy_required: true,
+        initial_authorization: {
+          authorization_duration_months: 12,
+          criteria: [
+            { criterion_type: 'diagnosis', description: 'Diagnosis of eosinophilic esophagitis', logic_operator: 'AND' },
+            { criterion_type: 'disease_severity', description: 'Experiencing symptoms of esophageal dysfunction: dysphagia, food impaction, chest pain, GERD-like symptoms, or upper abdominal pain', logic_operator: 'AND' },
+            { criterion_type: 'lab_value', description: 'Eosinophil-predominant inflammation on esophageal biopsy: peak value ≥15 intraepithelial eosinophils per HPF (or ≥60 eosinophils per mm²)', logic_operator: 'AND' },
+            { criterion_type: 'step_therapy', description: 'Symptoms persisted after 8-week trial of proton pump inhibitors and/or topical esophageal corticosteroids (budesonide, fluticasone)', logic_operator: 'AND' },
+            { criterion_type: 'combination_restriction', description: 'Not concurrent with anti-IL-5, anti-IgE, or TSLP inhibitor', logic_operator: 'AND' },
+            { criterion_type: 'prescriber', description: 'Prescribed by a gastroenterologist or allergist', logic_operator: 'AND' },
+          ],
+          required_prescriber_specialties: ['Gastroenterologist', 'Allergist'],
+        },
+      },
     ],
-    exclusions: [{ description: 'Not covered concurrently with other biologics' }, { description: 'Not covered for mild disease' }],
-    confidence_scores: { overall: 0.91 },
+    exclusions: [
+      { description: 'Not covered concurrently with biologic immunomodulator or JAK inhibitor for the same indication' },
+      { description: 'Not covered for mild disease' },
+    ],
+    confidence_scores: { overall: 0.95, drug_identification: 1.0, pa_criteria_completeness: 0.92 },
   },
   {
     payer: { name: 'Cigna', policy_id: 'CPO-DUP-2025', policy_title: 'Cigna Coverage Policy: Dupilumab', effective_date: '2025-07-01', revision_date: '2025-06-15' },
@@ -44,18 +136,234 @@ export const dupixentPolicies: PolicyRecord[] = [
 export const dupixentInsights: InsightCard[] = [
   {
     severity: 'high',
-    text: 'UnitedHealth requires 4 criteria for atopic dermatitis — the highest barrier across all payers, including an eGFR lab value requirement not seen elsewhere.',
-    action: 'Brief dermatology account managers: UHC patients need pre-authorization lab documentation (eGFR) before submission. Build this into hub intake forms to prevent delays.',
+    text: 'UHC now covers 4 indications (including EoE — new since Nov 2025) but has the strictest step therapy: atopic dermatitis requires documented failure of 2 topical therapy classes, and asthma requires both an ICS/LABA combination AND documented eosinophilic phenotype.',
+    action: 'Ensure hub intake forms capture topical therapy trial history for atopic dermatitis and eosinophil counts for asthma — both required for UHC submission. EoE patients must document PPI/topical steroid failure.',
   },
   {
     severity: 'medium',
-    text: 'Cigna waives PA for CRS with nasal polyps, making it the only payer with unrestricted access for that indication.',
-    action: 'Flag Cigna CRS-NP as a high-conversion opportunity for ENT accounts — zero PA friction. Prioritize Cigna-covered patients in pull-through programs.',
+    text: 'Cigna waives PA for CRS with nasal polyps, making it the only payer with unrestricted access for that indication. UHC requires extensive multi-part diagnostic criteria including endoscopy or CT confirmation.',
+    action: 'Flag Cigna CRS-NP as a high-conversion opportunity for ENT accounts. For UHC CRSwNP submissions, require complete diagnostic workup documentation upfront — partial submissions will be denied.',
   },
   {
     severity: 'low',
-    text: 'Authorization duration varies 2×: UnitedHealth grants 6-month auth vs Cigna\'s 12-month, doubling reauthorization burden for UHC patients.',
-    action: 'Update hub reauthorization scheduling: UHC patients require twice-annual renewals. Proactive outreach at month 5 reduces lapse risk.',
+    text: 'All 3 payers now grant 12-month authorization duration for atopic dermatitis. UHC previously issued 6-month auth — this has been corrected in the Nov 2025 policy update.',
+    action: 'Update hub reauthorization calendars: UHC atopic dermatitis patients previously on 6-month cycles may now qualify for annual renewals under the updated policy. Review active auths.',
+  },
+]
+
+// ─── Rituxan (rituximab) — Non-oncology ─────────────────────────────────────
+export const rituximabPolicies: PolicyRecord[] = [
+  {
+    // Source: Cigna policy IP0319 (real extracted data)
+    payer: { name: 'Cigna', policy_id: 'IP0319', policy_title: 'Rituximab Intravenous Products for Non-Oncology Indications', effective_date: '2025-07-01', revision_date: '2025-06-15' },
+    drug: { brand_name: 'Rituxan / Truxima / Ruxience / Riabni', generic_name: 'rituximab (intravenous)', j_codes: ['J9310'], hcpcs_codes: ['J9310'], drug_class: 'Anti-CD20 monoclonal antibody', route_of_administration: 'intravenous infusion', benefit_type: 'medical' },
+    indications: [
+      {
+        name: 'ANCA-Associated Vasculitis — Induction',
+        icd10_codes: ['M31.30', 'M31.31'],
+        pa_required: true,
+        step_therapy_required: false,
+        initial_authorization: {
+          authorization_duration_months: 1,
+          criteria: [
+            { criterion_type: 'diagnosis', description: 'Patient has ANCA-associated vasculitis (granulomatosis with polyangiitis or microscopic polyangiitis)', logic_operator: 'AND' },
+            { criterion_type: 'combination_restriction', description: 'Administered in combination with glucocorticoids', logic_operator: 'AND' },
+            { criterion_type: 'prescriber', description: 'Prescribed by or in consultation with a rheumatologist, nephrologist, pulmonologist, or immunologist', logic_operator: 'AND' },
+            { criterion_type: 'other', description: 'Dosing: 375 mg/m² IV for 4 doses separated by ≥7 days; OR up to two 1,000 mg IV doses separated by ≥2 weeks', logic_operator: 'AND' },
+          ],
+          required_prescriber_specialties: ['rheumatologist', 'nephrologist', 'pulmonologist', 'immunologist'],
+        },
+      },
+      {
+        name: 'ANCA-Associated Vasculitis — Maintenance',
+        icd10_codes: ['M31.30', 'M31.31'],
+        pa_required: true,
+        step_therapy_required: false,
+        initial_authorization: {
+          authorization_duration_months: 12,
+          criteria: [
+            { criterion_type: 'clinical_response', description: 'Patient achieved disease control with induction treatment (rituximab or other standard of care immunosuppressants)', logic_operator: 'AND' },
+            { criterion_type: 'other', description: 'At least 16 weeks will elapse between treatment courses', logic_operator: 'AND' },
+            { criterion_type: 'other', description: 'Dosing: ≥18 yrs: up to 1,000 mg IV for 6 doses; <18 yrs: up to 250 mg/m² IV for two doses', logic_operator: 'AND' },
+          ],
+        },
+      },
+      {
+        name: 'Pemphigus Vulgaris',
+        icd10_codes: ['L10.0'],
+        pa_required: true,
+        step_therapy_required: false,
+        initial_authorization: {
+          authorization_duration_months: 12,
+          criteria: [
+            { criterion_type: 'combination_restriction', description: 'Initiated in combination with a corticosteroid (e.g., prednisone) unless contraindicated', logic_operator: 'AND' },
+            { criterion_type: 'prescriber', description: 'Prescribed by or in consultation with a dermatologist', logic_operator: 'AND' },
+            { criterion_type: 'other', description: 'Dosing: up to two 1,000 mg IV doses separated by ≥2 weeks per course; subsequent courses no sooner than 16 weeks apart', logic_operator: 'AND' },
+          ],
+          required_prescriber_specialties: ['dermatologist'],
+        },
+      },
+      {
+        name: 'Rheumatoid Arthritis — Initial Therapy',
+        icd10_codes: ['M05.00', 'M05.10', 'M06.00'],
+        pa_required: true,
+        step_therapy_required: true,
+        initial_authorization: {
+          authorization_duration_months: 1,
+          criteria: [
+            { criterion_type: 'step_therapy', description: 'Must have tried one conventional synthetic DMARD for ≥3 months (e.g., methotrexate, leflunomide, hydroxychloroquine, sulfasalazine), OR have a 3-month trial of a prior biologic (no step-back required if already tried a biologic)', logic_operator: 'AND' },
+            { criterion_type: 'combination_restriction', description: 'Will not be used concurrently with another biologic or targeted synthetic DMARD', logic_operator: 'AND' },
+            { criterion_type: 'prescriber', description: 'Prescribed by or in consultation with a rheumatologist', logic_operator: 'AND' },
+          ],
+          required_prescriber_specialties: ['rheumatologist'],
+        },
+      },
+      {
+        name: 'Rheumatoid Arthritis — Continuation',
+        icd10_codes: ['M05.00', 'M05.10', 'M06.00'],
+        pa_required: true,
+        step_therapy_required: false,
+        initial_authorization: {
+          authorization_duration_months: 1,
+          criteria: [
+            { criterion_type: 'other', description: '≥16 weeks will elapse between treatment courses', logic_operator: 'AND' },
+            { criterion_type: 'combination_restriction', description: 'Will not be used concurrently with another biologic or targeted synthetic DMARD', logic_operator: 'AND' },
+          ],
+        },
+      },
+    ],
+    exclusions: [],
+    confidence_scores: { overall: 0.97, drug_identification: 1.0, pa_criteria_completeness: 0.95 },
+  },
+  {
+    payer: { name: 'UnitedHealth', policy_id: 'CS-RHEUM-0077', policy_title: 'UHC Medical Policy: Rituximab (Rituxan) Non-Oncology', effective_date: '2025-10-01', revision_date: '2025-09-01' },
+    drug: { brand_name: 'Rituxan / Truxima', generic_name: 'rituximab (intravenous)', j_codes: ['J9310'], hcpcs_codes: ['J9310'], drug_class: 'Anti-CD20 monoclonal antibody', route_of_administration: 'intravenous infusion', benefit_type: 'medical' },
+    indications: [
+      {
+        name: 'ANCA-Associated Vasculitis — Induction',
+        icd10_codes: ['M31.30', 'M31.31'],
+        pa_required: true,
+        step_therapy_required: true,
+        initial_authorization: {
+          authorization_duration_months: 6,
+          criteria: [
+            { criterion_type: 'diagnosis', description: 'Confirmed ANCA-associated vasculitis (GPA or MPA) by biopsy or ANCA serology', logic_operator: 'AND' },
+            { criterion_type: 'step_therapy', description: 'Must have had inadequate response or intolerance to cyclophosphamide-based induction therapy, or cyclophosphamide is contraindicated', logic_operator: 'AND' },
+            { criterion_type: 'combination_restriction', description: 'Used in combination with high-dose glucocorticoids', logic_operator: 'AND' },
+            { criterion_type: 'prescriber', description: 'Prescribed by a board-certified rheumatologist, nephrologist, or pulmonologist', logic_operator: 'AND' },
+          ],
+          required_prescriber_specialties: ['rheumatologist', 'nephrologist', 'pulmonologist'],
+        },
+      },
+      {
+        name: 'Rheumatoid Arthritis',
+        icd10_codes: ['M05.00', 'M05.10', 'M06.00'],
+        pa_required: true,
+        step_therapy_required: true,
+        initial_authorization: {
+          authorization_duration_months: 6,
+          criteria: [
+            { criterion_type: 'step_therapy', description: 'Documented failure of ≥2 TNF inhibitors (e.g., adalimumab, etanercept, certolizumab) after ≥3 months each, OR documented contraindication to TNF inhibitors', logic_operator: 'AND' },
+            { criterion_type: 'combination_restriction', description: 'Used in combination with methotrexate; not concurrent with other biologics or JAK inhibitors', logic_operator: 'AND' },
+            { criterion_type: 'prescriber', description: 'Prescribed by a board-certified rheumatologist', logic_operator: 'AND' },
+            { criterion_type: 'lab_value', description: 'Positive serology: RF or anti-CCP antibody positive', logic_operator: 'AND' },
+          ],
+          required_prescriber_specialties: ['rheumatologist'],
+        },
+        reauthorization: {
+          authorization_duration_months: 6,
+          criteria: [
+            { criterion_type: 'clinical_response', description: 'Documented improvement in DAS28 score or physician assessment of clinical response', logic_operator: 'AND' },
+          ],
+        },
+      },
+      {
+        name: 'Pemphigus Vulgaris',
+        icd10_codes: ['L10.0'],
+        pa_required: true,
+        step_therapy_required: true,
+        initial_authorization: {
+          authorization_duration_months: 6,
+          criteria: [
+            { criterion_type: 'step_therapy', description: 'Inadequate response or intolerance to high-dose systemic corticosteroids and at least one immunosuppressant (azathioprine, mycophenolate, or dapsone)', logic_operator: 'AND' },
+            { criterion_type: 'prescriber', description: 'Prescribed by a board-certified dermatologist', logic_operator: 'AND' },
+          ],
+          required_prescriber_specialties: ['dermatologist'],
+        },
+      },
+    ],
+    exclusions: [
+      { description: 'Not covered for RA without documented failure of ≥2 TNF inhibitors or contraindication to TNF therapy' },
+      { description: 'Not covered concurrently with other biologic DMARDs or JAK inhibitors' },
+    ],
+    confidence_scores: { overall: 0.88, drug_identification: 0.99, pa_criteria_completeness: 0.85 },
+  },
+  {
+    payer: { name: 'Blue Cross NC', policy_id: 'CP.PMN.175', policy_title: 'Clinical Policy Bulletin: Rituximab (Rituxan) — Non-Oncology', effective_date: '2025-04-01', revision_date: '2025-03-15' },
+    drug: { brand_name: 'Rituxan / Truxima', generic_name: 'rituximab (intravenous)', j_codes: ['J9310'], hcpcs_codes: ['J9310'], drug_class: 'Anti-CD20 monoclonal antibody', route_of_administration: 'intravenous infusion', benefit_type: 'medical' },
+    indications: [
+      {
+        name: 'ANCA-Associated Vasculitis',
+        icd10_codes: ['M31.30', 'M31.31'],
+        pa_required: true,
+        step_therapy_required: false,
+        initial_authorization: {
+          authorization_duration_months: 12,
+          criteria: [
+            { criterion_type: 'diagnosis', description: 'GPA or MPA confirmed by clinical criteria and ANCA serology', logic_operator: 'AND' },
+            { criterion_type: 'combination_restriction', description: 'Used with glucocorticoids for induction; cyclophosphamide failure or contraindication not required', logic_operator: 'AND' },
+          ],
+        },
+      },
+      {
+        name: 'Rheumatoid Arthritis',
+        icd10_codes: ['M05.00', 'M06.00'],
+        pa_required: true,
+        step_therapy_required: true,
+        initial_authorization: {
+          authorization_duration_months: 12,
+          criteria: [
+            { criterion_type: 'step_therapy', description: 'Failure of ≥1 TNF inhibitor after adequate trial (≥3 months), unless contraindicated', logic_operator: 'AND' },
+            { criterion_type: 'combination_restriction', description: 'Used with methotrexate; not concurrent with other biologics', logic_operator: 'AND' },
+            { criterion_type: 'prescriber', description: 'Prescribed by a rheumatologist', logic_operator: 'AND' },
+          ],
+          required_prescriber_specialties: ['rheumatologist'],
+        },
+      },
+      {
+        name: 'Pemphigus Vulgaris',
+        icd10_codes: ['L10.0'],
+        pa_required: true,
+        step_therapy_required: false,
+        initial_authorization: {
+          authorization_duration_months: 12,
+          criteria: [
+            { criterion_type: 'diagnosis', description: 'Confirmed pemphigus vulgaris by biopsy and direct immunofluorescence', logic_operator: 'AND' },
+            { criterion_type: 'combination_restriction', description: 'Used with corticosteroids', logic_operator: 'AND' },
+          ],
+        },
+      },
+    ],
+    exclusions: [],
+    confidence_scores: { overall: 0.91, drug_identification: 0.99, pa_criteria_completeness: 0.88 },
+  },
+]
+
+export const rituximabInsights: InsightCard[] = [
+  {
+    severity: 'high',
+    text: 'UnitedHealth requires failure of ≥2 TNF inhibitors before rituximab for RA — a higher step therapy bar than Blue Cross NC (which requires only 1) and Cigna (which requires ≥1 DMARD or any prior biologic). This creates a significant access disparity for treatment-refractory RA patients.',
+    action: 'For UHC RA patients, document 2 separate TNF inhibitor failures with specific dates, drug names, and duration. Cigna and BCNC can proceed with 1 TNF failure — route these patients accordingly.',
+  },
+  {
+    severity: 'high',
+    text: 'UHC requires step therapy for ANCA-associated vasculitis induction (cyclophosphamide failure or contraindication first). Cigna and Blue Cross NC allow rituximab as first-line induction without a step therapy requirement.',
+    action: 'For UHC ANCA vasculitis patients, confirm cyclophosphamide contraindication documentation before submission. Route newly diagnosed patients to Cigna or BCNC when coverage permits to avoid induction delays.',
+  },
+  {
+    severity: 'low',
+    text: 'Authorization duration varies 6× across payers for ANCA vasculitis: Cigna grants 1-month auth per course, BCNC and UHC grant 6–12 month auth windows. This affects how frequently patients need reauthorization.',
+    action: 'Cigna ANCA-vasculitis patients require per-course authorization — build this into hub scheduling so reauth requests are submitted before each treatment course.',
   },
 ]
 
@@ -172,10 +480,21 @@ export const portfolio: DrugPortfolioEntry[] = [
         delta: -14,
         direction: 'loosening',
       },
+      {
+        payerName: 'Florida Blue',
+        history: [
+          { quarter: 'Q2 2025', score: 58 },
+          { quarter: 'Q3 2025', score: 61 },
+          { quarter: 'Q4 2025', score: 66 },
+          { quarter: 'Q1 2026', score: 72 },
+        ],
+        delta: 14,
+        direction: 'tightening',
+      },
     ],
     livesAtRisk: '~3.2M commercially insured',
     lastUpdated: '2026-01-01',
-    changeCount: 4,
+    changeCount: 5,
   },
   {
     id: 'dupilumab',
@@ -221,8 +540,8 @@ export const portfolio: DrugPortfolioEntry[] = [
       },
     ],
     livesAtRisk: '~8.1M commercially insured',
-    lastUpdated: '2025-10-01',
-    changeCount: 2,
+    lastUpdated: '2025-11-01',
+    changeCount: 4,
   },
   {
     id: 'pembrolizumab',
@@ -270,5 +589,52 @@ export const portfolio: DrugPortfolioEntry[] = [
     livesAtRisk: '~1.4M commercially insured',
     lastUpdated: '2025-10-01',
     changeCount: 3,
+  },
+  {
+    id: 'rituximab',
+    brandName: 'Rituxan',
+    genericName: 'rituximab',
+    drugClass: 'Anti-CD20 antibody',
+    jCode: 'J9310',
+    policies: rituximabPolicies,
+    insights: rituximabInsights,
+    trends: [
+      {
+        payerName: 'Blue Cross NC',
+        history: [
+          { quarter: 'Q2 2025', score: 58 },
+          { quarter: 'Q3 2025', score: 60 },
+          { quarter: 'Q4 2025', score: 61 },
+          { quarter: 'Q1 2026', score: 63 },
+        ],
+        delta: 5,
+        direction: 'tightening',
+      },
+      {
+        payerName: 'UnitedHealth',
+        history: [
+          { quarter: 'Q2 2025', score: 72 },
+          { quarter: 'Q3 2025', score: 76 },
+          { quarter: 'Q4 2025', score: 79 },
+          { quarter: 'Q1 2026', score: 83 },
+        ],
+        delta: 11,
+        direction: 'tightening',
+      },
+      {
+        payerName: 'Cigna',
+        history: [
+          { quarter: 'Q2 2025', score: 50 },
+          { quarter: 'Q3 2025', score: 49 },
+          { quarter: 'Q4 2025', score: 47 },
+          { quarter: 'Q1 2026', score: 44 },
+        ],
+        delta: -6,
+        direction: 'loosening',
+      },
+    ],
+    livesAtRisk: '~2.1M commercially insured',
+    lastUpdated: '2025-10-01',
+    changeCount: 2,
   },
 ]
