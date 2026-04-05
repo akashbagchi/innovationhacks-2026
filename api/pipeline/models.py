@@ -7,13 +7,9 @@ from __future__ import annotations
 import re
 from enum import Enum
 from typing import Any, Optional
+import json
 
 from pydantic import BaseModel, Field, field_validator, model_validator
-
-
-# ---------------------------------------------------------------------------
-# Enums
-# ---------------------------------------------------------------------------
 
 
 class CriterionType(str, Enum):
@@ -32,10 +28,6 @@ class LogicOperator(str, Enum):
     AND = "AND"
     OR = "OR"
 
-
-# ---------------------------------------------------------------------------
-# Coercion helpers
-# ---------------------------------------------------------------------------
 
 _DURATION_RE = re.compile(r"\b(\d+)\b")
 _TRUTHY = {"true", "yes", "1", "y"}
@@ -60,11 +52,18 @@ def _coerce_int_from_string(v: Any) -> Optional[int]:
     if m:
         return int(m.group(1))
     _NAMED = {
-        "annually": 12, "annual": 12, "yearly": 12, "year": 12,
-        "semi-annually": 6, "every 6 months": 6,
-        "quarterly": 3, "every 3 months": 3,
+        "annually": 12,
+        "annual": 12,
+        "yearly": 12,
+        "year": 12,
+        "semi-annually": 6,
+        "every 6 months": 6,
+        "quarterly": 3,
+        "every 3 months": 3,
         "biannually": 6,
-        "indefinitely": None, "ongoing": None, "n/a": None,
+        "indefinitely": None,
+        "ongoing": None,
+        "n/a": None,
     }
     lower = s.lower()
     for phrase, months in _NAMED.items():
@@ -124,11 +123,6 @@ def _coerce_logic_operator(v: Any) -> str:
     return "AND"
 
 
-# ---------------------------------------------------------------------------
-# Nested models
-# ---------------------------------------------------------------------------
-
-
 class CriterionItem(BaseModel):
     criterion_type: CriterionType
     description: str = Field(
@@ -172,9 +166,7 @@ class AuthBlock(BaseModel):
 
 
 class Indication(BaseModel):
-    name: str = Field(
-        description="Short indication name, e.g. Atopic Dermatitis"
-    )
+    name: str = Field(description="Short indication name, e.g. Atopic Dermatitis")
     description: Optional[str] = None
     icd10_codes: Optional[list[str]] = Field(
         default=None,
@@ -196,6 +188,13 @@ class Indication(BaseModel):
         if v is None:
             return v
         return [code.strip() for code in v if code.strip()]
+
+    @field_validator("reauthorization", mode="before")
+    @classmethod
+    def coerce_reauthorization(cls, v: Any) -> Any:
+        if isinstance(v, list):
+            return v[0] if v else None
+        return v
 
 
 class Exclusion(BaseModel):
@@ -221,7 +220,9 @@ class ConfidenceScores(BaseModel):
         description="Flag ambiguous extractions, missing data, or low-confidence fields",
     )
 
-    @field_validator("overall", "drug_identification", "pa_criteria_completeness", mode="before")
+    @field_validator(
+        "overall", "drug_identification", "pa_criteria_completeness", mode="before"
+    )
     @classmethod
     def coerce_score(cls, v: Any) -> Optional[float]:
         if v is None:
@@ -276,11 +277,6 @@ class DrugInfo(BaseModel):
         return normalized
 
 
-# ---------------------------------------------------------------------------
-# Top-level model
-# ---------------------------------------------------------------------------
-
-
 class PolicyRecord(BaseModel):
     payer: PayerInfo
     drug: DrugInfo
@@ -297,14 +293,20 @@ class PolicyRecord(BaseModel):
             raise ValueError("PolicyRecord must contain at least one indication")
         return self
 
+    @field_validator("indications", mode="before")
+    @classmethod
+    def coerce_indications(cls, v: Any) -> Any:
+        if isinstance(v, str):
+            try:
+                return json.loads(v)
+            except Exception:
+                return v
+        return v
+
 
 def validate_policy_record(raw: dict) -> tuple[PolicyRecord | None, list[str]]:
     """
     Validate a raw dict against PolicyRecord.
-
-    Returns:
-        (model, [])       on success
-        (None, [errors])  on validation failure
     """
     from pydantic import ValidationError
 

@@ -1,175 +1,381 @@
 {
   "payer": {
     "name": "Florida Blue",
+    "policy_id": "09-J1000-78",
     "policy_title": "Bevacizumab (Avastin), bevacizumab-awwb (Mvasi), bevacizumab-bvzr (Zirabev), and bevacizumab-maly (Alymsys), bevacizumab-nwgd (Jobevne), bevacizumab-tnjn (Avzivi), and bevacizumab-adcd (Vegzelma) Injection",
-    "effective_date": "2026-01-01"
+    "revision_date": "2026-01-01"
   },
   "drug": {
-    "brand_name": "Avastin, Mvasi, Zirabev, Alymsys, Jobevne, Avzivi, Vegzelma",
-    "generic_name": "bevacizumab"
+    "brand_name": "Avastin / Mvasi / Zirabev / Alymsys / Jobevne / Avzivi / Vegzelma",
+    "generic_name": "bevacizumab / bevacizumab-awwb / bevacizumab-bvzr / bevacizumab-maly / bevacizumab-nwgd / bevacizumab-tnjn / bevacizumab-adcd",
+    "drug_class": "Humanized monoclonal antibody; VEGF inhibitor (anti-angiogenic)",
+    "route_of_administration": "Injection (IV infusion)",
+    "benefit_type": "medical",
+    "limitations_of_use": "Not approved for ophthalmic indications under this guideline (refer to MCG #09-J1000-78, Vascular Endothelial Growth Factor Inhibitors of Ocular Neovascularization). FDA removed breast cancer approval in 2011."
   },
   "indications": [
     {
-      "name": "<UNKNOWN>",
+      "name": "Oncologic Indications (NCCN/FDA-supported cancers)",
       "pa_required": true,
-      "initial_authorization": {
-        "criteria": [
-          {
-            "criterion_type": "other",
-            "description": "<UNKNOWN>",
-            "logic_operator": "AND"
-          }
-        ]
-      }
-    },
-    {
-      "name": "Metastatic Colorectal Cancer",
-      "pa_required": true,
-      "step_therapy_required": false,
+      "step_therapy_required": true,
       "initial_authorization": {
         "criteria": [
           {
             "criterion_type": "diagnosis",
-            "description": "The member has been previously approved by Florida Blue or another healthplan in the past 2 years, OR the member has previously met all indication-specific criteria",
+            "description": "Used to treat an indication listed in Table 1 (NCCN/FDA-supported cancers including: ampullary cancer, cervical cancer, CNS cancer, colorectal cancer [first-line and second-line metastatic, in combination with 5-FU], hepatocellular carcinoma [in combination with atezolizumab], kidney cancer/metastatic renal cell carcinoma [in combination with interferon-alfa], mesothelioma, non-small cell lung cancer [locally advanced, recurrent, or metastatic non-squamous, in combination with carboplatin and paclitaxel], ovarian cancer, fallopian tube cancer, primary peritoneal cancer [in combination with chemotherapy], small bowel adenocarcinoma, soft tissue sarcoma, uterine cancer, vaginal cancer, vulvar cancer, glioblastoma [disease that has progressed on prior therapy]) AND all indication-specific criteria are met",
             "logic_operator": "AND"
           },
           {
             "criterion_type": "other",
-            "description": "The dose does not exceed EITHER of the following:\n1. 10 mg/kg every 2 weeks\n2. 15 mg/kg every 3 weeks",
+            "description": "The dose does not exceed either of the following: (a) 10 mg/kg every 2 weeks OR (b) 15 mg/kg every 3 weeks",
             "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "step_therapy",
+            "description": "For Avastin, Alymsys, Avzivi, Jobevne, or Vegzelma requests only: the member has an inadequate response, contraindication, or intolerance to bevacizumab-awwb (Mvasi) OR bevacizumab-bvzr (Zirabev) \u2014 documentation must be submitted",
+            "logic_operator": "OR"
           }
-        ],
-        "authorization_duration_months": 6
+        ]
       }
     },
     {
-      "name": "Oncology Indications",
-      "pa_required": true,
-      "initial_authorization": {
-        "criteria": []
-      }
-    },
-    {
-      "name": "Hereditary Hemorrhagic Telangiectasia (HHT)",
-      "pa_required": true,
-      "initial_authorization": {
-        "criteria": []
-      }
-    },
-    {
-      "name": "Brain Radiation Necrosis",
-      "pa_required": true,
-      "initial_authorization": {
-        "criteria": []
-      }
-    },
-    {
-      "name": "Central Nervous System Cancer",
-      "description": "Covered for the treatment of central nervous system cancer",
+      "name": "Malignant Neoplasm of Small Intestine",
+      "icd10_codes": [
+        "C17.0",
+        "C17.1",
+        "C17.2",
+        "C17.8",
+        "C17.9"
+      ],
       "pa_required": true,
       "initial_authorization": {
         "criteria": [
           {
             "criterion_type": "diagnosis",
-            "description": "Patient has central nervous system cancer",
+            "description": "Diagnosis of malignant neoplasm of small intestine (ICD-10: C17.0\u2013C17.9)",
             "logic_operator": "AND"
           }
         ]
       }
     },
     {
-      "name": "Ovarian Cancer",
-      "description": "Covered for the treatment of ovarian cancer",
+      "name": "Malignant Neoplasm of Colon, Rectosigmoid Junction, Rectum, and Anus",
+      "icd10_codes": [
+        "C18.0",
+        "C18.1",
+        "C18.2",
+        "C18.3",
+        "C18.4",
+        "C18.5",
+        "C18.6",
+        "C18.7",
+        "C18.8",
+        "C18.9",
+        "C19",
+        "C20",
+        "C21.0",
+        "C21.1",
+        "C21.2",
+        "C21.8"
+      ],
       "pa_required": true,
       "initial_authorization": {
         "criteria": [
           {
             "criterion_type": "diagnosis",
-            "description": "Patient has ovarian cancer",
+            "description": "Diagnosis of malignant neoplasm of colon (C18.0\u2013C18.9), rectosigmoid junction and rectum (C19\u2013C20), or anus and anal canal (C21.0\u2013C21.8)",
             "logic_operator": "AND"
           }
         ]
       }
     },
     {
-      "name": "Vulvar Cancer",
-      "description": "Covered for the treatment of vulvar cancer",
+      "name": "Malignant Neoplasm of Liver",
+      "icd10_codes": [
+        "C22.0",
+        "C22.3",
+        "C22.8",
+        "C22.9",
+        "C24.1"
+      ],
       "pa_required": true,
       "initial_authorization": {
         "criteria": [
           {
             "criterion_type": "diagnosis",
-            "description": "Patient has vulvar cancer",
+            "description": "Diagnosis of liver cell carcinoma (C22.0), angiosarcoma of liver (C22.3), malignant neoplasm of liver primary unspecified (C22.8), malignant neoplasm of liver not specified as primary or secondary (C22.9), or malignant neoplasm of ampulla of Vater (C24.1)",
             "logic_operator": "AND"
           }
         ]
       }
     },
     {
-      "name": "Ampullary Cancer",
-      "description": "Covered for the treatment of ampullary cancer",
+      "name": "Malignant Neoplasm of Trachea, Bronchus and Lung",
+      "icd10_codes": [
+        "C33",
+        "C34.92"
+      ],
       "pa_required": true,
       "initial_authorization": {
         "criteria": [
           {
             "criterion_type": "diagnosis",
-            "description": "Patient has ampullary cancer",
+            "description": "Diagnosis of malignant neoplasm of trachea, bronchus and lung (C33\u2013C34.92)",
             "logic_operator": "AND"
           }
         ]
       }
     },
     {
-      "name": "Hepatocellular Carcinoma",
-      "description": "Covered for the treatment of hepatocellular carcinoma",
+      "name": "Mesothelioma and Malignant Neoplasm of Pleura and Peritoneum",
+      "icd10_codes": [
+        "C38.4",
+        "C45.0",
+        "C45.1",
+        "C45.2",
+        "C45.7",
+        "C45.9",
+        "C48.0",
+        "C48.1",
+        "C48.2",
+        "C48.8"
+      ],
       "pa_required": true,
       "initial_authorization": {
         "criteria": [
           {
             "criterion_type": "diagnosis",
-            "description": "Patient has hepatocellular carcinoma",
+            "description": "Diagnosis of malignant neoplasm of pleura (C38.4), mesothelioma of pleura, peritoneum, pericardium, and other sites (C45.0\u2013C45.9), or malignant neoplasm of retroperitoneum and peritoneum (C48.0\u2013C48.8)",
             "logic_operator": "AND"
           }
         ]
       }
     },
     {
-      "name": "Mesothelioma",
-      "description": "Covered for the treatment of mesothelioma",
+      "name": "Malignant Neoplasm of Connective and Soft Tissue",
+      "icd10_codes": [
+        "C47.8",
+        "C49.0",
+        "C49.1",
+        "C49.2",
+        "C49.3",
+        "C49.4",
+        "C49.5",
+        "C49.6",
+        "C49.8",
+        "C49.9"
+      ],
       "pa_required": true,
       "initial_authorization": {
         "criteria": [
           {
             "criterion_type": "diagnosis",
-            "description": "Patient has mesothelioma",
+            "description": "Diagnosis of malignant neoplasm of overlapping sites of peripheral nerves and autonomic nervous system (C47.8) or malignant neoplasm of connective and soft tissue (C49.0\u2013C49.9)",
             "logic_operator": "AND"
           }
         ]
       }
     },
     {
-      "name": "Cervical Cancer",
-      "description": "Covered for the treatment of cervical cancer",
+      "name": "Malignant Neoplasm of Female Genital Organs",
+      "icd10_codes": [
+        "C51.0",
+        "C51.1",
+        "C51.2",
+        "C51.8",
+        "C51.9",
+        "C52.0",
+        "C53.0",
+        "C53.1",
+        "C53.8",
+        "C53.9",
+        "C54.0",
+        "C54.1",
+        "C54.2",
+        "C54.3",
+        "C54.8",
+        "C54.9",
+        "C55",
+        "C56.1",
+        "C56.2",
+        "C56.9",
+        "C57.0",
+        "C57.1",
+        "C57.2",
+        "C57.3",
+        "C57.4",
+        "C57.7",
+        "C57.8",
+        "C57.9"
+      ],
       "pa_required": true,
       "initial_authorization": {
         "criteria": [
           {
             "criterion_type": "diagnosis",
-            "description": "Patient has cervical cancer",
+            "description": "Diagnosis of malignant neoplasm of vulva (C51.0\u2013C51.9), vagina (C52.0), cervix uteri (C53.0\u2013C53.9), corpus uteri (C54.0\u2013C54.9), uterus part unspecified (C55), ovary and other female genital organs (C56.1\u2013C57.9)",
             "logic_operator": "AND"
           }
         ]
       }
     },
     {
-      "name": "Uterine Cancer",
-      "description": "Covered for the treatment of uterine cancer",
+      "name": "Malignant Neoplasm of Kidney and Renal Pelvis",
+      "icd10_codes": [
+        "C64.1",
+        "C64.2",
+        "C64.9",
+        "C65.1",
+        "C65.2",
+        "C65.9"
+      ],
       "pa_required": true,
       "initial_authorization": {
         "criteria": [
           {
             "criterion_type": "diagnosis",
-            "description": "Patient has uterine cancer",
+            "description": "Diagnosis of malignant neoplasm of kidney except renal pelvis (C64.1\u2013C64.9) or malignant neoplasm of renal pelvis (C65.1\u2013C65.9)",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Malignant Neoplasm of Brain, CNS, and Meninges",
+      "icd10_codes": [
+        "C70.0",
+        "C70.1",
+        "C70.9",
+        "C71.0",
+        "C71.1",
+        "C71.2",
+        "C71.3",
+        "C71.4",
+        "C71.5",
+        "C71.6",
+        "C71.7",
+        "C71.8",
+        "C71.9",
+        "C72.0",
+        "C72.9"
+      ],
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Diagnosis of malignant neoplasm of meninges (C70.0\u2013C70.9), brain (C71.0\u2013C71.9), spinal cord (C72.0), or central nervous system unspecified (C72.9)",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Secondary Malignant Neoplasms",
+      "icd10_codes": [
+        "C78.00",
+        "C78.01",
+        "C78.02",
+        "C78.6",
+        "C78.7",
+        "C79.31",
+        "C79.32",
+        "C79.82",
+        "C79.89",
+        "C79.9"
+      ],
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Diagnosis of secondary malignant neoplasm of lung (C78.00\u2013C78.02), retroperitoneum and peritoneum (C78.6), liver and intrahepatic bile duct (C78.7), brain (C79.31), meninges (C79.32), genital organs (C79.82), other specified sites (C79.89), or unspecified site (C79.9)",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Lymphoma (DLBCL/Primary CNS Lymphoma and Non-Hodgkin Lymphoma)",
+      "icd10_codes": [
+        "C83.30",
+        "C83.31",
+        "C83.32",
+        "C83.33",
+        "C83.34",
+        "C83.35",
+        "C83.36",
+        "C83.37",
+        "C83.38",
+        "C83.39",
+        "C83.80",
+        "C83.81",
+        "C83.82",
+        "C83.83",
+        "C83.84",
+        "C83.85",
+        "C83.86",
+        "C83.87",
+        "C83.88",
+        "C83.89",
+        "C84.49",
+        "C85.89",
+        "C85.90",
+        "C85.91",
+        "C85.92",
+        "C85.99"
+      ],
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Diagnosis of diffuse large B-cell lymphoma including primary CNS lymphoma (C83.30\u2013C83.89), peripheral T-cell lymphoma not elsewhere classified, extranodal and solid organ sites (C84.49), or other specified types of non-Hodgkin lymphoma, extranodal and solid organ sites (C85.89\u2013C85.99)",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Benign and Uncertain Behavior Neoplasms of Brain/CNS/Meninges",
+      "icd10_codes": [
+        "D32.0",
+        "D32.1",
+        "D32.9",
+        "D42.0",
+        "D42.1",
+        "D42.9",
+        "D43.0",
+        "D43.1",
+        "D43.2",
+        "D43.4",
+        "D43.9",
+        "D49.2"
+      ],
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Diagnosis of benign neoplasm of meninges (D32.0\u2013D32.9), neoplasm of uncertain behavior of meninges (D42.0\u2013D42.9), neoplasm of uncertain behavior of brain/CNS (D43.0\u2013D43.9), or neoplasm of unspecified behavior of bone, soft tissue, and skin (D49.2)",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Cerebral Edema and Cerebrovascular Disease",
+      "icd10_codes": [
+        "G93.6",
+        "I67.89",
+        "I67.9"
+      ],
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Diagnosis of cerebral edema (G93.6) or other cerebrovascular disease (I67.89\u2013I67.9)",
             "logic_operator": "AND"
           }
         ]
@@ -177,13 +383,208 @@
     },
     {
       "name": "Hereditary Hemorrhagic Telangiectasia",
-      "description": "Covered for the treatment of hereditary hemorrhagic telangiectasia",
+      "icd10_codes": [
+        "I78.0"
+      ],
       "pa_required": true,
       "initial_authorization": {
         "criteria": [
           {
             "criterion_type": "diagnosis",
-            "description": "Patient has hereditary hemorrhagic telangiectasia",
+            "description": "Diagnosis of hereditary hemorrhagic telangiectasia (I78.0)",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Neurofibromatosis and Von Hippel-Lindau Syndrome",
+      "icd10_codes": [
+        "Q85.02",
+        "Q85.03",
+        "Q85.83"
+      ],
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Diagnosis of neurofibromatosis type 2 and schwannomatosis (Q85.02\u2013Q85.03) or Von Hippel-Lindau syndrome (Q85.83)",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Radiation Sickness / Radiation-Related Injury",
+      "icd10_codes": [
+        "Y84.2",
+        "T66.XXXA",
+        "T66.XXXD",
+        "T66.XXXS"
+      ],
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Radiological procedure and radiotherapy as the cause of abnormal reaction of the patient, or of later complication, without mention of misadventure at the time of the procedure (Y84.2); radiation sickness, unspecified, initial encounter (T66.XXXA), subsequent encounter (T66.XXXD), or sequela (T66.XXXS)",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "UNKNOWN",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "other",
+            "description": "Criteria not captured in the provided document sections (only References and Committee Approval sections were provided).",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Ampullary Cancer",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Patient has a diagnosis of ampullary cancer (criteria updated per NCCN as of 08/15/23 and further revised 03/15/25).",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Central Nervous System (CNS) Cancer",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Patient has a diagnosis of central nervous system cancer (criteria revised per NCCN as of 08/15/23, 02/15/24, 03/15/25, and 11/15/25).",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Cervical Cancer",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Patient has a diagnosis of cervical cancer (criteria revised per NCCN as of 02/15/24 and 03/15/25).",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Colon Cancer",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Patient has a diagnosis of colon cancer (criteria revised as of 03/15/25).",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Hepatic Cancer / Hepatocellular Carcinoma",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Patient has a diagnosis of hepatic cancer or hepatocellular carcinoma (criteria revised per NCCN as of 08/15/23, 03/15/25, and 11/15/25).",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Kidney Cancer",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Patient has a diagnosis of kidney cancer (criteria revised as of 03/15/25).",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Mesothelioma",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Patient has a diagnosis of mesothelioma (criteria updated per NCCN as of 08/15/23).",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Ovarian Cancer",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Patient has a diagnosis of ovarian cancer (criteria revised per NCCN as of 11/15/22, 08/15/23, and 03/15/25).",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Soft Tissue Sarcoma",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Patient has a diagnosis of soft tissue sarcoma (criteria revised as of 03/15/25).",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Uterine Cancer",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Patient has a diagnosis of uterine cancer (criteria revised per NCCN as of 02/15/24 and 03/15/25).",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Vulvar Cancer",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Patient has a diagnosis of vulvar cancer (criteria revised per NCCN as of 11/15/22 and 11/15/25).",
             "logic_operator": "AND"
           }
         ]
@@ -191,26 +592,46 @@
     },
     {
       "name": "Vaginal Cancer",
-      "description": "Covered for the treatment of vaginal cancer",
       "pa_required": true,
       "initial_authorization": {
         "criteria": [
           {
             "criterion_type": "diagnosis",
-            "description": "Patient has vaginal cancer",
+            "description": "Patient has a diagnosis of vaginal cancer (indication added as of 03/15/25).",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Hereditary Hemorrhagic Telangiectasia",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Patient has a diagnosis of hereditary hemorrhagic telangiectasia (indication added as of 03/15/25).",
             "logic_operator": "AND"
           }
         ]
       }
     }
   ],
-  "confidence_scores": {
-    "overall": 0.5,
-    "review_flags": "Missing details on covered indications and PA criteria"
-  },
   "exclusions": [
     {
-      "description": "No exclusions stated in the document."
+      "description": "Ophthalmic indications are excluded from this guideline; refer to MCG #09-J1000-78, Vascular Endothelial Growth Factor Inhibitors of Ocular Neovascularization."
+    },
+    {
+      "description": "Metastatic HER2-negative breast cancer: FDA removed approval for this indication in 2011 after clinical data indicated the drug did not prolong overall survival or provide sufficient benefit in slowing disease progression to outweigh significant risk."
+    },
+    {
+      "description": "Ophthalmologic indications are excluded from this guideline and are addressed separately under MCG# 09-J1000-78, Vascular Endothelial Growth Factor Inhibitors of Ocular Neovascularization (removed from this policy as of 12/15/12)."
     }
-  ]
+  ],
+  "confidence_scores": {
+    "overall": 0.82,
+    "drug_identification": 0.99,
+    "pa_criteria_completeness": 0.65,
+    "review_flags": "Document references 'Table 1' for the full list of covered oncologic indications and 'indication-specific criteria,' but Table 1 content was not included in the provided sections. Only top-level/global PA criteria (dose limits, biosimilar step therapy) were extractable. Reauthorization criteria, full indication-specific criteria, dosing details, and billing/coding data may be present in unshared sections. The policy_id noted (09-J1000-78) is referenced in the text as the ophthalmic guideline \u2014 the actual policy ID for this bevacizumab guideline was not explicitly stated and should be verified. Revision date interpreted as 01/01/2026."
+  }
 }
