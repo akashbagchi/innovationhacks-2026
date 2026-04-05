@@ -12,3 +12,6 @@
 node_modules/
 dist/
 documents
+.DS_Store
+api/.DS_Store
+outputs/.DS_Store
