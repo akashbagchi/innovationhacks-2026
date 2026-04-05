@@ -1,252 +1,657 @@
 {
-  "confidence_scores": {
-    "overall": 1.0
+  "payer": {
+    "name": "Blue Cross NC",
+    "policy_title": "Preferred Injectable Oncology Program (Avastin example)",
+    "effective_date": "2026-01-01"
   },
   "drug": {
-    "benefit_type": "medical",
     "brand_name": "Avastin",
-    "drug_class": "Monoclonal antibody",
     "generic_name": "bevacizumab",
-    "hcpcs_codes": [
-      "J9035"
-    ],
-    "j_codes": [
-      "J9035"
-    ],
-    "limitations_of_use": "Not for adjuvant treatment of colon cancer",
-    "route_of_administration": "intravenous (IV) infusion"
+    "route_of_administration": "intravenous infusion",
+    "benefit_type": "medical"
   },
   "indications": [
     {
-      "description": "Metastatic colorectal cancer, in combination with intravenous fluorouracil-based chemotherapy for first- or second-line treatment",
-      "icd10_codes": [],
+      "name": "<UNKNOWN>",
+      "pa_required": true,
       "initial_authorization": {
-        "authorization_duration_months": null,
+        "criteria": []
+      }
+    },
+    {
+      "name": "Metastatic colorectal cancer",
+      "description": "For the treatment of metastatic colorectal cancer, in combination with intravenous fluorouracil-based chemotherapy for first- or second-line treatment",
+      "pa_required": true,
+      "initial_authorization": {
         "criteria": [
           {
-            "criterion_type": "combination_restriction",
-            "description": "in combination with intravenous fluorouracil-based chemotherapy",
+            "criterion_type": "diagnosis",
+            "description": "Metastatic colorectal cancer",
             "logic_operator": "AND"
           },
           {
-            "criterion_type": "line_of_therapy",
-            "description": "first- or second-line treatment",
+            "criterion_type": "prescriber",
+            "description": "In combination with intravenous fluorouracil-based chemotherapy",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Metastatic colorectal cancer (second-line)",
+      "description": "For the treatment of metastatic colorectal cancer, in combination with fluoropyrimidine-irinotecan- or fluoropyrimidine-oxaliplatin-based chemotherapy for second-line treatment in patients who have progressed on a first-line bevacizumab product-containing regimen",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Metastatic colorectal cancer",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "prescriber",
+            "description": "In combination with fluoropyrimidine-irinotecan- or fluoropyrimidine-oxaliplatin-based chemotherapy",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "step_therapy",
+            "description": "Have progressed on a first-line bevacizumab product-containing regimen",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Unresectable, locally advanced, recurrent or metastatic non-squamous non-small cell lung cancer",
+      "description": "For the treatment of unresectable, locally advanced, recurrent or metastatic non-squamous non-small cell lung cancer, in combination with carboplatin and paclitaxel for first-line treatment",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Unresectable, locally advanced, recurrent or metastatic non-squamous non-small cell lung cancer",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "prescriber",
+            "description": "In combination with carboplatin and paclitaxel",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Recurrent glioblastoma in adults",
+      "description": "For the treatment of recurrent glioblastoma in adults",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Recurrent glioblastoma in adults",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Metastatic renal cell carcinoma",
+      "description": "For the treatment of metastatic renal cell carcinoma in combination with interferon alfa",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Metastatic renal cell carcinoma",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "prescriber",
+            "description": "In combination with interferon alfa",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Persistent, recurrent, or metastatic cervical cancer",
+      "description": "For the treatment of persistent, recurrent, or metastatic cervical cancer, in combination with paclitaxel and cisplatin, or paclitaxel and topotecan",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Persistent, recurrent, or metastatic cervical cancer",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "prescriber",
+            "description": "In combination with paclitaxel and cisplatin, or paclitaxel and topotecan",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Epithelial ovarian, fallopian tube, or primary peritoneal cancer (platinum-resistant recurrent)",
+      "description": "For the treatment of epithelial ovarian, fallopian tube, or primary peritoneal cancer in combination with paclitaxel, pegylated liposomal doxorubicin, or topotecan for platinum-resistant recurrent disease who received no more than 2 prior chemotherapy regimens",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Epithelial ovarian, fallopian tube, or primary peritoneal cancer",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "disease_severity",
+            "description": "Platinum-resistant recurrent disease",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "prescriber",
+            "description": "In combination with paclitaxel, pegylated liposomal doxorubicin, or topotecan",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "step_therapy",
+            "description": "No more than 2 prior chemotherapy regimens",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Epithelial ovarian, fallopian tube, or primary peritoneal cancer (stage III-IV, post-surgical)",
+      "description": "For the treatment of epithelial ovarian, fallopian tube, or primary peritoneal cancer in combination with carboplatin and paclitaxel, followed by a bevacizumab product as a single agent, for stage III or IV disease following initial surgical resection",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Epithelial ovarian, fallopian tube, or primary peritoneal cancer",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "disease_severity",
+            "description": "Stage III or IV disease",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "prescriber",
+            "description": "In combination with carboplatin and paclitaxel, followed by a bevacizumab product as a single agent",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Epithelial ovarian, fallopian tube, or primary peritoneal cancer (platinum-sensitive recurrent)",
+      "description": "For the treatment of epithelial ovarian, fallopian tube, or primary peritoneal cancer in combination with carboplatin and paclitaxel or carboplatin and gemcitabine, followed by a bevacizumab product as a single agent, for platinum-sensitive recurrent disease",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Epithelial ovarian, fallopian tube, or primary peritoneal cancer",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "disease_severity",
+            "description": "Platinum-sensitive recurrent disease",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "prescriber",
+            "description": "In combination with carboplatin and paclitaxel or carboplatin and gemcitabine, followed by a bevacizumab product as a single agent",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "FDA labeled indication",
+      "description": "<UNKNOWN>",
+      "icd10_codes": [
+        "<UNKNOWN>"
+      ],
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "other",
+            "description": "The patient is currently being treated with the requested agent and has been stable on therapy for at least 180 days; OR The patient has been treated with the requested agent within the past 180 days AND is at risk if therapy is changed",
             "logic_operator": "OR"
+          },
+          {
+            "criterion_type": "other",
+            "description": "The patient has an FDA labeled indication for the requested agent and route of administration",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "other",
+            "description": "The requested indication does NOT require genetic/specific diagnostic testing (e.g., ALK, EGFR, HER2, KRAS) in FDA labeling; OR The requested indication requires genetic/specific diagnostic testing in FDA labeling AND both of the following: Genetic/specific diagnostic testing has been performed; AND The results of the genetic/specific diagnostic testing indicate therapy with the requested agent is appropriate in FDA labeling",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "other",
+            "description": "The requested agent will be used as a first-line agent AND is FDA labeled as a first-line agent for the requested indication, including any genomic aberrations (e.g., EGFR, ALK) and/or tumor expression factors (e.g., PD-L1 Tumor Proportion Score [TPS] values); OR The patient has used the appropriate number and type(s) of prerequisite agent(s) listed in the FDA labeling for the requested indication, including any genomic aberrations (e.g., EGFR, ALK) and/or tumor expression factors (e.g., PD-L1 Tumor Proportion Score [TPS] values); OR The patient has an intolerance, FDA labeled contraindication, or hypersensitivity to ALL of the required prerequisite agent(s) listed in the FDA labeling for the requested indication, indication including any genomic aberrations (e.g., EGFR, ALK) and/or tumor expression factors (e.g., PD-L1 Tumor Proportion Score [TPS] values)",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "other",
+            "description": "The requested agent is being used as monotherapy AND is approved for use as monotherapy in the FDA labeling for the requested indication, including any genomic aberrations (e.g., EGFR, ALK) and/or tumor expression factors (e.g., PD-L1 Tumor Proportion Score [TPS] values); OR The requested agent will be used in combination as combination therapy with all agent(s) and/or treatments (e.g., radiation) listed for concomitant use in the FDA labeling for the requested indication",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "other",
+            "description": "The FDA label does NOT include a performance status requirement; OR The patient meets the performance status requirement in the FDA labeling",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "<UNKNOWN>",
+      "description": "<UNKNOWN>",
+      "icd10_codes": [
+        "<UNKNOWN>"
+      ],
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "other",
+            "description": "The patient has a documented serious adverse event that required medical intervention to both preferred bevacizumab biosimilar products (i.e., bevacizumab-awwb [Mvasi], bevacizumab-bvzr [Zirabev]) that is not anticipated with the requested product",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "other",
+            "description": "The prescriber has completed and submitted an FDA MedWatch Adverse Event Reporting Form [medical record documentation required]",
+            "logic_operator": "AND"
           }
         ],
-        "required_prescriber_specialties": []
+        "required_prescriber_specialties": [
+          "<UNKNOWN>"
+        ]
       },
+      "reauthorization": {
+        "criteria": [
+          {
+            "criterion_type": "other",
+            "description": "The patient was approved through Blue Cross NC initial criteria for approval",
+            "logic_operator": "OR"
+          },
+          {
+            "criterion_type": "other",
+            "description": "The patient would have met initial criteria for approval at the time they started therapy",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "other",
+            "description": "The patient has continued clinical benefit while receiving the requested agent as demonstrated by tumor response or lack of disease progression, and an acceptable toxicity profile",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "other",
+            "description": "The requested quantity (dose) and treatment duration (and maximum units) is within FDA labeled dosing for the requested indication or NCCN 1 or 2A compendia supported dosing for the requested indication",
+            "logic_operator": "AND"
+          }
+        ],
+        "required_prescriber_specialties": [
+          "<UNKNOWN>"
+        ]
+      }
+    },
+    {
       "name": "Metastatic colorectal cancer",
       "pa_required": true,
-      "reauthorization": null,
-      "step_therapy_required": false
-    },
-    {
-      "description": "Metastatic colorectal cancer, in combination with fluoropyrimidine-irinotecan- or fluoropyrimidine-oxaliplatin-based chemotherapy for second-line treatment in patients who have progressed on a first-line bevacizumab product-containing regimen",
-      "icd10_codes": [],
       "initial_authorization": {
-        "authorization_duration_months": null,
         "criteria": [
           {
-            "criterion_type": "combination_restriction",
-            "description": "in combination with fluoropyrimidine-irinotecan- or fluoropyrimidine-oxaliplatin-based chemotherapy",
+            "criterion_type": "diagnosis",
+            "description": "in combination with IV fluorouracil-based chemotherapy for first- or second-line treatment",
             "logic_operator": "AND"
           },
           {
-            "criterion_type": "line_of_therapy",
-            "description": "second-line treatment",
-            "logic_operator": "AND"
-          },
-          {
-            "criterion_type": "prior_therapy",
-            "description": "patients who have progressed on a first-line bevacizumab product-containing regimen",
+            "criterion_type": "diagnosis",
+            "description": "in combination with fluoropyrimidine-irinotecan- or fluoropyrimidine-oxaliplatin-based chemotherapy for second-line treatment after progression on a first-line bevacizumab product-containing regimen",
             "logic_operator": "AND"
           }
-        ],
-        "required_prescriber_specialties": []
-      },
-      "name": "Metastatic colorectal cancer",
-      "pa_required": true,
-      "reauthorization": null,
-      "step_therapy_required": false
+        ]
+      }
     },
     {
-      "description": "Unresectable, locally advanced, recurrent or metastatic non-squamous non-small cell lung cancer, in combination with carboplatin and paclitaxel, as first-line",
-      "icd10_codes": [],
+      "name": "Unresectable, locally advanced, recurrent or metastatic non-squamous non-small cell lung cancer",
+      "pa_required": true,
       "initial_authorization": {
-        "authorization_duration_months": null,
         "criteria": [
           {
-            "criterion_type": "combination_restriction",
-            "description": "in combination with carboplatin and paclitaxel",
-            "logic_operator": "AND"
-          },
-          {
-            "criterion_type": "line_of_therapy",
-            "description": "first-line",
+            "criterion_type": "diagnosis",
+            "description": "in combination with carboplatin and paclitaxel, as first-line",
             "logic_operator": "AND"
           }
-        ],
-        "required_prescriber_specialties": []
-      },
-      "name": "Non-squamous non-small cell lung cancer",
-      "pa_required": true,
-      "reauthorization": null,
-      "step_therapy_required": false
+        ]
+      }
     },
     {
-      "description": "Recurrent glioblastoma in adults",
-      "icd10_codes": [],
-      "initial_authorization": {
-        "authorization_duration_months": null,
-        "criteria": [],
-        "required_prescriber_specialties": []
-      },
-      "name": "Recurrent glioblastoma",
+      "name": "Recurrent glioblastoma in adults",
       "pa_required": true,
-      "reauthorization": null,
-      "step_therapy_required": false
+      "initial_authorization": {
+        "criteria": []
+      }
     },
     {
-      "description": "Metastatic renal cell carcinoma in combination with interferon alfa",
-      "icd10_codes": [],
+      "name": "Metastatic renal cell carcinoma",
+      "pa_required": true,
       "initial_authorization": {
-        "authorization_duration_months": null,
         "criteria": [
           {
-            "criterion_type": "combination_restriction",
+            "criterion_type": "diagnosis",
             "description": "in combination with interferon alfa",
             "logic_operator": "AND"
           }
-        ],
-        "required_prescriber_specialties": []
-      },
-      "name": "Metastatic renal cell carcinoma",
-      "pa_required": true,
-      "reauthorization": null,
-      "step_therapy_required": false
+        ]
+      }
     },
     {
-      "description": "Persistent, recurrent, or metastatic cervical cancer, in combination with paclitaxel and cisplatin, or paclitaxel and topotecan",
-      "icd10_codes": [],
+      "name": "Persistent, recurrent, or metastatic cervical cancer",
+      "pa_required": true,
       "initial_authorization": {
-        "authorization_duration_months": null,
         "criteria": [
           {
-            "criterion_type": "combination_restriction",
+            "criterion_type": "diagnosis",
             "description": "in combination with paclitaxel and cisplatin, or paclitaxel and topotecan",
             "logic_operator": "AND"
           }
-        ],
-        "required_prescriber_specialties": []
-      },
-      "name": "Persistent, recurrent, or metastatic cervical cancer",
-      "pa_required": true,
-      "reauthorization": null,
-      "step_therapy_required": false
+        ]
+      }
     },
     {
-      "description": "Epithelial ovarian, fallopian tube, or primary peritoneal cancer in combination with carboplatin and paclitaxel, followed by a bevacizumab product as a single agent, for stage III or IV disease following initial surgical resection",
-      "icd10_codes": [],
+      "name": "Epithelial ovarian, fallopian tube, or primary peritoneal cancer",
+      "description": "for platinum-resistant recurrent disease in patients who received no more than 2 prior chemotherapy regimens",
+      "pa_required": true,
       "initial_authorization": {
-        "authorization_duration_months": null,
-        "criteria": [
-          {
-            "criterion_type": "combination_restriction",
-            "description": "in combination with carboplatin and paclitaxel, followed by a bevacizumab product as a single agent",
-            "logic_operator": "AND"
-          },
-          {
-            "criterion_type": "disease_severity",
-            "description": "stage III or IV disease following initial surgical resection",
-            "logic_operator": "AND"
-          }
-        ],
-        "required_prescriber_specialties": []
-      },
+        "criteria": []
+      }
+    },
+    {
       "name": "Epithelial ovarian, fallopian tube, or primary peritoneal cancer",
       "pa_required": true,
-      "reauthorization": null,
-      "step_therapy_required": false
-    },
-    {
-      "description": "Epithelial ovarian, fallopian tube, or primary peritoneal cancer in combination with paclitaxel, pegylated liposomal doxorubicin, or topotecan for platinum-resistant recurrent disease who received no more than 2 prior chemotherapy regimens",
-      "icd10_codes": [],
       "initial_authorization": {
-        "authorization_duration_months": null,
         "criteria": [
           {
-            "criterion_type": "combination_restriction",
-            "description": "in combination with paclitaxel, pegylated liposomal doxorubicin, or topotecan",
+            "criterion_type": "diagnosis",
+            "description": "Stage III or IV disease following initial surgical resection",
             "logic_operator": "AND"
           },
           {
-            "criterion_type": "prior_therapy",
-            "description": "for platinum-resistant recurrent disease who received no more than 2 prior chemotherapy regimens",
-            "logic_operator": "AND"
-          }
-        ],
-        "required_prescriber_specialties": []
-      },
-      "name": "Epithelial ovarian, fallopian tube, or primary peritoneal cancer",
-      "pa_required": true,
-      "reauthorization": null,
-      "step_therapy_required": false
-    },
-    {
-      "description": "Epithelial ovarian, fallopian tube, or primary peritoneal cancer in combination with carboplatin and paclitaxel or carboplatin and gemcitabine, followed by a bevacizumab product as a single agent, for platinum-sensitive recurrent disease",
-      "icd10_codes": [],
-      "initial_authorization": {
-        "authorization_duration_months": null,
-        "criteria": [
-          {
-            "criterion_type": "combination_restriction",
-            "description": "in combination with carboplatin and paclitaxel or carboplatin and gemcitabine, followed by a bevacizumab product as a single agent",
+            "criterion_type": "diagnosis",
+            "description": "Platinum-resistant recurrent disease in patients who received no more than 2 prior chemotherapy regimens",
             "logic_operator": "AND"
           },
           {
-            "criterion_type": "disease_severity",
-            "description": "for platinum-sensitive recurrent disease",
+            "criterion_type": "diagnosis",
+            "description": "Platinum-sensitive recurrent disease",
             "logic_operator": "AND"
           }
-        ],
-        "required_prescriber_specialties": []
-      },
-      "name": "Epithelial ovarian, fallopian tube, or primary peritoneal cancer",
-      "pa_required": true,
-      "reauthorization": null,
-      "step_therapy_required": false
+        ]
+      }
     },
     {
-      "description": "Unresectable or metastatic hepatocellular carcinoma (HCC), in combination with atezolizumab, in patients who have not received prior systemic therapy",
-      "icd10_codes": [],
-      "initial_authorization": {
-        "authorization_duration_months": null,
-        "criteria": [
-          {
-            "criterion_type": "combination_restriction",
-            "description": "in combination with atezolizumab",
-            "logic_operator": "AND"
-          },
-          {
-            "criterion_type": "prior_therapy",
-            "description": "in patients who have not received prior systemic therapy",
-            "logic_operator": "AND"
-          }
-        ],
-        "required_prescriber_specialties": []
-      },
       "name": "Unresectable or metastatic hepatocellular carcinoma (HCC)",
       "pa_required": true,
-      "reauthorization": null,
-      "step_therapy_required": false
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "in combination with atezolizumab, in patients who have not received prior systemic therapy",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Metastatic colorectal cancer",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "in combination with IV fluorouracil-based chemotherapy for first- or second-line treatment",
+            "logic_operator": "OR"
+          },
+          {
+            "criterion_type": "diagnosis",
+            "description": "in combination with fluoropyrimidine-irinotecan- or fluoropyrimidine-oxaliplatin-based chemotherapy for second-line treatment after progression on a first-line bevacizumab product-containing regimen",
+            "logic_operator": "OR"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Unresectable, locally advanced, recurrent or metastatic non-squamous non-small cell lung cancer",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "in combination with carboplatin and paclitaxel, as first-line",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Recurrent glioblastoma in adults",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": []
+      }
+    },
+    {
+      "name": "Metastatic renal cell carcinoma",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "in combination with interferon alfa",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Persistent, recurrent, or metastatic cervical cancer",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "in combination with paclitaxel and cisplatin, or paclitaxel and topotecan",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Metastatic colorectal cancer",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "in combination with IV fluorouracil- based chemotherapy for first- or second-line treatment",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "diagnosis",
+            "description": "in combination with fluoropyrimidine-irinotecan- or fluoropyrimidine-oxaliplatin-based chemotherapy for second-line treatment after progression on a first-line bevacizumab product- containing regimen",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Unresectable, locally advanced, recurrent or metastatic non-squamous non-small cell lung cancer",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "in combination with carboplatin and paclitaxel, as first-line",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Recurrent glioblastoma in adults",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": []
+      }
+    },
+    {
+      "name": "Metastatic renal cell carcinoma",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "in combination with interferon alfa",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Persistent, recurrent, or metastatic cervical cancer",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "in combination with paclitaxel and cisplatin, or paclitaxel and topotecan",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "HER2-overexpressing breast cancer",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "HER2-overexpressing breast cancer",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "HER2-overexpressing metastatic gastric or gastroesophageal junction adenocarcinoma",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "HER2-overexpressing metastatic gastric or gastroesophageal junction adenocarcinoma",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Adjuvant treatment of HER2-overexpressing breast cancer",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Adjuvant treatment of HER2-overexpressing breast cancer",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Metastatic HER2-overexpressing breast cancer",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Metastatic HER2-overexpressing breast cancer",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Metastatic HER2-overexpressing gastric cancer",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Metastatic HER2-overexpressing gastric cancer",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Platinum-resistant recurrent epithelial ovarian, fallopian tube or primary peritoneal cancer",
+      "description": "Platinum-resistant recurrent disease in patients who received no more than 2 prior chemotherapy regimens",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Platinum-resistant recurrent disease in patients who received no more than 2 prior chemotherapy regimens",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Platinum-sensitive recurrent epithelial ovarian, fallopian tube, or primary peritoneal cancer",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": []
+      }
     }
   ],
-  "payer": {
-    "effective_date": "2026-01-01",
-    "name": "Blue Cross NC",
-    "policy_id": null,
-    "policy_title": "Corporate Medical Policy: Preferred Injectable Oncology Program (Avastin example)",
-    "revision_date": "2026-01-01"
+  "exclusions": [
+    {
+      "description": "Not for adjuvant treatment of colon cancer"
+    },
+    {
+      "description": "If the request is for bevacizumab (Avastin) or a non-preferred bevacizumab biosimilar product (e.g., bevacizumab-maly [Alymsys], bevacizumab-tnjn [Avzivi], bevacizumab-nwgd [Jobevne], bevacizumab-adcd [Vegzelma]), then both of the following criteria are met: The patient has a documented serious adverse event that required medical intervention to both preferred bevacizumab biosimilar products (i.e., bevacizumab-awwb [Mvasi], bevacizumab-bvzr [Zirabev]) that is not anticipated with the requested product; AND The prescriber has completed and submitted an FDA MedWatch Adverse Event Reporting Form"
+    },
+    {
+      "description": "If the request is for rituximab (Rituxan), rituximab and hyaluronidase (Rituxan Hycela), or a non-preferred rituximab biosimilar"
+    },
+    {
+      "description": "<UNKNOWN>"
+    },
+    {
+      "description": "Use of injectable and healthcare administered oncology agents may be considered medically necessary for clinical indications not listed above when the drug is prescribed for the treatment of cancer either: 1. In accordance with FDA label when clinical benefit has been established, and it is not determined to be investigational as defined in the Blue Cross NC Corporate Medical Policy (CMP), \"Investigational (Experimental) Services.\" [please refer to CMP \"Investigational (Experimental) Services\" for a summary of evidence standards from nationally recognized compendia]; OR 2. In accordance with specific strong endorsement or support by nationally recognized compendia (e.g., National Comprehensive Cancer Network, NCCN), when such recommendation is based on the highest level of evidence (Level 1, 2A), and/or uniform consensus of clinical appropriateness has been reached."
+    },
+    {
+      "description": "No exclusions were found in the document."
+    },
+    {
+      "description": "Do not substitute for or with ado-trastuzumab emtansine or fam-trastuzumab deruxtecan"
+    }
+  ],
+  "confidence_scores": {
+    "overall": 0.75,
+    "drug_identification": 0.9,
+    "pa_criteria_completeness": 0.6
   }
 }

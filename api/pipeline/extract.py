@@ -1,14 +1,123 @@
 import contextlib
 import io
 import json
+import re
 import statistics
 import sys
 import time
 from datetime import datetime
 from pathlib import Path
 import anthropic
+import instructor
 
 import pymupdf
+
+_HCPCS_RE = re.compile(r"\b([A-Z]\d{4}|\d{5})\b")
+_COVERAGE_RE = re.compile(
+    r"(Non-Specialty|Specialty\s+with\s+PA|Specialty|Not\s+Covered|Non-Covered|Covered)",
+    re.IGNORECASE,
+)
+_TABLE_HEADER_RE = re.compile(
+    r"HCPCS|CPT.?Code|Drug.?Name|Coverage.?Level", re.IGNORECASE
+)
+
+
+def _clean(text: str) -> str:
+    """Normalize whitespace from tab/newline-heavy Camelot output."""
+    return re.sub(r"\s+", " ", text).strip()
+
+
+def _is_formulary_table(tables: list[dict]) -> bool:
+    """Return True if the extracted tables look like an HCPCS formulary list."""
+    if not tables:
+        return False
+    hcpcs_rows = 0
+    for table in tables[:10]:
+        for row in table.get("data", []):
+            col0 = _clean(str(row.get("0", "")))
+            if _HCPCS_RE.match(col0):
+                hcpcs_rows += 1
+    return hcpcs_rows >= 5
+
+
+def _parse_formulary_tables(tables: list[dict], source_filename: str) -> dict:
+    """
+    Parse HCPCS formulary tables (MDL-style docs) into a structured coverage list.
+    """
+    drugs: list[dict] = []
+    seen_codes: set[str] = set()
+    current_category = "Unknown"
+
+    for table in tables:
+        for row in table.get("data", []):
+            col0 = _clean(str(row.get("0", "")))
+            col1 = _clean(str(row.get("1", "")))
+            col2 = _clean(str(row.get("2", "")))
+            col3 = _clean(str(row.get("3", "")))
+            col4 = _clean(str(row.get("4", "")))
+
+            if not col0:
+                continue
+
+            if _TABLE_HEADER_RE.search(col0):
+                continue
+
+            if not col1 and not col2 and not col3:
+                hcpcs_match = _HCPCS_RE.search(col0)
+                if not hcpcs_match:
+                    current_category = col0
+                    continue
+                hcpcs_code = hcpcs_match.group(1)
+                coverage_match = _COVERAGE_RE.search(col0)
+                coverage_level = coverage_match.group(1) if coverage_match else ""
+                pre_code = col0[: hcpcs_match.start()].strip()
+                post_code = col0[hcpcs_match.end() :].strip()
+                if coverage_match:
+                    desc_end = col0.find(coverage_match.group(1))
+                    description = _clean(col0[hcpcs_match.end() : desc_end])
+                else:
+                    description = post_code
+                if hcpcs_code not in seen_codes:
+                    seen_codes.add(hcpcs_code)
+                    drugs.append(
+                        {
+                            "hcpcs_code": hcpcs_code,
+                            "drug_name": pre_code,
+                            "description": description,
+                            "coverage_level": coverage_level,
+                            "category": current_category,
+                            "notes": "",
+                        }
+                    )
+                continue
+
+            hcpcs_match = _HCPCS_RE.match(col0)
+            if hcpcs_match and col0 not in seen_codes:
+                seen_codes.add(col0)
+                drugs.append(
+                    {
+                        "hcpcs_code": col0,
+                        "drug_name": col1,
+                        "description": col2,
+                        "coverage_level": col3,
+                        "category": current_category,
+                        "notes": col4,
+                    }
+                )
+
+    base = (
+        source_filename.split(" - ")[0].strip()
+        if " - " in source_filename
+        else source_filename
+    )
+    payer_name = re.sub(r"\s+\d{4}.*$", "", base).strip() or base
+
+    return {
+        "document_type": "formulary_list",
+        "source": source_filename,
+        "payer": {"name": payer_name, "policy_title": source_filename},
+        "drugs": drugs,
+    }
 
 
 def extract_text_blocks(pdf_path: str) -> list[dict]:
@@ -102,7 +211,7 @@ def extract_tables(pdf_path: str) -> list[dict]:
         results = [
             {
                 "page": t.page,
-                "data": t.df.to_dict(orient="records"),
+                "data": t.df.rename(columns=str).to_dict(orient="records"),
                 "accuracy": t.accuracy,
             }
             for t in tables
@@ -113,7 +222,7 @@ def extract_tables(pdf_path: str) -> list[dict]:
             results = [
                 {
                     "page": t.page,
-                    "data": t.df.to_dict(orient="records"),
+                    "data": t.df.rename(columns=str).to_dict(orient="records"),
                     "accuracy": t.accuracy,
                 }
                 for t in tables
@@ -127,7 +236,6 @@ def extract_tables(pdf_path: str) -> list[dict]:
 def ocr_fallback(pdf_path: str) -> list[dict]:
     """
     Last resort for scanned PDFs where both PyMuPDF and pdfplumber return near-zero text.
-    Requires: pip install pdf2image pytesseract  (+ system Tesseract binary)
     """
     try:
         import pytesseract
@@ -149,8 +257,8 @@ def ocr_fallback(pdf_path: str) -> list[dict]:
                     "bbox": (0, 0, image.width, image.height),
                     "x0": 0,
                     "text": text,
-                    "font_size": 10.0,  # unknown from OCR
-                    "is_bold": False,  # unknown from OCR
+                    "font_size": 10.0,
+                    "is_bold": False,
                 }
             )
     return blocks
@@ -162,7 +270,6 @@ _LOW_YIELD_THRESHOLD = 50
 def extract_all(pdf_path: str) -> tuple[list[dict], list[dict], int]:
     """
     Orchestrates multi-library extraction.
-    Returns (text_blocks, tables, page_count).
     """
     doc = pymupdf.open(pdf_path)
     page_count = len(doc)
@@ -473,7 +580,7 @@ def _prune_sections(sections: list[dict]) -> list[dict]:
     return [s for s in sections if len(s["content"].strip()) > 50]
 
 
-from .schema import POLICY_RECORD_SCHEMA
+from .models import PolicyRecord
 
 
 def _render_sections(sections: list[dict]) -> str:
@@ -484,35 +591,34 @@ def _render_sections(sections: list[dict]) -> str:
     return "\n".join(parts)
 
 
-def extract_policy_record(sections: list[dict], source_filename: str) -> dict:
+def extract_policy_record(
+    sections: list[dict], source_filename: str, drug_hint: str | None = None
+) -> PolicyRecord:
     """
-    Send pre-segmented document text to Claude and return a structured
-    PolicyRecord conforming to schema.POLICY_RECORD_SCHEMA.
-
-    model: claude-haiku-4-5-20251001
+    Send pre-segmented document text to Claude and return a validated PolicyRecord.
     """
-    client = anthropic.Anthropic()
+    client = instructor.from_anthropic(anthropic.Anthropic())
 
-    response = client.messages.create(
+    drug_scope = (
+        f"\nFocus ONLY on the drug: {drug_hint}. Ignore PA criteria for any other drug.\n"
+        if drug_hint
+        else ""
+    )
+
+    return client.messages.create(
         model="claude-3-haiku-20240307",
         max_tokens=4096,
-        tools=[
-            {
-                "name": "extract_policy_record",
-                "description": (
-                    "Extract structured prior authorization policy data from a health plan document. "
-                    "Capture every covered indication and all PA criteria exactly as stated. "
-                    "Do NOT hallucinate. Omit fields absent from the document rather than guessing."
-                ),
-                "input_schema": POLICY_RECORD_SCHEMA,
-            }
-        ],
-        tool_choice={"type": "tool", "name": "extract_policy_record"},
+        max_retries=3,
+        response_model=PolicyRecord,
         messages=[
             {
                 "role": "user",
                 "content": (
-                    f"Extract structured policy data from this health plan PA policy document: {source_filename}\n\n"
+                    "Extract structured prior authorization policy data from this health plan document. "
+                    "Capture every covered indication and all PA criteria exactly as stated. "
+                    "Do NOT hallucinate. Omit fields absent from the document rather than guessing.\n\n"
+                    f"Document: {source_filename}\n"
+                    f"{drug_scope}"
                     "The document has been pre-segmented — each [SECTION] block contains raw text "
                     "from that portion of the document.\n\n"
                     f"{_render_sections(sections)}"
@@ -521,11 +627,134 @@ def extract_policy_record(sections: list[dict], source_filename: str) -> dict:
         ],
     )
 
-    for block in response.content:
-        if block.type == "tool_use" and block.name == "extract_policy_record":
-            return block.input
 
-    raise ValueError("LLM did not return a tool_use block")
+def _extract_and_write(
+    sections: list[dict],
+    source_filename: str,
+    record_out: Path,
+    drug_hint: str | None = None,
+    max_attempts: int = 3,
+) -> None:
+    """LLM extraction with exponential-backoff retry, writes result to record_out."""
+    for attempt in range(max_attempts):
+        try:
+            record = extract_policy_record(
+                sections, source_filename, drug_hint=drug_hint
+            )
+            with open(record_out, "w") as f:
+                json.dump(record.model_dump(exclude_none=True), f, indent=2)
+            print(f"  → policy record → {record_out.name}")
+            return
+        except anthropic.RateLimitError:
+            if attempt < max_attempts - 1:
+                wait = 60 * (attempt + 1)
+                print(
+                    f"  [rate limit] waiting {wait}s before retry {attempt + 1}/{max_attempts}..."
+                )
+                time.sleep(wait)
+            else:
+                print(
+                    f"  [error] LLM extraction failed after {max_attempts} attempts: rate limit exhausted"
+                )
+        except Exception as e:
+            print(f"  [error] LLM extraction failed: {e}")
+            return
+
+
+_CHUNK_CHAR_BUDGET = 6_000
+
+
+def _split_sections(sections: list[dict]) -> list[list[dict]]:
+    """Split sections into chunks that each fit within _CHUNK_CHAR_BUDGET chars."""
+    chunks: list[list[dict]] = []
+    current: list[dict] = []
+    size = 0
+    for s in sections:
+        s_size = len(s.get("content", "")) + len(s.get("heading", ""))
+        if current and size + s_size > _CHUNK_CHAR_BUDGET:
+            chunks.append(current)
+            current, size = [s], s_size
+        else:
+            current.append(s)
+            size += s_size
+    if current:
+        chunks.append(current)
+    return chunks
+
+
+def _coerce_list(val) -> list:
+    if isinstance(val, list):
+        return val
+    if isinstance(val, str):
+        try:
+            return json.loads(val)
+        except Exception:
+            return []
+    return []
+
+
+def _extract_chunked(
+    sections: list[dict],
+    source_filename: str,
+    record_out: Path,
+    drug_hint: str | None = None,
+    max_attempts: int = 3,
+) -> None:
+    """
+    Extraction for large documents: splits sections into token-budget chunks
+    """
+    chunks = _split_sections(sections)
+    if len(chunks) == 1:
+        _extract_and_write(
+            sections,
+            source_filename,
+            record_out,
+            drug_hint=drug_hint,
+            max_attempts=max_attempts,
+        )
+        return
+
+    print(f"  [chunked] {len(sections)} sections → {len(chunks)} chunks")
+    base_record: dict | None = None
+    all_indications: list = []
+    all_exclusions: list = []
+
+    for i, chunk in enumerate(chunks):
+        tmp_out = record_out.parent / f"_tmp_{i}_{record_out.name}"
+        _extract_and_write(
+            chunk,
+            source_filename,
+            tmp_out,
+            drug_hint=drug_hint,
+            max_attempts=max_attempts,
+        )
+
+        if not tmp_out.exists():
+            continue
+
+        with open(tmp_out) as f:
+            partial = json.load(f)
+        tmp_out.unlink()
+
+        if base_record is None:
+            base_record = partial
+
+        all_indications.extend(_coerce_list(partial.get("indications", [])))
+        all_exclusions.extend(_coerce_list(partial.get("exclusions", [])))
+
+    if base_record is None:
+        print(f"  [error] all chunks failed for {record_out.name}")
+        return
+
+    base_record["indications"] = all_indications
+    base_record["exclusions"] = all_exclusions
+
+    with open(record_out, "w") as f:
+        json.dump(base_record, f, indent=2)
+    print(
+        f"  → policy record ({len(all_indications)} indications"
+        f" across {len(chunks)} chunks) → {record_out.name}"
+    )
 
 
 class _Tee(io.TextIOBase):
@@ -603,8 +832,10 @@ def _run():
                 for s in slice_sections:
                     s["drug_context"] = drug_slice["drug"]
                 all_sections.extend(slice_sections)
+            known_slices = [s for s in drug_slices if s["drug"] != "unknown"]
         else:
             all_sections = segment_sections(blocks)
+            known_slices = []
 
         # Write raw segmentation output for inspection
         sections_out = sections_dir / f"{pdf_file.stem}.json"
@@ -621,30 +852,41 @@ def _run():
             )
         print(f"  → {len(all_sections)} sections → {sections_out.name}")
 
-        # LLM extraction — retry with backoff on rate limit
-        max_attempts = 3
-        for attempt in range(max_attempts):
-            try:
-                record = extract_policy_record(all_sections, pdf_file.name)
-                record_out = records_dir / f"{pdf_file.stem}.json"
-                with open(record_out, "w") as f:
-                    json.dump(record, f, indent=2)
-                print(f"  → policy record → {record_out.name}")
-                break
-            except anthropic.RateLimitError:
-                if attempt < max_attempts - 1:
-                    wait = 60 * (attempt + 1)
-                    print(
-                        f"  [rate limit] waiting {wait}s before retry {attempt + 1}/{max_attempts}..."
-                    )
-                    time.sleep(wait)
-                else:
-                    print(
-                        f"  [error] LLM extraction failed after {max_attempts} attempts: rate limit exhausted"
-                    )
-            except Exception as e:
-                print(f"  [error] LLM extraction failed: {e}")
-                break
+        if known_slices:
+            # Path A: omnibus PA policy doc with detected per-drug boundaries.
+            print(
+                f"  [omnibus] {len(known_slices)} known drug slices → per-drug extraction"
+            )
+            for drug_slice in known_slices:
+                drug_sections = [
+                    s
+                    for s in all_sections
+                    if s.get("drug_context") == drug_slice["drug"]
+                ]
+                safe_name = re.sub(r"[^a-zA-Z0-9_-]", "_", drug_slice["drug"])
+                record_out = records_dir / f"{pdf_file.stem}__{safe_name}.json"
+                _extract_chunked(
+                    drug_sections,
+                    pdf_file.name,
+                    record_out,
+                    drug_hint=drug_slice["drug"],
+                )
+
+        elif doc_format["type"] == "omnibus" and _is_formulary_table(tables):
+            # Path B: omnibus formulary/drug-list doc (e.g. MDL).
+            print("  [omnibus] formulary list detected → table-based extraction")
+            formulary = _parse_formulary_tables(tables, pdf_file.name)
+            record_out = records_dir / f"{pdf_file.stem}.json"
+            with open(record_out, "w") as f:
+                json.dump(formulary, f, indent=2)
+            print(
+                f"  → formulary record ({len(formulary['drugs'])} entries) → {record_out.name}"
+            )
+
+        else:
+            # Path C: per-drug or flat doc — chunked if large, single-pass otherwise.
+            record_out = records_dir / f"{pdf_file.stem}.json"
+            _extract_chunked(all_sections, pdf_file.name, record_out)
 
 
 if __name__ == "__main__":

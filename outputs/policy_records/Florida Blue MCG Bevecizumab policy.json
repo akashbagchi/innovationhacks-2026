@@ -1,32 +1,216 @@
 {
-  "confidence_scores": {
-    "drug_identification": 0.9,
-    "overall": 0.95,
-    "pa_criteria_completeness": 0.9,
-    "review_flags": ""
+  "payer": {
+    "name": "Florida Blue",
+    "policy_title": "Bevacizumab (Avastin), bevacizumab-awwb (Mvasi), bevacizumab-bvzr (Zirabev), and bevacizumab-maly (Alymsys), bevacizumab-nwgd (Jobevne), bevacizumab-tnjn (Avzivi), and bevacizumab-adcd (Vegzelma) Injection",
+    "effective_date": "2026-01-01"
   },
   "drug": {
-    "benefit_type": "medical",
     "brand_name": "Avastin, Mvasi, Zirabev, Alymsys, Jobevne, Avzivi, Vegzelma",
-    "drug_class": "Monoclonal antibody that inhibits vascular endothelial growth factor (VEGF)",
-    "generic_name": "bevacizumab",
-    "hcpcs_codes": [
-      "J9035",
-      "Q5107",
-      "Q5118",
-      "Q5126",
-      "Q5129",
-      "Q5160"
-    ],
-    "j_codes": [
-      "J9035"
-    ],
-    "limitations_of_use": "Bevacizumab should be discontinued in the following clinical situations: Gastrointestinal perforations, fistula formation, wound dehiscence and wound healing complications, serious hemorrhage, severe arterial thromboembolic events, life-threatening venous thromboembolic events, hypertensive crisis or hypertensive encephalopathy, Posterior Reversible Encephalopathy syndrome (PRES), nephrotic syndrome, and congestive heart failure.",
-    "route_of_administration": "Intravenous infusion"
+    "generic_name": "bevacizumab"
+  },
+  "indications": [
+    {
+      "name": "<UNKNOWN>",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "other",
+            "description": "<UNKNOWN>",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Metastatic Colorectal Cancer",
+      "pa_required": true,
+      "step_therapy_required": false,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "The member has been previously approved by Florida Blue or another healthplan in the past 2 years, OR the member has previously met all indication-specific criteria",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "other",
+            "description": "The dose does not exceed EITHER of the following:\n1. 10 mg/kg every 2 weeks\n2. 15 mg/kg every 3 weeks",
+            "logic_operator": "AND"
+          }
+        ],
+        "authorization_duration_months": 6
+      }
+    },
+    {
+      "name": "Oncology Indications",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": []
+      }
+    },
+    {
+      "name": "Hereditary Hemorrhagic Telangiectasia (HHT)",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": []
+      }
+    },
+    {
+      "name": "Brain Radiation Necrosis",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": []
+      }
+    },
+    {
+      "name": "Central Nervous System Cancer",
+      "description": "Covered for the treatment of central nervous system cancer",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Patient has central nervous system cancer",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Ovarian Cancer",
+      "description": "Covered for the treatment of ovarian cancer",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Patient has ovarian cancer",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Vulvar Cancer",
+      "description": "Covered for the treatment of vulvar cancer",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Patient has vulvar cancer",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Ampullary Cancer",
+      "description": "Covered for the treatment of ampullary cancer",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Patient has ampullary cancer",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Hepatocellular Carcinoma",
+      "description": "Covered for the treatment of hepatocellular carcinoma",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Patient has hepatocellular carcinoma",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Mesothelioma",
+      "description": "Covered for the treatment of mesothelioma",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Patient has mesothelioma",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Cervical Cancer",
+      "description": "Covered for the treatment of cervical cancer",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Patient has cervical cancer",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Uterine Cancer",
+      "description": "Covered for the treatment of uterine cancer",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Patient has uterine cancer",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Hereditary Hemorrhagic Telangiectasia",
+      "description": "Covered for the treatment of hereditary hemorrhagic telangiectasia",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Patient has hereditary hemorrhagic telangiectasia",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Vaginal Cancer",
+      "description": "Covered for the treatment of vaginal cancer",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Patient has vaginal cancer",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    }
+  ],
+  "confidence_scores": {
+    "overall": 0.5,
+    "review_flags": "Missing details on covered indications and PA criteria"
   },
   "exclusions": [
     {
-      "description": "For ophthalmic indications, please refer to MCG # 09-J1000-78, Vascular Endothelial Growth Factor Inhibitors of Ocular Neovascularization."
+      "description": "No exclusions stated in the document."
     }
   ]
 }

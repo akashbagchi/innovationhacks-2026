@@ -1,16 +1,881 @@
 {
-  "drug": {
-    "brand_name": "Rituxan",
-    "generic_name": "rituximab",
-    "benefit_type": "medical",
-    "drug_class": "CD20-directed cytolytic antibody",
-    "route_of_administration": "intravenous infusion"
-  },
   "payer": {
     "name": "Cigna",
     "policy_id": "IP0319",
     "policy_title": "Rituximab Intravenous Products for Non-Oncology Indications",
-    "effective_date": "2026-02-01",
-    "revision_date": "2026-02-01"
-  }
+    "effective_date": "2026-02-01"
+  },
+  "drug": {
+    "brand_name": "Riabni, Rituxan, Ruxience, Truxima",
+    "generic_name": "rituximab",
+    "route_of_administration": "intravenous infusion",
+    "benefit_type": "medical"
+  },
+  "indications": [
+    {
+      "name": "Antineutrophil Cytoplasmic Antibody (ANCA)-Associated Vasculitis",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Patient has a diagnosis of antineutrophil cytoplasmic antibody (ANCA)-associated vasculitis (including granulomatosis with polyangiitis [Wegener's granulomatosis] and microscopic polyangiitis)",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Chronic Lymphocytic Leukemia (CLL)",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Patient has a diagnosis of chronic lymphocytic leukemia (CLL)",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "other",
+            "description": "Rituximab will be used in combination with fludarabine and cyclophosphamide (FC)",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Granulomatosis with Polyangiitis (Wegener's Granulomatosis) and Microscopic Polyangiitis",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Patient has a diagnosis of granulomatosis with polyangiitis (Wegener's granulomatosis) or microscopic polyangiitis",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "other",
+            "description": "Rituximab will be used in combination with glucocorticoids",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Non-Hodgkin Lymphoma (NHL)",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Patient has a diagnosis of non-Hodgkin lymphoma (NHL)",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "other",
+            "description": "Rituximab will be used for one of the following uses:\n- Previously untreated follicular, CD20-positive disease, in combination with first-line chemotherapy\n- In patients achieving a complete or partial response to rituximab in combination with chemotherapy, as a single-agent maintenance therapy\n- For relapsed or refractory, low-grade or follicular, CD20-positive, B-cell disease\n- For non-progressing (including stable disease) low-grade, CD20-positive, B-cell disease as a single agent after first-line cyclophosphamide/vincristine/prednisone (CVP) chemotherapy\n- For previously untreated diffuse large B-cell, CD20-positive disease, in combination with cyclophosphamide/doxorubicin/vincristine/prednisone (CHOP) or other anthracycline-based chemotherapy regimens",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Pemphigus Vulgaris",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Patient has a diagnosis of pemphigus vulgaris with moderate to severe disease",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Rheumatoid Arthritis",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Patient has a diagnosis of rheumatoid arthritis",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "other",
+            "description": "Rituximab will be used in combination with methotrexate",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "other",
+            "description": "Patient has had an inadequate response to one or more tumor necrosis factor inhibitors",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Rheumatoid Arthritis",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "step_therapy",
+            "description": "Patient has tried ONE conventional synthetic disease-modifying antirheumatic drug (DMARD) for at least 3 months",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "combination_restriction",
+            "description": "The medication will not be used concurrently with another biologic or with a targeted synthetic DMARD",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "prescriber",
+            "description": "The medication is prescribed by or in consultation with a rheumatologist",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "other",
+            "description": "Preferred product criteria is met for the product(s) as listed in the below table(s)",
+            "logic_operator": "AND"
+          }
+        ],
+        "authorization_duration_months": 1
+      },
+      "reauthorization": {
+        "criteria": [
+          {
+            "criterion_type": "other",
+            "description": "16 weeks or greater will elapse between treatment courses",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "combination_restriction",
+            "description": "The medication will not be used concurrently with another biologic or with a targeted synthetic DMARD",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "clinical_response",
+            "description": "Patient experienced a beneficial clinical response when assessed by at least one objective measure",
+            "logic_operator": "OR"
+          },
+          {
+            "criterion_type": "clinical_response",
+            "description": "Patient experienced an improvement in at least one symptom, such as decreased joint pain, morning stiffness, or fatigue; improved function or activities of daily living; decreased soft tissue swelling in joints or tendon sheaths",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "other",
+            "description": "Preferred product criteria is met for the product(s) as listed in the below table(s)",
+            "logic_operator": "AND"
+          }
+        ],
+        "authorization_duration_months": 1
+      }
+    },
+    {
+      "name": "Autoimmune Hemolytic Anemia",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "prescriber",
+            "description": "The medication is prescribed by or in consultation with a hematologist",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "other",
+            "description": "Preferred product criteria is met for the product(s) as listed in the below table(s)",
+            "logic_operator": "AND"
+          }
+        ],
+        "authorization_duration_months": 1
+      }
+    },
+    {
+      "name": "Chronic Graft-Versus-Host Disease",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Patient has chronic graft-versus-host disease",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "step_therapy",
+            "description": "Patient has tried at least one systemic medication for graft-versus-host disease",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "prescriber",
+            "description": "The medication is prescribed by or in consultation with an oncologist, hematologist, or a physician affiliated with a transplant center",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "other",
+            "description": "Preferred product criteria is met for the product(s) as listed in the below table(s)",
+            "logic_operator": "AND"
+          }
+        ],
+        "authorization_duration_months": 1
+      }
+    },
+    {
+      "name": "Immune Thrombocytopenic Purpura (ITP)",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "step_therapy",
+            "description": "Patient has tried one other therapy",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "prescriber",
+            "description": "The medication is prescribed by or in consultation with a hematologist",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "other",
+            "description": "Preferred product criteria is met for the product(s) as listed in the below table(s)",
+            "logic_operator": "AND"
+          }
+        ],
+        "authorization_duration_months": 1
+      },
+      "reauthorization": {
+        "criteria": [
+          {
+            "criterion_type": "other",
+            "description": "At least 6 months will elapse between treatment courses",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "clinical_response",
+            "description": "According to the prescriber, the patient responded to therapy",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "disease_severity",
+            "description": "According to the prescriber, the patient has relapsed",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "other",
+            "description": "Preferred product criteria is met for the product(s) as listed in the below table(s)",
+            "logic_operator": "AND"
+          }
+        ],
+        "authorization_duration_months": 1
+      }
+    },
+    {
+      "name": "Immunotherapy-Related Toxicities Associated with Checkpoint Inhibitors",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "other",
+            "description": "The patient meets ONE of the following (A or B)",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Immunotherapy-Related Toxicity",
+      "description": "Patient developed an immunotherapy-related toxicity while receiving a checkpoint inhibitor and is symptomatic despite a trial of at least one systemic corticosteroid",
+      "icd10_codes": [
+        "<UNKNOWN>"
+      ],
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Patient developed an immunotherapy-related toxicity",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "diagnosis",
+            "description": "Patient developed this immunotherapy-related toxicity while receiving a checkpoint inhibitor",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "step_therapy",
+            "description": "Patient is symptomatic despite a trial of at least ONE systemic corticosteroid",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "prescriber",
+            "description": "The medication is prescribed by or in consultation with an oncologist, hematologist, nephrologist, neurologist, rheumatologist, or dermatologist",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "other",
+            "description": "Preferred product criteria is met for the product(s) as listed in the below table(s)",
+            "logic_operator": "OR"
+          }
+        ],
+        "authorization_duration_months": 1,
+        "required_prescriber_specialties": [
+          "oncologist",
+          "hematologist",
+          "nephrologist",
+          "neurologist",
+          "rheumatologist",
+          "dermatologist"
+        ]
+      }
+    },
+    {
+      "name": "Interstitial Lung Disease Associated with Systemic Autoimmune Rheumatic Disease",
+      "description": "Interstitial lung disease associated with systemic autoimmune rheumatic diseases such as systemic sclerosis, myositis, mixed connective tissue disease, rheumatoid arthritis, and Sj\u00f6gren's disease",
+      "icd10_codes": [
+        "<UNKNOWN>"
+      ],
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "age_weight",
+            "description": "Patient is \u2265 18 years of age",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "diagnosis",
+            "description": "Diagnosis is confirmed by high-resolution computed tomography",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "prescriber",
+            "description": "The medication is prescribed by or in consultation with a pulmonologist or a rheumatologist",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "other",
+            "description": "Preferred product criteria is met for the product(s) as listed in the below table(s)",
+            "logic_operator": "OR"
+          }
+        ],
+        "authorization_duration_months": 1,
+        "required_prescriber_specialties": [
+          "pulmonologist",
+          "rheumatologist"
+        ]
+      },
+      "reauthorization": {
+        "criteria": [
+          {
+            "criterion_type": "other",
+            "description": "24 weeks or greater will elapse between treatment courses",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "clinical_response",
+            "description": "Patient has experienced a beneficial response to therapy with rituximab",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "prescriber",
+            "description": "The medication is prescribed by or in consultation with a pulmonologist or a rheumatologist",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "other",
+            "description": "Preferred product criteria is met for the product(s) as listed in the below table(s)",
+            "logic_operator": "AND"
+          }
+        ],
+        "authorization_duration_months": 1,
+        "required_prescriber_specialties": [
+          "pulmonologist",
+          "rheumatologist"
+        ]
+      }
+    },
+    {
+      "name": "Membranous Nephropathy",
+      "description": "Membranous nephropathy",
+      "icd10_codes": [
+        "<UNKNOWN>"
+      ],
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "disease_severity",
+            "description": "Patient is at moderate risk or high risk for the progressive loss of kidney function",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "prescriber",
+            "description": "The medication is prescribed by or in consultation with a nephrologist",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "other",
+            "description": "Preferred product criteria is met for the product(s) as listed in the below table(s)",
+            "logic_operator": "OR"
+          }
+        ],
+        "authorization_duration_months": 1,
+        "required_prescriber_specialties": [
+          "nephrologist"
+        ]
+      },
+      "reauthorization": {
+        "criteria": [
+          {
+            "criterion_type": "prescriber",
+            "description": "The medication is prescribed by or in consultation with a nephrologist",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "other",
+            "description": "Preferred product criteria is met for the product(s) as listed in the below table(s)",
+            "logic_operator": "AND"
+          }
+        ],
+        "authorization_duration_months": 1,
+        "required_prescriber_specialties": [
+          "nephrologist"
+        ]
+      }
+    },
+    {
+      "name": "Minimal Change Disease",
+      "description": "Minimal change disease",
+      "icd10_codes": [
+        "<UNKNOWN>"
+      ],
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "The medication is being used for frequently relapsing or steroid-dependent disease",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "prescriber",
+            "description": "The medication is prescribed by or in consultation with a nephrologist",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "other",
+            "description": "Preferred product criteria is met for the product(s) as listed in the below table(s)",
+            "logic_operator": "OR"
+          }
+        ],
+        "authorization_duration_months": 1,
+        "required_prescriber_specialties": [
+          "nephrologist"
+        ]
+      },
+      "reauthorization": {
+        "criteria": [
+          {
+            "criterion_type": "prescriber",
+            "description": "The medication is prescribed by or in consultation with a nephrologist",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "other",
+            "description": "Preferred product criteria is met for the product(s) as listed in the below table(s)",
+            "logic_operator": "AND"
+          }
+        ],
+        "authorization_duration_months": 1,
+        "required_prescriber_specialties": [
+          "nephrologist"
+        ]
+      }
+    },
+    {
+      "name": "Multiple Sclerosis",
+      "description": "Multiple sclerosis",
+      "icd10_codes": [
+        "<UNKNOWN>"
+      ],
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "other",
+            "description": "Patient meets one of the following criteria: (A) Patient has a diagnosis of relapsing-remitting MS, and rituximab is prescribed for use following a trial of least one other Disease-Modifying Therapy (DMT) indicated for the treatment of MS; OR (B) Patient has a diagnosis of primary progressive MS, and rituximab is prescribed by or in consultation with a neurologist",
+            "logic_operator": "OR"
+          }
+        ],
+        "authorization_duration_months": 12,
+        "required_prescriber_specialties": [
+          "neurologist"
+        ]
+      }
+    },
+    {
+      "name": "Multiple Sclerosis",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "step_therapy",
+            "description": "Patient has experienced inadequate efficacy or significant intolerance to at least TWO other disease-modifying agents for multiple sclerosis",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "prescriber",
+            "description": "Medication is prescribed by or in consultation with a neurologist or a physician who specializes in the treatment of multiple sclerosis",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "other",
+            "description": "At least 6 months will elapse between treatment courses",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "other",
+            "description": "Medication will not be used concurrently with another disease-modifying agent used for multiple sclerosis",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "other",
+            "description": "Preferred product criteria is met",
+            "logic_operator": "AND"
+          }
+        ],
+        "required_prescriber_specialties": [
+          "neurologist",
+          "physician who specializes in the treatment of multiple sclerosis"
+        ]
+      },
+      "reauthorization": {
+        "criteria": [
+          {
+            "criterion_type": "other",
+            "description": "Medication will not be used concurrently with another disease-modifying agent used for multiple sclerosis",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "other",
+            "description": "At least 6 months will elapse between treatment courses",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "clinical_response",
+            "description": "Patient experienced a beneficial clinical response when assessed by at least one objective measure",
+            "logic_operator": "OR"
+          },
+          {
+            "criterion_type": "clinical_response",
+            "description": "Patient experienced stabilization, slow progression, or improvement in at least one symptom such as motor function, fatigue, vision, bowel/bladder function, spasticity, walking/gait, or pain/numbness/tingling sensation",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "prescriber",
+            "description": "Medication is prescribed by or in consultation with a neurologist or a physician who specializes in the treatment of multiple sclerosis",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "other",
+            "description": "Preferred product criteria is met",
+            "logic_operator": "AND"
+          }
+        ],
+        "authorization_duration_months": 12,
+        "required_prescriber_specialties": [
+          "neurologist",
+          "physician who specializes in the treatment of multiple sclerosis"
+        ]
+      }
+    },
+    {
+      "name": "Myasthenia Gravis",
+      "description": "Patient has confirmed anti-muscle-specific tyrosine kinase antibody-positive myasthenia gravis",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "Patient has confirmed anti-muscle-specific tyrosine kinase antibody-positive myasthenia gravis",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "step_therapy",
+            "description": "Patient previously received or is currently receiving pyridostigmine, or has had inadequate efficacy, contraindication, or significant intolerance to pyridostigmine",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "step_therapy",
+            "description": "Patient has tried at least one immunosuppressant therapy",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "disease_severity",
+            "description": "Patient has evidence of unresolved symptoms of myasthenia gravis, including difficulty swallowing, difficulty breathing, or a functional disability resulting in the discontinuation of physical activity",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "prescriber",
+            "description": "The medication is prescribed by or in consultation with a neurologist",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "other",
+            "description": "Preferred Product Criteria is met for the product(s) as listed in the below table(s)",
+            "logic_operator": "AND"
+          }
+        ],
+        "required_prescriber_specialties": [
+          "neurologist"
+        ]
+      },
+      "reauthorization": {
+        "criteria": [
+          {
+            "criterion_type": "other",
+            "description": "According to the prescriber, patient is continuing to derive benefit from the rituximab product",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "prescriber",
+            "description": "The medication is prescribed by or in consultation with a neurologist",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "other",
+            "description": "Preferred Product Criteria is met for the product(s) as listed in the below table(s)",
+            "logic_operator": "AND"
+          }
+        ],
+        "required_prescriber_specialties": [
+          "neurologist"
+        ]
+      }
+    },
+    {
+      "name": "Neuromyelitis Optica Spectrum Disorder",
+      "description": "<UNKNOWN>",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "other",
+            "description": "<UNKNOWN>",
+            "logic_operator": "AND"
+          }
+        ],
+        "authorization_duration_months": 1,
+        "required_prescriber_specialties": [
+          "<UNKNOWN>"
+        ]
+      }
+    },
+    {
+      "name": "Pediatric Nephrotic Syndrome",
+      "description": "<UNKNOWN>",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "age_weight",
+            "description": "Patient is \u2264 18 years of age",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "step_therapy",
+            "description": "Patient has tried at least one systemic corticosteroid, or patient has tried at least one glucocorticoid-sparing agent for nephrotic syndrome",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "prescriber",
+            "description": "The medication is prescribed by or in consultation with a nephrologist",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "other",
+            "description": "Preferred product criteria is met for the product(s) listed in the below table(s)",
+            "logic_operator": "AND"
+          }
+        ],
+        "authorization_duration_months": 1,
+        "required_prescriber_specialties": [
+          "nephrologist"
+        ]
+      },
+      "reauthorization": {
+        "criteria": [
+          {
+            "criterion_type": "prescriber",
+            "description": "The medication is prescribed by or in consultation with a nephrologist",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "other",
+            "description": "Preferred product criteria is met for the product(s) as listed in the below table(s)",
+            "logic_operator": "AND"
+          }
+        ],
+        "authorization_duration_months": 1,
+        "required_prescriber_specialties": [
+          "nephrologist"
+        ]
+      }
+    },
+    {
+      "name": "Transplant Indications",
+      "description": "The medication will be used for desensitization therapy prior to or immediately after transplantation, or the medication will be used for antibody-mediated rejection",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "other",
+            "description": "The medication will be used for desensitization therapy prior to or immediately after transplantation, or the medication will be used for antibody-mediated rejection",
+            "logic_operator": "OR"
+          },
+          {
+            "criterion_type": "prescriber",
+            "description": "The medication will be prescribed by or in consultation with a physician affiliated with a transplant center",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "other",
+            "description": "Preferred product criteria is met for the product(s) as listed in the below table(s)",
+            "logic_operator": "AND"
+          }
+        ],
+        "required_prescriber_specialties": [
+          "<UNKNOWN>"
+        ]
+      }
+    },
+    {
+      "name": "Systemic Lupus Erythematosus (SLE) [Lupus]",
+      "description": "This includes nephrotic syndrome in a patient with SLE",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "other",
+            "description": "The patient meets ONE of the following: the medication will be used for desensitization therapy prior to or immediately after transplantation, or the medication will be used for antibody-mediated rejection",
+            "logic_operator": "OR"
+          }
+        ],
+        "required_prescriber_specialties": [
+          "<UNKNOWN>"
+        ]
+      }
+    },
+    {
+      "name": "Systemic Lupus Erythematosus (SLE)",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "step_therapy",
+            "description": "Patient has tried at least ONE standard immunomodulating or immunosuppressant agent",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "prescriber",
+            "description": "The medication is prescribed by or in consultation with a rheumatologist, nephrologist, or neurologist",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "other",
+            "description": "Preferred product criteria is met for the product(s) as listed in the below table(s)",
+            "logic_operator": "OR"
+          }
+        ]
+      },
+      "reauthorization": {
+        "criteria": [
+          {
+            "criterion_type": "other",
+            "description": "6 months or greater will elapse between treatment courses",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "other",
+            "description": "Preferred product criteria is met for the product(s) as listed in the below table(s)",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Thrombotic Thrombocytopenic Purpura (TTP)",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "other",
+            "description": "The medication will be used in combination with systemic corticosteroids",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "other",
+            "description": "The medication will be used in combination with therapeutic plasma exchange",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "prescriber",
+            "description": "The medication is prescribed by or in consultation with a hematologist",
+            "logic_operator": "AND"
+          },
+          {
+            "criterion_type": "other",
+            "description": "Preferred product criteria is met for the product(s) as listed in the below table(s)",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Non-Oncology Indications",
+      "description": "<UNKNOWN>",
+      "icd10_codes": [
+        "<UNKNOWN>"
+      ],
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "other",
+            "description": "Covered for non-oncology indications as listed in the NCCN Drugs and Biologics Compendium or supported by NCCN guidelines",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Rheumatoid Arthritis (RA)",
+      "pa_required": true,
+      "initial_authorization": {
+        "criteria": [
+          {
+            "criterion_type": "diagnosis",
+            "description": "RA",
+            "logic_operator": "AND"
+          }
+        ]
+      }
+    }
+  ],
+  "confidence_scores": {
+    "overall": 1.0
+  },
+  "exclusions": [
+    {
+      "description": "<UNKNOWN>"
+    },
+    {
+      "description": "Rituximab products (Rituxan, Riabni, Ruxience, Truxima) for any other non-oncology use is considered not medically necessary."
+    },
+    {
+      "description": "Use of rituximab for oncology indications is covered under a separate policy."
+    }
+  ]
 }
