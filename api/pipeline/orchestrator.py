@@ -334,7 +334,9 @@ def _extract_chunked_record(
 
     if len(chunks) == 1:
         try:
-            record = extract_policy_record(sections, filename, drug_hint=drug_hint)
+            record, _output_tokens = extract_policy_record(
+                sections, filename, drug_hint=drug_hint
+            )
             return record.model_dump(exclude_none=True)
         except Exception as e:
             print(f"  [error] extraction failed: {e}")
@@ -348,7 +350,9 @@ def _extract_chunked_record(
 
     for chunk in chunks:
         try:
-            record = extract_policy_record(chunk, filename, drug_hint=drug_hint)
+            record, _output_tokens = extract_policy_record(
+                chunk, filename, drug_hint=drug_hint
+            )
             partial = record.model_dump(exclude_none=True)
         except Exception as e:
             print(f"  [warn] chunk failed: {e}")
