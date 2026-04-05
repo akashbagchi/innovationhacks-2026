@@ -1,12 +1,21 @@
+import os
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from routes import ingest, policies, compare, diff, simulate, changes, pipeline, chat
 
 app = FastAPI(title="Anton RX Policy Tracker API", redirect_slashes=False)
 
+
+def _allowed_origins() -> list[str]:
+    configured = os.getenv("CORS_ALLOWED_ORIGINS", "").strip()
+    if configured:
+        return [origin.strip() for origin in configured.split(",") if origin.strip()]
+    return ["http://localhost:3000", "http://localhost:5173"]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://localhost:5173"],
+    allow_origins=_allowed_origins(),
     allow_methods=["*"],
     allow_headers=["*"],
 )
