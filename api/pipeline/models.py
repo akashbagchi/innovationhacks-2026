@@ -174,7 +174,7 @@ class Indication(BaseModel):
     )
     pa_required: bool
     step_therapy_required: Optional[bool] = None
-    initial_authorization: AuthBlock
+    initial_authorization: Optional[AuthBlock] = None
     reauthorization: Optional[AuthBlock] = None
 
     @field_validator("step_therapy_required", mode="before")
