@@ -5,6 +5,8 @@ import { PortfolioView } from './components/PortfolioView'
 import { DrugDetailView } from './components/DrugDetailView'
 import { ComparisonMatrix } from './components/ComparisonMatrix'
 import { ChangeDigest } from './components/ChangeDigest'
+import { mockChanges } from './data/mockChanges'
+import { portfolio as mockPortfolio } from './data/mockPortfolio'
 import type { DrugPortfolioEntry } from './data/mockPortfolio'
 import type { ChangeEntry, InsightCard, PayerTrend, PolicyRecord } from './types/policy'
 import { fetchAllPolicies, fetchChanges, type PolicySearchResult } from './lib/api'
@@ -12,6 +14,7 @@ import { ChatPanel } from './components/ChatPanel'
 import { computeStringency } from './lib/stringency'
 
 type NavView = 'portfolio' | 'compare' | 'digest'
+const DEMO_MODE_KEY = 'antonrx-demo-mode'
 
 function sourcePriority(source?: string) {
   if (source === 'pipeline' || source === 's3_scan') return 3
@@ -258,29 +261,55 @@ export default function App() {
   const [activeNav, setActiveNav]         = useState<NavView>('portfolio')
   const [selectedDrug, setSelectedDrug]   = useState<string | null>(null)
   const [compareDrugId, setCompareDrugId] = useState<string | null>(null)
-  const [portfolio, setPortfolio]       = useState<DrugPortfolioEntry[]>([])
-  const [changes, setChanges]           = useState<ChangeEntry[]>([])
+  const [livePortfolio, setLivePortfolio] = useState<DrugPortfolioEntry[]>([])
+  const [liveChanges, setLiveChanges]     = useState<ChangeEntry[]>([])
+  const [demoMode, setDemoMode]           = useState(false)
   const [chatOpen, setChatOpen]         = useState(false)
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    setDemoMode(window.localStorage.getItem(DEMO_MODE_KEY) === 'true')
+  }, [])
 
   useEffect(() => {
     Promise.allSettled([fetchAllPolicies(), fetchChanges()]).then(([policiesResult, changesResult]) => {
       const nextChanges = changesResult.status === 'fulfilled' ? preferLiveChanges(changesResult.value) : []
-      setChanges(nextChanges)
+      setLiveChanges(nextChanges)
 
       if (policiesResult.status !== 'fulfilled') {
-        setPortfolio([])
+        setLivePortfolio([])
         return
       }
 
       const livePortfolio = buildLivePortfolio(policiesResult.value, nextChanges)
-      setPortfolio(livePortfolio)
-      if (livePortfolio.length > 0 && !compareDrugId) {
-        setCompareDrugId(livePortfolio[0].id)
-      }
+      setLivePortfolio(livePortfolio)
     })
   }, [])
 
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    window.localStorage.setItem(DEMO_MODE_KEY, String(demoMode))
+  }, [demoMode])
+
+  const portfolio = demoMode ? mockPortfolio : livePortfolio
+  const changes = demoMode ? mockChanges : liveChanges
   const drug = selectedDrug ? portfolio.find(d => d.id === selectedDrug) ?? null : null
+
+  useEffect(() => {
+    if (portfolio.length === 0) {
+      setSelectedDrug(null)
+      setCompareDrugId(null)
+      return
+    }
+
+    if (selectedDrug && !portfolio.some(entry => entry.id === selectedDrug)) {
+      setSelectedDrug(null)
+    }
+
+    if (!compareDrugId || !portfolio.some(entry => entry.id === compareDrugId)) {
+      setCompareDrugId(portfolio[0].id)
+    }
+  }, [portfolio, selectedDrug, compareDrugId])
 
   function handleNavigate(id: string) {
     setActiveNav(id as NavView)
@@ -365,6 +394,67 @@ export default function App() {
         </AnimatePresence>
       </div>
       <ChatPanel open={chatOpen} onClose={() => setChatOpen(false)} />
+
+      <div
+        style={{
+          position: 'fixed',
+          right: '18px',
+          bottom: '12px',
+          zIndex: 40,
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px',
+          padding: '6px 10px',
+          borderRadius: '999px',
+          background: 'rgba(255,255,255,0.84)',
+          border: '1px solid rgba(216,212,204,0.9)',
+          boxShadow: '0 2px 12px rgba(19,18,16,0.05)',
+          backdropFilter: 'blur(8px)',
+        }}
+      >
+        <span
+          style={{
+            fontFamily: "'IBM Plex Mono', monospace",
+            fontSize: '9px',
+            letterSpacing: '0.12em',
+            textTransform: 'uppercase',
+            color: demoMode ? '#8B6428' : '#918D88',
+          }}
+        >
+          Demo mode
+        </span>
+        <button
+          type="button"
+          role="switch"
+          aria-checked={demoMode}
+          aria-label="Toggle demo mode"
+          onClick={() => setDemoMode(current => !current)}
+          style={{
+            width: '32px',
+            height: '18px',
+            borderRadius: '999px',
+            border: `1px solid ${demoMode ? 'rgba(139,100,40,0.35)' : '#D8D4CC'}`,
+            background: demoMode ? '#F8EDDC' : '#F0EFEB',
+            padding: '1px',
+            position: 'relative',
+            transition: 'all 0.15s ease',
+            cursor: 'pointer',
+          }}
+        >
+          <span
+            style={{
+              display: 'block',
+              width: '14px',
+              height: '14px',
+              borderRadius: '50%',
+              background: demoMode ? '#8B6428' : '#FFFFFF',
+              boxShadow: '0 1px 3px rgba(19,18,16,0.16)',
+              transform: demoMode ? 'translateX(14px)' : 'translateX(0)',
+              transition: 'transform 0.15s ease, background 0.15s ease',
+            }}
+          />
+        </button>
+      </div>
     </div>
   )
 }
