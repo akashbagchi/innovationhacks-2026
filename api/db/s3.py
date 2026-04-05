@@ -93,6 +93,15 @@ def list_all_pdfs() -> list[dict]:
     return results
 
 
+def generate_presigned_url(s3_key: str, expiry_seconds: int = 3600) -> str:
+    """Generate a presigned S3 URL to view/download a stored document."""
+    return s3.generate_presigned_url(
+        "get_object",
+        Params={"Bucket": BUCKET, "Key": s3_key},
+        ExpiresIn=expiry_seconds,
+    )
+
+
 def _hash_from_key(key: str) -> str | None:
     """Extract doc_hash from key pattern sha256-{hash[:16]}.pdf"""
     import re

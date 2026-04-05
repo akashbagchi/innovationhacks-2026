@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import type { ChangeEntry } from '../types/policy'
+import { CHANGE_TYPE_LABELS, CRITERION_CHIP_COLORS } from '../lib/formatters'
 
 interface ChangeDigestProps {
   changes: ChangeEntry[]
@@ -14,29 +15,6 @@ const severityConfig = {
   LOW:  { rail: '#918D88', bg: '#F0EFEB', text: '#918D88', border: '#D8D4CC', label: 'LOW' },
 }
 
-const changeTypeLabels: Record<string, string> = {
-  ADDED_STEP_THERAPY:   'Step therapy added',
-  ADDED_CRITERION:      'Criterion added',
-  REMOVED_CRITERION:    'Criterion removed',
-  MODIFIED_THRESHOLD:   'Threshold changed',
-  MODIFIED_WORDING:     'Wording updated',
-  MODIFIED_PA_REQUIRED: 'PA status changed',
-  ADDED_INDICATION:     'Indication added',
-  REMOVED_INDICATION:   'Indication removed',
-}
-
-const criterionChipColors: Record<string, { bg: string; text: string; border: string }> = {
-  step_therapy:            { bg: '#F8EDDC', text: '#8B6428', border: 'rgba(139,100,40,0.2)' },
-  combination_restriction: { bg: '#F0EFEB', text: '#4A4845', border: '#D8D4CC' },
-  prior_therapy:           { bg: '#F8EDDC', text: '#8B6428', border: 'rgba(139,100,40,0.2)' },
-  line_of_therapy:         { bg: '#EAF4FE', text: '#2870A8', border: 'rgba(40,112,168,0.25)' },
-  disease_severity:        { bg: '#FBEAEA', text: '#B81C1C', border: 'rgba(184,28,28,0.2)' },
-  lab_value:               { bg: '#EAF4FE', text: '#2870A8', border: 'rgba(40,112,168,0.25)' },
-  diagnosis:               { bg: '#F0EFEB', text: '#4A4845', border: '#D8D4CC' },
-  prescriber:              { bg: '#EAF4FE', text: '#2870A8', border: 'rgba(40,112,168,0.25)' },
-  clinical_response:       { bg: '#EAF4FE', text: '#2870A8', border: 'rgba(40,112,168,0.25)' },
-  other:                   { bg: '#F0EFEB', text: '#918D88', border: '#D8D4CC' },
-}
 
 export function ChangeDigest({ changes }: ChangeDigestProps) {
   const highCount  = changes.filter(c => c.severity === 'HIGH').length
@@ -95,10 +73,10 @@ export function ChangeDigest({ changes }: ChangeDigestProps) {
                 <span style={{ fontSize: '12px', color: '#4A4845' }}>{change.drug}</span>
                 <span style={{ color: '#D8D4CC' }}>·</span>
                 <span style={{ ...mono, fontSize: '9px', padding: '1px 5px', borderRadius: '1px', background: '#F0EFEB', border: '1px solid #D8D4CC', color: '#4A4845' }}>
-                  {changeTypeLabels[change.change_type] ?? change.change_type}
+                  {CHANGE_TYPE_LABELS[change.change_type] ?? change.change_type}
                 </span>
                 {change.criterion_type && (() => {
-                  const chip = criterionChipColors[change.criterion_type] ?? criterionChipColors.other
+                  const chip = CRITERION_CHIP_COLORS[change.criterion_type] ?? CRITERION_CHIP_COLORS.other
                   return (
                     <span style={{ ...mono, fontSize: '9px', padding: '1px 5px', borderRadius: '1px', background: chip.bg, border: `1px solid ${chip.border}`, color: chip.text }}>
                       {change.criterion_type.replace(/_/g, ' ')}

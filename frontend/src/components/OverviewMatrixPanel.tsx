@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import type { DrugPortfolioEntry } from '../data/mockPortfolio'
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from './ui/dialog'
+import { CRITERION_CHIP_COLORS } from '../lib/formatters'
 
 interface OverviewMatrixPanelProps {
   portfolio: DrugPortfolioEntry[]
@@ -33,18 +34,6 @@ const coverageStyles: Record<string, { bg: string; text: string; border: string 
   'No Policy':   { bg: '#EAF4FE', text: '#2870A8', border: 'rgba(40,112,168,0.25)' },
 }
 
-const criterionChipColors: Record<string, { bg: string; text: string; border: string }> = {
-  step_therapy:            { bg: '#F8EDDC', text: '#8B6428', border: 'rgba(139,100,40,0.2)' },
-  combination_restriction: { bg: '#F0EFEB', text: '#4A4845', border: '#D8D4CC' },
-  prior_therapy:           { bg: '#F8EDDC', text: '#8B6428', border: 'rgba(139,100,40,0.2)' },
-  line_of_therapy:         { bg: '#EAF4FE', text: '#2870A8', border: 'rgba(40,112,168,0.25)' },
-  disease_severity:        { bg: '#FBEAEA', text: '#B81C1C', border: 'rgba(184,28,28,0.2)' },
-  lab_value:               { bg: '#EAF4FE', text: '#2870A8', border: 'rgba(40,112,168,0.25)' },
-  diagnosis:               { bg: '#F0EFEB', text: '#4A4845', border: '#D8D4CC' },
-  prescriber:              { bg: '#EAF4FE', text: '#2870A8', border: 'rgba(40,112,168,0.25)' },
-  clinical_response:       { bg: '#EAF4FE', text: '#2870A8', border: 'rgba(40,112,168,0.25)' },
-  other:                   { bg: '#F0EFEB', text: '#918D88', border: '#D8D4CC' },
-}
 
 const mono: React.CSSProperties = { fontFamily: "'IBM Plex Mono', monospace" }
 const LABEL: React.CSSProperties = { ...mono, fontSize: '9px', letterSpacing: '0.2em', textTransform: 'uppercase' as const, color: '#918D88' }
@@ -128,7 +117,7 @@ function MatrixTable({ rows, visibleColumns, previewCount }: { rows: MatrixRow[]
                         {row.criterionTypes.length > 0 ? (
                           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '3px' }}>
                             {row.criterionTypes.map(type => {
-                              const chip = criterionChipColors[type] ?? criterionChipColors.other
+                              const chip = CRITERION_CHIP_COLORS[type] ?? CRITERION_CHIP_COLORS.other
                               return (
                                 <span key={type} style={{ ...mono, fontSize: '9px', padding: '1px 5px', borderRadius: '1px', background: chip.bg, border: `1px solid ${chip.border}`, color: chip.text, whiteSpace: 'nowrap' }}>
                                   {type.replace(/_/g, ' ')}

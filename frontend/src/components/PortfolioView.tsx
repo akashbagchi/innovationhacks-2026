@@ -32,7 +32,6 @@ interface StatCardData {
 }
 
 import { formatPayerName } from '../lib/formatters'
-function shortPayer(name: string) { return formatPayerName(name) }
 
 function formatChangeDate(date: string) {
   return new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', year: 'numeric' }).format(new Date(date))
@@ -187,11 +186,15 @@ function DrugCard({ drug, onSelect }: { drug: DrugPortfolioEntry; onSelect: () =
   const maxScore = Math.max(...scores.map(s => s.score))
   const maxColor = maxScore >= 70 ? '#B81C1C' : maxScore >= 40 ? '#8B6428' : '#1A7840'
 
+  const visiblePolicies = drug.policies.slice(0, 4)
+  const extraPolicies   = drug.policies.length - visiblePolicies.length
+
   return (
-    <motion.button onClick={onSelect} className="w-full text-left"
-      style={{ background: '#FFFFFF', border: '1px solid #D8D4CC', borderRadius: '2px', padding: '13px' }}
+    <motion.button onClick={onSelect} className="w-full text-left h-full"
+      style={{ background: '#FFFFFF', border: '1px solid #D8D4CC', borderRadius: '2px', padding: '13px', display: 'flex', flexDirection: 'column' }}
       whileHover={{ borderColor: '#91bfeb' }}>
 
+      {/* Header */}
       <div className="flex items-start justify-between mb-2">
         <div>
           <p style={{ fontSize: '14px', fontWeight: 700, color: '#131210', lineHeight: 1.2 }}>{drug.brandName}</p>
@@ -209,25 +212,32 @@ function DrugCard({ drug, onSelect }: { drug: DrugPortfolioEntry; onSelect: () =
         {drug.drugClass}
       </span>
 
+      {/* PA Burden — capped at 4 payers */}
       <div className="mb-3">
         <p style={{ ...LABEL, marginBottom: '5px' }}>PA Burden</p>
-        {drug.policies.map(policy => {
-          const paCount = policy.indications.filter(i => i.pa_required).length
-          const pct     = Math.round((paCount / policy.indications.length) * 100)
+        {visiblePolicies.map(policy => {
+          const paCount  = policy.indications.filter(i => i.pa_required).length
+          const pct      = Math.round((paCount / policy.indications.length) * 100)
           const barColor = pct > 70 ? '#B81C1C' : pct > 40 ? '#8B6428' : '#1A7840'
           return (
             <div key={policy.payer.name} className="flex items-center gap-2 mb-1">
-              <span style={{ ...mono, fontSize: '9px', color: '#918D88', width: '34px', flexShrink: 0 }}>{shortPayer(policy.payer.name)}</span>
+              <span style={{ ...mono, fontSize: '9px', color: '#918D88', width: '44px', flexShrink: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                {formatPayerName(policy.payer.name)}
+              </span>
               <div style={{ flex: 1, height: '3px', background: '#EBEBEB', borderRadius: '1px', overflow: 'hidden' }}>
                 <motion.div style={{ height: '100%', background: barColor, borderRadius: '1px' }}
                   initial={{ width: 0 }} animate={{ width: `${pct}%` }} transition={{ duration: 0.35, ease: 'easeOut' }} />
               </div>
-              <span style={{ ...mono, fontSize: '9px', color: '#4A4845', width: '26px', textAlign: 'right' }}>{pct}%</span>
+              <span style={{ ...mono, fontSize: '9px', color: '#4A4845', width: '30px', textAlign: 'right', flexShrink: 0 }}>{pct}%</span>
             </div>
           )
         })}
+        {extraPolicies > 0 && (
+          <p style={{ ...mono, fontSize: '9px', color: '#918D88', marginTop: '3px' }}>+{extraPolicies} more payers</p>
+        )}
       </div>
 
+      {/* Trend */}
       <div className="mb-2 pt-2" style={{ borderTop: '1px solid #EBEBEB' }}>
         <p style={{ ...LABEL, marginBottom: '4px' }}>Trend (4Q)</p>
         <div className="flex flex-wrap gap-3">
@@ -236,7 +246,7 @@ function DrugCard({ drug, onSelect }: { drug: DrugPortfolioEntry; onSelect: () =
             const ar = trend.direction === 'tightening' ? '↑' : trend.direction === 'loosening' ? '↓' : '→'
             return (
               <div key={trend.payerName} className="flex items-center gap-1.5">
-                <span style={{ ...mono, fontSize: '9px', color: '#918D88' }}>{shortPayer(trend.payerName)}</span>
+                <span style={{ ...mono, fontSize: '9px', color: '#918D88' }}>{formatPayerName(trend.payerName)}</span>
                 <SparkLine data={trend.history.map(p => p.score)} color={tc} width={40} height={16} />
                 <span style={{ ...mono, fontSize: '9px', fontWeight: 600, color: tc }}>{ar}{Math.abs(trend.delta)}</span>
               </div>
@@ -245,7 +255,8 @@ function DrugCard({ drug, onSelect }: { drug: DrugPortfolioEntry; onSelect: () =
         </div>
       </div>
 
-      <div className="flex items-center justify-between pt-2" style={{ borderTop: '1px solid #EBEBEB' }}>
+      {/* Footer — pushed to bottom */}
+      <div className="flex items-center justify-between pt-2 mt-auto" style={{ borderTop: '1px solid #EBEBEB' }}>
         <p style={{ ...mono, fontSize: '9px', color: '#918D88' }}>{drug.livesAtRisk}</p>
         <div className="flex items-center gap-1.5">
           <div style={{ width: '5px', height: '5px', borderRadius: '50%', background: maxColor }} />
@@ -258,8 +269,9 @@ function DrugCard({ drug, onSelect }: { drug: DrugPortfolioEntry; onSelect: () =
 
 export function PortfolioView({ portfolio, onSelectDrug, changes }: PortfolioViewProps) {
   const [search, setSearch] = useState('')
-  const stats    = buildStats(portfolio, changes)
-  const filtered = portfolio.filter(d =>
+  const stats      = buildStats(portfolio, changes)
+  const highImpact = changes.filter(c => c.severity === 'HIGH').length
+  const filtered   = portfolio.filter(d =>
     d.brandName.toLowerCase().includes(search.toLowerCase()) ||
     d.genericName.toLowerCase().includes(search.toLowerCase()) ||
     d.drugClass.toLowerCase().includes(search.toLowerCase())
@@ -291,7 +303,7 @@ export function PortfolioView({ portfolio, onSelectDrug, changes }: PortfolioVie
         </div>
 
         {/* Heatmap + Feed */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 300px', gap: '10px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 300px', gap: '10px', height: '380px' }}>
           <CoverageHeatmap portfolio={portfolio} onSelectDrug={onSelectDrug} />
           <RecentChangeFeed changes={changes} />
         </div>
@@ -304,7 +316,7 @@ export function PortfolioView({ portfolio, onSelectDrug, changes }: PortfolioVie
               <p style={{ fontSize: '13px', fontWeight: 600, color: '#131210' }}>{portfolio.length} products tracked</p>
             </div>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '10px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '10px', alignItems: 'stretch' }}>
             {filtered.map(drug => <DrugCard key={drug.id} drug={drug} onSelect={() => onSelectDrug(drug.id)} />)}
             <div style={{ background: 'transparent', border: '1px dashed #D8D4CC', borderRadius: '2px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '180px', gap: '5px' }}>
               <p style={{ fontSize: '18px', color: '#918D88', fontWeight: 300 }}>+</p>
@@ -323,7 +335,7 @@ export function PortfolioView({ portfolio, onSelectDrug, changes }: PortfolioVie
 
       {/* Status bar */}
       <div style={{ background: '#FFFFFF', borderTop: '1px solid #D8D4CC', padding: '5px 26px', display: 'flex', alignItems: 'center', gap: '18px', marginTop: 'auto' }}>
-        {[{ dot: '#1A7840', label: 'API Connected' }, { dot: '#8B6428', label: '4 alerts pending' }].map(({ dot, label }) => (
+        {[{ dot: '#1A7840', label: 'API Connected' }, { dot: '#8B6428', label: `${highImpact} alert${highImpact !== 1 ? 's' : ''} pending` }].map(({ dot, label }) => (
           <div key={label} style={{ display: 'flex', alignItems: 'center', gap: '5px', ...mono, fontSize: '9px', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#918D88' }}>
             <div style={{ width: '5px', height: '5px', borderRadius: '50%', background: dot }} /> {label}
           </div>

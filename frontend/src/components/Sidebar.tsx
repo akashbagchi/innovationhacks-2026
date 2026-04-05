@@ -119,13 +119,13 @@ export function Sidebar({ active, onNavigate, changes, portfolio, onChatToggle }
             </div>
 
             {/* Watchlist */}
-            <div className="mx-3 mt-2.5 p-3 flex-1" style={{ background: '#F0EFEB', border: '1px solid #D8D4CC', borderRadius: '2px' }}>
+            <div className="mx-3 mt-2.5 p-3 flex-1" style={{ background: '#F0EFEB', border: '1px solid #D8D4CC', borderRadius: '2px', overflowY: 'auto', minHeight: 0 }}>
                 <p style={{ ...mono, fontSize: '9px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#918D88', marginBottom: '8px' }}>
                     Watchlist
                 </p>
                 <ul className="space-y-2">
                     {watchlistItems.map(item => (
-                        <li key={`${item.payer}-${item.change_type}-${item.date}`} className="flex items-start gap-2"
+                        <li key={`${item.drug}-${item.payer}-${item.change_type}-${item.date}`} className="flex items-start gap-2"
                             style={{ paddingBottom: '7px', borderBottom: '1px solid #EBEBEB' }}>
                             <span className="mt-1 flex-shrink-0" style={{
                                 width: '5px', height: '5px', borderRadius: '50%',

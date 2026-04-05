@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import type { ChangeEntry } from '../types/policy'
 import type { DrugPortfolioEntry } from '../data/mockPortfolio'
+import { CHANGE_TYPE_LABELS } from '../lib/formatters'
 
 interface OverviewPolicyDiffPanelProps {
   portfolio: DrugPortfolioEntry[]
@@ -16,14 +17,6 @@ const severityPalette = {
   LOW:  { bg: '#E0F2E8', text: '#1A7840', rail: '#1A7840', border: 'rgba(26,120,64,0.2)' },
 }
 
-const changeTypeLabels: Record<string, string> = {
-  ADDED_STEP_THERAPY:   'Step therapy added',
-  ADDED_CRITERION:      'Criterion added',
-  REMOVED_CRITERION:    'Criterion removed',
-  MODIFIED_THRESHOLD:   'Threshold shifted',
-  MODIFIED_WORDING:     'Language updated',
-  MODIFIED_PA_REQUIRED: 'PA status changed',
-}
 
 function formatDate(date: string) {
   return new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric' }).format(new Date(date))
@@ -168,14 +161,14 @@ export function OverviewPolicyDiffPanel({ portfolio, changes }: OverviewPolicyDi
         {visibleChanges.map(change => {
           const style = severityPalette[change.severity]
           return (
-            <div key={`${change.payer}-${change.change_type}-${change.date}`}
+            <div key={`${change.drug}-${change.payer}-${change.change_type}-${change.date}`}
               style={{ background: '#FFFFFF', border: '1px solid #D8D4CC', borderLeft: `3px solid ${style.rail}`, borderRadius: '2px', padding: '10px 12px' }}>
               <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '6px', marginBottom: '6px' }}>
                 <span style={{ ...mono, fontSize: '9px', padding: '1px 5px', borderRadius: '1px', background: style.bg, border: `1px solid ${style.border}`, color: style.text, letterSpacing: '0.08em', textTransform: 'uppercase' as const }}>
                   {change.change_type.startsWith('ADDED') ? 'Added' : change.change_type.startsWith('REMOVED') ? 'Removed' : 'Changed'}
                 </span>
                 <span style={{ fontSize: '12px', fontWeight: 600, color: '#131210' }}>
-                  {changeTypeLabels[change.change_type] ?? change.change_type}
+                  {CHANGE_TYPE_LABELS[change.change_type] ?? change.change_type}
                 </span>
                 <span style={{ ...mono, fontSize: '9px', color: '#918D88', marginLeft: 'auto' }}>{formatDate(change.date)}</span>
               </div>

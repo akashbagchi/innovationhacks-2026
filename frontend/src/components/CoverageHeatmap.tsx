@@ -26,7 +26,7 @@ export function CoverageHeatmap({ portfolio, onSelectDrug }: CoverageHeatmapProp
   }, [portfolio])
 
   return (
-    <div style={{ background: '#FFFFFF', border: '1px solid #D8D4CC', borderRadius: '2px', overflow: 'hidden' }}>
+    <div style={{ background: '#FFFFFF', border: '1px solid #D8D4CC', borderRadius: '2px', overflow: 'hidden', display: 'flex', flexDirection: 'column', height: '100%' }}>
       {/* Header */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 14px', background: '#F0EFEB', borderBottom: '1px solid #D8D4CC' }}>
         <p style={{ ...LABEL }}>Coverage Change Heatmap — Q1 2026</p>
@@ -35,13 +35,13 @@ export function CoverageHeatmap({ portfolio, onSelectDrug }: CoverageHeatmapProp
         </span>
       </div>
 
-      <div style={{ padding: '12px 14px' }}>
+      <div style={{ padding: '12px 14px', overflowY: 'auto', flex: 1 }}>
         {/* Column headers */}
         <div className="grid items-center gap-3 mb-2"
           style={{ gridTemplateColumns: `140px repeat(${payers.length}, minmax(0, 1fr))` }}>
           <span />
-          {payers.map(payer => (
-            <span key={payer} style={{ ...mono, fontSize: '9px', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#918D88', textAlign: 'center', display: 'block' }}>
+          {payers.map((payer, i) => (
+            <span key={`${payer}-${i}`} style={{ ...mono, fontSize: '9px', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#918D88', textAlign: 'center', display: 'block' }}>
               {formatPayerName(payer)}
             </span>
           ))}

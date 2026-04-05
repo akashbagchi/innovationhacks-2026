@@ -360,7 +360,14 @@ export function ComparisonMatrix({ policies }: ComparisonMatrixProps) {
                                   </div>
                                 )}
 
-                                <ProvenanceChip payer={p.payer.name} policyTitle={p.payer.policy_title} />
+                                <ProvenanceChip
+                                  payer={p.payer.name}
+                                  policyTitle={p.payer.policy_title}
+                                  policyId={p.payer.policy_id}
+                                  effectiveDate={p.payer.effective_date}
+                                  section={ind.name}
+                                  excerpt={ind.initial_authorization.criteria.map(c => c.description).join('\n\n')}
+                                />
                               </div>
                             ) : (
                               <p style={{ fontSize: '11px', color: '#D8D4CC' }}>Not covered</p>

@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Query
 from bson import ObjectId
 from bson.errors import InvalidId
 
@@ -10,6 +10,34 @@ router = APIRouter()
 def _serialize(doc: dict) -> dict:
     doc["_id"] = str(doc["_id"])
     return doc
+
+
+@router.get("/document-url")
+async def get_document_url(
+    payer: str = Query(""),
+    policy_id: str = Query(""),
+):
+    """Return a presigned S3 URL for the source policy document."""
+    query: dict = {}
+    if payer:
+        query["payer"] = {"$regex": payer, "$options": "i"}
+    if policy_id:
+        query["policy_id"] = policy_id
+
+    if not query:
+        raise HTTPException(status_code=400, detail="Provide at least one of: payer, policy_id")
+
+    doc = await policies.find_one(query)
+    if not doc or not doc.get("s3_key"):
+        raise HTTPException(status_code=404, detail="Document not found or no source PDF stored")
+
+    from db.s3 import generate_presigned_url
+    try:
+        url = generate_presigned_url(doc["s3_key"])
+    except Exception as exc:
+        raise HTTPException(status_code=502, detail=f"Failed to generate document URL: {exc}")
+
+    return {"url": url, "s3_key": doc["s3_key"], "payer": doc.get("payer"), "policy_id": doc.get("policy_id")}
 
 
 @router.get("/search")
