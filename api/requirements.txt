@@ -13,3 +13,4 @@ requests
 python-multipart
 deepdiff
 instructor
+python-docx
