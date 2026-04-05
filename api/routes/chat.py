@@ -311,7 +311,7 @@ INSIGHT_TOOL: dict = {
                     "required": ["severity", "text", "action"],
                 },
                 "minItems": 1,
-                "maxItems": 4,
+                "maxItems": 3,
             }
         },
         "required": ["insights"],
@@ -320,9 +320,9 @@ INSIGHT_TOOL: dict = {
 
 INSIGHT_SYSTEM = """\
 You are a medical policy analyst. You will be given cross-payer prior-authorization policy data for a drug.
-Identify 2-4 clinically or commercially significant findings: critical coverage restrictions, notable payer \
-differences, and administrative burden variations. For each finding provide a severity (high/medium/low), \
-a concise factual statement, and a concrete recommended action for medical affairs or market access teams.\
+Identify exactly 2-3 of the MOST significant findings. Prioritize: critical coverage restrictions that differ \
+across payers, the single most notable payer advantage or disadvantage, and the highest-impact administrative \
+burden variation. Do not pad with minor observations — quality over quantity. Hard limit: 3 cards maximum.\
 """
 
 

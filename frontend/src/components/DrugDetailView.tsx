@@ -174,9 +174,11 @@ export function DrugDetailView({ drug, onBack, changes }: DrugDetailViewProps) {
             initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
             transition={{ duration: 0.1 }}>
             {activeTab === 'comparison' && (
-              <div style={{ display: 'grid', gap: '16px', gridTemplateColumns: '1fr 300px' }}>
+              <div style={{ display: 'grid', gap: '16px', gridTemplateColumns: '1fr 300px', alignItems: 'start' }}>
                 <ComparisonMatrix policies={drug.policies} />
-                <InsightPanel insights={insights} drugName={drug.brandName} loading={insightsLoading} />
+                <div style={{ position: 'sticky', top: '22px', maxHeight: 'calc(100vh - 80px)', overflowY: 'auto' }}>
+                  <InsightPanel insights={insights} drugName={drug.brandName} loading={insightsLoading} />
+                </div>
               </div>
             )}
             {activeTab === 'criteria' && <CriteriaBreakdown policies={drug.policies} />}

@@ -27,7 +27,7 @@ export function RecentChangeFeed({ changes }: RecentChangeFeedProps) {
   const total = Math.max(changes.length, 1)
 
   return (
-    <div style={{ background: '#FFFFFF', border: '1px solid #D8D4CC', borderRadius: '2px', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+    <div style={{ background: '#FFFFFF', border: '1px solid #D8D4CC', borderRadius: '2px', display: 'flex', flexDirection: 'column', overflow: 'hidden', height: '100%' }}>
       {/* Header */}
       <div style={{ padding: '10px 14px', background: '#F0EFEB', borderBottom: '1px solid #D8D4CC', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <p style={{ ...LABEL }}>Recent Changes</p>

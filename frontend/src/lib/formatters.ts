@@ -1,16 +1,23 @@
 // Shared formatting utilities — single source of truth for labels, colors, abbreviations
 
 export function formatPayerName(name: string): string {
-  const abbrevs: Record<string, string> = {
-    'Blue Cross NC': 'BCNC',
-    'UnitedHealth': 'UHC',
-    'UnitedHealthcare': 'UHC',
-    'Florida Blue': 'FL Blue',
-    'Cigna': 'Cigna',
-    'Aetna': 'Aetna',
-    'Priority Health': 'PH',
-  }
-  return abbrevs[name] ?? name
+  const n = name.toLowerCase()
+  if (n.includes('unitedhealth'))                       return 'UHC'
+  if (n.includes('blue cross') && n.includes('nc'))     return 'BCNC'
+  if (n.includes('blue cross') && n.includes('north'))  return 'BCNC'
+  if (n.includes('florida blue'))                       return 'FL Blue'
+  if (n.includes('blue shield') && n.includes('ca'))    return 'BCBS CA'
+  if (n.includes('blue cross') || n.includes('bcbs'))   return 'BCBS'
+  if (n.includes('cigna'))                              return 'Cigna'
+  if (n.includes('aetna'))                              return 'Aetna'
+  if (n.includes('priority health'))                    return 'PH'
+  if (n.includes('emblem'))                             return 'Emblem'
+  if (n.includes('humana'))                             return 'Humana'
+  if (n.includes('molina'))                             return 'Molina'
+  if (n.includes('anthem'))                             return 'Anthem'
+  if (n.includes('centene'))                            return 'Centene'
+  // Fallback: first word, max 8 chars
+  return name.split(/\s+/)[0].slice(0, 8)
 }
 
 export const CRITERION_LABELS: Record<string, string> = {
